@@ -4,12 +4,15 @@
 ## Getting Started
 Open your cmd or terminal and enter the following:
 
-Run Project
-$ grails run-app
+### Run Project
 
-Or
-$ grails
-$ run-app
+    $ grails run-app
 
+### Or
 
-[![grailsop](http://docs.grails.org/latest/img/intropage.png)](grails)
+    $ grails
+    $ run-app
+
+### Home Grails Project by default
+
+[![](http://docs.grails.org/latest/img/intropage.png)]()
