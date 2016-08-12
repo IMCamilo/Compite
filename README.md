@@ -1,13 +1,15 @@
-COMPITE website
+# COMPITE WEBSITE
+### Sitio web para rendición de proyectos
 
-Getting Started
+## Getting Started
+Open your cmd or terminal and enter the following:
 
 Run Project
-> grails run-app
+$ grails run-app
 
 Or
-> grails
-> run-app
+$ grails
+$ run-app
 
 
-<![http://docs.grails.org/latest/img/intropage.png]()
+[![grailsop](http://docs.grails.org/latest/img/intropage.png)](grails)
