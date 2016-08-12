@@ -1,18 +1,20 @@
 # COMPITE WEBSITE
 ### Sitio web para rendición de proyectos
 
-## Getting Started
-Open your cmd or terminal and enter the following:
+## Para Empezar
+Iniciar cmd o terminal y entrar el directorio del proyecto
 
-### Run Project
+	(Considerando que esté todo instalado)
+
+### Para correr el proyecto grails
 
     $ grails run-app
 
-### Or
+### O también
 
     $ grails
     $ run-app
 
-### Home Grails Project by default
+### La página por defecto de grails es esta:
 
 [![](http://docs.grails.org/latest/img/intropage.png)]()
