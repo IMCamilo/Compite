@@ -1,7 +1,7 @@
-# COMPITE WEBSITE
+# COMPITE
 ### Sitio web para rendición de proyectos
 
-## Para Empezar
+### Para Empezar
 Iniciar cmd o terminal y entrar el directorio del proyecto
 
 	(Considerando que esté todo instalado)
@@ -14,6 +14,10 @@ Iniciar cmd o terminal y entrar el directorio del proyecto
 
     $ grails
     $ run-app
+
+### Para detener el server
+
+	$ stop-app
 
 ### La página por defecto de grails es esta:
 
