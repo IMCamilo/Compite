@@ -1,4 +1,7 @@
 # COMPITE
+
+[![](http://compite.noveitor.com/wp-content/uploads/2016/04/compite2.png)]()
+
 ### Sitio web para rendición de proyectos
 
 ### Para Empezar
