@@ -6,4 +6,5 @@ package compite
 class Car {
     String patent
     Integer year
+    static belongsTo = [contact:Contact]
 }

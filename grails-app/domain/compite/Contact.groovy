@@ -8,7 +8,5 @@ class Contact {
     Integer phoneNumber
     static hasMany = [car:Car]
     static constraints = {
-        name nullable: false
-        phoneNumber nullable: false
     }
 }

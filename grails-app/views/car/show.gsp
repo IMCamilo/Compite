@@ -4,6 +4,7 @@
     </head>
     <body>
         <h1>Show car</h1>
+        Contact: ${car.contactId}<br /><!--almacenar nombre o llamar a nombre para mostrarlo-->
         Patent: ${car.patent}<br />
         Year: ${car.year}<br />
         <g:link action="edit" id="${car.id}">Edit</g:link><br />
