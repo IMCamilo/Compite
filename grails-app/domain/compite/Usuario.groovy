@@ -3,6 +3,7 @@ package compite
 
 
 class Usuario {
+
     String rut
     String nombres
     String parterno
@@ -12,4 +13,11 @@ class Usuario {
     String telefono
     String clave
     Integer tipo
+
+    static hasMany = [rendicion:Rendicion, transporte:Transporte, auditoria:Auditoria, egreso:Egreso, proyecto:Proyecto]
+
+    static constraints = {
+
+    }
+
 }
