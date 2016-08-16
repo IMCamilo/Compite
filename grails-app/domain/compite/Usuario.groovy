@@ -1,12 +1,10 @@
 package compite
 
-
-
 class Usuario {
 
     String rut
     String nombres
-    String parterno
+    String paterno
     String materno
     String direccion
     String correo
