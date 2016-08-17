@@ -14,7 +14,7 @@
             telefono: <g:textField name="telefono" /><br />
             clave: <g:textField name="clave" /><br />
             tipo: <g:textField name="tipo" /><br />
-            <g:actionSubmit value="Save" />
+            <g:actionSubmit value="Save"/>
         </g:form>
     </body>
 </html>

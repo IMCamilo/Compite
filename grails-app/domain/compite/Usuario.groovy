@@ -14,8 +14,4 @@ class Usuario {
 
     static hasMany = [rendicion:Rendicion, transporte:Transporte, auditoria:Auditoria, egreso:Egreso, proyecto:Proyecto]
 
-    static constraints = {
-
-    }
-
 }
