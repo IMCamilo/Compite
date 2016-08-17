@@ -9,15 +9,8 @@
 </head>
 
 <body>
-<p>menu</p>
-<p>ver rendiciones de proyecto</p>
-<p>---- proyecto publico</p>
-<p>---- proyecto privado</p>
-<p>administrar</p>
-<p>---- usuarios</p>
-<p>---- proyectos</p>
-<p>---- asignacion de usuarios a proyectos</p>
-<p>---- items</p>
-<p>reportes</p>
+    <p>seleccion proyecto</p>
+        <p>---- proyectos publicos</p> <!--al seleccionar proyecto ir a una nuevarendicion (controller)-->
+        <p>---- proyectos privados</p>
 </body>
 </html>
