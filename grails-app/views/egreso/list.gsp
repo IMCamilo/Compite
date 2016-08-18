@@ -10,5 +10,18 @@
 
 <body>
 
+    <g:each in="${egresos}" var="auditoria">
+
+        Usuario ${egresos.usuario} <br/>
+        Fecha ${egresos.fechaCreacion}<br/>
+        aprobacion ${egresos.aprobacion}<br/>
+        sedeEnvio ${egresos.sedeEnvio}<br/>
+        tipoRendicion ${egresos.tipoRendicion}<br/>
+
+        <g:link action="edit" id="${egresos.id}">Editar</g:link><br/>
+        <g:link action="delete" id="${egresos.id}">Borrar</g:link><br/><br/>
+    </g:each>
+    <g:link action="create">Nueva auditoria</g:link>
+
 </body>
 </html>

@@ -13,7 +13,7 @@
     <g:form action="update" id="${auditoria.id}">
 
         Usuario <g:select name="usuario" from="${auditoria.usuario}" optionValue="nombres" optionKey="id"/><br/>
-        (no se verá, es automatica) Fecha <g:datePicker name="fecha" value="${new Date()}" noSelection="['':'-Choose-']"/><br/>
+        (no se verá, es automatica) Fecha <g:datePicker name="fecha" value="${new Date()}" noSelection="['':'Selecciona Mes']"/><br/>
         Descripcion <g:textArea name="descripcion" value="${auditoria.descripcion}" rows="5" cols="40"/>
 
 
