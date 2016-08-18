@@ -12,6 +12,6 @@ class Usuario {
     String clave
     Integer tipo
 
-    static hasMany = [rendicion:Rendicion, transporte:Transporte, auditoria:Auditoria, egreso:Egreso, proyecto:Proyecto]
+    static hasMany = [rendicion:Rendicion, transporte:Transporte, auditoria:Auditoria, egreso:Egreso, proyectousuario:UsuariosProyecto]
 
 }

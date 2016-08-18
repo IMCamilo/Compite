@@ -4,7 +4,7 @@
     </head>
     <body>
     <h1>List usuarios</h1>
-    <g:each in="${usuario}" var="usuario">
+    <g:each in="${usuarios}" var="usuario">
         rut: ${usuario.rut}<br/>
         nombres: ${usuario.nombres}<br/>
         paterno: ${usuario.paterno}<br/>

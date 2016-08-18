@@ -11,7 +11,8 @@ class Proyecto {
     Integer estado
     Date fechaFin
 
-    static belongsTo = [empresa:Empresa, usuario:Usuario]
+    static hasMany = [usuarioproyecto:UsuariosProyecto]
+    static belongsTo = [empresa:Empresa]
 
     static constraints = {
 

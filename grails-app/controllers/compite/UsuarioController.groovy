@@ -45,8 +45,8 @@ class UsuarioController {
 
     def list = {
         //lista los todos los contactos
-        def contacts = Usuario.list()
-        [contacts: contacts]
+        def usuarios = Usuario.list()
+        [usuarios: usuarios]
     }
     def delete = {
         //elimina el usuario del id que le pasó
