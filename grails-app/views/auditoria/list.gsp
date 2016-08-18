@@ -10,5 +10,13 @@
 
 <body>
 
+    <g:each in="${auditorias}" var="auditoria">
+        fecha: ${auditoria.fecha}<br/>
+        descripcion: ${auditoria.descripcion}<br/>
+        <g:link action="edit" id="${auditoria.id}">Editar</g:link><br/>
+        <g:link action="delete" id="${auditoria.id}">Borrar</g:link><br/><br/>
+    </g:each>
+    <g:link action="create">Nueva auditoria</g:link>
+
 </body>
 </html>

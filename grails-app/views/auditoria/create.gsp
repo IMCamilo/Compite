@@ -10,5 +10,12 @@
 
 <body>
 
+    <g:form action="save">
+        Usuario <g:select name="usuario" from="${usuarios}" optionValue="nombres" optionKey="id"/><br/>
+        Fecha <g:datePicker name="fecha" value="${new Date()}" noSelection="['':'-Choose-']"/><br/>
+        Descripcion <g:textArea name="descripcion" value="" rows="5" cols="40"/>
+        <g:actionSubmit value="Save"/>
+    </g:form>
+
 </body>
 </html>
