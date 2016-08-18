@@ -9,6 +9,20 @@
 </head>
 
 <body>
+    <h1>empresa</h1>
+
+    gerente: ${empresa.gerente}<br/>
+    direccion: ${empresa.direccion}<br/>
+    fecha: ${empresa.fechaCreacion}<br/>
+    correo: ${empresa.correo}<br/>
+    giro: ${empresa.giro}<br/>
+    nombre: ${empresa.nombre}<br/>
+    rut: ${empresa.rut}<br/>
+    telefono: ${empresa.telefono}<br/>
+    tipo: ${empresa.tipo}<br/>
+
+    <g:link action="edit" id="${empresa.id}">Editar</g:link><br />
+    <g:link action="delete" id="${empresa.id}">Borrar</g:link>
 
 </body>
 </html>

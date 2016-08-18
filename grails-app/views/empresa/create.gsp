@@ -10,5 +10,20 @@
 
 <body>
 
+    <g:form action="save">
+
+        GERENTE <g:textField name="gerente"/><br/>
+        DIRECCION <g:textField name="direccion"/><br/>
+        Fecha <g:datePicker name="fechaCreacion" value="${new Date()}" noSelection="['':'Selecciona Mes']"/><br/>
+        CORREO <g:textField name="correo" value=""/><br/>
+        GIRO <g:textField name="giro" value=""/><br/>
+        NOMBRE <g:textField name="nombre" value=""/><br/>
+        RUT <g:textField name="rut" value=""/><br/>
+        TELEFONO <g:textField name="telefono" value=""/><br/>
+        TIPO <g:textField name="tipo" value=""/><br/>
+
+        <g:actionSubmit value="Save"/>
+    </g:form>
+
 </body>
 </html>
