@@ -10,5 +10,14 @@
 
 <body>
 
+    <g:form action="save">
+        rendicion <g:select name="rendicion" from="${rendiciones}" optionValue="id" optionKey="id"/><br/>
+        nombre <g:textField name="nombre" value=""/>
+        tipo <g:textField name="tipo" value=""/>
+        descripcion <g:textArea name="descripcion" value=""/>
+        valor <g:textField name="valor" value="" />
+        <g:actionSubmit value="Save"/>
+    </g:form>
+
 </body>
 </html>

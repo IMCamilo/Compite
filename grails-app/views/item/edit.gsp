@@ -10,5 +10,14 @@
 
 <body>
 
+    <g:form action="update" id="${item.id}">
+        rendicion <g:select name="rendicion" from="${item.rendicion}" optionValue="id" optionKey="id"/><br/>
+        nombre <g:textField name="nombre" value="${item.nombre}"/>
+        tipo <g:textField name="tipo" value="${item.tipo}"/>
+        descripcion <g:textArea name="descripcion" value="${item.descripcion}"/>
+        valor <g:textField name="valor" value="${item.valor}" />
+        <g:actionSubmit value="Update" />
+    </g:form>
+
 </body>
 </html>

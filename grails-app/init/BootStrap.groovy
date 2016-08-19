@@ -79,6 +79,7 @@ class BootStrap {
         }
         if (!Rendicion.list()){
             new Rendicion(
+                nombre: "rendicion 1 estandar",
                 tipo: "rendicionestandar",
                 fecha: "2016-08-19 11:49:00.0",
                 motivo: "colacion",

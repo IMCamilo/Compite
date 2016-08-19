@@ -6,6 +6,7 @@ package compite
 class Rendicion {
 
     String tipo
+    String nombre
     Date fecha
     String motivo
     String recorrido

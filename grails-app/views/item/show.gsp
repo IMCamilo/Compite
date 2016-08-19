@@ -9,6 +9,12 @@
 </head>
 
 <body>
-
+    rendicion ${item.rendicion} <br/>
+    nombre ${item.nombre}<br/>
+    tipo ${item.tipo}<br/>
+    descripcion ${item.descripcion}<br/>
+    valor ${item.valor}<br/>
+    <g:link action="edit" id="${item.id}">Editar</g:link><br/>
+    <g:link action="delete" id="${item.id}">Borrar</g:link><br/><br/>
 </body>
 </html>
