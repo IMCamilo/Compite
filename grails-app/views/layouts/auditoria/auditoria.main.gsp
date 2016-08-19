@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title><g:layoutTitle default="Auditoría"/></title>
+    <title><g:layoutTitle default="COMPITE - ${controllerName} - ${actionName}"/></title>
     <asset:link rel="icon" href="compite/favicon.png" type="image/x-ico" sizes="32x32"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
@@ -19,15 +19,15 @@
                 </a>
 
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="${createLink(controller:'auditoria', action:'list')}">Mostrar Auditorías</a></li>
-                    <li><a href="${createLink(controller:'auditoria', action:'create')}">Nuevo Registro</a></li>
+                    <li><a href="/${controllerName}">Home ${controllerName}s</a></li>
+                    <li><a href="/${controllerName}/list">Mostrar ${controllerName}s</a></li>
+                    <li><a href="/${controllerName}/create">Nueva ${controllerName}</a></li>
                     <li><a href="${createLink(controller:'login', action:'login')}">Carrar Sesión</a></li>
                 </ul>
             </div>
         </nav>
     </div>
 <g:layoutBody/>
-
 <footer class="page-footer teal">
     <div class="container">
         <div class="row">

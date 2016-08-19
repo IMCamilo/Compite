@@ -1,4 +1,4 @@
 <meta name="layout" content="auditoria/auditoria.main"/>
 <div class="container">
-    <h3>Cree, edite y elimine auditorías</h3>
+<h3>Cree, edite y elimine ${controllerName}s</h3>
 </div>
