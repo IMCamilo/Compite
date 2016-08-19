@@ -25,7 +25,7 @@
                 <li><a href="index.html">Inicio</a></li>
             </ul>
             <ul id="nav-mobile" class="side-nav">
-                <li><a href="index.html">Inicio</a></li>
+                <li><a href="http://localhost:8080">Inicio</a></li>
             </ul>
             <a href="index.html" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
         </div>
