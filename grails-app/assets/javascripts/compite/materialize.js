@@ -1252,7 +1252,7 @@ $(document).ready(function(){
           $index = 0;
 
       // If the location.hash matches one of the links, use that as the active tab.
-      $active = $($links.filter('[href="'+location.hash+'"]'));
+
 
       // If no match is found, use the first link or any with class 'active' as the initial active tab.
       if ($active.length === 0) {

@@ -16,7 +16,13 @@
     <asset:stylesheet src="compite/materialize.css"/>
     <asset:stylesheet src="compite/style.css"/>
     <asset:stylesheet src="compite/googlefonts.css"/>
-
+    <script>
+        $(document).ready(function() {
+            $('.tooltipped').tooltip({
+                delay: 50
+            });
+        });
+    </script>
     <g:layoutHead/>
 </head>
 <body style="font-size:75%">
@@ -82,14 +88,11 @@
     </div>
 </footer>
 
-<asset:javascript src="https://code.jquery.com/jquery-2.1.1.min.js"/>
-<asset:javascript src="js/materialize.js"/>
-<asset:javascript src="js/init.js"/>
-<asset:javascript src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"/>
-<g:javascript>
-    $(function() {
-        $("#tabs").tabs();
-    });
-</g:javascript>
+<script type="text/javascript" src="${request.contextPath}https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<asset:javascript src="compite/materialize.js"/>
+<asset:javascript src="compite/init.js"/>
+
+<!-- End: Custom Page JavaScript Should Go Here -->
+
 </body>
 </html>

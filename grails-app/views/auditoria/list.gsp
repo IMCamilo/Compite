@@ -39,65 +39,21 @@
 <div class="container">
     <g:each in="${auditorias}" var="auditoria">
         <div class="row">
-            <div class="s40 m4">
+            <div class="col s12">
                 <div class="card blue-grey darken-1">
                     <div class="card-content white-text">
-                        <span class="card-title">Fecha: ${auditoria.fecha}</span>
-                        <p>descripcion: ${auditoria.descripcion}</p>
+                        <span class="card-title">Fecha: ${auditoria.fecha}<span class="badge white-text">ID: ${auditoria.id}</span></span>
+                        <p>Descrición: ${auditoria.descripcion}</p>
                     </div>
                     <div class="card-action">
-                        <a href="#"><g:link action="edit" id="${auditoria.id}">Editar</g:link></a>
-                        <a href="#"><g:link action="delete" id="${auditoria.id}">Borrar</g:link></a>
+                        <a href=""><g:link action="edit" id="${auditoria.id}">Editar</g:link></a>
+                        <a href=""><g:link action="delete" id="${auditoria.id}">Borrar</g:link></a>
                     </div>
                 </div>
             </div>
         </div>
     </g:each>
 </div>
-<!--
-<div class="container">
-    <div class="section">
-        <div class="row">
-            <center>
-                <asset:image src="compite/logo.png" width="30%" height="30%"/>
-                <!--<img src="img/logo.png" width="30%" height="30%">-- >
-            </center>
-        </div>
-    </div>
-    <div class="section">
-        <div class="row">
-            <div class="col s12 m4">
-            </div>
-            <div class="col s12 m4">
-                <div class="row">
-                    <!--<form class="col s12" action="admin.html">-- >
-                    <form class="col s12" action="ingeniero.html">
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <i class="material-icons prefix">account_circle</i>
-                                <input id="icon_prefix" type="text" class="validate">
-                                <label for="icon_prefix">Correo electrónico</label>
-                            </div>
-                            <div class="input-field col s12">
-                                <i class="material-icons prefix">vpn_key</i>
-                                <input id="icon_telephone" type="tel" class="validate">
-                                <label for="icon_telephone">Contraseña</label>
-                            </div>
-                            <div class="input-field col s12">
-                                <button class="btn waves-effect waves-light" style="width:100%; height:50px" type="submit">Entrar
-                                    <i class="material-icons right">send</i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="col s12 m4">
-            </div>
-        </div>
-    </div>
-</div>
--->
 
 <footer class="page-footer teal">
     <div class="container">
