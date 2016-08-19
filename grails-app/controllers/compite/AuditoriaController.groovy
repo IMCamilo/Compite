@@ -30,7 +30,8 @@ class AuditoriaController {
         def auditoria = Auditoria.get(params.id)
         auditoria.properties = params
         auditoria.save flush:true, failOnError:true
-        redirect action:"show", id:params.id
+        //redirect action:"show", id:params.id
+        redirect action: "list"
     }
 
     def show = {
