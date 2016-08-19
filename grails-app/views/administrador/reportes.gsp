@@ -1,24 +1,6 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <title>COMPITE - Iniciar sesión</title>
-    <asset:link rel="icon" href="compite/favicon.png" type="image/x-ico" sizes="32x32"/>
-    <!--<link rel="icon" href="img/favicon.png" sizes="32x32">-->
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
-    <!-- CSS  -->
-    <asset:stylesheet src="compite/materialize.css"/>
-    <asset:stylesheet src="compite/style.css"/>
-    <asset:stylesheet src="compite/googlefonts.css"/>
+<title>COMPITE - Iniciar sesión</title>
+<meta name="layout" content="administrador"/>
 
-    <!---<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">-->
-    <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
-    <!--link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />-->
-
-</head>
-
-<body style="font-size:75%">
 <nav class="white" role="navigation">
     <div class="nav-wrapper container">
         <a id="logo-container" href="index.html" class="brand-logo">
@@ -38,156 +20,151 @@
         <div id="tabs">
             <ul class="tabs">
                 <li class="tab col s4"><a href="${createLink(controller:'administrador', action:'index')}">RENDICIONES DE PROYECTO</a></li>
-                <li class="tab col s4"><a class="active" href="${createLink(controller:'administrador', action:'administrar')}">ADMINISTRAR</a></li>
-                <li class="tab col s4"><a href="${createLink(controller:'administrador', action:'reportes')}">REPORTES</a></li>
+                <li class="tab col s4"><a href="${createLink(controller:'administrador', action:'administrar')}">ADMINISTRAR</a></li>
+                <li class="tab col s4"><a class="active" hrf="${createLink(controller:'administrador', action:'reportes')}">REPORTES</a></li>
             </ul>
-            <div class="formulario">
-                <div class="cuadro">RUT
-                    <input type="text">
-                </div>
-                <div class="cuadro">Fecha Rendicion
-                    <input type="text">
-                </div>
-                <div class="cuadro">Sede Rendicion
-                    <input type="text">
-                </div>
-                <div class="cuadro">Nombre Responsable
-                    <input type="text">
-                </div>
-                <div class="cuadro">Tipo de Rendicion
-                    <input type="text">
-                </div>
-                <table>
-                    <tr>
-                        <th>Referencia</th>
-                        <th>Tipo</th>
-                        <th>Numero Documento</th>
-                        <th>Fecha Documento</th>
-                        <th>RUT</th>
-                        <th>Pagado A : </th>
-                        <th>Numero Centro Costo</th>
-                        <th>Item Presupuestario</th>
-                        <th>Descripcion</th>
-                        <th>Valor</th>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>comida</td>
-                        <td>0255</td>
-                        <td>21/12/2012</td>
-                        <td>16.312.334-7</td>
-                        <td>Adolfo Gonzalez</td>
-                        <td>0911</td>
-                        <td>Colacion</td>
-                        <td>Completos</td>
-                        <td>$ 5000</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>bebidas</td>
-                        <td>0256</td>
-                        <td>21/12/2012</td>
-                        <td>16.312.334-7</td>
-                        <td>Adolfo Gonzalez</td>
-                        <td>0911</td>
-                        <td>Colacion</td>
-                        <td>Gulden Draak</td>
-                        <td>$ 8000</td>
-                    </tr>
-                </table>
-                <div class="cuadro">Total Rendido
-                    <input type="text" placeholder="$ 13000">
-                </div>
-                <div class="cuadro">Total Anticipado
-                    <input type="text" placeholder="$ 15000">
-                </div>
-                <div class="cuadro">Saldo a Favor Responsable Rendicion
-                    <input type="text" placeholder="$ 2000">
-                </div>
-                <p></p>
-                <div class="cuadro">
-                    <button>LIMPIAR</button>
-                    <button>VALIDAR</button>
-                </div>
-            </div>
+        </div>
+    </div>
+    <div class="formulario">
+        <div class="cuadro">RUT
+            <input type="text">
+        </div>
+        <div class="cuadro">Fecha Rendicion
+            <input type="text">
+        </div>
+        <div class="cuadro">Sede Rendicion
+            <input type="text">
+        </div>
+        <div class="cuadro">Nombre Responsable
+            <input type="text">
+        </div>
+        <div class="cuadro">Tipo de Rendicion
+            <input type="text">
+        </div>
+        <table>
+            <tr>
+                <th>Referencia</th>
+                <th>Tipo</th>
+                <th>Numero Documento</th>
+                <th>Fecha Documento</th>
+                <th>RUT</th>
+                <th>Pagado A : </th>
+                <th>Numero Centro Costo</th>
+                <th>Item Presupuestario</th>
+                <th>Descripcion</th>
+                <th>Valor</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>comida</td>
+                <td>0255</td>
+                <td>21/12/2012</td>
+                <td>16.312.334-7</td>
+                <td>Adolfo Gonzalez</td>
+                <td>0911</td>
+                <td>Colacion</td>
+                <td>Completos</td>
+                <td>$ 5000</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>bebidas</td>
+                <td>0256</td>
+                <td>21/12/2012</td>
+                <td>16.312.334-7</td>
+                <td>Adolfo Gonzalez</td>
+                <td>0911</td>
+                <td>Colacion</td>
+                <td>Gulden Draak</td>
+                <td>$ 8000</td>
+            </tr>
+        </table>
+        <div class="cuadro">Total Rendido
+            <input type="text" placeholder="$ 13000">
+        </div>
+        <div class="cuadro">Total Anticipado
+            <input type="text" placeholder="$ 15000">
+        </div>
+        <div class="cuadro">Saldo a Favor Responsable Rendicion
+            <input type="text" placeholder="$ 2000">
+        </div>
+        <p></p>
+        <div class="cuadro">
+            <button>LIMPIAR</button>
+            <button>VALIDAR</button>
+        </div>
+    </div>
 
-            <div class="formulario">
+    <div class="formulario">
 
-                <div class="cuadro">Mantencion Cada 1000 KMS
-                    <input type="text">
-                </div>
-                <div class="cuadro">Valor U.F Hoy
-                    <input type="text">
-                </div>
-                <div class="cuadro">Rendimiento
-                    <input type="text">
-                </div>
-                <div class="cuadro">Seguro Cada 2000kms
-                    <input type="text">
-                </div>
-                <div class="cuadro">Valor Bencina Hoy
-                    <input type="text">
-                </div>
-                <div class="cuadro">$$ Por Kilometro
-                    <input type="text">
-                </div>
-                <div class="cuadro">U.F Por Kilometro
-                    <input type="text">
-                </div>
+        <div class="cuadro">Mantencion Cada 1000 KMS
+            <input type="text">
+        </div>
+        <div class="cuadro">Valor U.F Hoy
+            <input type="text">
+        </div>
+        <div class="cuadro">Rendimiento
+            <input type="text">
+        </div>
+        <div class="cuadro">Seguro Cada 2000kms
+            <input type="text">
+        </div>
+        <div class="cuadro">Valor Bencina Hoy
+            <input type="text">
+        </div>
+        <div class="cuadro">$$ Por Kilometro
+            <input type="text">
+        </div>
+        <div class="cuadro">U.F Por Kilometro
+            <input type="text">
+        </div>
 
-                <table>
-                    <tr>
-                        <th>Numero</th>
-                        <th>Fecha</th>
-                        <th>Motivo/Empresa</th>
-                        <th>Direccion</th>
-                        <th>Distancia</th>
-                        <th>Distancia Ida/Vuelta</th>
-                        <th>Mes</th>
-                        <th>Estacionamiento</th>
-                        <th>Peaje</th>
-                        <th>Tag</th>
-                        <th>Metro</th>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>12/12/12</td>
-                        <td>Capacitacion</td>
-                        <td>Lorem ipsum </td>
-                        <td>25km</td>
-                        <td>55km</td>
-                        <td>12</td>
-                        <td>$0</td>
-                        <td>$0</td>
-                        <td>$0</td>
-                        <td>$0</td>
-                    </tr>
+        <table>
+            <tr>
+                <th>Numero</th>
+                <th>Fecha</th>
+                <th>Motivo/Empresa</th>
+                <th>Direccion</th>
+                <th>Distancia</th>
+                <th>Distancia Ida/Vuelta</th>
+                <th>Mes</th>
+                <th>Estacionamiento</th>
+                <th>Peaje</th>
+                <th>Tag</th>
+                <th>Metro</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>12/12/12</td>
+                <td>Capacitacion</td>
+                <td>Lorem ipsum </td>
+                <td>25km</td>
+                <td>55km</td>
+                <td>12</td>
+                <td>$0</td>
+                <td>$0</td>
+                <td>$0</td>
+                <td>$0</td>
+            </tr>
 
-                </table>
+        </table>
 
-                <div class="cuadro">ESTACIONAMIENTO
-                    <input type="text">
-                </div>
-                <div class="cuadro">TAG
-                    <input type="text">
-                </div>
-                <div class="cuadro">PEAJE
-                    <input type="text">
-                </div>
-                <div class="cuadro">METRO
-                    <input type="text">
-                </div>
-                <div class="cuadro">TOTAL
-                    <input type="text">
-                </div>
-            </div>
-
-
+        <div class="cuadro">ESTACIONAMIENTO
+            <input type="text">
+        </div>
+        <div class="cuadro">TAG
+            <input type="text">
+        </div>
+        <div class="cuadro">PEAJE
+            <input type="text">
+        </div>
+        <div class="cuadro">METRO
+            <input type="text">
+        </div>
+        <div class="cuadro">TOTAL
+            <input type="text">
         </div>
     </div>
 </div>
-</div>
 
-</body>
 
-</html>

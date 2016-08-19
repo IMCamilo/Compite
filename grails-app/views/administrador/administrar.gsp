@@ -1,4 +1,4 @@
-<title>COMPITE - Iniciar sesión</title>
+<title>COMPITE - Administrar</title>
 <meta name="layout" content="administrador"/>
 
 
@@ -20,7 +20,7 @@
     <div class="section">
         <div id="tabs">
             <ul class="tabs">
-                <li class="tab col s4"><a href="${createLink(controller:'administrador', action:'index')}">RENDICIONES DE PROYECTO</a></li>
+                <li class="tabs col s4"><a href="${createLink(controller:'administrador', action:'index')}">RENDICIONES DE PROYECTO</a></li>
                 <li class="tab col s4"><a class="active" href="${createLink(controller:'administrador', action:'administrar')}">ADMINISTRAR</a></li>
                 <li class="tab col s4"><a href="${createLink(controller:'administrador', action:'reportes')}">REPORTES</a></li>
             </ul>
@@ -73,11 +73,7 @@
         </div>
     </div>
 </div>
-</div>
 
-<g:javascript>
-    $(function() {
-        $("#tabs").tabs();
-    });
-</g:javascript>
+
+
 
