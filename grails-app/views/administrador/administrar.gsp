@@ -20,7 +20,7 @@
     <div class="section">
         <div id="tabs">
             <ul class="tabs">
-                <li class="tabs col s4"><a href="${createLink(controller:'administrador', action:'index')}">RENDICIONES DE PROYECTO</a></li>
+                <li class="tab col s4"><a href="${createLink(controller:'administrador', action:'index')}">RENDICIONES DE PROYECTO</a></li>
                 <li class="tab col s4"><a class="active" href="${createLink(controller:'administrador', action:'administrar')}">ADMINISTRAR</a></li>
                 <li class="tab col s4"><a href="${createLink(controller:'administrador', action:'reportes')}">REPORTES</a></li>
             </ul>
@@ -30,41 +30,20 @@
                 <!--aca va el formulario para crear rendiciones-->
                 <ul class="collapsible" data-collapsible="expandable" style="width:100%">
                     <li>
-                        <div class="collapsible-header"><i class="material-icons">navigation</i>USUARIOS DEL SISTEMA</div>
-                        <div class="collapsible-body">
-                            <form action="" class="usuarios">
-                                <input type="text" class="nombre" value="Búscar por nombre">
-                                <input type="text" class="nombre" value="Búscar por usuario">
-                                <input type="text" class="nombre" value="Búscar por correo">
-                            </form>
-                        </div>
+                        <div class="collapsible-header"><i class="material-icons">navigation</i><a href="${createLink(controller:'usuario', action:'index')}">USUARIOS DEL SISTEMA</a></div>
+
                     </li>
                     <li>
-                        <div class="collapsible-header"><i class="material-icons">person_pip</i>PROYECTOS</div>
-                        <div class="collapsible-body">
-                            <form action="" class="usuarios">
-                                <input type="text" class="nombre" value="Búscar por nombre">
-                                <input type="text" class="nombre" value="Búscar por usuario encargado">
-                                <input type="text" class="nombre" value="Búscar por cliente">
-                                <input type="text" class="nombre" value="Búscar por tipo de proyecto">
-                            </form>
+                        <div class="collapsible-header"><i class="material-icons">person_pip</i><a href="${createLink(controller:'proyecto', action:'index')}">PROYECTOS</a></div>
+
                     </li>
                     <li>
-                        <div class="collapsible-header"><i class="material-icons">playlist_add</i>ASIGNACIÓN DE PROYECTOS</div>
-                        <div class="collapsible-body">
-                            <form action="" class="usuarios">
-                                <input type="text" class="nombre" value="Búscar por nombre">
-                            </form>
-                        </div>
+                        <div class="collapsible-header"></a><i class="material-icons">playlist_add</i><a href="${createLink(controller:'auditoria', action:'index')}">AUDITORÍA</a></div>
+
                     </li>
                     <li>
-                        <div class="collapsible-header"><i class="material-icons">work</i>ADMINISTRAR LOS ITEMS</div>
-                        <div class="collapsible-body">
-                            <form action="" class="items">
-                                <input type="text" class="texto" value="Buscar por codigo del item">
-                                <input type="text" class="texto" value="Buscar por nombre del item">
-                            </form>
-                        </div>
+                        <div class="collapsible-header"><i class="material-icons">work</i><a href="${createLink(controller:'item', action:'index')}">ITEM´S DE GASTOS</a></div>
+
                     </li>
                 </ul>
                 <!--"aca va el formulario para crear rendiciones"-->

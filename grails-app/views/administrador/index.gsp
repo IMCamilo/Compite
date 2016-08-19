@@ -18,7 +18,7 @@
     <div class="section">
         <div id="tabs">
             <ul class="tabs">
-                <li class="tab col s4"><a class="indicador" href="${createLink(controller:'administrador', action:'index')}">INICIO</a></li>
+                <li class="tab col s4"><a class="active" href="${createLink(controller:'administrador', action:'index')}">INICIO</a></li>
                 <li class="tab col s4"><a href="${createLink(controller:'administrador', action:'administrar')}">ADMINISTRAR</a></li>
                 <li class="tab col s4"><a href="${createLink(controller:'administrador', action:'reportes')}">REPORTES</a></li>
             </ul>
@@ -48,46 +48,11 @@
 
                                             <tbody>
                                             <tr>
-                                                <td>Nombre Proyecto</td>
-                                                <td><del>Sin Rendiciones Pendientes</del></td>
-                                                <td>Camilo</td>
+                                                <td></td>
+
                                             </tr>
                                             </tbody>
-                                            <tbody>
-                                            <tr>
-                                                <td>Nombre Proyecto</td>
-                                                <td><ins>Rendiciones Pendientes</ins></td>
-                                                <td>Pardo</td>
-                                            </tr>
-                                            </tbody>
-                                            <tbody>
-                                            <tr>
-                                                <td>Nombre Proyecto</td>
-                                                <td><del>Sin Rendiciones Pendientes</del></td>
-                                                <td>Santana</td>
-                                            </tr>
-                                            </tbody>
-                                            <tbody>
-                                            <tr>
-                                                <td>Nombre Proyecto</td>
-                                                <td><ins>Rendiciones Pendientes</ins></td>
-                                                <td>Jhonathan</td>
-                                            </tr>
-                                            </tbody>
-                                            <tbody>
-                                            <tr>
-                                                <td>Nombre Proyecto</td>
-                                                <td><del>Sin Rendiciones Pendientes</del></td>
-                                                <td>Adolfo</td>
-                                            </tr>
-                                            </tbody>
-                                            <tbody>
-                                            <tr>
-                                                <td>Nombre Proyecto</td>
-                                                <td><ins>Rendiciones Pendientes</ins></td>
-                                                <td>Pablo</td>
-                                            </tr>
-                                            </tbody>
+
 
                                         </table>
                                     </a>
