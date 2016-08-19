@@ -27,7 +27,9 @@
             </div>
         </nav>
     </div>
+<div class="container">
 <g:layoutBody/>
+</div>
 <footer class="page-footer teal">
     <div class="container">
         <div class="row">
