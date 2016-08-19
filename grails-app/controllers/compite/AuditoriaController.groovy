@@ -17,7 +17,8 @@ class AuditoriaController {
     def save = {
         def auditoria = new Auditoria(params)
         auditoria.save flush:true, failOnError:true
-        redirect action: "show", id:auditoria.id
+        //redirect action: "show", id:auditoria.id
+        redirect action: "list"
     }
 
     def edit = {
@@ -45,7 +46,8 @@ class AuditoriaController {
     def delete = {
         def auditoria = Auditoria.get(params.id)
         auditoria.delete flush: true, failOnError: true
-        redirect action: "index"
+        //redirect action: "index"
+        redirect action: "list"
     }
 
 }
