@@ -9,38 +9,113 @@
     <asset:stylesheet src="compite/style.css"/>
     <asset:stylesheet src="compite/googlefonts.css"/>
 </head>
-<body>
-<div class="navbar-fixed">
-    <nav class="white" role="navigation">
-        <div class="nav-wrapper container">
-            <a id="logo-container" href="http://localhost:8080" class="brand-logo">
-                <asset:image src="compite/compite2.png" alt="logo" class="img-responsive" width="50%" height="50%" style="padding-top:10px"/>
-            </a>
 
-            <ul id="dropdown1" class="dropdown-content">
-                <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.name } }">
-                <li><g:link controller="${c.logicalPropertyName}">${c.name}</g:link></li>
-                </g:each>
-            </ul>
-            <ul class="right hide-on-med-and-down">
-                <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Controladores Disponibles<i class="material-icons right">arrow_drop_down</i></a></li>
-                <li><a href="${createLink(controller:'login', action:'login')}">Iniciar Sesión</a></li>
-            </ul>
+<body>
+<nav class="white" role="navigation">
+    <div class="navbar-fixed">
+        <nav class="white" role="navigation">
+            <div class="nav-wrapper container">
+                <a id="logo-container" href="http://localhost:8080" class="brand-logo">
+                    <asset:image src="compite/compite2.png" alt="logo" class="img-responsive" width="50%" height="50%" style="padding-top:10px"/>
+                </a>
+                <ul id="dropdown1" class="dropdown-content">
+                    <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.name } }">
+                    <li><g:link controller="${c.logicalPropertyName}">${c.name}</g:link></li>
+                    </g:each>
+                </ul>
+                <ul class="right hide-on-med-and-down">
+                    <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Controladores Disponibles<i class="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a href="${createLink(controller:'login', action:'login')}">Iniciar Sesión</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</nav>
+
+<div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+        <div class="container">
+            <h1 class="header center teal-text text-lighten-2">Potenciamos lo mejor de cada PYME</h1>
+            <div class="row center">
+                <h5 class="header col s12 light" style="color:#000000">
+                    Somos una organización que potencia lo mejor de cada PYME a través de procesos de acompañamiento, asesoría, capacitación e instancias colaborativas que mejoran la productividad y competitividad de las empresas
+                </h5>
+            </div>
         </div>
-    </nav>
+    </div>
+    <div class="parallax"><asset:image class="responsive-img" src="compite/background4.jpg" alt=""/></div>
+</div>
+
+<div class="container">
+    <div class="section">
+        <!--   Icon Section   -->
+        <div class="row">
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center brown-text"><i class="material-icons">group</i></h2>
+                    <h5 class="center">Quiénes Somos</h5>
+                    <p class="light">COMPITE nace a partir de necesidades reales, latentes y transversales de las pequeñas y medianas empresas, y de quienes las manejan. Nuestro objetivo como organización es generar un país más equitativo, con mejores empresas, mejores
+                    profesionales y mejores personas.</p>
+                </div>
+            </div>
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center brown-text"><i class="material-icons">navigation</i></h2>
+                    <h5 class="center">Nuestra Misión</h5>
+                    <p class="light">Transformar a las pymes en empresas en empresas que muevan la economía del país y sus mercados, impactando direcetamente en el bienestar de sus dueños y colaboradores. Gestionar e innovar como un motor del cambio, el cual vamos
+                    llevamos adelante con metodologías que unen el trabajo practico, la experiencia y la academia.</p>
+                </div>
+            </div>
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center brown-text"><i class="material-icons">visibility</i></h2>
+                    <h5 class="center">Visión</h5>
+                    <p class="light">Ser el principal referente PYME de latinoamérica, realizando iniciativas de alto impacto que nos permitan llevar a las PYMES y sus dueños a un siguiente nivel de perfeccionamiento profesional y crecimiento empresarial, apegandonos
+                    siempre a la vanguardia de las tecnologías y la globalización industrial.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+        <div class="container">
+            <div class="row center">
+                <h5 class="header col s12 light"><!--asdfasdf--></h5>
+            </div>
+        </div>
+    </div>
+    <div class="parallax"><asset:image class="responsive-img" src="compite/background1.jpg" alt="Unsplashed background img 1"/></div>
+</div>
+<div class="container" style="padding-top:50px">
+    <div class="section">
+        <!--   Icon Section   -->
+        <div class="row">
+            <div class="col s12 m6">
+                <div class="icon-block">
+                    <center>
+<asset:image class="responsive-img" src="compite/compite-negativo.png" alt="logo" class="img-responsive" width="40%" height="40%"/>
+                    </center>
+                </div>
+            </div>
+            <div class="col s12 m6">
+                <div class="icon-block">
+                    <center>
+<asset:image class="responsive-img" src="compite/logouniversidad.png" alt="logo" class="img-responsive" width="40%" height="40%"/>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="container">
-    <div id="controllers" role="navigation">
-        <h2>Controladores disponibles</h2>
-        <ul>
-            <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
-                <li class="controller">
-                    <g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link>
-                </li>
-            </g:each>
-        </ul>
+    <div class="section no-pad-bot">
+        <div class="container">
+            <div class="row center">
+                <!--texto bajo los logos-->
+            </div>
+        </div>
     </div>
-
 </div>
 <footer class="page-footer teal">
     <div class="container">

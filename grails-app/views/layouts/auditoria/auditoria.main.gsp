@@ -17,11 +17,16 @@
                 <a id="logo-container" href="http://localhost:8080" class="brand-logo">
                     <asset:image src="compite/compite2.png" alt="logo" class="img-responsive" width="50%" height="50%" style="padding-top:10px"/>
                 </a>
-
+                <ul id="dropdown1" class="dropdown-content">
+                    <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.name } }">
+                        <li><g:link controller="${c.logicalPropertyName}">${c.name}</g:link></li>
+                    </g:each>
+                </ul>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="/${controllerName}">Home ${controllerName}s</a></li>
                     <li><a href="/${controllerName}/list">Mostrar ${controllerName}s</a></li>
                     <li><a href="/${controllerName}/create">Nueva ${controllerName}</a></li>
+                    <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Controladores Disponibles<i class="material-icons right">arrow_drop_down</i></a></li>
                     <li><a href="${createLink(controller:'login', action:'login')}">Carrar Sesión</a></li>
                 </ul>
             </div>

@@ -22,7 +22,7 @@
                 <!--<img src="img/compite2.png" alt="logo" class="img-responsive" width="50%" height="50%" style="padding-top:10px">-->
             </a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="index.html">Inicio</a></li>
+                <li><a href="http://localhost:8080">Inicio</a></li>
             </ul>
             <ul id="nav-mobile" class="side-nav">
                 <li><a href="http://localhost:8080">Inicio</a></li>
