@@ -95,5 +95,4 @@
 <asset:javascript src="compite/forms.js"/>
 <asset:javascript src="compite/init.js"/>
 </body>
-
 </html>

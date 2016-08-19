@@ -1,85 +1,110 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
-    <meta name="layout" content="main"/>
-    <title>Welcome to Grails</title>
-
-    <asset:link rel="icon" href="favicon.ico" type="image/x-ico" />
+    <title>COMPITE</title>
+    <asset:link rel="icon" href="compite/favicon.png" type="image/x-ico" sizes="32x32"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+    <asset:stylesheet src="compite/materialize.css"/>
+    <asset:stylesheet src="compite/style.css"/>
+    <asset:stylesheet src="compite/googlefonts.css"/>
 </head>
 <body>
-    <content tag="nav">
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Application Status <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-                <li><a href="#">Environment: ${grails.util.Environment.current.name}</a></li>
-                <li><a href="#">App profile: ${grailsApplication.config.grails?.profile}</a></li>
-                <li><a href="#">App version:
-                    <g:meta name="info.app.version"/></a>
-                </li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">Grails version:
-                    <g:meta name="info.app.grailsVersion"/></a>
-                </li>
-                <li><a href="#">Groovy version: ${GroovySystem.getVersion()}</a></li>
-                <li><a href="#">JVM version: ${System.getProperty('java.version')}</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">Reloading active: ${grails.util.Environment.reloadingAgentEnabled}</a></li>
-            </ul>
-        </li>
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Artefacts <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-                <li><a href="#">Controllers: ${grailsApplication.controllerClasses.size()}</a></li>
-                <li><a href="#">Domains: ${grailsApplication.domainClasses.size()}</a></li>
-                <li><a href="#">Services: ${grailsApplication.serviceClasses.size()}</a></li>
-                <li><a href="#">Tag Libraries: ${grailsApplication.tagLibClasses.size()}</a></li>
-            </ul>
-        </li>
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installed Plugins <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-                <g:each var="plugin" in="${applicationContext.getBean('pluginManager').allPlugins}">
-                    <li><a href="#">${plugin.name} - ${plugin.version}</a></li>
+<div class="navbar-fixed">
+    <nav class="white" role="navigation">
+        <div class="nav-wrapper container">
+            <a id="logo-container" href="http://localhost:8080" class="brand-logo">
+                <asset:image src="compite/compite2.png" alt="logo" class="img-responsive" width="50%" height="50%" style="padding-top:10px"/>
+            </a>
+
+            <ul id="dropdown1" class="dropdown-content">
+                <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.name } }">
+                <li><g:link controller="${c.logicalPropertyName}">${c.name}</g:link></li>
                 </g:each>
             </ul>
-        </li>
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-                <li><a href="${createLink(controller:'login', action:'login')}">Login</a></li>
+            <ul class="right hide-on-med-and-down">
+                <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Controladores Disponibles<i class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a href="${createLink(controller:'login', action:'login')}">Iniciar Sesión</a></li>
             </ul>
-        </li>
-    </content>
-
-    <div class="svg" role="presentation">
-        <div class="grails-logo-container">
-            <asset:image src="grails-cupsonly-logo-white.svg" class="grails-logo"/>
         </div>
+    </nav>
+</div>
+<div class="container">
+    <div id="controllers" role="navigation">
+        <h2>Controladores disponibles</h2>
+        <ul>
+            <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
+                <li class="controller">
+                    <g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link>
+                </li>
+            </g:each>
+        </ul>
     </div>
 
-    <div id="content" role="main">
-        <section class="row colset-2-its">
-            <h1>Welcome to Grails</h1>
-
-            <p>
-                Congratulations, you have successfully started your first Grails application! At the moment
-                this is the default page, feel free to modify it to either redirect to a controller or display
-                whatever content you may choose. Below is a list of controllers that are currently deployed in
-                this application, click on each to execute its default action:
-            </p>
-
-            <div id="controllers" role="navigation">
-                <h2>Available Controllers:</h2>
+</div>
+<footer class="page-footer teal">
+    <div class="container">
+        <div class="row">
+            <div class="col l3 s12">
+                <li class="white-text">OFICINA CENTRAL SANTIAGO</li>
                 <ul>
-                    <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
-                        <li class="controller">
-                            <g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link>
-                        </li>
-                    </g:each>
+                    <li>
+                        <a class="white-text" href="#">
+                            <asset:image src="compite/santiago-1.png" class="responsive-img" width="100px" height="100px"/>
+                        </a>
+                    </li>
+                    <li><a class="white-text" href="#">Galicia #539, Las Condes. Santiago.</a></li>
+                    <li><a class="white-text" href="#">+562 223311693</a></li>
                 </ul>
             </div>
-        </section>
+            <div class="col l3 s12">
+                <li class="white-text">OFICINA REGIONAL VALPARAÍSO</li>
+                <ul>
+                    <li>
+                        <a class="white-text" href="#">
+                            <asset:image src="compite/valparaiso-1.png" class="responsive-img" width="100px" height="100px"/>
+                        </a>
+                    </li>
+                    <li><a class="white-text" href="#!">Balmaceda #305, Cerro Castillo, Viña del Mar.</a></li>
+                    <li><a class="white-text" href="#!">+5632&nbsp;2335 92962</a></li>
+                </ul>
+            </div>
+            <div class="col l3 s12">
+                <li class="white-text">OFICINA REGIONAL BÍO-BÍO</li>
+                <ul>
+                    <li>
+                        <a class="white-text" href="#!">
+                            <asset:image src="compite/biobio-1.png" class="responsive-img" width="100px" height="100px"/>
+                        </a>
+                    </li>
+                    <li><a class="white-text" href="#!">Bernardo O’higgins #980, oficina F, Concepción.</a></li>
+                    <li><a class="white-text" href="#!">+5641 222 1035</a></li>
+                </ul>
+            </div>
+            <div class="col l3 s12">
+                <li class="white-text">OFICINA REGIONAL ARAUCANÍA</li>
+                <ul>
+                    <li>
+                        <a class="white-text" href="#!">
+                            <asset:image src="compite/araucania-1.png" class="responsive-img" width="100px" height="100px"/>
+                        </a>
+                    </li>
+                    <li><a class="white-text" href="#!">Antonio Varas #687, Oficina 708. Temuco.</a></li>
+                    <li><a class="white-text" href="#!">+5645 273 0693</a></li>
+                    <li><a class="white-text" href="#!">Link 4</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
-
+    <div class="footer-copyright">
+        <div class="container">
+            <a class="brown-text text-lighten-3" href="https://www.compite.cl">COMPITE</a> - 2016
+        </div>
+    </div>
+</footer>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<asset:javascript src="compite/materialize.js"/>
+<asset:javascript src="compite/forms.js"/>
+<asset:javascript src="compite/init.js"/>
 </body>
 </html>
