@@ -5,11 +5,9 @@
             <div class="card blue-grey darken-1">
                 <div class="card-content white-text">
                     <div class="card-content white-text">
-                        <span class="card-title">${usuario.nombres}<span class="badge white-text">ID: ${usuario.rut}</span></span>
+                        <span class="card-title">${usuario.nombres} ${usuario.paterno}<span class="badge white-text">ID: ${usuario.rut}</span></span>
                         <p>
-                            rut: ${usuario.rut}<br/>
-                            nombres: ${usuario.nombres}<br/>
-                            paterno: ${usuario.paterno}<br/>
+                            <strong class="deep-orange-text">RUT: </strong>${usuario.rut} Nombres: ${usuario.nombres} Paterno: ${usuario.paterno}
                             materno: ${usuario.materno}<br/>
                             direccion: ${usuario.direccion}<br/>
                             correo: ${usuario.correo}<br/>
