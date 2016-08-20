@@ -7,7 +7,6 @@ class UsuarioController {
 
     def index = {
         //redirige a la lista de usuarios
-        redirect action: "list"
     }
 
     def create = {
@@ -19,7 +18,8 @@ class UsuarioController {
         //save recibe todos los parametros
         def usuario = new Usuario(params)
         usuario.save flush: true, failOnError: true
-        redirect action: "show", id: usuario.id
+        //redirect action: "show", id: usuario.id
+        redirect action: "list"
     }
 
     def edit = {
@@ -34,7 +34,8 @@ class UsuarioController {
         def usuario = Usuario.get(params.id)
         usuario.properties = params
         usuario.save flush: true, failOnError: true
-        redirect action: "show", id: params.id
+        //redirect action: "show", id: params.id
+        redirect action: "list"
     }
 
     def show = {
@@ -52,7 +53,8 @@ class UsuarioController {
         //elimina el usuario del id que le pasó
         def usuario = Usuario.get(params.id)
         usuario.delete flush: true, failOnError: true
-        redirect action: "index"
+        //redirect action: "index"
+        redirect action: "list"
     }
 
 }
