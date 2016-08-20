@@ -29,3 +29,4 @@
         </g:each>
         </tbody>
     </table>
+<p class="red-text">Nota: Es necesario encontrar una función para ordenar.</p>
