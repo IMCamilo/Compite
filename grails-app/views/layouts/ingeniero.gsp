@@ -34,11 +34,11 @@
                     </g:each>
                 </ul>
                 <ul class="right hide-on-med-and-down">
-                    <li class="tab col s4"><a class="active" href="${createLink(controller:'administrador', action:'index')}">SELECCIONAR PORYECTOS</a></li>
-                    <li class="tab col s4"><a href="${createLink(controller:'administrador', action:'administrar')}">VER RENDICIONES</a></li>
-                    <li class="tab col s4"><a href="${createLink(controller:'administrador', action:'reportes')}">VER PERFIL</a></li>
+                    <li class="tab col s4"><a class="active" href="${createLink(controller:'proyecto', action:'index')}">SELECCIONAR PORYECTOS</a></li>
+                    <li class="tab col s4"><a href="${createLink(controller:'rendicion', action:'index')}">VER RENDICIONES</a></li>
+                    <li class="tab col s4"><a href="${createLink(controller:'usuario', action:'index')}">VER PERFIL</a></li>
 
-                    <li><a href="${createLink(controller:'login', action:'login')}">Carrar Sesión</a></li>
+                    <li><a href="${createLink(controller:'login', action:'login')}">Cerrar Sesión</a></li>
                 </ul>
             </div>
         </nav>
