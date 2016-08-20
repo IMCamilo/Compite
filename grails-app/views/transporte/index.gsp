@@ -1,14 +1,10 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>index</title>
-</head>
+<meta name="layout" content="auditoria/auditoria.main" />
 
-<body>
+<h3>Menu De Controlador Transportes - En Construccion</h3>
 
-</body>
-</html>
+<div class="col-md-1 row">
+    <p><g:link action="create">Crear Nuevo transporte</g:link></p>
+    <p><g:link action="list">Lista de Transportes</g:link></p>
+    <p><g:link action="edit">Editar Transporte</g:link></p>
+    <p><g:link action="show">Mostrar Transportes Actuales</g:link></p>
+</div>
