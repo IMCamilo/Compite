@@ -26,7 +26,32 @@
     <g:layoutHead/>
 </head>
 <body style="font-size:75%">
-<g:layoutBody/>
+<nav class="white" role="navigation">
+    <div class="navbar-fixed">
+        <nav class="white" role="navigation">
+            <div class="nav-wrapper container">
+                <a id="logo-container" href="http://localhost:8080" class="brand-logo">
+                    <asset:image src="compite/compite2.png" alt="logo" class="img-responsive" width="50%" height="50%" style="padding-top:10px"/>
+                </a>
+                <ul id="dropdown1" class="dropdown-content">
+                    <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.name } }">
+                        <li><g:link controller="${c.logicalPropertyName}">${c.name}</g:link></li>
+                    </g:each>
+                </ul>
+                <ul class="right hide-on-med-and-down">
+                    <li class="tab col s4"><a class="active" href="${createLink(controller:'administrador', action:'index')}">INICIO</a></li>
+                    <li class="tab col s4"><a href="${createLink(controller:'administrador', action:'administrar')}">ADMINISTRAR</a></li>
+                    <li class="tab col s4"><a href="${createLink(controller:'administrador', action:'reportes')}">REPORTES</a></li>
+
+                    <li><a href="${createLink(controller:'login', action:'login')}">Carrar Sesión</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</nav>
+<div class="container">
+    <g:layoutBody/>
+</div>
 <footer class="page-footer teal">
     <div class="container">
         <div class="row">
@@ -34,20 +59,20 @@
                 <li class="white-text">OFICINA CENTRAL SANTIAGO</li>
                 <ul>
                     <li>
-                        <a class="white-text" href="#!">
-                            <img class="responsive-img" src="img/santiago-1.png" width="100px" height="100px">
+                        <a class="white-text" href="#">
+                            <asset:image src="compite/santiago-1.png" class="responsive-img" width="100px" height="100px"/>
                         </a>
                     </li>
-                    <li><a class="white-text" href="#!">Galicia #539, Las Condes. Santiago.</a></li>
-                    <li><a class="white-text" href="#!">+562 223311693</a></li>
+                    <li><a class="white-text" href="#">Galicia #539, Las Condes. Santiago.</a></li>
+                    <li><a class="white-text" href="#">+562 223311693</a></li>
                 </ul>
             </div>
             <div class="col l3 s12">
                 <li class="white-text">OFICINA REGIONAL VALPARAÍSO</li>
                 <ul>
                     <li>
-                        <a class="white-text" href="#!">
-                            <img class="responsive-img" src="img/valparaiso-1.png" width="100px" height="100px">
+                        <a class="white-text" href="#">
+                            <asset:image src="compite/valparaiso-1.png" class="responsive-img" width="100px" height="100px"/>
                         </a>
                     </li>
                     <li><a class="white-text" href="#!">Balmaceda #305, Cerro Castillo, Viña del Mar.</a></li>
@@ -59,7 +84,7 @@
                 <ul>
                     <li>
                         <a class="white-text" href="#!">
-                            <img class="responsive-img" src="img/biobio-1.png" width="100px" height="100px">
+                            <asset:image src="compite/biobio-1.png" class="responsive-img" width="100px" height="100px"/>
                         </a>
                     </li>
                     <li><a class="white-text" href="#!">Bernardo O’higgins #980, oficina F, Concepción.</a></li>
@@ -71,7 +96,7 @@
                 <ul>
                     <li>
                         <a class="white-text" href="#!">
-                            <img class="responsive-img" src="img/araucania-1.png" width="100px" height="100px">
+                            <asset:image src="compite/araucania-1.png" class="responsive-img" width="100px" height="100px"/>
                         </a>
                     </li>
                     <li><a class="white-text" href="#!">Antonio Varas #687, Oficina 708. Temuco.</a></li>
