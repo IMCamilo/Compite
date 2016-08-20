@@ -20,7 +20,6 @@
     rut: ${empresa.rut}<br/>
     telefono: ${empresa.telefono}<br/>
     tipo: ${empresa.tipo}<br/>
-
     <g:link action="edit" id="${empresa.id}">Editar</g:link><br />
     <g:link action="delete" id="${empresa.id}">Borrar</g:link>
 
