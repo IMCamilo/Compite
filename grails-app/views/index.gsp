@@ -27,6 +27,12 @@
                     <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Controladores Disponibles<i class="material-icons right">arrow_drop_down</i></a></li>
                     <li><a href="${createLink(controller:'login', action:'login')}">Iniciar Sesión</a></li>
                 </ul>
+
+                <ul id="nav-mobile" class="side-nav">
+                    <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Controladores Disponibles<i class="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a href="${createLink(controller:'login', action:'login')}">Iniciar Sesión</a></li>
+                </ul>
+                <a href="" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
             </div>
         </nav>
     </div>

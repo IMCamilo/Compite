@@ -14,11 +14,6 @@
                 <g:textArea id="desc" class="materialize-textarea" name="descripcion"/>
                 <label for="desc">Descripción</label>
             </div>
-            <!--
-            Fecha <g:datePicker name="fecha" value="${new Date()}" noSelection="['':'Selecciona Mes']"/>
-            Descripcion <g:textArea name="descripcion" value="" rows="5" cols="40"/>
-            -->
-
             <g:actionSubmit class="waves-effect waves-light btn" value="Save"/>
         </g:form>
     </form>
