@@ -30,12 +30,17 @@
                     <li><a href="${createLink(controller:'login', action:'login')}">Carrar Sesión</a></li>
                 </ul>
 
+                <ul id="dropdown2" class="dropdown-content">
+                    <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.name } }">
+                        <li><g:link controller="${c.logicalPropertyName}">${c.name}</g:link></li>
+                    </g:each>
+                </ul>
                 <ul id="nav-mobile" class="side-nav">
                     <li><a href="/${controllerName}">Inicio</a></li>
                     <li><a href="/${controllerName}/list">Mostrar ${controllerName}s</a></li>
                     <li><a href="/${controllerName}/create">Nuevo ${controllerName}</a></li>
-                    <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Controladores Disponibles<i class="material-icons right">arrow_drop_down</i></a></li>
-                    <li><a href="${createLink(controller:'login', action:'login')}">Carrar Sesión</a></li>
+                    <li><a class="dropdown-button" href="#!" data-activates="dropdown2">Controladores Disponibles<i class="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a href="${createLink(controller:'login', action:'login')}">Cerrar Sesión</a></li>
                 </ul>
                 <a href="" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
             </div>
