@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="${request.locale}">
 <head>
     <title>COMPITE</title>
     <asset:javascript src="compite/nprogress.js"/>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="${request.locale}">
 <head>
     <title><g:if env="development">COMPITE Runtime Exception</g:if><g:else>Error</g:else></title>
     <asset:javascript src="compite/nprogress.js"/>

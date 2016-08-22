@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="${request.locale}">
 <head>
     <title><g:layoutTitle default="COMPITE - ${controllerName} - ${actionName}"/></title>
     <asset:javascript src="compite/nprogress.js"/>
