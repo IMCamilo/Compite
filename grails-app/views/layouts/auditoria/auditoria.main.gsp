@@ -2,6 +2,8 @@
 <html lang="es">
 <head>
     <title><g:layoutTitle default="COMPITE - ${controllerName} - ${actionName}"/></title>
+    <asset:javascript src="compite/nprogress.js"/>
+    <asset:stylesheet src="compite/nprogress.css"/>
     <asset:link rel="icon" href="compite/favicon.png" type="image/x-ico" sizes="32x32"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
@@ -11,6 +13,7 @@
     <g:layoutHead/>
 </head>
 <body>
+<script>NProgress.start();</script>
     <nav class="white" role="navigation">
         <div class="navbar-fixed">
             <div class="nav-wrapper container">
@@ -113,5 +116,6 @@
 <asset:javascript src="compite/materialize.js"/>
 <asset:javascript src="compite/forms.js"/>
 <asset:javascript src="compite/init.js"/>
+<script>NProgress.done();</script>
 </body>
 </html>
