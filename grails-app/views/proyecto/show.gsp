@@ -9,6 +9,13 @@
 </head>
 
 <body>
-
+    Empresa ${proyecto.empresa}<br/>
+    Codigo ${proyecto.codigo}<br/>
+    Nombre ${proyecto.nombre}<br/>
+    estado ${proyecto.estado}<br/>
+    Fecha Creacion ${proyecto.fechaCreacion}<br/>
+    Fecha Fin ${proyecto.fechaFin}<br/>
+    <g:link action="edit" id="${pro.id}">Editar</g:link><br/>
+    <g:link action="delete" id="${pro.id}">Borrar</g:link><br/><br/>
 </body>
 </html>

@@ -9,6 +9,16 @@
 </head>
 
 <body>
-
+    <g:each in="${proyectos}" var="pro">
+        Empresa ${pro.empresa}<br/>
+        Codigo ${pro.codigo}<br/>
+        Nombre ${pro.nombre}<br/>
+        estado ${pro.estado}<br/>
+        Fecha Creacion ${pro.fechaCreacion}<br/>
+        Fecha Fin ${pro.fechaFin}<br/>
+        <g:link action="edit" id="${pro.id}">Editar</g:link><br/>
+        <g:link action="delete" id="${pro.id}">Borrar</g:link><br/><br/>
+    </g:each>
+    <g:link action="create">Nuevo proyecto</g:link>
 </body>
 </html>

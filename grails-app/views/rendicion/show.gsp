@@ -9,6 +9,16 @@
 </head>
 
 <body>
-
+    usuario ${rendicion.usuario}<br/>
+    proyecto ${rendicion.proyecto}<br/>
+    tipo ${rendicion.tipo}<br/>
+    nombre ${rendicion.nombre}<br/>
+    motivo ${rendicion.motivo}<br/>
+    recorrido ${rendicion.recorrido}<br/>
+    tiempo ${rendicion.tiempo}<br/>
+    total ${rendicion.total}<br/>
+    fecha ${rendicion.fecha}<br/>
+    <g:link action="edit" id="${rendicion.id}">Editar</g:link><br/>
+    <g:link action="delete" id="${rendicion.id}">Borrar</g:link><br/><br/>
 </body>
 </html>

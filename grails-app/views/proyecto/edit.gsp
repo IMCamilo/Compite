@@ -10,5 +10,16 @@
 
 <body>
 
+    <g:form action="update" id="${proyecto.id}">
+        Empresa <g:select name="empresa" from="${empresas}" optionValue="nombre" optionKey="id"/>
+        Codigo <g:textField name="codigo" value="${proyecto.codigo}"/>
+        Nombre <g:textField name="nombre" value="${proyecto.nombre}"/>
+        estado <g:textField name="estado" value="${proyecto.estado}"/>
+        Fecha Creacion <g:datePicker name="fechaCreacion" value="${new Date()}" noSelection="['':'Selecciona Mes']"/>
+        Fecha Fin <g:datePicker name="fechaFin" value="${new Date()}" noSelection="['':'Selecciona Mes']"/>
+        <g:actionSubmit value="Update" />
+    </g:form>
+
 </body>
 </html>
+

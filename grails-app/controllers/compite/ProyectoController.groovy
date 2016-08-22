@@ -20,7 +20,7 @@ class ProyectoController {
 
     def edit = {
         def proyecto = Proyecto.get(params.id)
-        [proyecto:proyecto]
+        [proyecto:proyecto, empresas:Empresa.list()]
     }
 
     def update = {
@@ -36,8 +36,7 @@ class ProyectoController {
     }
 
     def list = {
-        def proyecto = Proyecto.list()
-        [proyecto:proyecto]
+        [proyectos: Proyecto.list()]
     }
 
     def delete = {
