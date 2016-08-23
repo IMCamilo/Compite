@@ -7,6 +7,7 @@ class UsuarioController {
 
     def index = {
         //redirige a la lista de usuarios
+        redirect action: "list"
     }
 
     def create = {

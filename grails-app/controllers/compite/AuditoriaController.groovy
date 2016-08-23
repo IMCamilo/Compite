@@ -6,7 +6,7 @@ package compite
 class AuditoriaController {
 
     def index = {
-
+        redirect action: "list"
     }
 
     def create = {
