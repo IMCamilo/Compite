@@ -28,7 +28,7 @@
                 <div id="seleccionProyecto" class="col s12">
                     <ul class="collapsible" data-collapsible="expandable" style="width:100%">
                         <li>
-                            <div class="collapsible-header"><i class="material-icons">contacts</i>TUS PROYECTO PÚBLICOS</div>
+                            <div class="collapsible-header"><i class="material-icons">contacts</i>TUS PROYECTOS PÚBLICOS</div>
                             <div class="collapsible-body">
                                 <ul class="collection">
                                     <li class="collection-item avatar">
@@ -67,7 +67,7 @@
                             </div>
                         </li>
                         <li>
-                            <div class="collapsible-header"><i class="material-icons">person_pin</i>TUS PROYECTO PRIVADOS</div>
+                            <div class="collapsible-header"><i class="material-icons">person_pin</i>TUS PROYECTOS PRIVADOS</div>
                             <div class="collapsible-body">
                                 <ul class="collection">
                                     <li class="collection-item avatar">
@@ -111,7 +111,6 @@
         </div>
     </div>
 </div>
-
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
 <asset:javascript src="compite/materialize.js"/>
