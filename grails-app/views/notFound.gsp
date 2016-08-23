@@ -48,7 +48,7 @@
     <asset:image src="compite/404.jpg" class="img-responsive" width="100%" height="100%" style="padding-top: 10px"/>
 
    <!-- <ul class="errors">
-        <h1 class="center-align"><i class="red-text large material-icons ">error</i></h1>ra
+        <h1 class="center-align"><i class="red-text large material-icons ">error</i></h1>
         <h3 class="center-align">Error: Página no encontrada (404)</h3>
         <h4 class="center-align">Ruta: ${request.localName}:${request.localPort}${request.forwardURI} </h4>
     </ul>-->
