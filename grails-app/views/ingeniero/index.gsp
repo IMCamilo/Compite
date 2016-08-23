@@ -1,7 +1,5 @@
-<title>COMPITE - Admistrador</title>
+<title>COMPITE - Ingeniero</title>
 <meta name="layout" content="ingeniero"/>
-
-<title>Ingeniero</title>
 
     <p>menu</p>
     <p>---- seleccion proyectos (para crear rendiciones)</p>

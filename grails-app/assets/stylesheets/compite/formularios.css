@@ -1,0 +1,47 @@
+table {
+    width: 90%;
+    padding: 8px;
+    font-size: 14px;
+    margin-left: 5%;
+    margin-top: 10px;
+}
+th, tr, td {
+    border: 1px solid black;
+    width: 110px;
+    height: 40px;
+    text-align: center;
+}
+th {
+    background-color: #AAAAAA;
+}
+td {
+    background-color: #cccccc;
+}
+th, tr, td {
+    font-weight: bold;
+}
+.formulario {
+    background-color: #B3B5B6;
+}
+.cuadro {
+    display: inline-block;
+    background-color: inherit;
+    margin-left: 5%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 30%;
+}
+.cuadro input {}
+.cuadro2 {
+    display: inline-block;
+    background-color: inherit;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 40%;
+}
+.cuadro2 input {}
+.cuadro button {
+    color: #000;
+    border-radius: 5px;
+    float: right;
+}
