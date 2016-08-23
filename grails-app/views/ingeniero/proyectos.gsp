@@ -33,7 +33,7 @@
                                 <ul class="collection">
                                     <li class="collection-item avatar">
                                         <i class="material-icons circle blue">work</i>
-                                        <a href="#!" class="collection-item">
+                                        <a href="${createLink(controller:'ingeniero', action:'nuevarendicion')}" class="collection-item">
                                             <span class="title">Nombre Primer Proyecto</span>
                                             <br>
                                             <span>Ubicado en ...</span>
@@ -41,7 +41,7 @@
                                     </li>
                                     <li class="collection-item avatar">
                                         <i class="material-icons circle blue">work</i>
-                                        <a href="#!" class="collection-item">
+                                        <a href="${createLink(controller:'ingeniero', action:'nuevarendicion')}" class="collection-item">
                                             <span class="title">Nombre Segundo Proyecto</span>
                                             <br>
                                             <span>Ubicado en ...</span>
@@ -49,7 +49,7 @@
                                     </li>
                                     <li class="collection-item avatar">
                                         <i class="material-icons circle blue">work</i>
-                                        <a href="#!" class="collection-item">
+                                        <a href="${createLink(controller:'ingeniero', action:'nuevarendicion')}" class="collection-item">
                                             <span class="title">Nombre Tercer Proyecto</span>
                                             <br>
                                             <span>Ubicado en ...</span>
@@ -57,7 +57,7 @@
                                     </li>
                                     <li class="collection-item avatar">
                                         <i class="material-icons circle blue">work</i>
-                                        <a href="#!" class="collection-item">
+                                        <a href="${createLink(controller:'ingeniero', action:'nuevarendicion')}" class="collection-item">
                                             <span class="title">Nombre Cuarto Proyecto</span>
                                             <br>
                                             <span>Ubicado en ...</span>
@@ -72,7 +72,7 @@
                                 <ul class="collection">
                                     <li class="collection-item avatar">
                                         <i class="material-icons circle blue">work</i>
-                                        <a href="#!" class="collection-item">
+                                        <a href="${createLink(controller:'ingeniero', action:'nuevarendicion')}" class="collection-item">
                                             <span class="title">Nombre Primer Proyecto</span>
                                             <br>
                                             <span>Ubicado en ...</span>
@@ -80,7 +80,7 @@
                                     </li>
                                     <li class="collection-item avatar">
                                         <i class="material-icons circle blue">work</i>
-                                        <a href="#!" class="collection-item">
+                                        <a href="${createLink(controller:'ingeniero', action:'nuevarendicion')}" class="collection-item">
                                             <span class="title">Nombre Segundo Proyecto</span>
                                             <br>
                                             <span>Ubicado en ...</span>
@@ -88,7 +88,7 @@
                                     </li>
                                     <li class="collection-item avatar">
                                         <i class="material-icons circle blue">work</i>
-                                        <a href="#!" class="collection-item">
+                                        <a href="${createLink(controller:'ingeniero', action:'nuevarendicion')}" class="collection-item">
                                             <span class="title">Nombre Tercer Proyecto</span>
                                             <br>
                                             <span>Ubicado en ...</span>
@@ -96,7 +96,7 @@
                                     </li>
                                     <li class="collection-item avatar">
                                         <i class="material-icons circle blue">work</i>
-                                        <a href="#!" class="collection-item">
+                                        <a href="${createLink(controller:'ingeniero', action:'nuevarendicion')}" class="collection-item">
                                             <span class="title">Nombre Cuarto Proyecto</span>
                                             <br>
                                             <span>Ubicado en ...</span>
