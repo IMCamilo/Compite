@@ -1,3 +1,4 @@
+import compite.Asignacion
 import compite.Auditoria
 import compite.Egreso
 import compite.Empresa
@@ -75,6 +76,7 @@ class BootStrap {
                 fechaCreacion: "2016-08-19 11:49:00.0",
                 fechaFin: "2016-08-19 11:49:00.0",
                 estado: 1,
+
                 empresa: 1).save(failOnError: true)
         }
         if (!Rendicion.list()){
@@ -96,6 +98,13 @@ class BootStrap {
                 descripcion: "Item cargado automaticamente",
                 valor:13000,
                 rendicion: 1).save(failOnError: true)
+        }
+        if (!Asignacion.list()){
+            new Asignacion(
+                detalle:"asignacion 1, cargada automaticamente",
+                fecha: "2016-08-19 11:49:00.0",
+                usuario: 1,
+                proyecto: 1).save(failOnError: true)
         }
     }
     def destroy = {

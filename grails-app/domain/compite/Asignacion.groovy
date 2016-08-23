@@ -5,8 +5,6 @@ package compite
  */
 class Asignacion {
 
-    BigInteger idUsuario
-    BigInteger idProyecto
     String detalle
     Date fecha
 
