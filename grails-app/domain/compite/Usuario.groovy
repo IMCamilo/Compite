@@ -1,5 +1,7 @@
 package compite
-
+/**
+ * Created by camilo on 16-08-16.
+ */
 class Usuario {
 
     String rut
@@ -12,6 +14,6 @@ class Usuario {
     String clave
     Integer tipo
 
-    static hasMany = [rendicion:Rendicion, transporte:Transporte, auditoria:Auditoria, egreso:Egreso, proyectousuario:UsuariosProyecto]
+    static hasMany = [rendicion:Rendicion, transporte:Transporte, auditoria:Auditoria, egreso:Egreso, asignacion:Asignacion]
 
 }

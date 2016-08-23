@@ -3,7 +3,7 @@ package compite
 /**
  * Created by camilo on 18-08-16.
  */
-class UsuariosProyecto {
+class Asignacion {
 
     BigInteger idUsuario
     BigInteger idProyecto
