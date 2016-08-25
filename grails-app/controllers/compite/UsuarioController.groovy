@@ -1,61 +1,110 @@
 package compite
-
+import static org.springframework.http.HttpStatus.*
+import grails.transaction.Transactional
 /**
  * Created by camilo on 16-08-16.
  */
+@Transactional(readOnly = true)
 class UsuarioController {
 
-    def index = {
-        //redirige a la lista de usuarios
-        redirect action: "list"
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+
+    def index(Integer max) {
+
+
+        params.max = Math.min(max ?: 10, 100)
+        respond usuario.list(params), model:[UsuarioCount: Usuario.count()]
     }
 
-    def create = {
-        //cumple el objetivo de mostrar la vista create
-        //el formulario apunta a save
+    def show(Usuario usuario) {
+        respond usuario
     }
 
-    def save = {
-        //save recibe todos los parametros
-        def usuario = new Usuario(params)
-        usuario.save flush: true, failOnError: true
-        //redirect action: "show", id: usuario.id
-        redirect action: "list"
+    def create() {
+        respond new Usuario(params)
     }
 
-    def edit = {
-        //edit recibe el id, y busca el contacto con ese id y retorna sus datos en pantalla
-        //el formulario apunta a update
-        def usuario = Usuario.get(params.id)
-        [usuario: usuario]
+    @Transactional
+    def save(Usuario usuario) {
+        if (usuario == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        if (usuario.hasErrors()) {
+            transactionStatus.setRollbackOnly()
+            respond usuario.errors, view:'create'
+            return
+        }
+
+        usuario.save flush:true
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.created.message', args: [message(code: 'usuario.label', default: 'Usuario'), usuario.id])
+                redirect usuario
+            }
+            '*' { respond usuario, [status: CREATED] }
+        }
     }
 
-    def update = {
-        //update guarda, pisa, actualiza los datos basandose en el id que recibe
-        def usuario = Usuario.get(params.id)
-        usuario.properties = params
-        usuario.save flush: true, failOnError: true
-        //redirect action: "show", id: params.id
-        redirect action: "list"
+    def edit(Usuario usuario) {
+        respond usuario
     }
 
-    def show = {
-        //show muestra los datos del contacto seleccionado a través del id
-        def usuario = Usuario.get(params.id)
-        [usuario: usuario]
+    @Transactional
+    def update(Usuario usuario) {
+        if (usuario == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        if (usuario.hasErrors()) {
+            transactionStatus.setRollbackOnly()
+            respond usuario.errors, view:'edit'
+            return
+        }
+
+        usuario.save flush:true
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'usuario.label', default: 'Usuario'), usuario.id])
+                redirect usuario
+            }
+            '*'{ respond usuario, [status: OK] }
+        }
     }
 
-    def list = {
-        //lista los todos los contactos
-        def usuarios = Usuario.list()
-        [usuarios: usuarios]
-    }
-    def delete = {
-        //elimina el usuario del id que le pasó
-        def usuario = Usuario.get(params.id)
-        usuario.delete flush: true, failOnError: true
-        //redirect action: "index"
-        redirect action: "list"
+    @Transactional
+    def delete(Usuario usuario) {
+
+        if (usuario == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        usuario.delete flush:true
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'usuario.label', default: 'Usuario'), usuario.id])
+                redirect action:"index", method:"GET"
+            }
+            '*'{ render status: NO_CONTENT }
+        }
     }
 
+    protected void notFound() {
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.not.found.message', args: [message(code: 'usuario.label', default: 'Usuario'), params.id])
+                redirect action: "index", method: "GET"
+            }
+            '*'{ render status: NOT_FOUND }
+        }
+    }
 }

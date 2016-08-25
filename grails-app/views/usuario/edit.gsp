@@ -1,13 +1,24 @@
 <meta name="layout" content="auditoria/auditoria.main"/>
-<g:form action="update" id="${usuario.id}">
-    rut: <g:textField name="rut" value="${usuario.rut}"/><br />
-    nombres: <g:textField name="nombres" value="${usuario.nombres}"/><br />
-    paterno: <g:textField name="paterno" value="${usuario.paterno}"/><br />
-    materno: <g:textField name="materno" value="${usuario.materno}"/><br />
-    direccion: <g:textField name="direccion" value="${usuario.direccion}"/><br />
-    correo: <g:textField name="correo" value="${usuario.correo}"/><br />
-    telefono: <g:textField name="telefono" value="${usuario.telefono}"/><br />
-    clave: <g:textField name="clave" value="${usuario.clave}"/><br />
-    tipo: <g:textField name="tipo" value="${usuario.tipo}"/><br />
-    <g:actionSubmit value="Update" />
+<g:hasErrors bean="${this.autor}">
+    <ul class="errors" role="alert">
+        <g:eachError bean="${this.autor}" var="error">
+            <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
+        </g:eachError>
+    </ul>
+</g:hasErrors>
+<g:form resource="${this.usuario}" method="PUT">
+    <g:hiddenField name="version" value="${this.usuario?.version}" />
+    rut: <f:input property="rut" bean="usuario"/><br />
+    nombres: <f:input property="nombre" bean="usuario"/><br />
+    paterno: <f:input property="paterno" bean="usuario"/><br />
+    materno: <f:input property="materno" bean="usuario"/><br />
+    direccion: <f:input property="direccion" bean="usuario"/><br />
+    correo: <f:input property="correo" bean="usuario"/><br />
+    telefono: <f:input property="telefono" bean="usuario"/><br />
+    clave: <f:input property="clave" bean="usuario"/><br />
+    tipo: <f:input property="tipo" bean="usuario"/><br />
+    <fieldset class="buttons">
+        <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+    </fieldset>
 </g:form>
+
