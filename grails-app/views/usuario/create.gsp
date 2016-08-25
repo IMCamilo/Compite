@@ -15,39 +15,39 @@
         <div class="row">
             <div class="input-field col s2">
                 <f:input property="rut" bean="usuario"/>
-                <label for="rut">RUT</label>
+                <label>RUT</label>
             </div>
             <div class="input-field col s3">
                 <f:input property="nombres" bean="usuario"/>
-                <label for="nombres">Nombre</label>
+                <label>Nombre</label>
             </div>
             <div class="input-field col s3">
                 <f:input property="paterno" bean="usuario"/>
-                <label for="paterno">Paterno</label>
+                <label>Paterno</label>
             </div>
             <div class="input-field col s3">
                 <f:input property="materno" bean="usuario"/>
-                <label for="materno">Materno</label>
+                <label>Materno</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s6">
                 <f:input property="direccion" bean="usuario"/>
-                <label for="direccion">Dirección</label>
+                <label>Dirección</label>
             </div>
             <div class="input-field col s5">
                 <f:input property="correo" bean="usuario"/>
-                <label for="email">Correo electrónico</label>
+                <label>Correo electrónico</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s2">
                 <f:input property="tipo" bean="usuario" type="password"/>
-                <label for="tipo">Tipo</label>
+                <label>Tipo</label>
             </div>
             <div class="input-field col s3">
                 <f:input property="telefono" bean="usuario"/>
-                <label for="telefono">Teléfono</label>
+                <label>Teléfono</label>
             </div>
             <div class="input-field col s3">
                 <f:input property="clave" bean="usuario" type="password"/>
