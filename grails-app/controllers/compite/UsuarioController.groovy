@@ -9,11 +9,15 @@ class UsuarioController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index(Integer max) {
+    def index = {
+        //redirige a la lista de usuarios
+        redirect action: "list"
+    }
 
-
-        params.max = Math.min(max ?: 10, 100)
-        respond usuario.list(params), model:[UsuarioCount: Usuario.count()]
+    def list = {
+        //lista los todos los contactos
+        def usuarios = Usuario.list()
+        [usuarios: usuarios]
     }
 
     def show(Usuario usuario) {
