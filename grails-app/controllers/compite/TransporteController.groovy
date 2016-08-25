@@ -16,7 +16,7 @@ class TransporteController {
     def save = {
         def transporte = new Transporte(params)
         transporte.save flush:true , failOnError:true
-        redirect action: "show" , id:transporte.id
+        redirect action: "list" , id:transporte.id
     }
 
     def edit = {
@@ -34,6 +34,8 @@ class TransporteController {
     }
 
     def show = {
+        def usuarios = Usuario.list()
+        [usuarios:usuarios]
         def transporte = Transporte.get(params.id)
         [transporte: transporte]
     }
