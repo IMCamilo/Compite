@@ -1,17 +1,28 @@
-<meta name="layout" content="administrador" />
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="layout" content="main" />
+        <g:set var="entityName" value="${message(code: 'transporte.label', default: 'Transporte')}" />
+        <title><g:message code="default.list.label" args="[entityName]" /></title>
+    </head>
+    <body>
+        <a href="#list-transporte" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
+        <div class="nav" role="navigation">
+            <ul>
+                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+                <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
+            </ul>
+        </div>
+        <div id="list-transporte" class="content scaffold-list" role="main">
+            <h1><g:message code="default.list.label" args="[entityName]" /></h1>
+            <g:if test="${flash.message}">
+                <div class="message" role="status">${flash.message}</div>
+            </g:if>
+            <f:table collection="${transporteList}" />
 
-<h3>Menu De Controlador Transportes</h3>
-<div class="container">
-    <div class="s12 row-fluid">
-        <div class="darken-4">
-            <div class="card blue-grey darken-1">
-                <div class="card-action">
-                    <p><g:link action="create">Crear Nuevo transporte</g:link></p>
-                    <p><g:link action="list">Lista de Transportes</g:link></p>
-                    <p><g:link action="home">Volver al Inicio</g:link></p>
-                </div>
+            <div class="pagination">
+                <g:paginate total="${transporteCount ?: 0}" />
             </div>
         </div>
-    </div>
-</div>
-
+    </body>
+</html>

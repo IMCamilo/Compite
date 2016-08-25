@@ -1,47 +1,107 @@
 package compite
 
-/**
- * Created by camilo on 16-08-16.
- */
+import static org.springframework.http.HttpStatus.*
+import grails.transaction.Transactional
+
+@Transactional(readOnly = true)
 class RendicionController {
 
-    def index = {
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+
+    def index(Integer max) {
+        params.max = Math.min(max ?: 10, 100)
+        respond Rendicion.list(params), model:[rendicionCount: Rendicion.count()]
     }
 
-    def create = {
-        [proyectos:Proyecto.list(), usuarios:Usuario.list()]
+    def show(Rendicion rendicion) {
+        respond rendicion
     }
 
-    def save = {
-        def rendicion = new Rendicion(params)
-        rendicion.save flush:true, failOnError:true
-        redirect action:"list"
+    def create() {
+        respond new Rendicion(params)
     }
 
-    def edit = {
-        def rendicion = Rendicion.get(params.id)
-        [proyectos:Proyecto.list(), usuarios:Usuario.list(), rendicion:rendicion]
+    @Transactional
+    def save(Rendicion rendicion) {
+        if (rendicion == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        if (rendicion.hasErrors()) {
+            transactionStatus.setRollbackOnly()
+            respond rendicion.errors, view:'create'
+            return
+        }
+
+        rendicion.save flush:true
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.created.message', args: [message(code: 'rendicion.label', default: 'Rendicion'), rendicion.id])
+                redirect rendicion
+            }
+            '*' { respond rendicion, [status: CREATED] }
+        }
     }
 
-    def update = {
-        def rendicion = Rendicion.get(params.id)
-        rendicion.properties = params
-        rendicion.save flush:true, failOnError:true
-        redirect action:"list"
+    def edit(Rendicion rendicion) {
+        respond rendicion
     }
 
-    def show = {
-        [rendicion: Rendicion.get(params.id)]
+    @Transactional
+    def update(Rendicion rendicion) {
+        if (rendicion == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        if (rendicion.hasErrors()) {
+            transactionStatus.setRollbackOnly()
+            respond rendicion.errors, view:'edit'
+            return
+        }
+
+        rendicion.save flush:true
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'rendicion.label', default: 'Rendicion'), rendicion.id])
+                redirect rendicion
+            }
+            '*'{ respond rendicion, [status: OK] }
+        }
     }
 
-    def list = {
-        [rendiciones: Rendicion.list()]
+    @Transactional
+    def delete(Rendicion rendicion) {
+
+        if (rendicion == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        rendicion.delete flush:true
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'rendicion.label', default: 'Rendicion'), rendicion.id])
+                redirect action:"index", method:"GET"
+            }
+            '*'{ render status: NO_CONTENT }
+        }
     }
 
-    def delete = {
-        def rendicion = Rendicion.get(params.id)
-        rendicion.delete flush:true, failOnError:true
-        redirect action:"list"
+    protected void notFound() {
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.not.found.message', args: [message(code: 'rendicion.label', default: 'Rendicion'), params.id])
+                redirect action: "index", method: "GET"
+            }
+            '*'{ render status: NOT_FOUND }
+        }
     }
-
 }

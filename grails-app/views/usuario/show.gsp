@@ -1,28 +1,31 @@
-<meta name="layout" content="auditoria/auditoria.main"/>
-<div class="row">
-    <div class="col l12 m6">
-        <div class="card blue-grey darken-1">
-            <div class="card-content white-text">
-                <span class="card-title">
-                    ${usuario.nombres} ${usuario.paterno} ${usuario.materno}
-                    <span class="badge white-text">RUT: ${usuario.rut} - ID: ${usuario.id}</span>
-                </span>
-                <div class="row">
-                    <strong>RUT:    </strong>${usuario.rut}<br/>
-                    <strong>Nombres: </strong>${usuario.nombres}<br/>
-                    <strong>Paterno: </strong>${usuario.paterno}<br/>
-                    <strong>Materno: </strong>${usuario.materno}<br/>
-                    <strong>direccion: </strong>${usuario.direccion}<br/>
-                    <strong>correo: </strong>${usuario.correo}<br/>
-                    <strong>telefono: </strong>${usuario.telefono}<br/>
-                    <strong>clave: </strong>${usuario.clave}<br/>
-                    <strong>tipo: </strong>${usuario.tipo}
-                </div>
-            </div>
-            <div class="card-action">
-                <a href=""><g:link action="edit" id="${usuario.id}">Editar</g:link></a>
-                <a href=""><g:link action="delete" id="${usuario.id}">Eliminar</g:link></a>
-            </div>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="layout" content="main" />
+        <g:set var="entityName" value="${message(code: 'usuario.label', default: 'Usuario')}" />
+        <title><g:message code="default.show.label" args="[entityName]" /></title>
+    </head>
+    <body>
+        <a href="#show-usuario" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
+        <div class="nav" role="navigation">
+            <ul>
+                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+                <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
+                <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
+            </ul>
         </div>
-    </div>
-</div>
+        <div id="show-usuario" class="content scaffold-show" role="main">
+            <h1><g:message code="default.show.label" args="[entityName]" /></h1>
+            <g:if test="${flash.message}">
+            <div class="message" role="status">${flash.message}</div>
+            </g:if>
+            <f:display bean="usuario" />
+            <g:form resource="${this.usuario}" method="DELETE">
+                <fieldset class="buttons">
+                    <g:link class="edit" action="edit" resource="${this.usuario}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+                    <input class="delete" type="submit" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+                </fieldset>
+            </g:form>
+        </div>
+    </body>
+</html>

@@ -1,23 +1,16 @@
 package compite
+
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
-/**
- * Created by camilo on 16-08-16.
- */
+
 @Transactional(readOnly = true)
 class UsuarioController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index = {
-        //redirige a la lista de usuarios
-        redirect action: "list"
-    }
-
-    def list = {
-        //lista los todos los contactos
-        def usuarios = Usuario.list()
-        [usuarios: usuarios]
+    def index(Integer max) {
+        params.max = Math.min(max ?: 10, 100)
+        respond Usuario.list(params), model:[usuarioCount: Usuario.count()]
     }
 
     def show(Usuario usuario) {

@@ -1,27 +1,31 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>show</title>
-</head>
-
-<body>
-    <h1>empresa</h1>
-
-    gerente: ${empresa.gerente}<br/>
-    direccion: ${empresa.direccion}<br/>
-    fecha: ${empresa.fechaCreacion}<br/>
-    correo: ${empresa.correo}<br/>
-    giro: ${empresa.giro}<br/>
-    nombre: ${empresa.nombre}<br/>
-    rut: ${empresa.rut}<br/>
-    telefono: ${empresa.telefono}<br/>
-    tipo: ${empresa.tipo}<br/>
-    <g:link action="edit" id="${empresa.id}">Editar</g:link><br />
-    <g:link action="delete" id="${empresa.id}">Borrar</g:link>
-
-</body>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="layout" content="main" />
+        <g:set var="entityName" value="${message(code: 'empresa.label', default: 'Empresa')}" />
+        <title><g:message code="default.show.label" args="[entityName]" /></title>
+    </head>
+    <body>
+        <a href="#show-empresa" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
+        <div class="nav" role="navigation">
+            <ul>
+                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+                <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
+                <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
+            </ul>
+        </div>
+        <div id="show-empresa" class="content scaffold-show" role="main">
+            <h1><g:message code="default.show.label" args="[entityName]" /></h1>
+            <g:if test="${flash.message}">
+            <div class="message" role="status">${flash.message}</div>
+            </g:if>
+            <f:display bean="empresa" />
+            <g:form resource="${this.empresa}" method="DELETE">
+                <fieldset class="buttons">
+                    <g:link class="edit" action="edit" resource="${this.empresa}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+                    <input class="delete" type="submit" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+                </fieldset>
+            </g:form>
+        </div>
+    </body>
 </html>

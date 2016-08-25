@@ -1,54 +1,107 @@
 package compite
 
-/**
- * Created by camilo on 16-08-16.
- */
+import static org.springframework.http.HttpStatus.*
+import grails.transaction.Transactional
+
+@Transactional(readOnly = true)
 class TransporteController {
 
-    def index = {
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+
+    def index(Integer max) {
+        params.max = Math.min(max ?: 10, 100)
+        respond Transporte.list(params), model:[transporteCount: Transporte.count()]
     }
 
-    def create = {
-        def usuarios = Usuario.list()
-        [usuarios:usuarios]
+    def show(Transporte transporte) {
+        respond transporte
     }
 
-    def save = {
-        def transporte = new Transporte(params)
-        transporte.save flush:true , failOnError:true
-        redirect action: "list" , id:transporte.id
+    def create() {
+        respond new Transporte(params)
     }
 
-    def edit = {
-        def usuarios = Usuario.list()
-        [usuarios:usuarios]
-        def transporte = Transporte.get(params.id)
-        [transporte: transporte]
+    @Transactional
+    def save(Transporte transporte) {
+        if (transporte == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        if (transporte.hasErrors()) {
+            transactionStatus.setRollbackOnly()
+            respond transporte.errors, view:'create'
+            return
+        }
+
+        transporte.save flush:true
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.created.message', args: [message(code: 'transporte.label', default: 'Transporte'), transporte.id])
+                redirect transporte
+            }
+            '*' { respond transporte, [status: CREATED] }
+        }
     }
 
-    def update = {
-        def transporte = Transporte.get(params.id)
-        transporte.properties = params
-        transporte.save flush:true , failOnError:true
-        redirect action: "show" , id:transporte.id
+    def edit(Transporte transporte) {
+        respond transporte
     }
 
-    def show = {
-        def usuarios = Usuario.list()
-        [usuarios:usuarios]
-        def transporte = Transporte.get(params.id)
-        [transporte: transporte]
+    @Transactional
+    def update(Transporte transporte) {
+        if (transporte == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        if (transporte.hasErrors()) {
+            transactionStatus.setRollbackOnly()
+            respond transporte.errors, view:'edit'
+            return
+        }
+
+        transporte.save flush:true
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'transporte.label', default: 'Transporte'), transporte.id])
+                redirect transporte
+            }
+            '*'{ respond transporte, [status: OK] }
+        }
     }
 
-    def list = {
-        def transportes = Transporte.list()
-        [transportes:transportes]
+    @Transactional
+    def delete(Transporte transporte) {
+
+        if (transporte == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        transporte.delete flush:true
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'transporte.label', default: 'Transporte'), transporte.id])
+                redirect action:"index", method:"GET"
+            }
+            '*'{ render status: NO_CONTENT }
+        }
     }
 
-    def delete = {
-        def transporte = Transporte.get(params.id)
-        transporte.delete flush:true , failOnError:true
-        redirect action: "list" , id:transporte.id
+    protected void notFound() {
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.not.found.message', args: [message(code: 'transporte.label', default: 'Transporte'), params.id])
+                redirect action: "index", method: "GET"
+            }
+            '*'{ render status: NOT_FOUND }
+        }
     }
-
 }

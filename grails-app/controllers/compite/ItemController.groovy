@@ -1,50 +1,107 @@
 package compite
 
-/**
- * Created by camilo on 16-08-16.
- */
+import static org.springframework.http.HttpStatus.*
+import grails.transaction.Transactional
+
+@Transactional(readOnly = true)
 class ItemController {
 
-    def index = {
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+
+    def index(Integer max) {
+        params.max = Math.min(max ?: 10, 100)
+        respond Item.list(params), model:[itemCount: Item.count()]
     }
 
-    def create = {
-        def rendiciones = Rendicion.list()
-        [rendiciones: rendiciones]
+    def show(Item item) {
+        respond item
     }
 
-    def save = {
-        def item = new Item(params)
-        item.save flush: true, failOnError: true
-        redirect action:"show", id:item.id
+    def create() {
+        respond new Item(params)
     }
 
-    def edit = {
-        def item = Item.get(params.id)
-        [item:item]
+    @Transactional
+    def save(Item item) {
+        if (item == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        if (item.hasErrors()) {
+            transactionStatus.setRollbackOnly()
+            respond item.errors, view:'create'
+            return
+        }
+
+        item.save flush:true
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.created.message', args: [message(code: 'item.label', default: 'Item'), item.id])
+                redirect item
+            }
+            '*' { respond item, [status: CREATED] }
+        }
     }
 
-    def update = {
-        def item = Item.get(params.id)
-        item.properties = params
-        item.save flush: true, failOnError: true
-        redirect action: "show", id:params.id
+    def edit(Item item) {
+        respond item
     }
 
-    def show = {
-        def item = Item.get(params.id)
-        [item:item]
+    @Transactional
+    def update(Item item) {
+        if (item == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        if (item.hasErrors()) {
+            transactionStatus.setRollbackOnly()
+            respond item.errors, view:'edit'
+            return
+        }
+
+        item.save flush:true
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'item.label', default: 'Item'), item.id])
+                redirect item
+            }
+            '*'{ respond item, [status: OK] }
+        }
     }
 
-    def list = {
-        def items = Item.list()
-        [items:items]
+    @Transactional
+    def delete(Item item) {
+
+        if (item == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        item.delete flush:true
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'item.label', default: 'Item'), item.id])
+                redirect action:"index", method:"GET"
+            }
+            '*'{ render status: NO_CONTENT }
+        }
     }
 
-    def delete = {
-        def item = Item.get(params.id)
-        item.delete flush: true, failOnError: true
-        redirect action: "index"
+    protected void notFound() {
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.not.found.message', args: [message(code: 'item.label', default: 'Item'), params.id])
+                redirect action: "index", method: "GET"
+            }
+            '*'{ render status: NOT_FOUND }
+        }
     }
-
 }

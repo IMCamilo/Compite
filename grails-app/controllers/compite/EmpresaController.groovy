@@ -1,48 +1,107 @@
 package compite
 
-/**
- * Created by camilo on 16-08-16.
- */
+import static org.springframework.http.HttpStatus.*
+import grails.transaction.Transactional
+
+@Transactional(readOnly = true)
 class EmpresaController {
 
-    def index = {
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+
+    def index(Integer max) {
+        params.max = Math.min(max ?: 10, 100)
+        respond Empresa.list(params), model:[empresaCount: Empresa.count()]
     }
 
-    def create = {
+    def show(Empresa empresa) {
+        respond empresa
     }
 
-    def save = {
-        def empresa = new Empresa(params)
-        empresa.save flush:true, failOnError:true
-        redirect action:'show', id:empresa.id
+    def create() {
+        respond new Empresa(params)
     }
 
-    def edit = {
-        def empresa = Empresa.get(params.id)
-        [empresa:empresa]
+    @Transactional
+    def save(Empresa empresa) {
+        if (empresa == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        if (empresa.hasErrors()) {
+            transactionStatus.setRollbackOnly()
+            respond empresa.errors, view:'create'
+            return
+        }
+
+        empresa.save flush:true
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.created.message', args: [message(code: 'empresa.label', default: 'Empresa'), empresa.id])
+                redirect empresa
+            }
+            '*' { respond empresa, [status: CREATED] }
+        }
     }
 
-    def update = {
-        def empresa = Empresa.get(params.id)
-        empresa.properties = params
-        empresa.save flush: true, failOnError: true
-        redirect action: "show", id:params.id
+    def edit(Empresa empresa) {
+        respond empresa
     }
 
-    def show = {
-        def empresa = Empresa.get(params.id)
-        [empresa:empresa]
+    @Transactional
+    def update(Empresa empresa) {
+        if (empresa == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        if (empresa.hasErrors()) {
+            transactionStatus.setRollbackOnly()
+            respond empresa.errors, view:'edit'
+            return
+        }
+
+        empresa.save flush:true
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'empresa.label', default: 'Empresa'), empresa.id])
+                redirect empresa
+            }
+            '*'{ respond empresa, [status: OK] }
+        }
     }
 
-    def list = {
-        def empresas = Empresa.list()
-        [empresas:empresas]
+    @Transactional
+    def delete(Empresa empresa) {
+
+        if (empresa == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        empresa.delete flush:true
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'empresa.label', default: 'Empresa'), empresa.id])
+                redirect action:"index", method:"GET"
+            }
+            '*'{ render status: NO_CONTENT }
+        }
     }
 
-    def delete = {
-        def empresa = Empresa.get(params.id)
-        empresa.delete flush: true, failOnError: true
-        redirect action: "index"
+    protected void notFound() {
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.not.found.message', args: [message(code: 'empresa.label', default: 'Empresa'), params.id])
+                redirect action: "index", method: "GET"
+            }
+            '*'{ render status: NOT_FOUND }
+        }
     }
-
 }

@@ -1,48 +1,107 @@
 package compite
 
-/**
- * Created by camilo on 16-08-16.
- */
+import static org.springframework.http.HttpStatus.*
+import grails.transaction.Transactional
+
+@Transactional(readOnly = true)
 class ProyectoController {
 
-    def index = {
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+
+    def index(Integer max) {
+        params.max = Math.min(max ?: 10, 100)
+        respond Proyecto.list(params), model:[proyectoCount: Proyecto.count()]
     }
 
-    def create = {
-        [empresas:Empresa.list()]
+    def show(Proyecto proyecto) {
+        respond proyecto
     }
 
-    def save = {
-        def proyecto = new Proyecto(params)
-        proyecto.save flush:true, failOnError:true
-        redirect action:"list"
+    def create() {
+        respond new Proyecto(params)
     }
 
-    def edit = {
-        def proyecto = Proyecto.get(params.id)
-        [proyecto:proyecto, empresas:Empresa.list()]
+    @Transactional
+    def save(Proyecto proyecto) {
+        if (proyecto == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        if (proyecto.hasErrors()) {
+            transactionStatus.setRollbackOnly()
+            respond proyecto.errors, view:'create'
+            return
+        }
+
+        proyecto.save flush:true
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.created.message', args: [message(code: 'proyecto.label', default: 'Proyecto'), proyecto.id])
+                redirect proyecto
+            }
+            '*' { respond proyecto, [status: CREATED] }
+        }
     }
 
-    def update = {
-        def proyecto = Proyecto.get(params.id)
-        proyecto.properties = params
-        proyecto.save flush: true, failOnError: true
-        redirect action: "list"
+    def edit(Proyecto proyecto) {
+        respond proyecto
     }
 
-    def show = {
-        def proyecto = Proyecto.get(params.id)
-        [proyecto:proyecto]
+    @Transactional
+    def update(Proyecto proyecto) {
+        if (proyecto == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        if (proyecto.hasErrors()) {
+            transactionStatus.setRollbackOnly()
+            respond proyecto.errors, view:'edit'
+            return
+        }
+
+        proyecto.save flush:true
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'proyecto.label', default: 'Proyecto'), proyecto.id])
+                redirect proyecto
+            }
+            '*'{ respond proyecto, [status: OK] }
+        }
     }
 
-    def list = {
-        [proyectos: Proyecto.list()]
+    @Transactional
+    def delete(Proyecto proyecto) {
+
+        if (proyecto == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        proyecto.delete flush:true
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'proyecto.label', default: 'Proyecto'), proyecto.id])
+                redirect action:"index", method:"GET"
+            }
+            '*'{ render status: NO_CONTENT }
+        }
     }
 
-    def delete = {
-        def proyecto = Proyecto.get(params.id)
-        proyecto.delete flush: true, failOnError: true
-        redirect action: "list"
+    protected void notFound() {
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.not.found.message', args: [message(code: 'proyecto.label', default: 'Proyecto'), params.id])
+                redirect action: "index", method: "GET"
+            }
+            '*'{ render status: NOT_FOUND }
+        }
     }
-
 }

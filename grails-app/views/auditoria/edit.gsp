@@ -1,25 +1,40 @@
-<meta name="layout" content="auditoria/auditoria.main"/>
-<div class="row">
-    <form class="col s12">
-        <g:form action="update" id="${auditoria.id}">
-            <div class="input-field col s6">
-                <g:select name="usuario" from="${auditoria.usuario}" optionValue="nombres" optionKey="id"/>
-                <label>Usuario</label>
-            </div>
-            <div class="input-field col s6">
-                <input id="datepicker1" name="fecha" value="${auditoria.fecha}" type="date" class="datepicker">
-                <label for="datepicker1">Fecha</label>
-            </div>
-            <div class="input-field col s12">
-                <g:textArea id="desc" class="materialize-textarea" value="${auditoria.descripcion}" name="descripcion"/>
-                <label for="desc">Descripción</label>
-            </div>
-            <!--
-            Fecha <g:datePicker name="fecha" value="${new Date()}" noSelection="['':'Selecciona Mes']"/>
-            Descripcion <g:textArea name="descripcion" value="" rows="5" cols="40"/>
-            -->
-
-            <g:actionSubmit class="waves-effect waves-light btn" value="Update"/>
-        </g:form>
-    </form>
-</div>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="layout" content="main" />
+        <g:set var="entityName" value="${message(code: 'auditoria.label', default: 'Auditoria')}" />
+        <title><g:message code="default.edit.label" args="[entityName]" /></title>
+    </head>
+    <body>
+        <a href="#edit-auditoria" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
+        <div class="nav" role="navigation">
+            <ul>
+                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+                <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
+                <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
+            </ul>
+        </div>
+        <div id="edit-auditoria" class="content scaffold-edit" role="main">
+            <h1><g:message code="default.edit.label" args="[entityName]" /></h1>
+            <g:if test="${flash.message}">
+            <div class="message" role="status">${flash.message}</div>
+            </g:if>
+            <g:hasErrors bean="${this.auditoria}">
+            <ul class="errors" role="alert">
+                <g:eachError bean="${this.auditoria}" var="error">
+                <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
+                </g:eachError>
+            </ul>
+            </g:hasErrors>
+            <g:form resource="${this.auditoria}" method="PUT">
+                <g:hiddenField name="version" value="${this.auditoria?.version}" />
+                <fieldset class="form">
+                    <f:all bean="auditoria"/>
+                </fieldset>
+                <fieldset class="buttons">
+                    <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+                </fieldset>
+            </g:form>
+        </div>
+    </body>
+</html>

@@ -1,54 +1,107 @@
 package compite
 
-/**
- * Created by camilo on 16-08-16.
- */
+import static org.springframework.http.HttpStatus.*
+import grails.transaction.Transactional
+
+@Transactional(readOnly = true)
 class AuditoriaController {
 
-    def index = {
-        redirect action: "list"
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+
+    def index(Integer max) {
+        params.max = Math.min(max ?: 10, 100)
+        respond Auditoria.list(params), model:[auditoriaCount: Auditoria.count()]
     }
 
-    def create = {
-        def usuarios = Usuario.list()
-        [usuarios:usuarios]
+    def show(Auditoria auditoria) {
+        respond auditoria
     }
 
-    def save = {
-        def auditoria = new Auditoria(params)
-        auditoria.save flush:true, failOnError:true
-        //redirect action: "show", id:auditoria.id
-        redirect action: "list"
+    def create() {
+        respond new Auditoria(params)
     }
 
-    def edit = {
-        def auditoria = Auditoria.get(params.id)
-        [auditoria:auditoria]
+    @Transactional
+    def save(Auditoria auditoria) {
+        if (auditoria == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        if (auditoria.hasErrors()) {
+            transactionStatus.setRollbackOnly()
+            respond auditoria.errors, view:'create'
+            return
+        }
+
+        auditoria.save flush:true
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.created.message', args: [message(code: 'auditoria.label', default: 'Auditoria'), auditoria.id])
+                redirect auditoria
+            }
+            '*' { respond auditoria, [status: CREATED] }
+        }
     }
 
-    def update = {
-        def auditoria = Auditoria.get(params.id)
-        auditoria.properties = params
-        auditoria.save flush:true, failOnError:true
-        //redirect action:"show", id:params.id
-        redirect action: "list"
+    def edit(Auditoria auditoria) {
+        respond auditoria
     }
 
-    def show = {
-        def auditoria = Auditoria.get(params.id)
-        [auditoria: auditoria]
+    @Transactional
+    def update(Auditoria auditoria) {
+        if (auditoria == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        if (auditoria.hasErrors()) {
+            transactionStatus.setRollbackOnly()
+            respond auditoria.errors, view:'edit'
+            return
+        }
+
+        auditoria.save flush:true
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'auditoria.label', default: 'Auditoria'), auditoria.id])
+                redirect auditoria
+            }
+            '*'{ respond auditoria, [status: OK] }
+        }
     }
 
-    def list = {
-        def auditorias = Auditoria.list()
-        [auditorias: auditorias]
+    @Transactional
+    def delete(Auditoria auditoria) {
+
+        if (auditoria == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        auditoria.delete flush:true
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'auditoria.label', default: 'Auditoria'), auditoria.id])
+                redirect action:"index", method:"GET"
+            }
+            '*'{ render status: NO_CONTENT }
+        }
     }
 
-    def delete = {
-        def auditoria = Auditoria.get(params.id)
-        auditoria.delete flush: true, failOnError: true
-        //redirect action: "index"
-        redirect action: "list"
+    protected void notFound() {
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.not.found.message', args: [message(code: 'auditoria.label', default: 'Auditoria'), params.id])
+                redirect action: "index", method: "GET"
+            }
+            '*'{ render status: NOT_FOUND }
+        }
     }
-
 }

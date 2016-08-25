@@ -1,25 +1,40 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>edit</title>
-</head>
-
-<body>
-
-    <g:form action="update" id="${proyecto.id}">
-        Empresa <g:select name="empresa" from="${empresas}" optionValue="nombre" optionKey="id"/>
-        Codigo <g:textField name="codigo" value="${proyecto.codigo}"/>
-        Nombre <g:textField name="nombre" value="${proyecto.nombre}"/>
-        estado <g:textField name="estado" value="${proyecto.estado}"/>
-        Fecha Creacion <g:datePicker name="fechaCreacion" value="${new Date()}" noSelection="['':'Selecciona Mes']"/>
-        Fecha Fin <g:datePicker name="fechaFin" value="${new Date()}" noSelection="['':'Selecciona Mes']"/>
-        <g:actionSubmit value="Update" />
-    </g:form>
-
-</body>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="layout" content="main" />
+        <g:set var="entityName" value="${message(code: 'proyecto.label', default: 'Proyecto')}" />
+        <title><g:message code="default.edit.label" args="[entityName]" /></title>
+    </head>
+    <body>
+        <a href="#edit-proyecto" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
+        <div class="nav" role="navigation">
+            <ul>
+                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+                <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
+                <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
+            </ul>
+        </div>
+        <div id="edit-proyecto" class="content scaffold-edit" role="main">
+            <h1><g:message code="default.edit.label" args="[entityName]" /></h1>
+            <g:if test="${flash.message}">
+            <div class="message" role="status">${flash.message}</div>
+            </g:if>
+            <g:hasErrors bean="${this.proyecto}">
+            <ul class="errors" role="alert">
+                <g:eachError bean="${this.proyecto}" var="error">
+                <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
+                </g:eachError>
+            </ul>
+            </g:hasErrors>
+            <g:form resource="${this.proyecto}" method="PUT">
+                <g:hiddenField name="version" value="${this.proyecto?.version}" />
+                <fieldset class="form">
+                    <f:all bean="proyecto"/>
+                </fieldset>
+                <fieldset class="buttons">
+                    <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+                </fieldset>
+            </g:form>
+        </div>
+    </body>
 </html>
-
