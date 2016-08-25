@@ -11,104 +11,46 @@
             </ul>
         </g:hasErrors>
 
-
-            <g:form class="col s12 validate" action="save">
-                <div class="row">
-                    <fieldset class="form">
-
-                        <div class="input-field col s6">
-                            <f:input property="rut" bean="usuario"/>
-                            <label >RUT</label>
-                        </div>
-
-                        <div class="input-field col s6">
-                            <f:input property="nombres" bean="usuario"/>
-                            <label >NOMBRES</label>
-                        </div>
-                        <div class="input-field col s6">
-                            <f:input property="paterno" bean="usuario"/>
-                            <label >APELLIDO PATERNO</label>
-                        </div>
-                        <div class="input-field col s6">
-                            <f:input property="materno" bean="usuario"/>
-                            <label >APELLIDO MATERNO</label>
-                        </div>
-                        <div class="input-field col s6">
-                            <f:input property="direccion" bean="usuario"/>
-                            <label >DIRECCION</label>
-                        </div>
-                        <div class="input-field col s6">
-                            <f:input property="correo" bean="usuario"/>
-                            <label >CORREO ELECTRÓNICO</label>
-                        </div>
-                        <div class="input-field col s6">
-                            <f:input property="telefono" bean="usuario"/>
-                            <label >TELÉFONO</label>
-                        </div>
-                        <div class="input-field col s6">
-                            <f:input property="clave" bean="usuario" type="password"/>
-                            <label >CLAVE</label>
-                        </div>
-                        <div class="input-field col s6">
-
-                            <f:input property="tipo" bean="usuario" type="password"/>
-                            <label >TIPO USUARIO</label>
-                        </div>
-
-
-
-
-                    </fieldset>
-                    <fieldset class="buttons">
-                        <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
-                    </fieldset>
-                </div>
-        </g:form>
-        </div>
-
-</div>
-<!--
-<div class="row">
-    <g:form class="col s12" action="save">
+    <g:form class="col s12 validate" action="save">
         <div class="row">
             <div class="input-field col s2">
-                <g:textField id="rut" type="text" class="validate" name="rut" />
+                <f:input property="rut" bean="usuario"/>
                 <label for="rut">RUT</label>
             </div>
             <div class="input-field col s3">
-                <g:textField id="nombre" type="text" class="validate" name="nombres" />
-                <label for="nombre">Nombre</label>
+                <f:input property="nombres" bean="usuario"/>
+                <label for="nombres">Nombre</label>
             </div>
             <div class="input-field col s3">
-                <g:textField id="paterno" type="text" class="validate" name="paterno" />
+                <f:input property="paterno" bean="usuario"/>
                 <label for="paterno">Paterno</label>
             </div>
             <div class="input-field col s3">
-                <g:textField id="materno" type="text" class="validate" name="materno" />
+                <f:input property="materno" bean="usuario"/>
                 <label for="materno">Materno</label>
             </div>
         </div>
         <div class="row">
-            <div class="input-field col s7">
-                <g:textField id="direccion" type="text" class="validate" name="direccion" />
+            <div class="input-field col s6">
+                <f:input property="direccion" bean="usuario"/>
                 <label for="direccion">Dirección</label>
             </div>
             <div class="input-field col s5">
-                <g:textField id="email" type="email" class="validate" name="correo" />
+                <f:input property="correo" bean="usuario"/>
                 <label for="email">Correo electrónico</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s2">
-                <g:textField id="tipo" type="text" class="validate" name="tipo" />
+                <f:input property="tipo" bean="usuario" type="password"/>
                 <label for="tipo">Tipo</label>
             </div>
             <div class="input-field col s3">
-                <g:textField id="telefono" type="text" class="validate" name="telefono" />
+                <f:input property="telefono" bean="usuario"/>
                 <label for="telefono">Teléfono</label>
             </div>
             <div class="input-field col s3">
-                <g:passwordField id="password" name="clave" />
+                <f:input property="clave" bean="usuario" type="password"/>
                 <label for="password">Contraseña</label>
             </div>
             <div class="input-field col s3">
@@ -116,7 +58,6 @@
                 <label for="password">Repita Contraseña</label>
             </div>
         </div>
-        <g:actionSubmit class="btn waves-effect waves-light" value="Save"/>
+        <g:submitButton name="create" class="save btn waves-effect waves-light" value="${message(code: 'default.button.create.label', default: 'Create')}" />
     </g:form>
 </div>
--->
