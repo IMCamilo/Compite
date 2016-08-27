@@ -8,7 +8,7 @@ class Proyecto {
     String codigo
     String nombre
     Date fechaCreacion
-    Integer estado
+    String estado
     Date fechaFin
 
     static hasMany = [asignacion:Asignacion]
