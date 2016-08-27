@@ -7,7 +7,6 @@ import compite.Proyecto
 import compite.Rendicion
 import compite.Transporte
 import compite.Usuario
-import org.springframework.beans.PropertyBatchUpdateException
 
 class BootStrap {
 
@@ -33,6 +32,16 @@ class BootStrap {
                 telefono: "-",
                 clave: "qwerty",
                 tipo: 1).save(failOnError: true)
+            new Usuario(
+                rut: "11111111-1",
+                nombres: "Homero",
+                paterno: "Simpsons",
+                materno: "Fox",
+                direccion: "Avda. Siempre Viva",
+                correo: "ingeniero1@gmail.com",
+                telefono: "78787878",
+                clave: "pantalla1",
+                tipo: 2).save(failOnError: true)
         }
         if (!Auditoria.list()){
             new Auditoria(
@@ -59,6 +68,16 @@ class BootStrap {
                 telefono: "232323",
                 direccion: "Direccion 1",
                 correo: "empresatestuno@test.com").save(failOnError: true)
+            new Empresa(
+                rut: "96523180-3",
+                nombre: "Opciones S.A.",
+                giro: "Informática",
+                gerente: "Homero Simpsons",
+                tipo: "Sofware",
+                fechaCreacion: "2016-08-01 00:00:00.0",
+                telefono: "652484600",
+                direccion: "Ejercito # 200",
+                correo: "contacto@opciones.cl").save(failOnError: true)
         }
         if (!Transporte.list()){
             new Transporte(
@@ -75,9 +94,15 @@ class BootStrap {
                 nombre: "Samsung tecnologias etc",
                 fechaCreacion: "2016-08-19 11:49:00.0",
                 fechaFin: "2016-08-19 11:49:00.0",
-                estado: 1,
-
+                estado: "ACTIVADO",
                 empresa: 1).save(failOnError: true)
+            new Proyecto(
+                codigo: "PR-01",
+                nombre: "Proyecto 1 Para el Ingeniero 1",
+                fechaCreacion: "2016-08-01 00:00:00.0",
+                fechaFin: "2016-12-31 00:00:00.0",
+                estado: "ACTIVADO",
+                empresa: 2).save(failOnError: true)
         }
         if (!Rendicion.list()){
             new Rendicion(
@@ -105,6 +130,11 @@ class BootStrap {
                 fecha: "2016-08-19 11:49:00.0",
                 usuario: 1,
                 proyecto: 1).save(failOnError: true)
+            new Asignacion(
+                detalle:"Asignación para Ingeniero 1, proyecto 2",
+                fecha: "2016-08-10 00:0:00.0",
+                usuario: 3,
+                proyecto: 2).save(failOnError: true)
         }
     }
     def destroy = {
