@@ -17,7 +17,7 @@
 <body>
     <nav class="white" role="navigation">
         <div class="nav-wrapper container">
-            <a id="logo-container" href="index.html" class="brand-logo">
+            <a id="logo-container" href="http://localhost:8080" class="brand-logo">
                 <asset:image src="compite/compite2.png" alt="logo" class="img-responsive" width="50%" height="50%" style="padding-top:10px"/>
                 <!--<img src="img/compite2.png" alt="logo" class="img-responsive" width="50%" height="50%" style="padding-top:10px">-->
             </a>
