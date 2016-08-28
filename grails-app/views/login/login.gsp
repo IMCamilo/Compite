@@ -45,26 +45,34 @@
                 </div>
                 <div class="col s12 m4">
                     <div class="row">
-                        <!--<form class="col s12" action="admin.html">-->
-                        <form class="col s12" action="ingeniero.html">
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <i class="material-icons prefix">account_circle</i>
-                                    <input id="icon_prefix" type="text" class="validate">
-                                    <label for="icon_prefix">Correo electrónico</label>
-                                </div>
-                                <div class="input-field col s12">
-                                    <i class="material-icons prefix">vpn_key</i>
-                                    <input id="icon_telephone" type="tel" class="validate">
-                                    <label for="icon_telephone">Contraseña</label>
-                                </div>
-                                <div class="input-field col s12">
-                                    <button class="btn waves-effect waves-light" style="width:100%; height:50px" type="submit">Entrar
-                                        <i class="material-icons right">send</i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+
+
+                        <g:if test="${session?.user}">
+                        </g:if>
+                        <g:else>
+                            <g:form controller="login" action="sigin">
+                                <p class="info">
+                                    <g:link controller="user" action="register">Registrar</g:link>
+                                </p>
+                                <g:if test="${flash.message}">
+                                    <div class="message">${flash.message}</div>
+                                </g:if>
+                                <p>
+                                    <label for="username">Username</label>
+                                    <g:textField name="username" />
+                                </p>
+                                <p>
+                                    <label for="password">Password</label>
+                                    <g:passwordField name="password" />
+                                </p>
+                                <p class="button">
+                                    <label>&nbsp;</label>
+                                    <g:submitButton class="button" name="submitButton" value="Login" />
+                                </p>
+                            </g:form>
+                        </g:else>
+
+
                     </div>
                 </div>
                 <div class="col s12 m4">

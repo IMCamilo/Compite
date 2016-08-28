@@ -13,7 +13,20 @@
                 <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
             </ul>
         </div>
-        <div id="list-usuario" class="content scaffold-list" role="main">
+    <div id="list-usuario" class="content scaffold-list" role="main">
+
+
+        datos usuario : ${session.datosUsuario.rut}
+    datos usuario : ${session.datosUsuario.clave}
+    datos usuario : ${session.datosUsuario.nombres}
+    datos usuario : ${session.datosUsuario.paterno}
+    datos usuario : ${session.datosUsuario.materno}
+    datos usuario : ${session.datosUsuario.direccion}
+    datos usuario : ${session.datosUsuario.correo}
+    datos usuario : ${session.datosUsuario.telefono}
+    datos usuario : ${session.datosUsuario.clave}
+
+    <div id="list-usuario" class="content scaffold-list" role="main">
             <h1><g:message code="default.list.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
