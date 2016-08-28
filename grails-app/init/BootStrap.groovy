@@ -18,7 +18,7 @@ class BootStrap {
                 paterno: "uno",
                 materno: "-",
                 direccion: "-",
-                correo: "usuarioadmin@grails.org",
+                correo: "usuarioadminuno@grails.org",
                 telefono: "-",
                 clave: "qwerty",
                 tipo: 1).save(failOnError: true)
@@ -28,7 +28,7 @@ class BootStrap {
                 paterno: "dos",
                 materno: "-",
                 direccion: "-",
-                correo: "usuarioadmin@grails.org",
+                correo: "usuarioadmindos@grails.org",
                 telefono: "-",
                 clave: "qwerty",
                 tipo: 1).save(failOnError: true)
