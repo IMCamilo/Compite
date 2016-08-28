@@ -11,13 +11,17 @@ class LoginController {
 
     def sigin = {
         if (request.method == 'POST') {
-            def u = Usuario.findByRutAndClave(params.username, params.password)
-            println "--> $u"
+            def u = Usuario.findByCorreoAndClave(params.username, params.password)
             if (u) {
                 //si datos son correctos
                 flash.message = "Bienvenido $params.username"
                 session.datosUsuario = u
-                redirect controller: "usuario", action: "index"
+                switch (u.tipo) {
+                    case 1 : redirect controller: "administrador", action: "index"
+                        break
+                    case 2 : redirect controller: "ingeniero", action: "index"
+                        break
+                }
             } else {
                 flash.message = "Usuario o contraseña incorrecta"
                 redirect controller: "login", action: "login"
@@ -30,7 +34,7 @@ class LoginController {
 
     def logout = {
         session.invalidate()
-        redirect controller: "login", action: "login"
+
     }
 
 

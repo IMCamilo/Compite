@@ -45,8 +45,6 @@
                 </div>
                 <div class="col s12 m4">
                     <div class="row">
-
-
                         <g:if test="${session?.user}">
                         </g:if>
                         <g:else>
@@ -71,8 +69,6 @@
                                 </p>
                             </g:form>
                         </g:else>
-
-
                     </div>
                 </div>
                 <div class="col s12 m4">
