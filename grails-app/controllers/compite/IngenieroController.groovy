@@ -11,9 +11,8 @@ class IngenieroController {
 
     def proyectos = {
         println "estos son los proyectos del usuario "+usuarioId
-        //def gg = Asignacion.findAll("from Asignacion as b where b.detalle=?", ['asignacion 1, cargada automaticamente'])
-        def asignaciones = Asignacion.findAll("from Asignacion as b where b.usuario="+usuarioId)
-        println "===>"
+        //def gg = Asignacion.findAll("from Asignacion as asig where asig.detalle=?", ['asignacion 1, cargada automaticamente'])
+        def asignaciones = Asignacion.findAll("from Asignacion as asig where asig.usuario="+usuarioId)
         println "id : "+ asignaciones.id[0]
         println "version : "+ asignaciones.version[0]
         println "detalle : "+ asignaciones.detalle[0]
@@ -22,6 +21,7 @@ class IngenieroController {
         println "usuario : "+ asignaciones.usuario[0]
         //http://docs.grails.org/3.1.1/ref/Domain%20Classes/executeQuery.html
         //en la busqueda en proyectos, pasar una lista, ya que de asignaciones pueden venir muchos id.
+
     }
 
     def nuevarendicion = {
