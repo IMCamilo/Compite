@@ -1,25 +1,19 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>COMPITE - Iniciar sesión</title>
+    <title>COMPITE - Iniciar Sesión</title>
     <asset:link rel="icon" href="compite/favicon.png" type="image/x-ico" sizes="32x32"/>
-    <!--<link rel="icon" href="img/favicon.png" sizes="32x32">-->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
-    <!-- CSS  -->
     <asset:stylesheet src="compite/materialize.css"/>
     <asset:stylesheet src="compite/style.css"/>
     <asset:stylesheet src="compite/googlefonts.css"/>
-    <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
-    <!--link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />-->
 </head>
 <body>
     <nav class="white" role="navigation">
         <div class="nav-wrapper container">
             <a id="logo-container" href="http://localhost:8080" class="brand-logo">
                 <asset:image src="compite/compite2.png" alt="logo" class="img-responsive" width="50%" height="50%" style="padding-top:10px"/>
-                <!--<img src="img/compite2.png" alt="logo" class="img-responsive" width="50%" height="50%" style="padding-top:10px">-->
             </a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="http://localhost:8080">Inicio</a></li>
@@ -35,7 +29,6 @@
             <div class="row">
                 <center>
                     <asset:image src="compite/logo.png" width="30%" height="30%"/>
-                    <!--<img src="img/logo.png" width="30%" height="30%">-->
                 </center>
             </div>
         </div>
@@ -49,24 +42,27 @@
                         </g:if>
                         <g:else>
                             <g:form controller="login" action="sigin">
-                                <p class="info">
-                                    <g:link controller="user" action="register">Registrar</g:link>
-                                </p>
                                 <g:if test="${flash.message}">
                                     <div class="message">${flash.message}</div>
                                 </g:if>
-                                <p>
-                                    <label for="username">Username</label>
-                                    <g:textField name="username" />
-                                </p>
-                                <p>
-                                    <label for="password">Password</label>
-                                    <g:passwordField name="password" />
-                                </p>
-                                <p class="button">
-                                    <label>&nbsp;</label>
-                                    <g:submitButton class="button" name="submitButton" value="Login" />
-                                </p>
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">account_circle</i>
+                                    <input id="icon_prefix" name="username" type="text" class="validate">
+                                    <label for="icon_prefix">Correo electrónico</label>
+                                </div>
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">vpn_key</i>
+                                    <input id="icon_telephone" name="password" type="password" class="validate">
+                                    <label for="icon_telephone">Contraseña</label>
+                                </div>
+                                <div class="input-field col s12">
+                                    <button class="btn waves-effect waves-light" style="width:100%; height:50px" type="submit" name="submitButton">Entrar
+                                        <i class="material-icons right">send</i>
+                                    </button>
+                                </div>
+                                <!--<p class="info">
+                                    <g:link controller="user" action="register">Registrar</g:link>
+                                </p>-->
                             </g:form>
                         </g:else>
                     </div>
@@ -111,7 +107,6 @@
                     <li>
                         <a class="white-text" href="#!">
                             <asset:image src="compite/biobio-1.png" class="responsive-img" width="100px" height="100px"/>
-                            <!--<img class="responsive-img" src="img/biobio-1.png" width="100px" height="100px">-->
                         </a>
                     </li>
                     <li><a class="white-text" href="#!">Bernardo O’higgins #980, oficina F, Concepción.</a></li>
@@ -124,7 +119,6 @@
                     <li>
                         <a class="white-text" href="#!">
                             <asset:image src="compite/araucania-1.png" class="responsive-img" width="100px" height="100px"/>
-                            <!--<img class="responsive-img" src="img/araucania-1.png" width="100px" height="100px">-->
                         </a>
                     </li>
                     <li><a class="white-text" href="#!">Antonio Varas #687, Oficina 708. Temuco.</a></li>
@@ -143,8 +137,6 @@
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <asset:javascript src="compite/materialize.js"/>
 <asset:javascript src="compite/init.js"/>
-<!--<script src="js/materialize.js"></script>
-<script src="js/init.js"></script>-->
 </body>
 
 </html>
