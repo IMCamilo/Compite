@@ -90,19 +90,26 @@ class BootStrap {
         }
         if (!Proyecto.list()){
             new Proyecto(
-                codigo: "SAMSUNG",
+                codigo: "PR-01",
                 nombre: "Samsung tecnologias etc",
                 fechaCreacion: "2016-08-19 11:49:00.0",
                 fechaFin: "2016-08-19 11:49:00.0",
                 estado: "ACTIVADO",
                 empresa: 1).save(failOnError: true)
             new Proyecto(
-                codigo: "PR-01",
+                codigo: "PR-02",
                 nombre: "Proyecto 1 Para el Ingeniero 1",
                 fechaCreacion: "2016-08-01 00:00:00.0",
                 fechaFin: "2016-12-31 00:00:00.0",
                 estado: "ACTIVADO",
                 empresa: 2).save(failOnError: true)
+            new Proyecto(
+                    codigo: "PR-03",
+                    nombre: "Proyecto 1 Para el Ingeniero 1",
+                    fechaCreacion: "2016-08-01 00:00:00.0",
+                    fechaFin: "2016-12-31 00:00:00.0",
+                    estado: "ACTIVADO",
+                    empresa: 2).save(failOnError: true)
         }
         if (!Rendicion.list()){
             new Rendicion(
@@ -135,6 +142,11 @@ class BootStrap {
                 fecha: "2016-08-10 00:0:00.0",
                 usuario: 3,
                 proyecto: 2).save(failOnError: true)
+            new Asignacion(
+                detalle:"Asignación para Ingeniero 1, proyecto 3",
+                fecha: "2016-08-10 00:0:00.0",
+                usuario: 3,
+                proyecto: 3).save(failOnError: true)
         }
     }
     def destroy = {
