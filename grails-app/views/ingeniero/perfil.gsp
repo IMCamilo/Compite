@@ -10,5 +10,6 @@
 
 <body>
     <p>perfil usuario</p>
+    Usuario logueado : Rut ${session.datosUsuario.rut} : ${session.datosUsuario.nombres}
 </body>
 </html>

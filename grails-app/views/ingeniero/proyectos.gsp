@@ -19,7 +19,7 @@
 </head>
 <!--al seleccionar proyecto ir a una nuevarendicion (controller)-->
 <body style="font-size:75%">
-
+Usuario logueado : Rut ${session.datosUsuario.rut} : ${session.datosUsuario.nombres}
 <div class="row" style="width:80%">
     <div class="section">
         <div id="tabs">

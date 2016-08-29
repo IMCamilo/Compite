@@ -35,8 +35,8 @@
                 </ul>
                 <ul class="right hide-on-med-and-down">
                     <li class="tab col s4"><a class="active" href="${createLink(controller:'ingeniero', action:'proyectos')}">SELECCIONAR PROYECTOS</a></li>
-                    <li class="tab col s4"><a href="${createLink(controller:'rendicion', action:'index')}">VER RENDICIONES</a></li>
-                    <li class="tab col s4"><a href="${createLink(controller:'usuario', action:'index')}">VER PERFIL</a></li>
+                    <li class="tab col s4"><a href="${createLink(controller:'ingeniero', action:'rendiciones')}">VER RENDICIONES</a></li>
+                    <li class="tab col s4"><a href="${createLink(controller:'ingeniero', action:'perfil')}">VER PERFIL</a></li>
 
                     <li><a href="${createLink(controller:'login', action:'logout')}">Cerrar Sesión</a></li>
                 </ul>
