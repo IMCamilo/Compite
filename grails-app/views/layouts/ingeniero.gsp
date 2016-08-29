@@ -38,7 +38,7 @@
                     <li class="tab col s4"><a href="${createLink(controller:'rendicion', action:'index')}">VER RENDICIONES</a></li>
                     <li class="tab col s4"><a href="${createLink(controller:'usuario', action:'index')}">VER PERFIL</a></li>
 
-                    <li><a href="${createLink(controller:'login', action:'login')}">Cerrar Sesión</a></li>
+                    <li><a href="${createLink(controller:'login', action:'logout')}">Cerrar Sesión</a></li>
                 </ul>
             </div>
         </nav>
