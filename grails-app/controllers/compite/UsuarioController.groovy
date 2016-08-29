@@ -9,6 +9,7 @@ class UsuarioController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
+        println "index de usuario!!!!"
         params.max = Math.min(max ?: 10, 100)
         respond Usuario.list(params), model:[usuarioCount: Usuario.count()]
     }
