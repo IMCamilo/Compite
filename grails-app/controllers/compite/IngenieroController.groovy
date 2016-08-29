@@ -17,8 +17,9 @@ class IngenieroController {
         println "version : "+ asignaciones.version[0]
         println "detalle : "+ asignaciones.detalle[0]
         println "fecha : "+ asignaciones.fecha[0]
-        println "proyecto : "+ asignaciones.proyecto[0]
-        println "usuario : "+ asignaciones.usuario[0]
+        println "proyecto : "+ asignaciones.proyectoId[0]
+        println "usuario : "+ asignaciones.usuarioId[0]
+        
         //http://docs.grails.org/3.1.1/ref/Domain%20Classes/executeQuery.html
         //en la busqueda en proyectos, pasar una lista, ya que de asignaciones pueden venir muchos id.
 
