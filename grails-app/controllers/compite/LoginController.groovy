@@ -6,14 +6,13 @@ package compite
 class LoginController {
 
     def login(){
-        if (session.datosUsuario){
+        if (session.usuarioLogueado){
             //en caso de llegar al login a pesar de haber iniciado sesion, redirige en base a su tipo
-            switch (session.datosUsuario.tipo) {
+            switch (session.usuarioLogueado.tipo) {
                 case 1 : redirect controller: "administrador", action: "index"; break
                 case 2 : redirect controller: "ingeniero", action: "index"; break
             }
         }
-
     }
 
     def sigin = {
@@ -22,7 +21,7 @@ class LoginController {
             if (u) {
                 //si datos son correctos
                 flash.message = "Bienvenido $params.username"
-                session.datosUsuario = u
+                session.usuarioLogueado = u
                 switch (u.tipo) {
                     case 1 : redirect controller: "administrador", action: "index"; break
                     case 2 : redirect controller: "ingeniero", action: "index"; break
@@ -39,6 +38,5 @@ class LoginController {
         flash.message = "Sesión cerrada correctamente"
         redirect controller: "login", action: "login"
     }
-
 
 }

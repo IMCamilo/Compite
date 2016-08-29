@@ -10,6 +10,6 @@
 
 <body>
     <p>perfil usuario</p>
-    Usuario logueado : Rut ${session.datosUsuario.rut} : ${session.datosUsuario.nombres}
+    Usuario logueado : Rut ${session.usuarioLogueado.rut} : ${session.usuarioLogueado.nombres}
 </body>
 </html>

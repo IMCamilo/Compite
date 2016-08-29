@@ -14,7 +14,7 @@
             </ul>
         </div>
 
-    Usuario logueado : ${session.datosUsuario.rut} : ${session.datosUsuario.nombres}
+    Usuario logueado : ${session.usuarioLogueado.rut} : ${session.usuarioLogueado.nombres}
 
         <div id="list-usuario" class="content scaffold-list" role="main">
             <h1><g:message code="default.list.label" args="[entityName]" /></h1>
