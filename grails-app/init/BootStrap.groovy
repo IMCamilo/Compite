@@ -72,6 +72,7 @@ class BootStrap {
                     fechaCreacion: "2016-08-19 11:49:00.0",
                     fechaFin: "2016-08-19 11:49:00.0",
                     estado: "ACTIVADO",
+                    tipo: "PUBLICO",
                     empresa: 1).save(failOnError: true)
             new Proyecto(
                     codigo: "PR-02",
@@ -79,6 +80,7 @@ class BootStrap {
                     fechaCreacion: "2016-08-01 00:00:00.0",
                     fechaFin: "2016-12-31 00:00:00.0",
                     estado: "ACTIVADO",
+                    tipo: "PUBLICO",
                     empresa: 2).save(failOnError: true)
             new Proyecto(
                     codigo: "PR-03",
@@ -86,6 +88,7 @@ class BootStrap {
                     fechaCreacion: "2016-08-01 00:00:00.0",
                     fechaFin: "2016-12-31 00:00:00.0",
                     estado: "ACTIVADO",
+                    tipo: "PRIVADO",
                     empresa: 2).save(failOnError: true)
 
         }
