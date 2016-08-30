@@ -49,8 +49,32 @@ class IngenieroController {
         println "#"+proyectos.fechaFin
         println "#"+proyectos.nombre
         */
-        [proyectos:listaProyectos]
+        def proyectosPrivados = []
+        def proyectosPublicos = []
 
+        listaProyectos.each { item ->
+            if (item.tipo == "PRIVADO") {
+                println "proyecto "+item.id+" es Privado"
+                def result = [:]
+                result.id = item.id
+                result.codigo = item.codigo
+                result.estado = item.estado
+                result.nombre = item.nombre
+                proyectosPrivados.add(result)
+            } else if (item.tipo == "PUBLICO") {
+                println "proyecto "+item.id+" es Publico"
+                def result = [:]
+                result.id = item.id
+                result.codigo = item.codigo
+                result.estado = item.estado
+                result.nombre = item.nombre
+                proyectosPublicos.add(result)
+            }
+        }
+        println "proyectosPublicos: "+proyectosPublicos
+        println "proyectosPrivados: "+proyectosPrivados
+
+        [proyectosPrivados:proyectosPrivados, proyectosPublicos:proyectosPublicos]
     }
 
     def nuevarendicion = {

@@ -31,38 +31,24 @@ Usuario logueado : Rut ${session.usuarioLogueado.rut} : ${session.usuarioLoguead
                             <div class="collapsible-header"><i class="material-icons">contacts</i>TUS PROYECTOS PÚBLICOS</div>
                             <div class="collapsible-body">
                                 <ul class="collection">
-                                    <li class="collection-item avatar">
-                                        <i class="material-icons circle blue">work</i>
-                                        <a href="${createLink(controller:'ingeniero', action:'nuevarendicion')}" class="collection-item">
-                                            <span class="title">Nombre Primer Proyecto</span>
-                                            <br>
-                                            <span>Ubicado en ...</span>
-                                        </a>
-                                    </li>
-                                    <li class="collection-item avatar">
-                                        <i class="material-icons circle blue">work</i>
-                                        <a href="${createLink(controller:'ingeniero', action:'nuevarendicion')}" class="collection-item">
-                                            <span class="title">Nombre Segundo Proyecto</span>
-                                            <br>
-                                            <span>Ubicado en ...</span>
-                                        </a>
-                                    </li>
-                                    <li class="collection-item avatar">
-                                        <i class="material-icons circle blue">work</i>
-                                        <a href="${createLink(controller:'ingeniero', action:'nuevarendicion')}" class="collection-item">
-                                            <span class="title">Nombre Tercer Proyecto</span>
-                                            <br>
-                                            <span>Ubicado en ...</span>
-                                        </a>
-                                    </li>
-                                    <li class="collection-item avatar">
-                                        <i class="material-icons circle blue">work</i>
-                                        <a href="${createLink(controller:'ingeniero', action:'nuevarendicion')}" class="collection-item">
-                                            <span class="title">Nombre Cuarto Proyecto</span>
-                                            <br>
-                                            <span>Ubicado en ...</span>
-                                        </a>
-                                    </li>
+                                    <g:if test="${proyectosPublicos == ''} ">
+                                        <li class="collection-item avatar">
+                                            <span>Usuario no tiene Proyectos Públicos</span>
+                                        </li>
+                                    </g:if>
+                                    <g:else>
+                                        <g:each in="${proyectosPublicos}">
+                                            <li class="collection-item avatar">
+                                                <i class="material-icons circle blue">work</i>
+                                                <a href="${createLink(controller:'ingeniero', action:'nuevarendicion')}" class="collection-item">
+                                                    <span class="title">${proyectosPublicos.nombre}</span>
+                                                    <br>
+                                                    <span>Código: ${proyectosPublicos.codigo}</span><br>
+                                                    <span>Estado: ${proyectosPublicos.estado}</span>
+                                                </a>
+                                            </li>
+                                        </g:each>
+                                    </g:else>
                                 </ul>
                             </div>
                         </li>
@@ -70,38 +56,24 @@ Usuario logueado : Rut ${session.usuarioLogueado.rut} : ${session.usuarioLoguead
                             <div class="collapsible-header"><i class="material-icons">person_pin</i>TUS PROYECTOS PRIVADOS</div>
                             <div class="collapsible-body">
                                 <ul class="collection">
-                                    <li class="collection-item avatar">
-                                        <i class="material-icons circle blue">work</i>
-                                        <a href="${createLink(controller:'ingeniero', action:'nuevarendicion')}" class="collection-item">
-                                            <span class="title">Nombre Primer Proyecto</span>
-                                            <br>
-                                            <span>Ubicado en ...</span>
-                                        </a>
-                                    </li>
-                                    <li class="collection-item avatar">
-                                        <i class="material-icons circle blue">work</i>
-                                        <a href="${createLink(controller:'ingeniero', action:'nuevarendicion')}" class="collection-item">
-                                            <span class="title">Nombre Segundo Proyecto</span>
-                                            <br>
-                                            <span>Ubicado en ...</span>
-                                        </a>
-                                    </li>
-                                    <li class="collection-item avatar">
-                                        <i class="material-icons circle blue">work</i>
-                                        <a href="${createLink(controller:'ingeniero', action:'nuevarendicion')}" class="collection-item">
-                                            <span class="title">Nombre Tercer Proyecto</span>
-                                            <br>
-                                            <span>Ubicado en ...</span>
-                                        </a>
-                                    </li>
-                                    <li class="collection-item avatar">
-                                        <i class="material-icons circle blue">work</i>
-                                        <a href="${createLink(controller:'ingeniero', action:'nuevarendicion')}" class="collection-item">
-                                            <span class="title">Nombre Cuarto Proyecto</span>
-                                            <br>
-                                            <span>Ubicado en ...</span>
-                                        </a>
-                                    </li>
+                                    <g:if test="${proyectosPrivados == ''} ">
+                                        <li class="collection-item avatar">
+                                            <span>Usuario no tiene Proyectos Privados</span>
+                                        </li>
+                                    </g:if>
+                                    <g:else>
+                                        <g:each in="${proyectosPrivados}">
+                                            <li class="collection-item avatar">
+                                                <i class="material-icons circle blue">work</i>
+                                                <a href="${createLink(controller:'ingeniero', action:'nuevarendicion')}" class="collection-item">
+                                                    <span class="title">${proyectosPrivados.nombre}</span>
+                                                    <br>
+                                                    <span>Código: ${proyectosPrivados.codigo}</span><br>
+                                                    <span>Estado: ${proyectosPrivados.estado}</span>
+                                                </a>
+                                            </li>
+                                        </g:each>
+                                    </g:else>
                                 </ul>
                             </div>
                         </li>
