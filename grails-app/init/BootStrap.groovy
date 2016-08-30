@@ -43,11 +43,51 @@ class BootStrap {
                 clave: "pantalla1",
                 tipo: 2).save(failOnError: true)
         }
+        if (!Empresa.list()){
+            new Empresa(
+                    rut: "98765432-1",
+                    nombre: "EmpresaTestUno",
+                    giro: "Salud",
+                    gerente: "Grails",
+                    tipo: "Sofware",
+                    fechaCreacion: "2016-08-19 11:49:00.0",
+                    telefono: "232323",
+                    direccion: "Direccion 1",
+                    correo: "empresatestuno@test.com").save(failOnError: true)
+            new Empresa(
+                    rut: "96523180-3",
+                    nombre: "Opciones S.A.",
+                    giro: "Informática",
+                    gerente: "Homero Simpsons",
+                    tipo: "Sofware",
+                    fechaCreacion: "2016-08-01 00:00:00.0",
+                    telefono: "652484600",
+                    direccion: "Ejercito # 200",
+                    correo: "contacto@opciones.cl").save(failOnError: true)
+        }
+        if (!Proyecto.list()){
+            new Proyecto(
+                    codigo: "SAMSUNG",
+                    nombre: "Samsung tecnologias etc",
+                    fechaCreacion: "2016-08-19 11:49:00.0",
+                    fechaFin: "2016-08-19 11:49:00.0",
+                    estado: "ACTIVADO",
+                    empresa: 1).save(failOnError: true)
+            new Proyecto(
+                    codigo: "PR-01",
+                    nombre: "Proyecto 1 Para el Ingeniero 1",
+                    fechaCreacion: "2016-08-01 00:00:00.0",
+                    fechaFin: "2016-12-31 00:00:00.0",
+                    estado: "ACTIVADO",
+                    empresa: 2).save(failOnError: true)
+        }
         if (!Auditoria.list()){
             new Auditoria(
                 fecha: "2016-08-19 11:49:00.0",
                 descripcion: "Auditoria cargada automaticamente",
-                usuario: 1).save(failOnError: true)
+                estado:"En espera de aporvación por el administrador",
+                usuario: 1,
+                proyecto: 1).save(failOnError: true)
         }
         if (!Egreso.list()){
             new Egreso(
@@ -55,30 +95,12 @@ class BootStrap {
                 sedeEnvio: "Puerto Montt",
                 fechaCreacion: "2016-08-19 11:49:00.0",
                 tipoRendicion: "tipo estandar",
-                usuario: 1).save(failOnError: true)
+                concepto: "Pago de haberes",
+                monto:140000,
+                usuario: 1,
+                proyecto: 1).save(failOnError: true)
         }
-        if (!Empresa.list()){
-            new Empresa(
-                rut: "98765432-1",
-                nombre: "EmpresaTestUno",
-                giro: "Salud",
-                gerente: "Grails",
-                tipo: "Sofware",
-                fechaCreacion: "2016-08-19 11:49:00.0",
-                telefono: "232323",
-                direccion: "Direccion 1",
-                correo: "empresatestuno@test.com").save(failOnError: true)
-            new Empresa(
-                rut: "96523180-3",
-                nombre: "Opciones S.A.",
-                giro: "Informática",
-                gerente: "Homero Simpsons",
-                tipo: "Sofware",
-                fechaCreacion: "2016-08-01 00:00:00.0",
-                telefono: "652484600",
-                direccion: "Ejercito # 200",
-                correo: "contacto@opciones.cl").save(failOnError: true)
-        }
+
         if (!Transporte.list()){
             new Transporte(
                 nombre: "Vehículo menor",
@@ -88,42 +110,31 @@ class BootStrap {
                 descripcion: "Automovil estandar",
                 usuario: 1).save(failOnError: true)
         }
-        if (!Proyecto.list()){
-            new Proyecto(
-                codigo: "SAMSUNG",
-                nombre: "Samsung tecnologias etc",
-                fechaCreacion: "2016-08-19 11:49:00.0",
-                fechaFin: "2016-08-19 11:49:00.0",
-                estado: "ACTIVADO",
-                empresa: 1).save(failOnError: true)
-            new Proyecto(
-                codigo: "PR-01",
-                nombre: "Proyecto 1 Para el Ingeniero 1",
-                fechaCreacion: "2016-08-01 00:00:00.0",
-                fechaFin: "2016-12-31 00:00:00.0",
-                estado: "ACTIVADO",
-                empresa: 2).save(failOnError: true)
+
+        if (!Item.list()){
+            new Item(
+                    nombre: "Item Uno",
+                    tipo: "insumo",
+                    descripcion: "Item cargado automaticamente",
+                    valor:13000).save(failOnError: true)
         }
+
         if (!Rendicion.list()){
             new Rendicion(
                 nombre: "rendicion 1 estandar",
                 tipo: "rendicionestandar",
                 fecha: "2016-08-19 11:49:00.0",
-                motivo: "colacion",
+                motivo: "Movilizacion",
                 recorrido: "0",
+                desde:"Puerto Montt",
+                hasta:"Alerce sur",
                 tiempo: "0",
                 total: "0",
                 usuario: 1,
+                item: 1,
                 proyecto: 1).save(failOnError: true)
         }
-        if (!Item.list()){
-            new Item(
-                nombre: "Item Uno",
-                tipo: "insumo",
-                descripcion: "Item cargado automaticamente",
-                valor:13000,
-                rendicion: 1).save(failOnError: true)
-        }
+
         if (!Asignacion.list()){
             new Asignacion(
                 detalle:"asignacion 1, cargada automaticamente",

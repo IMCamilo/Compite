@@ -10,7 +10,8 @@ class Item {
     String descripcion
     Integer valor
 
-    static belongsTo = [rendicion:Rendicion]
+
+    static hasMany = [rendicion:Rendicion]
 
     static constraints = {
 

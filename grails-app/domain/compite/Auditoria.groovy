@@ -7,8 +7,9 @@ class Auditoria {
 
     Date fecha
     String descripcion
+    String estado
 
-    static belongsTo = [usuario:Usuario]
+    static belongsTo = [usuario:Usuario, proyecto:Proyecto]
 
     static constraints = {
 

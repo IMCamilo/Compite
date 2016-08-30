@@ -10,11 +10,12 @@ class Rendicion {
     Date fecha
     String motivo
     String recorrido
+    String desde
+    String hasta
     String tiempo
     String total
 
-    static hasMany = [item:Item]
-    static belongsTo = [proyecto:Proyecto, usuario:Usuario]
+    static belongsTo = [proyecto:Proyecto, usuario:Usuario,item:Item]
 
     static constraints = {
 

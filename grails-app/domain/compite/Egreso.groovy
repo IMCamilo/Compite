@@ -9,8 +9,11 @@ class Egreso {
     String sedeEnvio
     Date fechaCreacion
     String tipoRendicion
+    String concepto
+    Integer monto
 
-    static belongsTo = [usuario:Usuario]
+
+    static belongsTo = [usuario:Usuario, proyecto:Proyecto]
 
     static constraints = {
 
