@@ -18,12 +18,11 @@
     </script>
 </head>
 <body style="font-size:75%">
-
 <div class="row" style="width:80%">
     <div class="section">
         <div id="tabs">
             <div id="formulario2" class="col s12">
-                <div class="card-panel teal lighten-2 90A4AE" style="color:#FFFFFF; font-weight: bold;">CREAR NUEVA RENDICIÓN PARA PROYECTO</div>
+                <div class="card-panel teal lighten-2 90A4AE" style="color:#FFFFFF; font-weight: bold;">CREAR NUEVA RENDICIÓN PARA PROYECTO ID: ${id}</div>
                 <!--aca va el formulario para crear rendiciones-->
                 <ul class="collapsible" data-collapsible="expandable" style="width:100%">
                     <li>

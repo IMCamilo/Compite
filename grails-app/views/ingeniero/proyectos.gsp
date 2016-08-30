@@ -31,24 +31,18 @@ Usuario logueado : Rut ${session.usuarioLogueado.rut} : ${session.usuarioLoguead
                             <div class="collapsible-header"><i class="material-icons">contacts</i>TUS PROYECTOS PÚBLICOS</div>
                             <div class="collapsible-body">
                                 <ul class="collection">
-                                    <g:if test="${proyectosPublicos == ''} ">
+                                    <g:each in="${proyectosPublicos}">
                                         <li class="collection-item avatar">
-                                            <span>Usuario no tiene Proyectos Públicos</span>
+                                            <i class="material-icons circle blue">work</i>
+                                            <g:link controller="ingeniero" action="nuevarendicion" id="${it.id}">
+                                                <span class="title">${it.nombre}</span>
+                                                <br>
+                                                <span>Código: ${it.codigo}</span><br>
+                                                <span>Estado: ${it.estado}</span>
+                                                <span>Estado: ${it.id}</span>
+                                            </g:link>
                                         </li>
-                                    </g:if>
-                                    <g:else>
-                                        <g:each in="${proyectosPublicos}">
-                                            <li class="collection-item avatar">
-                                                <i class="material-icons circle blue">work</i>
-                                                <a href="${createLink(controller:'ingeniero', action:'nuevarendicion')}" class="collection-item">
-                                                    <span class="title">${proyectosPublicos.nombre}</span>
-                                                    <br>
-                                                    <span>Código: ${proyectosPublicos.codigo}</span><br>
-                                                    <span>Estado: ${proyectosPublicos.estado}</span>
-                                                </a>
-                                            </li>
-                                        </g:each>
-                                    </g:else>
+                                    </g:each>
                                 </ul>
                             </div>
                         </li>
@@ -56,24 +50,18 @@ Usuario logueado : Rut ${session.usuarioLogueado.rut} : ${session.usuarioLoguead
                             <div class="collapsible-header"><i class="material-icons">person_pin</i>TUS PROYECTOS PRIVADOS</div>
                             <div class="collapsible-body">
                                 <ul class="collection">
-                                    <g:if test="${proyectosPrivados == ''} ">
+                                    <g:each in="${proyectosPrivados}">
                                         <li class="collection-item avatar">
-                                            <span>Usuario no tiene Proyectos Privados</span>
+                                            <i class="material-icons circle blue">work</i>
+                                            <g:link controller="ingeniero" action="nuevarendicion" params="${[id: it.id]}">
+                                                <span class="title">${it.nombre}</span>
+                                                <br>
+                                                <span>Código: ${it.codigo}</span><br>
+                                                <span>Estado: ${it.estado}</span>
+                                                <span>Estado: ${it.id}</span>
+                                            </g:link>
                                         </li>
-                                    </g:if>
-                                    <g:else>
-                                        <g:each in="${proyectosPrivados}">
-                                            <li class="collection-item avatar">
-                                                <i class="material-icons circle blue">work</i>
-                                                <a href="${createLink(controller:'ingeniero', action:'nuevarendicion')}" class="collection-item">
-                                                    <span class="title">${proyectosPrivados.nombre}</span>
-                                                    <br>
-                                                    <span>Código: ${proyectosPrivados.codigo}</span><br>
-                                                    <span>Estado: ${proyectosPrivados.estado}</span>
-                                                </a>
-                                            </li>
-                                        </g:each>
-                                    </g:else>
+                                    </g:each>
                                 </ul>
                             </div>
                         </li>

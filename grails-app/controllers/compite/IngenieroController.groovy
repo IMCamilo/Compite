@@ -77,8 +77,10 @@ class IngenieroController {
         [proyectosPrivados:proyectosPrivados, proyectosPublicos:proyectosPublicos]
     }
 
-    def nuevarendicion = {
+    def nuevarendicion (Integer id) {
+        println "id: "+id
         //al seleccionar un proyecto llegar a esta vista, la pantalla  entrega datos personalizados
+        [id: id]
     }
 
     def perfil = {
