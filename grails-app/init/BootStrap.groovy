@@ -84,7 +84,7 @@ class BootStrap {
                     empresa: 2).save(failOnError: true)
             new Proyecto(
                     codigo: "PR-03",
-                    nombre: "Proyecto 1 Para el Ingeniero 1",
+                    nombre: "Proyecto 2 Para el Ingeniero 1",
                     fechaCreacion: "2016-08-01 00:00:00.0",
                     fechaFin: "2016-12-31 00:00:00.0",
                     estado: "ACTIVADO",
