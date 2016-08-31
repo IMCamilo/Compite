@@ -16,7 +16,7 @@ class Rendicion {
     String total
     String boletas
 
-    static belongsTo = [proyecto:Proyecto, usuario:Usuario,item:Item]
+    static belongsTo = [proyecto:Proyecto, usuario:Usuario, item:Item]
 
     static constraints = {
 

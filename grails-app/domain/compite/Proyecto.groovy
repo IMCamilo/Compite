@@ -8,11 +8,11 @@ class Proyecto {
     String codigo
     String nombre
     Date fechaCreacion
+    Date fechaFin
     String estado
     String tipo
-    Date fechaFin
 
-    static hasMany = [asignacion:Asignacion, auditoria:Auditoria]
+    static hasMany = [asignacion:Asignacion, auditoria:Auditoria, egreso:Egreso, rendicion:Rendicion]
     static belongsTo = [empresa:Empresa]
 
     static constraints = {

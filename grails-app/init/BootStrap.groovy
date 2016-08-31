@@ -11,6 +11,7 @@ import compite.Usuario
 class BootStrap {
 
     def init = { servletContext ->
+
         if (!Usuario.count()) {
             new Usuario(
                     rut: "643531234-k",
@@ -43,6 +44,7 @@ class BootStrap {
                     clave: "pantalla1",
                     tipo: 2).save(failOnError: true)
         }
+
         if (!Empresa.list()) {
             new Empresa(
                     rut: "98765432-1",
@@ -65,6 +67,7 @@ class BootStrap {
                     direccion: "Ejercito # 200",
                     correo: "contacto@opciones.cl").save(failOnError: true)
         }
+
         if (!Proyecto.list()) {
             new Proyecto(
                     codigo: "PR-01",
@@ -90,15 +93,14 @@ class BootStrap {
                     estado: "ACTIVADO",
                     tipo: "PRIVADO",
                     empresa: 2).save(failOnError: true)
-
         }
+
         if (!Item.list()) {
             new Item(
                     nombre: "Item Uno",
                     tipo: "insumo",
                     descripcion: "Item cargado automaticamente",
                     valor: 13000).save(failOnError: true)
-
         }
 
         if (!Rendicion.list()) {
@@ -126,6 +128,7 @@ class BootStrap {
                     usuario: 1,
                     proyecto: 1).save(failOnError: true)
         }
+
         if (!Egreso.list()) {
             new Egreso(
                     aprobacion: "NO",
@@ -148,8 +151,6 @@ class BootStrap {
                     usuario: 1).save(failOnError: true)
         }
 
-
-
         if (!Asignacion.list()) {
             new Asignacion(
                     detalle: "asignacion 1, cargada automaticamente",
@@ -168,6 +169,7 @@ class BootStrap {
                     proyecto: 3).save(failOnError: true)
             }
         }
+
         def destroy = {
         }
 

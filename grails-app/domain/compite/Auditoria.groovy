@@ -5,11 +5,11 @@ package compite
  */
 class Auditoria {
 
-    Date fecha
     String descripcion
     String estado
+    Date fecha
 
-    static belongsTo = [usuario:Usuario, proyecto:Proyecto]
+    static belongsTo = [proyecto:Proyecto, usuario:Usuario]
 
     static constraints = {
 

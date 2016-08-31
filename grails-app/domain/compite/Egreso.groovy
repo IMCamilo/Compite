@@ -6,14 +6,14 @@ package compite
 class Egreso {
 
     String aprobacion
-    String sedeEnvio
-    Date fechaCreacion
-    String tipoRendicion
     String concepto
+    Date fechaCreacion
     Integer monto
+    String sedeEnvio
+    String tipoRendicion
 
 
-    static belongsTo = [usuario:Usuario, proyecto:Proyecto]
+    static belongsTo = [proyecto:Proyecto, usuario:Usuario]
 
     static constraints = {
 

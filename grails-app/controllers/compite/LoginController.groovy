@@ -20,7 +20,7 @@ class LoginController {
             def u = Usuario.findByCorreoAndClave(params.username, params.password)
             if (u) {
                 //si datos son correctos
-                flash.message = "Bienvenido $params.username"
+                flash.message = "Bienvenido $u.username"
                 session.usuarioLogueado = u
                 switch (u.tipo) {
                     case 1 : redirect controller: "administrador", action: "index"; break
