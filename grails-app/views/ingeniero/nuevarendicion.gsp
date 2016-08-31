@@ -22,35 +22,89 @@
     <div class="section">
         <div id="tabs">
             <div id="formulario2" class="col s12">
-                <div class="card-panel teal lighten-2 90A4AE" style="color:#FFFFFF; font-weight: bold;">CREAR NUEVA RENDICIÓN PARA PROYECTO ID: ${id}</div>
+                <div class="card-panel teal lighten-2 90A4AE" style="color:#FFFFFF; font-weight: bold;">
+                    CREAR NUEVA RENDICIÓN PARA PROYECTO ID: ${id}
+                </div>
                 <!--aca va el formulario para crear rendiciones-->
                 <ul class="collapsible" data-collapsible="expandable" style="width:100%">
                     <li>
                         <div class="collapsible-header"><i class="material-icons">navigation</i>MOVILIZACION</div>
                         <div class="collapsible-body">
                             <div class="row">
-                                <div class="col s6 m6">
-                                    <input id="fecha" type="text" value="04/08/2016"> ITEM :
+                                <div class="input-field col s6">
                                     <select class="browser-default">
-                                        <option value="1">ITEM 1</option>
-                                        <option value="2">ITEM 2</option>
-                                        <option value="3">ITEM 3</option>
+                                        <option value="1">Seleccione Item</option>
+                                        <option value="2">ITEM 1</option>
+                                        <option value="3">ITEM 2</option>
+                                        <option value="4">ITEM 3</option>
                                     </select>
-                                    <input id="motivo" value="MOTIVO" type="text">
+                                </div>
+                                <div class="input-field col s6">
+                                    <select class="browser-default">
+                                        <option value="1">Seleccione Motivo</option>
+                                        <option value="2">ITEM 1</option>
+                                        <option value="3">ITEM 2</option>
+                                        <option value="4">ITEM 3</option>
+                                    </select>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="desde" name="desde" type="text" class="validate">
+                                    <label for="desde">Desde</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="hasta" name="hasta" type="text" class="validate">
+                                    <label for="hasta">Hasta</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="precio" name="precio" type="text" class="validate">
+                                    <label for="precio">Precio</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="nombre" name="nombre" type="text" class="validate">
+                                    <label for="nombre">Nombre Rendición</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="boletas" name="boletas" type="text" class="validate">
+                                    <label for="boletas">Boletas</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="recorrido" name="recorrido" type="text" class="validate">
+                                    <label for="recorrido">Recorrido</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="tiempo" name="tiempo" type="text" class="validate">
+                                    <label for="tiempo">Tiempo</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="total" name="total" type="text" class="validate">
+                                    <label for="total">Total</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input type="text" id="datepicker">
+                                    <label for="total">Fecha</label>
+                                </div>
+                                <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+                                <link rel="stylesheet" href="/resources/demos/style.css">
+                                <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+                                <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+                                <script>
+                                    $(function() {
+                                        $("#datepicker").datepicker();
+                                        $('#datepicker').datepicker('option', {dateFormat: 'dd/mm/yy'});
+                                    });
+                                </script>
+                                <div class="input-field col s12">
                                     <form action="#">
                                         <div class="file-field input-field">
+                                            <div class="btn">
+                                                <span>Cargar Archivos</span>
+                                                <input type="file">
+                                            </div>
                                             <div class="file-path-wrapper">
-                                                <input type="file" multiple>
-                                                <input class="file-path validate" type="text" value="CLIC PARA CARGAR ARCHIVOS" placeholder="CARGAR ARCHIVOS">
+                                                <input class="file-path validate" type="text">
                                             </div>
                                         </div>
                                     </form>
-                                </div>
-                                <!--LADO 2-->
-                                <div class="col s6 m6">
-                                    <input id="precio" type="text" value="PRECIO">
-                                    <input id="boletas" value="BOLETAS" type="text">
-                                    <input id="deshasta" type="text" value="DESDE HASTA">
                                 </div>
                                 <div class="col s12 m12">
                                     <a class="btn" onclick="Materialize.toast('RENDICIÓN DE MOVILIZACIÓN CREADA CORRECTAMENTE', 4000)">CREAR</a>
@@ -81,7 +135,7 @@
                                 </div>
                                 <!--LADO 2-->
                                 <div class="col s6 m6">
-                                    <input id="precio" type="text" value="PRECIO TOTAL">
+                                    <input id="precio1" type="text" value="PRECIO TOTAL">
                                 </div>
                                 <div class="col s12 m12">
                                     <a class="btn" onclick="Materialize.toast('RENDICIÓN DE MOVILIZACIÓN CREADA CORRECTAMENTE', 4000)">CREAR</a>
@@ -112,7 +166,7 @@
                                 </div>
                                 <!--LADO 2-->
                                 <div class="col s6 m6">
-                                    <input id="precio" type="text" value="PRECIO">
+                                    <input id="precio2" type="text" value="PRECIO">
                                     <input id="boletas" value="BOLETAS" type="text">
                                     <input id="deshasta" type="text" value="DESDE HASTA">
                                 </div>

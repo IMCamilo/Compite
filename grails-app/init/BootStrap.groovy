@@ -114,6 +114,7 @@ class BootStrap {
                     total: "0",
                     usuario: 1,
                     proyecto: 1,
+                    boletas: 100,
                     item: 1).save(failOnError: true)
         }
 

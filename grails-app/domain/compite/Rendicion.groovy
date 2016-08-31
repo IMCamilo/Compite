@@ -14,6 +14,7 @@ class Rendicion {
     String hasta
     String tiempo
     String total
+    String boletas
 
     static belongsTo = [proyecto:Proyecto, usuario:Usuario,item:Item]
 
