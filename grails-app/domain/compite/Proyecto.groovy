@@ -7,6 +7,7 @@ class Proyecto {
 
     String codigo
     String nombre
+    Integer presupuesto
     Date fechaCreacion
     Date fechaFin
     String estado
@@ -16,6 +17,7 @@ class Proyecto {
     static belongsTo = [empresa:Empresa]
 
     static constraints = {
+        presupuesto(nullable: true)
 
     }
 
