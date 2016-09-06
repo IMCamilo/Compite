@@ -31,84 +31,90 @@
                         <div class="collapsible-header"><i class="material-icons">navigation</i>MOVILIZACION</div>
                         <div class="collapsible-body">
                             <div class="row">
-                                <div class="input-field col s6">
-                                    <select class="browser-default">
-                                        <option value="1">Seleccione Item</option>
-                                        <option value="2">ITEM 1</option>
-                                        <option value="3">ITEM 2</option>
-                                        <option value="4">ITEM 3</option>
-                                    </select>
-                                </div>
-                                <div class="input-field col s6">
-                                    <select class="browser-default">
-                                        <option value="1">Seleccione Motivo</option>
-                                        <option value="2">ITEM 1</option>
-                                        <option value="3">ITEM 2</option>
-                                        <option value="4">ITEM 3</option>
-                                    </select>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input id="desde" name="desde" type="text" class="validate">
-                                    <label for="desde">Desde</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input id="hasta" name="hasta" type="text" class="validate">
-                                    <label for="hasta">Hasta</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input id="precio" name="precio" type="text" class="validate">
-                                    <label for="precio">Precio</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input id="nombre" name="nombre" type="text" class="validate">
-                                    <label for="nombre">Nombre Rendición</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input id="boletas" name="boletas" type="text" class="validate">
-                                    <label for="boletas">Boletas</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input id="recorrido" name="recorrido" type="text" class="validate">
-                                    <label for="recorrido">Recorrido</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input id="tiempo" name="tiempo" type="text" class="validate">
-                                    <label for="tiempo">Tiempo</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input id="total" name="total" type="text" class="validate">
-                                    <label for="total">Total</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input type="text" id="datepicker">
-                                    <label for="total">Fecha</label>
-                                </div>
-                                <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
-                                <link rel="stylesheet" href="/resources/demos/style.css">
-                                <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-                                <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
-                                <script>
-                                    $(function() {
-                                        $("#datepicker").datepicker();
-                                        $('#datepicker').datepicker('option', {dateFormat: 'dd/mm/yy'});
-                                    });
-                                </script>
-                                <div class="input-field col s12">
-                                    <form action="#">
-                                        <div class="file-field input-field">
-                                            <div class="btn">
-                                                <span>Cargar Archivos</span>
-                                                <input type="file">
+                                <form class="col s12" name="rendicionMovilizacion">
+                                    <div class="input-field col s6">
+                                        <select name="mItem" class="browser-default">
+                                            <option value="1">Seleccione Item</option>
+                                            <option value="2">ITEM 1</option>
+                                            <option value="3">ITEM 2</option>
+                                            <option value="4">ITEM 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <select name="mMotivo" class="browser-default">
+                                            <option value="1">Seleccione Motivo</option>
+                                            <option value="2">ITEM 1</option>
+                                            <option value="3">ITEM 2</option>
+                                            <option value="4">ITEM 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input id="mDesde" name="mDesde" type="text" class="validate">
+                                        <label for="mDesde">Lugar Desde</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input id="mHasta" name="mHasta" type="text" class="validate">
+                                        <label for="mHasta">Lugar Hasta</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input id="mPrecio" name="mPrecio" type="text" class="validate">
+                                        <label for="mPrecio">Precio</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input id="mNombre" name="mNombre" type="text" class="validate">
+                                        <label for="mNombre">Nombre Rendición</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input id="mBoletas" name="mBoletas" type="text" class="validate">
+                                        <label for="mBoletas">Boletas</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input id="mRecorrido" name="mRecorrido" type="text" class="validate">
+                                        <label for="mRecorrido">Recorrido</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input id="mTiempo" name="mTiempo" type="text" class="validate">
+                                        <label for="mTiempo">Tiempo</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input id="mTotal" name="mTotal" type="text" class="validate">
+                                        <label for="mTotal">Total</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input name="mFecha" class="datepicker" type="text" id="mFecha">
+                                        <label for="mFecha">Fecha</label>
+                                    </div>
+                                    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+                                    <link rel="stylesheet" href="/resources/demos/style.css">
+                                    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+                                    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+                                    <script>
+                                        $(function() {
+                                            $(".datepicker").datepicker();
+                                            $('.datepicker').datepicker('option', {dateFormat: 'dd/mm/yy'});
+                                        });
+                                    </script>
+                                    <div class="input-field col s12">
+                                        <form action="#">
+                                            <div class="file-field input-field">
+                                                <div class="btn">
+                                                    <span>Cargar Archivos</span>
+                                                    <input type="file" name="mArchivos">
+                                                </div>
+                                                <div class="file-path-wrapper">
+                                                    <input class="file-path validate" type="text">
+                                                </div>
                                             </div>
-                                            <div class="file-path-wrapper">
-                                                <input class="file-path validate" type="text">
-                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col s12 m12">
+                                        <div class="btn">
+                                            <span>Cargar Archivos</span>
+                                            <input type="file" name="mArchivos">
                                         </div>
-                                    </form>
-                                </div>
-                                <div class="col s12 m12">
-                                    <a class="btn" onclick="Materialize.toast('RENDICIÓN DE MOVILIZACIÓN CREADA CORRECTAMENTE', 4000)">CREAR</a>
-                                </div>
+                                        <a class="btn" onclick="Materialize.toast('RENDICIÓN DE MOVILIZACIÓN CREADA CORRECTAMENTE', 4000)">CREAR</a>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </li>
