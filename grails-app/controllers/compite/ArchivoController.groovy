@@ -13,18 +13,16 @@ class ArchivoController {
      * @return
      */
     @Transactional
-    def upload() {
+    def cargarArchivo() {
         def f = request.getFile('archivo')
         if (f.empty) {
-            flash.message = 'file cannot be empty'
-            render(view: 'uploadForm')
-            return
+            render(view: '/archivos', model: [message: 'Archivo no puede ser vacio'])
         }
         String filePath = FILES_PATH + f?.filename
         f.transferTo(new File(filePath))
         //TODO: Esto puede ir en un servicio
         //recibe un parametro llamado entidad, si este controlador se invoca desde empresa entonces debe pasar entidad=empresa
-        Archivo uploadFile = new Archivo(nombre: f?.filename, ruta: filePath, entidad: "ninguna", creadoPor: "userlogged").save(flush: true)
+        Archivo uploadFile = new Archivo(nombre: f?.filename, ruta: filePath, entidad: "algunatabla", creadoPor: "usuarioactual").save(flush: true)
         //TODO: esto no es necesario, solo es para validar que se creo el objeto
         assert uploadFile.id
         render(view: '/archivos', model: [message: 'Carga exitosa'])
