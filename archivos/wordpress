@@ -1,0 +1,17 @@
+wordpress;
+
+    wp-config.sample.php
+    editamos
+    para usar la db creada en MySQL
+    modificar wp.config.php
+    user : cjorquera
+    pass : h2P8I7uXx2XWELrYeY
+
+
+
+    nuevo producto. polera mujer, distintos colores y tallas no es proydcto simple, es variable
+    datos del prod prodcuto variable
+    llenar sku, precio 
+    en atributos añado coloeres y valores separados con  | | |, guardar
+    etiquetado del producto separar por comas, y añadir.
+    crear variaciones para todos los productos... llenar los datos con sus precios
