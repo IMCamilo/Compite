@@ -1,9 +1,9 @@
 <%@ page import="compite.Rendicion" %>
 <meta name="layout" content="administrador"/>
 
-<div class="card row">
+<div class="card-panel row">
         <div class="col-lg-12">
-            <table class="table highlight table-condensed">
+            <table class="table highlight table-responsive">
                 <thead class="teal white-text">
                     <tr>
                         <th>Tipo</th>
@@ -34,7 +34,7 @@
                                <td>${rendicion.tiempo}</td>
                                <td>${rendicion.total}</td>
                                <td>${rendicion.boletas}</td>
-                               <td><g:link action="show" resource="${rendicion}">Mostrar</g:link></td>
+                               <td><g:link action="show" resource="${rendicion}">Detalles</g:link></td>
                                <td><g:link action="edit" resource="${rendicion}">Editar</g:link></td>
                                <td><g:link action="delete" resource="${rendicion}">Borrar</g:link></td>
                            </tr>
