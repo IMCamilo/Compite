@@ -1,4 +1,7 @@
 ---
+rutaArchivos:
+    carpeta: /home/camilo/Documentos/compite/archivos/
+
 hibernate:
     cache:
         queries: false
