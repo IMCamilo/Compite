@@ -143,12 +143,13 @@ class BootStrap {
 
         if (!Transporte.list()) {
             new Transporte(
-                    nombre: "Vehículo menor",
+                    tipo: "Sedán",
                     marca: "BMW",
                     modelo: "z3",
-                    kmPorLitro: 23,
-                    descripcion: "Automovil estandar",
-                    usuario: 1).save(failOnError: true)
+                    combustible: "bencina",
+                    kmPorLitro: 20,
+                    descripcion: "Automovil estándar",
+                    usuario: 3).save(failOnError: true)
         }
 
         if (!Asignacion.list()) {
