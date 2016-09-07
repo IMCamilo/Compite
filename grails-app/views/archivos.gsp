@@ -13,7 +13,7 @@
         <div>${message}</div>
     </g:if>
     Upload Form: <br />
-    <g:uploadForm controller="upload" action="upload">
+    <g:uploadForm controller="archivo" action="cargarArchivo">
         <input type="file" name="archivo" />
         <input type="submit" />
     </g:uploadForm>
