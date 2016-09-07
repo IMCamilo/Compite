@@ -16,6 +16,25 @@
             });
         });
     </script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+    <script type='text/javascript'>
+        $(function () {
+            $(".datepicker").datepicker({
+                firstDay: 1,
+                dateFormat: 'dd/mm/yy',
+                numberOfMonths: 1,
+                hideIfNoPrevNext: true,
+                inline: true,
+                monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+                dayNames: ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
+                monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
+                dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá']
+            });
+        });
+    </script>
 </head>
 <body style="font-size:75%">
 <div class="row" style="width:80%">
@@ -84,16 +103,6 @@
                                         <input name="mFecha" class="datepicker" type="text" id="mFecha">
                                         <label for="mFecha">Fecha</label>
                                     </div>
-                                    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
-                                    <link rel="stylesheet" href="/resources/demos/style.css">
-                                    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-                                    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
-                                    <script>
-                                        $(function() {
-                                            $(".datepicker").datepicker();
-                                            $('.datepicker').datepicker('option', {dateFormat: 'dd/mm/yy'});
-                                        });
-                                    </script>
                                     <div class="input-field col s12">
                                         <form action="#">
                                             <div class="file-field input-field">
