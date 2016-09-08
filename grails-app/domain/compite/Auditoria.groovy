@@ -12,7 +12,7 @@ class Auditoria {
     static belongsTo = [proyecto:Proyecto, usuario:Usuario]
 
     static constraints = {
-
+        descripcion nullable: false, blanzk: false, size: 1..35
     }
 
 }
