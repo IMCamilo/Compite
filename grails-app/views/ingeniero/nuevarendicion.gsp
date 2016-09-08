@@ -33,6 +33,7 @@
                 monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
                 dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá']
             });
+            $('.modal-trigger').leanModal();
         });
     </script>
 </head>
@@ -62,21 +63,39 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <!--<div class="input-field col s6">
-                                        <select name="mMotivo" class="browser-default">
-                                            <option value="1">Seleccione Motivo</option>
-                                            <option value="2">ITEM 1</option>
-                                            <option value="3">ITEM 2</option>
-                                            <option value="4">ITEM 3</option>
-                                        </select>
-                                    </div>-->
-                                    <div class="input-field col s6">
-                                        <input id="mDesde" name="mDesde" type="text" class="validate">
-                                        <label for="mDesde">Lugar Desde</label>
+                                    <div class="input-field col s12">
+                                        <input id="mMotivo" name="mDesde" type="text" class="validate">
+                                        <label for="mDesde">Motivo</label>
                                     </div>
                                     <div class="input-field col s6">
-                                        <input id="mHasta" name="mHasta" type="text" class="validate">
+                                        <input id="mDesde" name="mDesde" type="text" class="modal-trigger" href="#modal1">
+                                        <label for="mDesde">Lugar Desde</label>
+
+                                        <!-- ventana modal -->
+                                        <div id="modal1" class="modal">
+                                            <div class="modal-content">
+                                                <h4>Seleccione punto de partida</h4>
+                                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d298128.0793635079!2d-73.09534574032!3d-41.426992284967405!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9619d3d6f9397329%3A0xafd4dfaa59ea7b65!2sVolc%C3%A1n+Calbuco!5e0!3m2!1ses-419!2scl!4v1473356927547" width="800" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Seleccionar</a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input id="mHasta" name="mHasta" type="text" class="validate modal-trigger"href="#modal2">
                                         <label for="mHasta">Lugar Hasta</label>
+
+                                        <div id="modal2" class="modal">
+                                            <div class="modal-content">
+                                                <h4>Seleccione punto de llegada</h4>
+                                                <p>Aqui va el mapa</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Seleccionar</a>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="input-field col s6">
                                         <input id="mPrecio" name="mPrecio" type="text" class="validate">
