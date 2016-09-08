@@ -26,7 +26,5 @@ class Usuario {
         telefono nullable: true, blank: false, size: 1..15
         clave nullable: false, blank: false, size: 1..15
         tipo nullable: false, blank: false, size: 1..1
-
-
     }
 }
