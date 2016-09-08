@@ -97,10 +97,30 @@ class BootStrap {
 
         if (!Item.list()) {
             new Item(
-                    nombre: "Item Uno",
-                    tipo: "insumo",
-                    descripcion: "Item cargado automaticamente",
-                    valor: 13000).save(failOnError: true)
+                    nombre: "Estacionamiento",
+                    tipo: "Movilizacion",
+                    descripcion: "Estacionamiento",
+                    valor: 5000).save(failOnError: true)
+            new Item(
+                    nombre: "Peaje",
+                    tipo: "Movilizacion",
+                    descripcion: "Peaje",
+                    valor: 5000).save(failOnError: true)
+            new Item(
+                    nombre: "Tag",
+                    tipo: "Movilizacion",
+                    descripcion: "Tag",
+                    valor: 5000).save(failOnError: true)
+            new Item(
+                    nombre: "Pasaje",
+                    tipo: "Movilizacion",
+                    descripcion: "Pasaje",
+                    valor: 5000).save(failOnError: true)
+            new Item(
+                    nombre: "Metro",
+                    tipo: "Movilizacion",
+                    descripcion: "Metro",
+                    valor: 5000).save(failOnError: true)
         }
 
         if (!Rendicion.list()) {
