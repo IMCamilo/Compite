@@ -51,22 +51,25 @@
                         <div class="collapsible-body">
                             <div class="row">
                                 <form class="col s12" name="rendicionMovilizacion">
-                                    <div class="input-field col s6">
-                                        <select name="mItem" class="browser-default">
-                                            <option value="1">Seleccione Item</option>
-                                            <option value="2">ITEM 1</option>
-                                            <option value="3">ITEM 2</option>
-                                            <option value="4">ITEM 3</option>
-                                        </select>
+                                    <input type="hidden" name="mMotivo" value="movilizacion">
+                                    <div class="col s12">
+                                        <div class="input-field col s6">
+                                            <select name="mItem" class="browser-default" required>
+                                                <option value="">Seleccione Item</option>
+                                                <option value="2">Estacionamiento</option>
+                                                <option value="3">Peaje</option>
+                                                <option value="4">TAG</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div class="input-field col s6">
+                                    <!--<div class="input-field col s6">
                                         <select name="mMotivo" class="browser-default">
                                             <option value="1">Seleccione Motivo</option>
                                             <option value="2">ITEM 1</option>
                                             <option value="3">ITEM 2</option>
                                             <option value="4">ITEM 3</option>
                                         </select>
-                                    </div>
+                                    </div>-->
                                     <div class="input-field col s6">
                                         <input id="mDesde" name="mDesde" type="text" class="validate">
                                         <label for="mDesde">Lugar Desde</label>
@@ -103,7 +106,7 @@
                                         <input name="mFecha" class="datepicker" type="text" id="mFecha">
                                         <label for="mFecha">Fecha</label>
                                     </div>
-                                    <div class="input-field col s12">
+                                    <!--<div class="input-field col s12">
                                         <form action="#">
                                             <div class="file-field input-field">
                                                 <div class="btn">
@@ -115,13 +118,19 @@
                                                 </div>
                                             </div>
                                         </form>
-                                    </div>
+                                    </div>-->
                                     <div class="col s12 m12">
                                         <div class="btn">
                                             <span>Cargar Archivos</span>
                                             <input type="file" name="mArchivos">
                                         </div>
-                                        <a class="btn" onclick="Materialize.toast('RENDICIÓN DE MOVILIZACIÓN CREADA CORRECTAMENTE', 4000)">CREAR</a>
+                                        <!--<a class="btn" onclick="Materialize.toast('RENDICIÓN DE MOVILIZACIÓN CREADA CORRECTAMENTE', 4000)">CREAR</a>-->
+                                    </div>
+                                    <div class="col s12 m12">
+                                       <br>
+                                    </div>
+                                    <div class="col s12 m12">
+                                        <input type="submit" value="CREAR" class="btn">
                                     </div>
                                 </form>
                             </div>
