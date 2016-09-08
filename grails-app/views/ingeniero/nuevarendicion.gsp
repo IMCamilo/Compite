@@ -57,9 +57,11 @@
                                         <div class="input-field col s6">
                                             <select name="mItem" class="browser-default" required>
                                                 <option value="">Seleccione Item</option>
-                                                <option value="2">Estacionamiento</option>
-                                                <option value="3">Peaje</option>
-                                                <option value="4">TAG</option>
+                                                <option value="1">Estacionamiento</option>
+                                                <option value="2">Peaje</option>
+                                                <option value="3">Tag</option>
+                                                <option value="4">Pasaje</option>
+                                                <option value="5">Metro</option>
                                             </select>
                                         </div>
                                     </div>

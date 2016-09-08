@@ -121,23 +121,63 @@ class BootStrap {
                     tipo: "Movilizacion",
                     descripcion: "Metro",
                     valor: 5000).save(failOnError: true)
+            new Item(
+                    nombre: "Bencina 93",
+                    tipo: "Movilizacion",
+                    descripcion: "Bencina 93",
+                    valor: 900).save(failOnError: true)
+            new Item(
+                    nombre: "Bencina 95",
+                    tipo: "Movilizacion",
+                    descripcion: "Bencina 95",
+                    valor: 950).save(failOnError: true)
+            new Item(
+                    nombre: "Bencina 97",
+                    tipo: "Movilizacion",
+                    descripcion: "Bencina 97",
+                    valor: 1000).save(failOnError: true)
+            new Item(
+                    nombre: "Diesel",
+                    tipo: "Movilizacion",
+                    descripcion: "Diesel",
+                    valor: 600).save(failOnError: true)
         }
 
         if (!Rendicion.list()) {
             new Rendicion(
-                    nombre: "rendicion 1 estandar",
-                    tipo: "rendicionestandar",
+                    tipo: "Movilizacion",
+                    nombre: "Rendicion 1 estandar",
                     fecha: "2016-08-19 11:49:00.0",
-                    motivo: "Movilizacion",
-                    recorrido: "0",
+                    motivo: "Viaje Proyecto 1, Ejemplo",
+                    desde: "Puerto Montt",
+                    hasta: "Osorno",
+                    kmInicial: 0,
+                    kmFinal: 0,
+                    distancia: 0,
+                    tiempo: 0,
+                    total: 2000,
+                    nBoleta: "10",
+                    descripcion: "Pasaje de micro",
+                    usuario: 3,
+                    proyecto: 2,
+                    item: 4).save(failOnError: true)
+            new Rendicion(
+                    tipo: "Movilizacion",
+                    nombre: "Rendicion 2",
+                    fecha: "2016-08-19 11:49:00.0",
+                    motivo: "Viaje Proyecto 1, Ejemplo Combustible",
                     desde: "Puerto Montt",
                     hasta: "Alerce sur",
-                    tiempo: "0",
-                    total: "0",
-                    usuario: 1,
-                    proyecto: 1,
-                    boletas: 100,
-                    item: 1).save(failOnError: true)
+                    kmInicial: 90000,
+                    kmFinal: 90500,
+                    distancia: 500,
+                    tiempo: 0,
+                    total: 5000,
+                    nBoleta: "300",
+                    descripcion: "Compra bencia 93",
+                    usuario: 3,
+                    proyecto: 2,
+                    item: 6).save(failOnError: true)
         }
 
         if (!Auditoria.list()) {

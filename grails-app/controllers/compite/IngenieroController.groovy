@@ -84,7 +84,8 @@ class IngenieroController {
     }
 
     def perfil = {
-        //muestra los datos del usuario
+        def datosPerfil = Usuario.findAll("from Usuario as usu where usu.id="+usuarioId)
+        println "datosPerfil "+datosPerfil
     }
 
     def actualizarperfil = {

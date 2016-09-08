@@ -9,12 +9,15 @@ class Rendicion {
     String nombre
     Date fecha
     String motivo
-    String recorrido
     String desde
     String hasta
-    String tiempo
-    String total
-    String boletas
+    Integer kmInicial
+    Integer kmFinal
+    Integer distancia
+    Integer tiempo
+    Integer total
+    String nBoleta
+    String descripcion
 
     static belongsTo = [proyecto:Proyecto, usuario:Usuario, item:Item]
 
