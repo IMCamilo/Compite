@@ -11,7 +11,6 @@
             <ul>
                 <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
                 <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-                <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
             </ul>
         </div>
         <div id="show-empresa" class="content scaffold-show" role="main">
@@ -19,7 +18,33 @@
             <g:if test="${flash.message}">
             <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:display bean="empresa" />
+            <label for="tipo">Rut:
+                ${empresa.rut}
+            </label></br>
+            <label for="tipo">Nombre
+                ${empresa.nombre}
+            </label></br>
+            <label for="tipo">Giro
+                ${empresa.giro}
+            </label></br>
+            <label for="tipo">Gerente
+                ${empresa.gerente}
+            </label></br>
+            <label for="tipo">Tipo
+                ${empresa.tipo}
+            </label></br>
+            <label for="tipo">Fecha Creación
+                ${empresa.fechaCreacion}
+            </label></br>
+            <label for="tipo">Telefono
+                ${empresa.telefono}
+            </label></br>
+            <label for="tipo">Direccion
+                ${empresa.direccion}
+            </label></br>
+            <label for="tipo">Correo
+                ${empresa.correo}
+            </label></br>
             <g:form resource="${this.empresa}" method="DELETE">
                 <fieldset class="buttons">
                     <g:link class="edit" action="edit" resource="${this.empresa}"><g:message code="default.button.edit.label" default="Edit" /></g:link>

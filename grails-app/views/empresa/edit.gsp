@@ -11,7 +11,6 @@
             <ul>
                 <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
                 <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-                <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
             </ul>
         </div>
         <div id="edit-empresa" class="content scaffold-edit" role="main">
@@ -29,7 +28,47 @@
             <g:form resource="${this.empresa}" method="PUT">
                 <g:hiddenField name="version" value="${this.empresa?.version}" />
                 <fieldset class="form">
-                    <f:all bean="empresa"/>
+                    <div class="fieldcontain required">
+                    <label for="tipo">Rut
+                        <span class="required-indicator">*</span>
+                    </label>
+                    <input name="rut" value="${empresa.rut}" required="" maxlength="13" id="rut" type="text"></div>
+                    <div class="fieldcontain required">
+                    <label for="descripcion">Tipo
+                        <span class="required-indicator">*</span>
+                    </label>
+                    <input name="tipo" value="${empresa.tipo}" required="" maxlength="15" id="nombres" type="text"></div>
+                    <div class="fieldcontain required">
+                    <label for="valor">Nombre
+                        <span class="required-indicator">*</span>
+                    </label>
+                    <input name="nombre" value="${empresa.nombre}" required="" maxlength="10" id="paterno" type="text"></div>
+                    <div class="fieldcontain required">
+                    <label for="nombre">Giro
+                        <span class="required-indicator">*</span>
+                    </label>
+                    <input name="giro" value="${empresa.giro}" required="" maxlength="10" id="materno" type="text"></div>
+                    <div class="fieldcontain required">
+                    <label for="nombre">Gerente
+                        <span class="required-indicator">*</span>
+                    </label>
+                    <input name="gerente" value="${empresa.gerente}" required="" maxlength="10" id="materno" type="text"></div>
+                    <div class="fieldcontain required">
+                    <label for="nombre">Dirección
+                        <span class="required-indicator">*</span>
+                    </label>
+                    <input name="direccion" value="${empresa.direccion}" required="" maxlength="10" id="materno" type="text"></div>
+                    <div class="fieldcontain required">
+                    <label for="nombre">Correo
+                        <span class="required-indicator">*</span>
+                    </label>
+                    <input name="correo" value="${empresa.correo}" required="" maxlength="10" id="materno" type="email"></div>
+
+                    <div class="fieldcontain required">
+                    <label for="nombre">Telefono
+                        <span class="required-indicator">*</span>
+                    </label>
+                    <input name="telefono" value="${empresa.telefono}" required="" maxlength="10" id="materno" type="text"></div>
                 </fieldset>
                 <fieldset class="buttons">
                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />

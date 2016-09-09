@@ -10,7 +10,7 @@ class Empresa {
     String giro
     String gerente
     String tipo
-    Date fechaCreacion
+    Date fechaCreacion = new Date()
     String telefono
     String direccion
     String correo
