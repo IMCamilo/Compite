@@ -70,7 +70,11 @@
                     <label for="tipo">Tipo
                         <span class="required-indicator">*</span>
                     </label>
-                    <input name="tipo" value="${usuario.tipo}" required="" id="tipo" type="number"></div>
+                    <select name="tipo" value="${usuario.tipo}" required="" id="tipo" type="number">
+                        <option value="" disabled>Seleccione Privilegio</option>
+                        <option value="1">Administrador</option>
+                        <option value="2">Ingeniero</option>
+                    </select></div>
                 </fieldset>
                 <fieldset class="buttons">
                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
