@@ -42,13 +42,21 @@
                         <label for="estado">Estado
                             <span class="required-indicator">*</span>
                         </label>
-                        <input name="estado" value="${proyecto.estado}" required="" id="estado" type="text">
+                        <select name="estado" value="${proyecto.estado}" required="" id="estado">
+                            <option value="" disabled>Seleccione Estado</option>
+                            <option value="ACTIVO">Activo</option>
+                            <option value="INACTIVO">Inactivo</option>
+                        </select>
                     </div>
                     <div class="fieldcontain required">
                         <label for="tipo">Tipo
                             <span class="required-indicator">*</span>
                         </label>
-                        <input name="tipo" value="${proyecto.tipo}" required="" id="tipo" type="text">
+                        <select name="tipo" value="${proyecto.tipo}" required="" id="tipo">
+                            <option value="" disabled>Seleccione Tipo</option>
+                            <option value="PUBLICO">Publico</option>
+                            <option value="PRIVADO">Privado</option>
+                        </select>
                     </div>
                     <div class="fieldcontain required">
                         <label for="fechaCreacion">Fecha Creacion
