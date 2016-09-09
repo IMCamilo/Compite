@@ -6,7 +6,7 @@ package compite
 class Asignacion {
 
     String detalle
-    Date fecha
+    Date fechaCreacion = new Date()
 
     static belongsTo = [proyecto:Proyecto, usuario:Usuario]
 }

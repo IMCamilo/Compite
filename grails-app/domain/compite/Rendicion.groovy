@@ -7,7 +7,7 @@ class Rendicion {
 
     String tipo
     String nombre
-    Date fecha
+    Date fechaCreacion = new Date()
     String motivo
     String desde
     String hasta

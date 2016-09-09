@@ -7,7 +7,7 @@ class Auditoria {
 
     String descripcion
     String estado
-    Date fecha
+    Date fechaCreacion = new Date()
 
     static belongsTo = [proyecto:Proyecto, usuario:Usuario]
 

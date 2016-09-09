@@ -8,6 +8,7 @@ class  Transporte {
     String combustible
     Integer kmPorLitro
     String descripcion
+    Date fechaCreacion = new Date()
 
     static belongsTo = [usuario:Usuario]
 

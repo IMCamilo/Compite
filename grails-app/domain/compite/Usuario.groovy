@@ -13,6 +13,7 @@ class Usuario {
     String telefono
     String clave
     Integer tipo
+    Date fechaCreacion = new Date()
 
     static hasMany = [rendicion:Rendicion, transporte:Transporte, auditoria:Auditoria, egreso:Egreso, asignacion:Asignacion]
 

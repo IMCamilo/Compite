@@ -9,6 +9,7 @@ class Item {
     String tipo
     String descripcion
     Integer valor
+    Date fechaCreacion = new Date()
 
     static hasMany = [rendicion:Rendicion]
     static constraints = {
@@ -16,4 +17,3 @@ class Item {
     }
 
 }
-

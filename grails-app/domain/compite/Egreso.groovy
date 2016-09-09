@@ -7,7 +7,7 @@ class Egreso {
 
     String aprobacion
     String concepto
-    Date fechaCreacion
+    Date fechaCreacion = new Date()
     Integer monto
     String sedeEnvio
     String tipoRendicion
