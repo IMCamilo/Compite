@@ -70,7 +70,11 @@
                     <label for="tipo">Tipo
                         <span class="required-indicator">*</span>
                     </label>
-                    <input name="tipo" value="" required="" id="tipo" type="number"></div>
+                    <select name="tipo" required="" id="tipo" type="number">
+                        <option value="" disabled selected>Seleccione Privilegio</option>
+                        <option value="1">Administrador</option>
+                        <option value="2">Ingeniero</option>
+                    </select></div>
                 </fieldset>
                 <fieldset class="buttons">
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}"/>

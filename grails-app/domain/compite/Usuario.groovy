@@ -26,6 +26,6 @@ class Usuario {
         correo email: true, blank: false, size: 1..30
         telefono nullable: true, blank: false, size: 1..15
         clave nullable: false, blank: false, size: 1..15
-        tipo nullable: false, blank: false, size: 1..1
+        tipo nullable: false, blank: false
     }
 }
