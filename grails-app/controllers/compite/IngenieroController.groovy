@@ -81,6 +81,29 @@ class IngenieroController {
         println "id: "+id
         //al seleccionar un proyecto llegar a esta vista, la pantalla  entrega datos personalizados
         [id: id]
+
+        def itemsMovilizacion = Item.findAll("from Item as item where item.tipo='Movilizacion'")
+
+        def transportesUsuario = Transporte.findAll("from Transporte as trans where trans.usuario="+usuarioId)
+
+        def listItemMov = []
+        def listTransportes = []
+        itemsMovilizacion.each { mov ->
+            def mapMov = [:]
+            mapMov.id = mov.id
+            mapMov.nombre = mov.nombre
+            mapMov.valor = mov.valor
+            listItemMov.add(mapMov)
+        }
+
+        transportesUsuario.each { trans ->
+            def mapTrans = [:]
+            mapTrans.id = trans.id
+            mapTrans.descripcion = trans.descripcion
+            listTransportes.add(mapTrans)
+        }
+
+        [itemMovilizacion:listItemMov, transportes:listTransportes]
     }
 
     def perfil = {
@@ -98,6 +121,25 @@ class IngenieroController {
 
     def rendiciones = {
         //lista rendiciones
+    }
+
+    def save() {
+
+        mItem = parameters.mItem
+        println "mItem: "+mItem
+        /*if (rendicion == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        if (rendicion.hasErrors()) {
+            transactionStatus.setRollbackOnly()
+            respond rendicion.errors, view:'create'
+            return
+        }
+
+        rendicion.save flush:true*/
     }
 
 }

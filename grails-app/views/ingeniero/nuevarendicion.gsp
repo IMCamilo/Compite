@@ -33,7 +33,6 @@
                 monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
                 dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá']
             });
-            $('.modal-trigger').leanModal();
         });
     </script>
 </head>
@@ -51,19 +50,28 @@
                         <div class="collapsible-header"><i class="material-icons">navigation</i>MOVILIZACION</div>
                         <div class="collapsible-body">
                             <div class="row">
-                                <form class="col s12" name="rendicionMovilizacion">
-                                    <input type="hidden" name="mMotivo" value="movilizacion">
+                                <g:form action="save" class="col s12">
                                     <div class="col s12">
                                         <div class="input-field col s6">
                                             <select name="mItem" class="browser-default" required>
-                                                <option value="">Seleccione Item</option>
-                                                <option value="1">Estacionamiento</option>
-                                                <option value="2">Peaje</option>
-                                                <option value="3">Tag</option>
-                                                <option value="4">Pasaje</option>
-                                                <option value="5">Metro</option>
+                                                <option value="">Seleccione un Item</option>
+                                                <g:each in="${itemMovilizacion}">
+                                                    <option value="${it.id}">${it.nombre}</option>
+                                                </g:each>
                                             </select>
                                         </div>
+                                        <div class="input-field col s6">
+                                            <select name="mTransportes" class="browser-default" required>
+                                                <option value="">Seleccione un Móvil</option>
+                                                <g:each in="${transportes}">
+                                                    <option value="${it.id}">${it.descripcion}</option>
+                                                </g:each>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input id="mPrecio" name="mPrecio" type="text" class="validate">
+                                        <label for="mPrecio">Precio</label>
                                     </div>
                                     <div class="input-field col s12">
                                         <input id="mMotivo" name="mDesde" type="text" class="validate">
@@ -72,21 +80,9 @@
                                     <div class="input-field col s6">
                                         <input id="mDesde" name="mDesde" type="text" class="modal-trigger" href="#modal1">
                                         <label for="mDesde">Lugar Desde</label>
-
-                                        <!-- ventana modal -->
-                                        <div id="modal1" class="modal">
-                                            <div class="modal-content">
-                                                <h4>Seleccione punto de partida</h4>
-                                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d298128.0793635079!2d-73.09534574032!3d-41.426992284967405!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9619d3d6f9397329%3A0xafd4dfaa59ea7b65!2sVolc%C3%A1n+Calbuco!5e0!3m2!1ses-419!2scl!4v1473356927547" width="800" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Seleccionar</a>
-                                            </div>
-                                        </div>
-
                                     </div>
                                     <div class="input-field col s6">
-                                        <input id="mHasta" name="mHasta" type="text" class="validate modal-trigger"href="#modal2">
+                                        <input id="mHasta" name="mHasta" type="text" class="validate" >
                                         <label for="mHasta">Lugar Hasta</label>
 
                                         <div id="modal2" class="modal">
@@ -98,10 +94,6 @@
                                                 <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Seleccionar</a>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="input-field col s6">
-                                        <input id="mPrecio" name="mPrecio" type="text" class="validate">
-                                        <label for="mPrecio">Precio</label>
                                     </div>
                                     <div class="input-field col s6">
                                         <input id="mNombre" name="mNombre" type="text" class="validate">
@@ -127,19 +119,6 @@
                                         <input name="mFecha" class="datepicker" type="text" id="mFecha">
                                         <label for="mFecha">Fecha</label>
                                     </div>
-                                    <!--<div class="input-field col s12">
-                                        <form action="#">
-                                            <div class="file-field input-field">
-                                                <div class="btn">
-                                                    <span>Cargar Archivos</span>
-                                                    <input type="file" name="mArchivos">
-                                                </div>
-                                                <div class="file-path-wrapper">
-                                                    <input class="file-path validate" type="text">
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>-->
                                     <div class="col s12 m12">
                                         <div class="btn">
                                             <span>Cargar Archivos</span>
@@ -148,12 +127,12 @@
                                         <!--<a class="btn" onclick="Materialize.toast('RENDICIÓN DE MOVILIZACIÓN CREADA CORRECTAMENTE', 4000)">CREAR</a>-->
                                     </div>
                                     <div class="col s12 m12">
-                                       <br>
+                                        <br>
                                     </div>
                                     <div class="col s12 m12">
                                         <input type="submit" value="CREAR" class="btn">
                                     </div>
-                                </form>
+                                </g:form>
                             </div>
                         </div>
                     </li>
