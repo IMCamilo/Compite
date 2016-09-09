@@ -13,12 +13,20 @@
     <div class="row">
     <g:form class="col s12" action="save">
         <div class="input-field col s4">
-            <input name="usuario" value="" required="" type="text" id="autocomplete-input1" class="autocomplete">
-            <label for="autocomplete-input1">Usuario</label>
+            <select name="usuario" value="" class="browser-default" required>
+                <option value="">Seleccione Usuario</option>
+                <g:each var="usuario" in="${compite.Usuario.list()}">
+                    <option value="${usuario.id}">${usuario}</option>
+                </g:each>
+            </select>
         </div>
         <div class="input-field col s4">
-            <input name="proyecto" value="" required="" type="text" id="autocomplete-input2" class="autocomplete">
-            <label for="autocomplete-input2">Proyecto</label>
+            <select name="proyecto" value="" class="browser-default" required>
+                <option value="">Seleccione Proyecto</option>
+                <g:each var="proyecto" in="${compite.Proyecto.list()}">
+                    <option value="${proyecto.id}">${proyecto.nombre}</option>
+                </g:each>
+            </select>
         </div>
         <div class="input-field col s4">
             <select name="estado" value="" required="" required="">
