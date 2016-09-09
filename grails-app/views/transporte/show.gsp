@@ -19,7 +19,28 @@
             <g:if test="${flash.message}">
             <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:display bean="transporte" />
+
+            <label for="tipo">Tipo:
+                ${transporte.tipo}
+            </label></br>
+            <label for="tipo">Descripcion
+                ${transporte.descripcion}
+            </label></br>
+            <label for="tipo">Marca
+                ${transporte.marca}
+            </label></br>
+            <label for="tipo">Km Por Litro
+                ${transporte.kmPorLitro}
+            </label></br>
+            <label for="tipo">Modelo
+                ${transporte.modelo}
+            </label></br>
+            <label for="tipo">Combustible
+                ${transporte.combustible}
+            </label></br>
+            <label for="tipo">Usuario
+                ${transporte.usuario}
+            </label></br>
             <g:form resource="${this.transporte}" method="DELETE">
                 <fieldset class="buttons">
                     <g:link class="edit" action="edit" resource="${this.transporte}"><g:message code="default.button.edit.label" default="Edit" /></g:link>

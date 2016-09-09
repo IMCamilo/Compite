@@ -29,7 +29,41 @@
             <g:form resource="${this.transporte}" method="PUT">
                 <g:hiddenField name="version" value="${this.transporte?.version}" />
                 <fieldset class="form">
-                    <f:all bean="transporte"/>
+                    <div class="fieldcontain required">
+                    <label for="rut">Tipo
+                        <span class="required-indicator">*</span>
+                    </label>
+                    <input name="tipo" value="${transporte.tipo}" required="" maxlength="13" id="rut" type="text"></div>
+                    <div class="fieldcontain required">
+                    <label for="nombres">Descripción
+                        <span class="required-indicator">*</span>
+                    </label>
+                    <input name="descripcion" value="${transporte.descripcion}" required="" maxlength="15" id="nombres" type="text"></div>
+                    <div class="fieldcontain required">
+                    <label for="paterno">Marca
+                        <span class="required-indicator">*</span>
+                    </label>
+                    <input name="marca" value="${transporte.marca}" required="" maxlength="10" id="paterno" type="text"></div>
+                    <div class="fieldcontain required">
+                    <label for="materno">Km Por Litro
+                        <span class="required-indicator">*</span>
+                    </label>
+                    <input name="kmPorLitro" value="${transporte.kmPorLitro}" required="" maxlength="10" id="materno" type="text"></div>
+                    <div class="fieldcontain required">
+                    <label for="direccion">Modelo
+                        <span class="required-indicator">*</span>
+                    </label>
+                    <input name="modelo" value="${transporte.modelo}" required="" maxlength="35" id="direccion" type="text"></div>
+                    <div class="fieldcontain required">
+                    <label for="correo">Combustible
+                        <span class="required-indicator">*</span>
+                    </label>
+                    <input name="combustible" value="${transporte.combustible}" required="" maxlength="30" id="correo" type="text"></div>
+                    <div class="fieldcontain">
+                    <label for="telefono">Usuario</label>
+                    <input name="usuario" value="${transporte.usuarioId}" placeholder="aca un autocompletar" maxlength="15" id="telefono" type="text"></div>
+                    <div class="fieldcontain required">
+
                 </fieldset>
                 <fieldset class="buttons">
                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
