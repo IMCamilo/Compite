@@ -17,8 +17,9 @@ class Proyecto {
     static belongsTo = [empresa:Empresa]
 
     static constraints = {
-        presupuesto(nullable: true)
-
+        codigo(nullable: false, unique: true, blank: false)
+        nombre(nullable: false, blank: false, size: 3..50)
+        presupuesto(nullable: true, size: 0..5)
     }
 
 }
