@@ -10,9 +10,38 @@
         <div class="nav" role="navigation">
             <ul>
                 <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
             </ul>
         </div>
+
+        <g:form action="save">
+            <fieldset class="form">
+                <div class="fieldcontain required">
+                <label for="tipo">Tipo
+                    <span class="required-indicator">*</span>
+                </label>
+                <input name="tipo" value="" required="" maxlength="13" id="rut" type="text"></div>
+                <div class="fieldcontain required">
+                <label for="descripcion">Descripción
+                    <span class="required-indicator">*</span>
+                </label>
+                <input name="descripcion" value="" required="" maxlength="15" id="nombres" type="text"></div>
+                <div class="fieldcontain required">
+                <label for="valor">Valor
+                    <span class="required-indicator">*</span>
+                </label>
+                <input name="valor" value="" required="" maxlength="10" id="paterno" type="text"></div>
+                <div class="fieldcontain required">
+                <label for="nombre">Nombre
+                    <span class="required-indicator">*</span>
+                </label>
+                <input name="nombre" value="" required="" maxlength="10" id="materno" type="text"></div>
+            </fieldset>
+            <fieldset class="buttons">
+                <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}"/>
+            </fieldset>
+        </g:form>
+
+
         <div id="list-item" class="content scaffold-list" role="main">
             <h1><g:message code="default.list.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
