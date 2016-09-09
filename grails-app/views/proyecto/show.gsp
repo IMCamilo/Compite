@@ -19,7 +19,30 @@
             <g:if test="${flash.message}">
             <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:display bean="proyecto" />
+            <label for="tipo">Presupuesto:
+                ${proyecto.presupuesto}
+            </label></br>
+            <label for="tipo">Código:
+                ${proyecto.codigo}
+            </label></br>
+            <label for="tipo">Estado:
+                ${proyecto.estado}
+            </label></br>
+            <label for="tipo">Tipo:
+                ${proyecto.tipo}
+            </label></br>
+            <label for="tipo">Fecha Creación:
+                ${proyecto.fechaCreacion}
+            </label></br>
+            <label for="tipo">Empresa:
+                ${proyecto.empresaId} (mostrar nombre en base a este id, hace consulta.)
+            </label></br>
+            <label for="tipo">Nombre:
+                ${proyecto.nombre}
+            </label></br>
+            <label for="tipo">Fecha Finalización:
+                ${proyecto.fechaFin}
+            </label></br>
             <g:form resource="${this.proyecto}" method="DELETE">
                 <fieldset class="buttons">
                     <g:link class="edit" action="edit" resource="${this.proyecto}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
