@@ -73,47 +73,47 @@
                                         </div>
                                     </div>
                                     <div class="input-field col s6">
-                                        <input id="mPrecio" name="precio" type="text" class="validate">
+                                        <input id="mPrecio" name="tiempo" type="text" class="validate">
                                         <label for="mPrecio">Precio</label>
                                     </div>
                                     <div class="input-field col s12">
-                                        <input id="mMotivo" name="motivo" type="text" class="validate">
+                                        <f:input property="motivo" bean="rendicion" id="mMotivo" class="validate"></f:input>
                                         <label for="mDesde">Motivo</label>
                                     </div>
                                     <div class="input-field col s6">
-                                        <input id="mDesde" name="desde" type="text" class="modal-trigger" href="#modal1">
+                                        <f:input property="desde" bean="rendicion" id="mDesde" class="validate"></f:input>
                                         <label for="mDesde">Lugar Desde</label>
                                     </div>
                                     <div class="input-field col s6">
-                                        <input id="mHasta" name="hasta" type="text" class="validate" >
+                                        <f:input property="hasta" bean="rendicion" id="mHasta" class="validate"></f:input>
                                         <label for="mHasta">Lugar Hasta</label>
                                     </div>
                                     <div class="input-field col s6">
-                                        <input id="mNombre" name="nombre" type="text" class="validate">
+                                        <f:input property="nombre" bean="rendicion" id="mNombre" class="validate"></f:input>
                                         <label for="mNombre">Nombre Rendición</label>
                                     </div>
                                     <div class="input-field col s6">
-                                        <input id="mBoletas" name="nBoleta" type="text" class="validate">
-                                        <label for="mBoletas">Boletas</label>
+                                        <f:input property="nBoleta" bean="rendicion" id="mBoletas" class="validate"></f:input>
+                                        <label for="mBoletas">N° De Boleta</label>
                                     </div>
                                     <div class="input-field col s4">
-                                        <input id="mKmInicial" name="kmInicial" type="text" class="validate">
+                                        <f:input property="kmInicial" bean="rendicion" id="mKmInicial" class="validate"></f:input>
                                         <label for="mKmInicial">KM Inicial</label>
                                     </div>
                                     <div class="input-field col s4">
-                                        <input id="mKmFinal" name="kmFinal" type="text" class="validate">
+                                        <f:input property="kmFinal" bean="rendicion" id="mKmFinal" class="validate"></f:input>
                                         <label for="mKmFinal">KM Final</label>
                                     </div>
                                     <div class="input-field col s4">
-                                        <input id="mRecorrido" name="distancia" type="text" class="validate">
+                                        <input id="mRecorrido" name="tiempo" type="text" class="validate">
                                         <label for="mRecorrido">Distancia Recorrida</label>
                                     </div>
                                     <div class="input-field col s6">
-                                        <input id="mTiempo" name="tiempo" type="text" class="validate">
+                                        <f:input property="tiempo" bean="rendicion" id="mTiempo" class="validate"></f:input>
                                         <label for="mTiempo">Tiempo</label>
                                     </div>
                                     <div class="input-field col s6">
-                                        <input id="mTotal" name="total" type="text" class="validate">
+                                        <f:input property="total" bean="rendicion" id="mTotal" class="validate"></f:input>
                                         <label for="mTotal">Total</label>
                                     </div>
                                     <!--<div class="input-field col s6">

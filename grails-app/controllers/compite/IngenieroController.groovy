@@ -82,6 +82,8 @@ class IngenieroController {
     }
 
     def nuevarendicion (Integer id) {
+        respond new Rendicion(params)
+        
         println "id: "+id
         //al seleccionar un proyecto llegar a esta vista, la pantalla  entrega datos personalizados
         def itemsMovilizacion = Item.findAll("from Item as item where item.tipo='Movilizacion'")
@@ -106,6 +108,8 @@ class IngenieroController {
         }
 
         [itemMovilizacion:listItemMov, transportes:listTransportes, id: id]
+
+
     }
 
 
@@ -127,7 +131,7 @@ class IngenieroController {
     def save() {
 
         mItem = parameters.mItem
-        println "mItem: "+mItem
+
         /*if (rendicion == null) {
             transactionStatus.setRollbackOnly()
             notFound()
