@@ -40,6 +40,8 @@
         <textarea name="descripcion" required="" id="textarea1" class="materialize-textarea"></textarea>
         <label for="textarea1">Descripción</label>
         </div>
+        <div class="fieldcontain required">
+        <input name="creadoPor" value="${session.usuarioLogueado.rut}" required="" type="hidden"></div>
     <g:submitButton name="create" class="save btn waves-effect waves-light" value="${message(code: 'default.button.create.label', default: 'Create')}" />
     </g:form>
     </div>

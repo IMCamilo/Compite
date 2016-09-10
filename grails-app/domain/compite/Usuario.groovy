@@ -13,6 +13,7 @@ class Usuario {
     String telefono
     String clave
     Integer tipo
+    String creadoPor
     Date fechaCreacion = new Date()
 
     static hasMany = [rendicion:Rendicion, transporte:Transporte, auditoria:Auditoria, egreso:Egreso, asignacion:Asignacion]
@@ -27,5 +28,6 @@ class Usuario {
         telefono nullable: true, blank: false, size: 1..15
         clave nullable: false, blank: false, size: 1..15
         tipo nullable: false, blank: false
+        creadoPor nullable: true, blank: true
     }
 }

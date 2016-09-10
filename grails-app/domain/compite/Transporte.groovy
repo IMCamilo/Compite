@@ -9,7 +9,12 @@ class  Transporte {
     Integer kmPorLitro
     String descripcion
     Date fechaCreacion = new Date()
+    String creadoPor
 
     static belongsTo = [usuario:Usuario]
+
+    static constraints = {
+        creadoPor nullable: true, blank: true
+    }
 
 }

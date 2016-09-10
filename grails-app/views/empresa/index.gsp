@@ -42,6 +42,11 @@
                     </label>
                     <input name="nombre" value="" required="" maxlength="10" id="paterno" type="text"></div>
                     <div class="fieldcontain required">
+                    <label for="valor">Razón Social
+                        <span class="required-indicator">*</span>
+                    </label>
+                    <input name="razonSocial" value="" required="" maxlength="10" id="paterno" type="text"></div>
+                    <div class="fieldcontain required">
                     <label for="nombre">Giro
                         <span class="required-indicator">*</span>
                     </label>
@@ -67,6 +72,8 @@
                         <span class="required-indicator">*</span>
                     </label>
                     <input name="telefono" value="" required="" maxlength="10" id="materno" type="text"></div>
+                    <div class="fieldcontain required">
+                    <input name="creadoPor" value="${session.usuarioLogueado.rut}" required="" type="hidden"></div>
                 </fieldset>
                 <fieldset class="buttons">
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}"/>

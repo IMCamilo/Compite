@@ -2,8 +2,20 @@ package compite
 
 class Rendicion {
 
-    String tipo, nombre, motivo, desde, hasta, nBoleta, descripcion, estado
-    Integer kmInicial, kmFinal, distancia, tiempo, total
+    String tipo
+    String nombre
+    String motivo
+    String desde
+    String hasta
+    String nBoleta
+    String descripcion
+    String estado
+    String creadoPor
+    Integer kmInicial
+    Integer kmFinal
+    Integer distancia
+    Integer tiempo
+    Integer total
     Date fecha = new Date()
 
     static belongsTo = [proyecto:Proyecto, usuario:Usuario, item:Item]
@@ -17,6 +29,7 @@ class Rendicion {
         distancia nullable: true
         tiempo nullable: true
         estado nullable: true
+        creadoPor nullable: true, blank: true
     }
 
 }

@@ -60,6 +60,7 @@
                     <label for="telefono">Usuario</label>
                     <input name="usuario" value="" placeholder="aca un autocompletar" maxlength="15" id="telefono" type="text"></div>
                     <div class="fieldcontain required">
+                    <input name="creadoPor" value="${session.usuarioLogueado.rut}" required="" type="hidden"></div>
                 </fieldset>
                 <fieldset class="buttons">
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}"/>

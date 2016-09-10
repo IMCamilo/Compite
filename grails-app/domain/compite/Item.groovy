@@ -10,10 +10,12 @@ class Item {
     String descripcion
     Integer valor
     Date fechaCreacion = new Date()
+    String creadoPor
 
     static hasMany = [rendicion:Rendicion]
-    static constraints = {
 
+    static constraints = {
+        creadoPor nullable: true, blank: true
     }
 
 }

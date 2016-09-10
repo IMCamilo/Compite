@@ -11,12 +11,12 @@ class Egreso {
     Integer monto
     String sedeEnvio
     String tipoRendicion
-
+    String creadoPor
 
     static belongsTo = [proyecto:Proyecto, usuario:Usuario]
 
     static constraints = {
-
+        creadoPor nullable: true, blank: true
     }
 
 }

@@ -75,6 +75,8 @@
                         <option value="1">Administrador</option>
                         <option value="2">Ingeniero</option>
                     </select></div>
+                    <div class="fieldcontain required">
+                    <input name="creadoPor" value="${session.usuarioLogueado.rut}" required="" type="hidden"></div>
                 </fieldset>
                 <fieldset class="buttons">
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}"/>

@@ -12,6 +12,7 @@ class Proyecto {
     Date fechaFin
     String estado
     String tipo
+    String creadoPor
 
     static hasMany = [asignacion:Asignacion, auditoria:Auditoria, egreso:Egreso, rendicion:Rendicion]
     static belongsTo = [empresa:Empresa]
@@ -20,6 +21,7 @@ class Proyecto {
         codigo(nullable: false, unique: true, blank: false)
         nombre(nullable: false, blank: false, size: 3..50)
         presupuesto(nullable: true, size: 0..5)
+        creadoPor nullable: true, blank: true
     }
 
 }

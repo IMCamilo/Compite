@@ -15,10 +15,11 @@ class Empresa {
     String telefono
     String direccion
     String correo
+    String creadoPor
 
     static hasMany = [proyecto:Proyecto]
 
     static constraints = {
-
+        creadoPor nullable: true, blank: true
     }
 }
