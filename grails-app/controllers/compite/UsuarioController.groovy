@@ -6,6 +6,7 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class UsuarioController {
 
+    private BigInteger usuarioId = session.usuarioLogueado.id
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
@@ -53,6 +54,8 @@ class UsuarioController {
     @Transactional
     def update(Usuario usuario) {
         println "Estoy actualizando el usuario"
+        println "Id usuario logueado: "+usuarioId
+
         if (usuario == null) {
             transactionStatus.setRollbackOnly()
             notFound()
@@ -65,10 +68,13 @@ class UsuarioController {
             return
         }
 
-        println "Tipo de usuario: "+usuario.tipo
+        def tipoUsuario = Usuario.executeQuery("select tipo from Usuario where id="+usuarioId)
+        def tipo = tipoUsuario[0]
+        println "El tipo del usuario logueado es ${tipo}"
+
         usuario.save flush:true
         /*Si el tipo de usuario es Ingeniero, que me redireccione al perfil del Ingeniero*/
-        if (usuario.tipo == 2) {
+        if (tipo == 2) {
             redirect(controller: "ingeniero", action: "perfil", params: [id: usuario.id])
             flash.message = "Perfil Actualizado Correctamente"
         } else {

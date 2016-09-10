@@ -114,19 +114,9 @@
                         </div>
                     </li>
                     <li>
-                        <div class="collapsible-header"><i class="material-icons">work</i>TANSPORTE</div>
+                        <div class="collapsible-header"><i class="material-icons">work</i>TRANSPORTES</div>
                         <div class="collapsible-body">
                             <div class="row">
-                                <!--
-                                String tipo
-                                String marca
-                                String modelo
-                                String combustible
-                                Integer kmPorLitro
-                                String descripcion
-                                Date fechaCreacion
-
-                                -->
                                 <div class="input-field col s6">
                                     <input id="tipo" name="tipo" type="text" class="validate">
                                     <label for="tipo">Tipo</label>
