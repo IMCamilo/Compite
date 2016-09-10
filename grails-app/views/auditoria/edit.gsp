@@ -45,7 +45,7 @@
                         <label for="tipo">Usuario<span class="required-indicator">*</span></label>
                         <input name="usuario" value="${auditoria.usuarioId}" placeholder="autocompletable con usuarios" value="" required="" type="text">
                         <label for="">generar autocompletable para usuario</label>
-                    </div>/>
+                    </div>
                 </fieldset>
                 <fieldset class="buttons">
                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
