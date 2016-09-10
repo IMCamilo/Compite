@@ -44,7 +44,7 @@
                                                 </g:eachError>
                                             </ul>
                                         </g:hasErrors>
-                                        <g:form resource="${this.usuario}" method="PUT">
+                                        <g:form action="update" method="PUT">
                                             <g:hiddenField name="version" value="${this.usuario?.version}" />
                                             <fieldset class="form">
                                                 <div class="fieldcontain required col s6">
@@ -114,27 +114,82 @@
                         <div class="collapsible-header"><i class="material-icons">work</i>TANSPORTE</div>
                         <div class="collapsible-body">
                             <div class="row">
-                                <div class="col s6 m6">
-                                    <input id="fecha" type="text" value="04/08/2016"> ITEM :
+                                <!--
+                                String tipo
+                                String marca
+                                String modelo
+                                String combustible
+                                Integer kmPorLitro
+                                String descripcion
+                                Date fechaCreacion
 
+                                -->
+                                <div class="input-field col s6">
+                                    <input id="tipo" name="tipo" type="text" class="validate">
+                                    <label for="tipo">Tipo</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="combustible" name="combustible" type="text" class="validate">
+                                    <label for="combustible">Combustible</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="marca" name="marca" type="text" class="validate">
+                                    <label for="marca">Marca</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="modelo" name="modelo" type="text" class="validate">
+                                    <label for="modelo">Modelo</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="kmporlitro" name="kmporlitro" type="text" class="validate">
+                                    <label for="kmporlitro">KM por Litro</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="descripcion" name="descripcion" type="text" class="validate">
+                                    <label for="descripcion">Descripción</label>
                                 </div>
                                 <!--LADO 2-->
                                 <div class="col s12 m12">
-                                    <div id="list-transporte" class="content scaffold-list" role="main">
-                                        <h1><g:message code="default.list.label" args="[entityName]" /></h1>
-                                        <g:if test="${flash.message}">
-                                            <div class="message" role="status">${flash.message}</div>
-                                        </g:if>
-                                        <f:table collection="${transporteList}" />
-                                        <div class="pagination">
-                                            <g:paginate total="${transporteCount ?: 0}" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col s12 m12">
-                                    <a class="btn" onclick="Materialize.toast('RENDICIÓN DE COLACIÓN CREADA CORRECTAMENTE', 4000)">CREAR</a>
+                                        <table class="bordered">
+                                            <thead>
+                                            <tr>
+                                                <th data-field="id">Name</th>
+                                                <th data-field="name">Item Name</th>
+                                                <th data-field="price">Item Price</th>
+                                            </tr>
+                                            </thead>
+
+                                            <tbody>
+                                            <tr>
+                                                <td>Alvin</td>
+                                                <td>Eclair</td>
+                                                <td>$0.87</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Alan</td>
+                                                <td>Jellybean</td>
+                                                <td>$3.76</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Jonathan</td>
+                                                <td>Lollipop</td>
+                                                <td>$7.00</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+
                                 </div>
                             </div>
+                            <div id="list-transporte" class="content scaffold-list" role="main">
+                                <f:table collection="${transporteList}" />
+                                <div class="pagination">
+                                    <g:paginate total="${transporteCount ?: 0}" />
+                                </div>
+                            </div>
+                            <div class="col s12 m12">
+                                <a class="btn" onclick="Materialize.toast('RENDICIÓN DE COLACIÓN CREADA CORRECTAMENTE', 4000)">CREAR</a>
+                            </div>
+                        </div>
                         </div>
                     </li>
                 </ul>

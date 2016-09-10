@@ -1,6 +1,10 @@
 package compite
 
+import grails.transaction.Transactional
 
+import static org.springframework.http.HttpStatus.OK
+
+@Transactional(readOnly = true)
 class IngenieroController {
 
     private BigInteger usuarioId = session.usuarioLogueado.id
@@ -153,4 +157,8 @@ class IngenieroController {
 
     }
 
+    def update ={
+
+        redirect(action: "perfil", params: [id: usuarioId])
+    }
 }
