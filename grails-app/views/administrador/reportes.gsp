@@ -58,7 +58,7 @@
             </tr>
             </thead>
             <tbody class="black-text">
-            <g:each var="rendicion" in="${compite.Rendicion.executeQuery("from Rendicion ") }">
+            <g:each var="rendicion" in="${compite.Rendicion.executeQuery("from Rendicion where usuario = ${params.usuario} and proyecto= ${params.proyecto} " ) }">
                 <tr>
                     <td>${rendicion.usuario}</td>
                     <td>${rendicion.proyecto}</td>
