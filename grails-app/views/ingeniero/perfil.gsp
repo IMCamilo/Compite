@@ -50,7 +50,8 @@
                                             <label for="rut">Rut
                                                 <span class="required-indicator">*</span>
                                             </label>
-                                            <input name="rut" value="${usuario.rut}" maxlength="13" id="rut" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Rut no se puede modificar" disable/>
+                                            <input disabled name="rut" value="${usuario.rut}" maxlength="10" id="rut"/>
+                                            <span class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Rut no se puede modificar"></span>
                                         </div>
                                         <div class="fieldcontain required col s6">
                                             <label for="nombres">Nombres
