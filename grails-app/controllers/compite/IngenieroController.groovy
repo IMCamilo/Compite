@@ -106,10 +106,9 @@ class IngenieroController {
         [itemMovilizacion:listItemMov, transportes:listTransportes]
     }
 
-    def perfil = {
-        def datosPerfil = Usuario.findAll("from Usuario as usu where usu.id="+usuarioId)
-        println "datosPerfil "+datosPerfil
-    }
+
+
+
 
     def actualizarperfil = {
 
@@ -140,6 +139,20 @@ class IngenieroController {
         }
 
         rendicion.save flush:true*/
+    }
+
+    //perfil del ingniero
+
+
+    def cargaperfil = {
+        redirect(action: "perfil", params: [id: usuarioId])
+    }
+
+    def perfil(Usuario usuario, Integer max) {
+        respond usuario
+        params.max = Math.min(max ?: 10, 100)
+        respond Transporte.list(params), model:[transporteCount: Transporte.count()]
+
     }
 
 }

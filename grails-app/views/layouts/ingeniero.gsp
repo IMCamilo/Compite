@@ -16,7 +16,13 @@
     <asset:stylesheet src="compite/materialize.css"/>
     <asset:stylesheet src="compite/style.css"/>
     <asset:stylesheet src="compite/googlefonts.css"/>
-
+    <script>
+        $(document).ready(function() {
+            $('.tooltipped').tooltip({
+                delay: 50
+            });
+        });
+    </script>
     <g:layoutHead/>
 </head>
 <body style="font-size:75%">
@@ -36,7 +42,7 @@
                 <ul class="right hide-on-med-and-down">
                     <li class="tab col s4"><a class="active" href="${createLink(controller:'ingeniero', action:'proyectos')}">SELECCIONAR PROYECTOS</a></li>
                     <li class="tab col s4"><a href="${createLink(controller:'ingeniero', action:'rendiciones')}">VER RENDICIONES</a></li>
-                    <li class="tab col s4"><a href="${createLink(controller:'ingeniero', action:'perfil')}">VER PERFIL</a></li>
+                    <li class="tab col s4"><a href="${createLink(controller:'ingeniero', action:'cargaperfil')}">VER PERFIL</a></li>
 
                     <li><a href="${createLink(controller:'login', action:'logout')}">Cerrar Sesión</a></li>
                 </ul>
