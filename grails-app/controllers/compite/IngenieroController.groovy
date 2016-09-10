@@ -80,8 +80,6 @@ class IngenieroController {
     def nuevarendicion (Integer id) {
         println "id: "+id
         //al seleccionar un proyecto llegar a esta vista, la pantalla  entrega datos personalizados
-        [id: id]
-
         def itemsMovilizacion = Item.findAll("from Item as item where item.tipo='Movilizacion'")
 
         def transportesUsuario = Transporte.findAll("from Transporte as trans where trans.usuario="+usuarioId)
@@ -103,7 +101,7 @@ class IngenieroController {
             listTransportes.add(mapTrans)
         }
 
-        [itemMovilizacion:listItemMov, transportes:listTransportes]
+        [itemMovilizacion:listItemMov, transportes:listTransportes, id: id]
     }
 
 
