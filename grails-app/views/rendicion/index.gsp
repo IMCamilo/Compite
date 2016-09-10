@@ -28,12 +28,12 @@
                                <td>${rendicion.nombre}</td>
                                <td>${rendicion.fecha}</td>
                                <td>${rendicion.motivo}</td>
-                               <td>${rendicion.recorrido}</td>
+                               <td>${rendicion.distancia}</td>
                                <td>${rendicion.desde}</td>
                                <td>${rendicion.hasta}</td>
                                <td>${rendicion.tiempo}</td>
                                <td>${rendicion.total}</td>
-                               <td>${rendicion.boletas}</td>
+                               <td>${rendicion.nBoleta}</td>
                                <td><g:link action="show" resource="${rendicion}">Detalles</g:link></td>
                                <td><g:link action="edit" resource="${rendicion}">Editar</g:link></td>
                                <td><g:link action="delete" resource="${rendicion}">Borrar</g:link></td>

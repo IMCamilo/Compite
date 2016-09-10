@@ -57,7 +57,7 @@
                     </div>
                     <div class="row">
                         <div class="col s12 input-field">
-                            <g:textField type="text" name="recorrido" id="recorrido" value="${this.rendicion.recorrido}"/>
+                            <g:textField type="text" name="recorrido" id="recorrido" value="${this.rendicion.distancia}"/>
                             <label for="recorrido">Recorrido</label>
                         </div>
                      </div>
@@ -81,17 +81,14 @@
                             <label for="total">Total</label>
                         </div>
                         <div class="col s6 input-field">
-                            <g:textField type="number" name="boletas" id="boletas" value="${this.rendicion.boletas}"/>
+                            <g:textField type="number" name="boletas" id="boletas" value="${this.rendicion.nBoleta}"/>
                             <label for="boletas">Boletas Emitidas</label>
                         </div>
                     </div>
-                    <fieldset class="buttons">
-                        <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
-                    </fieldset>
+                        <input class="save waves-effect waves-light btn col l4 offset-l4" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
                 </g:form>
             </div>
         </div>
-
 
 
 %{--<!DOCTYPE html>--}%
