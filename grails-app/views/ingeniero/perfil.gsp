@@ -81,11 +81,11 @@
                                             <label for="correo">Correo
                                                 <span class="required-indicator">*</span>
                                             </label>
-                                            <input name="correo" value="${usuario.correo}" required="" maxlength="30" id="correo" type="email">
+                                            <input name="correo" value="${usuario.correo}" required="" maxlength="30" id="correo" type="email" class="validate">
                                         </div>
                                         <div class="fieldcontain col s6">
                                             <label for="telefono">Telefono</label>
-                                            <input name="telefono" value="${usuario.telefono}" maxlength="15" id="telefono" type="text">
+                                            <input name="telefono" value="${usuario.telefono}" maxlength="10" id="telefono" type="text" onKeyPress="return soloNumeros(event)">
                                         </div>
                                         <div class="fieldcontain required col s6">
                                             <label for="clave">Clave
@@ -97,7 +97,7 @@
                                             <label for="tipo">Tipo
                                                 <span class="required-indicator">*</span>
                                             </label>
-                                            <select name="tipo" class="browser-default" required>
+                                            <select id="tipo" name="tipo" class="browser-default" required>
                                                 <option value="${usuario.tipo}">Ingeniero</option>
                                                 <option value="${usuario.tipo}">--</option>
                                                 <option value="2">Ingeniero</option>
@@ -118,32 +118,43 @@
                         <div class="collapsible-header"><i class="material-icons">work</i>TRANSPORTES</div>
                         <div class="collapsible-body">
                             <div class="row">
-                                <div class="input-field col s6">
-                                    <input id="tipo" name="tipo" type="text" class="validate">
-                                    <label for="tipo">Tipo</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input id="combustible" name="combustible" type="text" class="validate">
-                                    <label for="combustible">Combustible</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input id="marca" name="marca" type="text" class="validate">
-                                    <label for="marca">Marca</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input id="modelo" name="modelo" type="text" class="validate">
-                                    <label for="modelo">Modelo</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input id="kmporlitro" name="kmporlitro" type="text" class="validate">
-                                    <label for="kmporlitro">KM por Litro</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input id="descripcion" name="descripcion" type="text" class="validate">
-                                    <label for="descripcion">Descripción</label>
-                                </div>
-                                <!--LADO 2-->
                                 <div class="col s12 m12">
+                                    <div class="input-field col s6">
+                                        <div class="fieldcontain required col s6">
+                                            <label for="tTipo">Tipo
+                                                <span class="required-indicator">*</span>
+                                            </label>
+                                            <select id="tTipo" name="tTipo" class="browser-default" required>
+                                                <option value="Sedan">Sedán</option>
+                                                <option value="Jeep">Jeep</option>
+                                                <option value="Camioneta">Camioneta</option>
+                                            </select>
+                                        </div>
+                                        <!--<input id="tipo" name="tipo" type="text" class="validate">
+                                        <label for="tipo">Tipo</label>-->
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input id="combustible" name="combustible" type="text" class="validate">
+                                        <label for="combustible">Combustible</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input id="marca" name="marca" type="text" class="validate">
+                                        <label for="marca">Marca</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input id="modelo" name="modelo" type="text" class="validate">
+                                        <label for="modelo">Modelo</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input id="kmporlitro" name="kmporlitro" type="text" class="validate">
+                                        <label for="kmporlitro">KM por Litro</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input id="descripcion" name="descripcion" type="text" class="validate">
+                                        <label for="descripcion">Descripción</label>
+                                    </div>
+                                    <!--LADO 2-->
+                                    <div class="col s12 m12">
                                         <table class="bordered">
                                             <thead>
                                             <tr>
@@ -171,7 +182,7 @@
                                             </tr>
                                             </tbody>
                                         </table>
-
+                                    </div>
                                 </div>
                             </div>
                             <div id="list-transporte" class="content scaffold-list" role="main">
@@ -200,6 +211,13 @@
     $(function() {
         $("#tabs").tabs();
     });
+</script>
+<script type="text/javascript">
+    // Solo permite ingresar numeros.
+    function soloNumeros(e){
+        var key = window.Event ? e.which : e.keyCode
+        return (key >= 48 && key <= 57)
+    }
 </script>
 </body>
 </html>
