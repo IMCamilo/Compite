@@ -2,7 +2,7 @@ package compite
 
 class Rendicion {
 
-    String tipo, nombre, motivo, desde, hasta, nBoleta, descripcion
+    String tipo, nombre, motivo, desde, hasta, nBoleta, descripcion, estado
     Integer kmInicial, kmFinal, distancia, tiempo, total
     Date fecha = new Date()
 
@@ -16,6 +16,7 @@ class Rendicion {
         kmFinal nullable: true
         distancia nullable: true
         tiempo nullable: true
+        estado nullable: true
     }
 
 }
