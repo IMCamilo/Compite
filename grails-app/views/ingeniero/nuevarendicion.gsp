@@ -116,10 +116,10 @@
                                         <input id="mTotal" name="total" type="text" class="validate">
                                         <label for="mTotal">Total</label>
                                     </div>
-                                    <div class="input-field col s6">
+                                    <!--<div class="input-field col s6">
                                         <input name="fecha" class="datepicker" type="text" id="mFecha">
                                         <label for="mFecha">Fecha</label>
-                                    </div>
+                                    </div>-->
                                     <div class="input-field col s12">
                                         <input id="mDescripcion" name="descripcion" type="text" class="validate">
                                         <label for="mDescripcion">Descripción</label>
