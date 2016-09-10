@@ -29,84 +29,87 @@
                 <!--aca va el formulario para crear rendiciones-->
                 <ul class="collapsible" data-collapsible="expandable" style="width:100%">
                     <li>
-                        <div class="collapsible-header"><i class="material-icons">person_pip</i>MIS DATOS</div>
+                        <div class="collapsible-header active"><i class="material-icons">person_pip</i>MIS DATOS</div>
                         <div class="collapsible-body">
                             <div class="row">
                                 <div class="col s12 m12">
-                                        <h1><g:message code="default.edit.label" args="[entityName]" /></h1>
-                                        <g:if test="${flash.message}">
-                                            <div class="message" role="status">${flash.message}</div>
-                                        </g:if>
-                                        <g:hasErrors bean="${this.usuario}">
-                                            <ul class="errors" role="alert">
-                                                <g:eachError bean="${this.usuario}" var="error">
-                                                    <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-                                                </g:eachError>
-                                            </ul>
-                                        </g:hasErrors>
-                                        <g:form action="update" method="PUT">
-                                            <g:hiddenField name="version" value="${this.usuario?.version}" />
-                                            <fieldset class="form">
-                                                <div class="fieldcontain required col s6">
-                                                    <label for="rut">Rut
-                                                        <span class="required-indicator">*</span>
-                                                    </label>
-                                                    <input name="rut" value="${usuario.rut}" required="" maxlength="13" id="rut" type="text">
-                                                </div>
-                                                <div class="fieldcontain required col s6">
-                                                    <label for="nombres">Nombres
-                                                        <span class="required-indicator">*</span>
-                                                    </label>
-                                                    <input name="nombres" value="${usuario.nombres}" required="" maxlength="15" id="nombres" type="text">
-                                                </div>
-                                                <div class="fieldcontain required col s6">
-                                                    <label for="paterno">Paterno
-                                                        <span class="required-indicator">*</span>
-                                                    </label>
-                                                    <input name="paterno" value="${usuario.paterno}" required="" maxlength="10" id="paterno" type="text">
-                                                </div>
-                                                <div class="fieldcontain required col s6">
-                                                    <label for="materno">Materno
-                                                        <span class="required-indicator">*</span>
-                                                    </label>
-                                                    <input name="materno" value="${usuario.materno}" required="" maxlength="10" id="materno" type="text">
-                                                </div>
-                                                <div class="fieldcontain required col s6">
-                                                    <label for="direccion">Direccion
-                                                        <span class="required-indicator">*</span>
-                                                    </label>
-                                                    <input name="direccion" value="${usuario.direccion}" required="" maxlength="35" id="direccion" type="text">
-                                                </div>
-                                                <div class="fieldcontain required col s6">
-                                                    <label for="correo">Correo
-                                                        <span class="required-indicator">*</span>
-                                                    </label>
-                                                    <input name="correo" value="${usuario.correo}" required="" maxlength="30" id="correo" type="email">
-                                                </div>
-                                                <div class="fieldcontain col s6">
-                                                    <label for="telefono">Telefono</label>
-                                                    <input name="telefono" value="${usuario.telefono}" maxlength="15" id="telefono" type="text">
-                                                </div>
-                                                <div class="fieldcontain required col s6">
-                                                    <label for="clave">Clave
-                                                        <span class="required-indicator">*</span>
-                                                    </label>
-                                                    <input name="clave" value="${usuario.clave}" required="" maxlength="15" id="clave" type="text">
-                                                </div>
-                                                <div class="fieldcontain required col s6">
-                                                    <label for="tipo">Tipo
-                                                        <span class="required-indicator">*</span>
-                                                    </label>
-                                                    <input name="tipo" value="${usuario.tipo}" required="" id="tipo" type="number">
-                                                </div>
-                                            </fieldset>
-                                            <fieldset class="buttons">
-                                                <input class="save btn" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
-                                            </fieldset>
-                                        </g:form>
-
+                                    <!--<h1><g:message code="default.edit.label" args="[entityName]" /></h1>-->
+                                    <g:if test="${flash.message}">
+                                        <div class="message" role="status">${flash.message}</div>
+                                    </g:if>
+                                    <g:hasErrors bean="${this.usuario}">
+                                        <ul class="errors" role="alert">
+                                            <g:eachError bean="${this.usuario}" var="error">
+                                                <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
+                                            </g:eachError>
+                                        </ul>
+                                    </g:hasErrors>
+                                    <g:form action="update" method="PUT">
+                                        <g:hiddenField name="version" value="${this.usuario?.version}" />
+                                        <div class="fieldcontain required col s6">
+                                            <label for="rut">Rut
+                                                <span class="required-indicator">*</span>
+                                            </label>
+                                            <input name="rut" value="${usuario.rut}" maxlength="13" id="rut">
+                                        </div>
+                                        <div class="fieldcontain required col s6">
+                                            <label for="nombres">Nombres
+                                                <span class="required-indicator">*</span>
+                                            </label>
+                                            <input name="nombres" value="${usuario.nombres}" required="" maxlength="15" id="nombres" type="text">
+                                        </div>
+                                        <div class="fieldcontain required col s6">
+                                            <label for="paterno">Paterno
+                                                <span class="required-indicator">*</span>
+                                            </label>
+                                            <input name="paterno" value="${usuario.paterno}" required="" maxlength="10" id="paterno" type="text">
+                                        </div>
+                                        <div class="fieldcontain required col s6">
+                                            <label for="materno">Materno
+                                                <span class="required-indicator">*</span>
+                                            </label>
+                                            <input name="materno" value="${usuario.materno}" required="" maxlength="10" id="materno" type="text">
+                                        </div>
+                                        <div class="fieldcontain required col s6">
+                                            <label for="direccion">Direccion
+                                                <span class="required-indicator">*</span>
+                                            </label>
+                                            <input name="direccion" value="${usuario.direccion}" required="" maxlength="35" id="direccion" type="text">
+                                        </div>
+                                        <div class="fieldcontain required col s6">
+                                            <label for="correo">Correo
+                                                <span class="required-indicator">*</span>
+                                            </label>
+                                            <input name="correo" value="${usuario.correo}" required="" maxlength="30" id="correo" type="email">
+                                        </div>
+                                        <div class="fieldcontain col s6">
+                                            <label for="telefono">Telefono</label>
+                                            <input name="telefono" value="${usuario.telefono}" maxlength="15" id="telefono" type="text">
+                                        </div>
+                                        <div class="fieldcontain required col s6">
+                                            <label for="clave">Clave
+                                                <span class="required-indicator">*</span>
+                                            </label>
+                                            <input name="clave" value="${usuario.clave}" required="" maxlength="15" id="clave" type="text">
+                                        </div>
+                                        <div class="fieldcontain required col s6">
+                                            <label for="tipo">Tipo
+                                                <span class="required-indicator">*</span>
+                                            </label>
+                                            <select name="tipo" class="browser-default" required>
+                                                <option value="${usuario.tipo}">Ingeniero</option>
+                                                <option value="${usuario.tipo}">--</option>
+                                                <option value="2">Ingeniero</option>
+                                            </select>
+                                        </div>
+                                        <div class="col s12 m12">
+                                            <br>
+                                        </div>
+                                        <div class="col s12 m12">
+                                            <input class="save btn" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+                                        </div>
+                                    </g:form>
                                 </div>
-
                             </div>
                         </div>
                     </li>
