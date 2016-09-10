@@ -47,25 +47,137 @@ class BootStrap {
 
         if (!Empresa.list()) {
             new Empresa(
-                    rut: "98765432-1",
-                    nombre: "EmpresaTestUno",
+                    rut: "78.130.370-4",
+                    nombre: "C.R.T. Ltda.",
+                    razonSocial: "Corporación de Recursos en Telecomunicaciones Ltda.",
                     giro: "Salud",
                     gerente: "Grails",
                     tipo: "Sofware",
                     fechaCreacion: "2016-08-19 11:49:00.0",
                     telefono: "232323",
                     direccion: "Direccion 1",
-                    correo: "empresatestuno@test.com").save(failOnError: true)
+                    correo: "empresatestuno@test.com")
+                    .save(failOnError: true)
             new Empresa(
-                    rut: "96523180-3",
-                    nombre: "Opciones S.A.",
-                    giro: "Informática",
-                    gerente: "Homero Simpsons",
+                    rut: "85.244.300-6",
+                    nombre: "Caballero y Cía. Ltda.",
+                    razonSocial: "Caballero y Cía. Ltda.",
+                    giro: "Salud",
+                    gerente: "Grails",
                     tipo: "Sofware",
-                    fechaCreacion: "2016-08-01 00:00:00.0",
-                    telefono: "652484600",
-                    direccion: "Ejercito # 200",
-                    correo: "contacto@opciones.cl").save(failOnError: true)
+                    fechaCreacion: "2016-08-19 11:49:00.0",
+                    telefono: "232323",
+                    direccion: "Direccion 1",
+                    correo: "empresatestuno@test.com")
+                    .save(failOnError: true)
+            new Empresa(
+                    rut: "50.117.670-2",
+                    nombre: "Cabello e Hijo Ltda.",
+                    razonSocial: "Cabello e Hijo Ltda.",
+                    giro: "Salud",
+                    gerente: "Grails",
+                    tipo: "Sofware",
+                    fechaCreacion: "2016-08-19 11:49:00.0",
+                    telefono: "232323",
+                    direccion: "Direccion 1",
+                    correo: "empresatestuno@test.com")
+                    .save(failOnError: true)
+            new Empresa(
+                    rut: "79.625.580-3",
+                    nombre: "Cabrini Hermanos Ltda.",
+                    razonSocial: "Cabrini Hermanos Ltda.",
+                    giro: "Salud",
+                    gerente: "Grails",
+                    tipo: "Sofware",
+                    fechaCreacion: "2016-08-19 11:49:00.0",
+                    telefono: "232323",
+                    direccion: "Direccion 1",
+                    correo: "empresatestuno@test.com")
+                    .save(failOnError: true)
+            new Empresa(
+                    rut: "5.028.540-5",
+                    nombre: "Cáceres Barahona, Héctor Enrique",
+                    razonSocial: "Cáceres Barahona, Héctor Enrique",
+                    giro: "Salud",
+                    gerente: "Grails",
+                    tipo: "Sofware",
+                    fechaCreacion: "2016-08-19 11:49:00.0",
+                    telefono: "232323",
+                    direccion: "Direccion 1",
+                    correo: "empresatestuno@test.com")
+                    .save(failOnError: true)
+            new Empresa(
+                    rut: "96.654.210-1",
+                    nombre: "Cachemiras S.S.",
+                    razonSocial: "Tejidos Grissu S.A.",
+                    giro: "Salud",
+                    gerente: "Grails",
+                    tipo: "Sofware",
+                    fechaCreacion: "2016-08-19 11:49:00.0",
+                    telefono: "232323",
+                    direccion: "Direccion 1",
+                    correo: "empresatestuno@test.com")
+                    .save(failOnError: true)
+            new Empresa(
+                    rut: "96.716.020-2",
+                    nombre: "Cade Grayson Chile S.A.",
+                    razonSocial: "Cade Grayson Chile S.A.",
+                    giro: "Salud",
+                    gerente: "Grails",
+                    tipo: "Sofware",
+                    fechaCreacion: "2016-08-19 11:49:00.0",
+                    telefono: "232323",
+                    direccion: "Direccion 1",
+                    correo: "empresatestuno@test.com")
+                    .save(failOnError: true)
+            new Empresa(
+                    rut: "96.583.240-8",
+                    nombre: "Cadem S.A.",
+                    razonSocial: "Consultores Asociados de Marketing Cadem S.A.",
+                    giro: "Salud",
+                    gerente: "Grails",
+                    tipo: "Sofware",
+                    fechaCreacion: "2016-08-19 11:49:00.0",
+                    telefono: "232323",
+                    direccion: "Direccion 1",
+                    correo: "empresatestuno@test.com")
+                    .save(failOnError: true)
+            new Empresa(
+                    rut: "76.484.420-3",
+                    nombre: "Cadenas Toqui",
+                    razonSocial: "Comercial Toqui Ltda.",
+                    giro: "Salud",
+                    gerente: "Grails",
+                    tipo: "Sofware",
+                    fechaCreacion: "2016-08-19 11:49:00.0",
+                    telefono: "232323",
+                    direccion: "Direccion 1",
+                    correo: "empresatestuno@test.com")
+                    .save(failOnError: true)
+            new Empresa(
+                    rut: "96.973.190-8",
+                    nombre: "Cadetech S.A.",
+                    razonSocial: "Cadetech S.A.",
+                    giro: "Salud",
+                    gerente: "Grails",
+                    tipo: "Sofware",
+                    fechaCreacion: "2016-08-19 11:49:00.0",
+                    telefono: "232323",
+                    direccion: "Direccion 1",
+                    correo: "empresatestuno@test.com")
+                    .save(failOnError: true)
+            new Empresa(
+                    rut: "79.649.310-0",
+                    nombre: "C.M. (Chile) Ltda.",
+                    razonSocial: "Sistemas de Cielos Metálicos Ltda.",
+                    giro: "Salud",
+                    gerente: "Grails",
+                    tipo: "Sofware",
+                    fechaCreacion: "2016-08-19 11:49:00.0",
+                    telefono: "232323",
+                    direccion: "Direccion 1",
+                    correo: "empresatestuno@test.com")
+                    .save(failOnError: true)
         }
 
         if (!Proyecto.list()) {

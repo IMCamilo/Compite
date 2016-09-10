@@ -7,6 +7,7 @@ class Empresa {
 
     String rut
     String nombre
+    String razonSocial
     String giro
     String gerente
     String tipo
