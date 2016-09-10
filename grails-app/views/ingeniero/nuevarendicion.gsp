@@ -50,10 +50,13 @@
                         <div class="collapsible-header"><i class="material-icons">navigation</i>MOVILIZACION</div>
                         <div class="collapsible-body">
                             <div class="row">
-                                <g:form action="save" class="col s12">
+                                <g:form controller="rendicion" action="save" class="col s12">
+                                    <input type="hidden" name="proyecto" value="${id}"/>
+                                    <input type="hidden" name="usuario" value="${session.usuarioLogueado.id}"/>
+                                    <input type="hidden" name="tipo" value="Movilizacion"/>
                                     <div class="col s12">
                                         <div class="input-field col s6">
-                                            <select name="mItem" class="browser-default" required>
+                                            <select name="item" class="browser-default" required>
                                                 <option value="">Seleccione un Item</option>
                                                 <g:each in="${itemMovilizacion}">
                                                     <option value="${it.id}">${it.nombre}</option>
@@ -61,7 +64,7 @@
                                             </select>
                                         </div>
                                         <div class="input-field col s6">
-                                            <select name="mTransportes" class="browser-default" required>
+                                            <select name="transporte" class="browser-default" required>
                                                 <option value="">Seleccione un Móvil</option>
                                                 <g:each in="${transportes}">
                                                     <option value="${it.id}">${it.descripcion}</option>
@@ -70,54 +73,56 @@
                                         </div>
                                     </div>
                                     <div class="input-field col s6">
-                                        <input id="mPrecio" name="mPrecio" type="text" class="validate">
+                                        <input id="mPrecio" name="precio" type="text" class="validate">
                                         <label for="mPrecio">Precio</label>
                                     </div>
                                     <div class="input-field col s12">
-                                        <input id="mMotivo" name="mDesde" type="text" class="validate">
+                                        <input id="mMotivo" name="motivo" type="text" class="validate">
                                         <label for="mDesde">Motivo</label>
                                     </div>
                                     <div class="input-field col s6">
-                                        <input id="mDesde" name="mDesde" type="text" class="modal-trigger" href="#modal1">
+                                        <input id="mDesde" name="desde" type="text" class="modal-trigger" href="#modal1">
                                         <label for="mDesde">Lugar Desde</label>
                                     </div>
                                     <div class="input-field col s6">
-                                        <input id="mHasta" name="mHasta" type="text" class="validate" >
+                                        <input id="mHasta" name="hasta" type="text" class="validate" >
                                         <label for="mHasta">Lugar Hasta</label>
-
-                                        <div id="modal2" class="modal">
-                                            <div class="modal-content">
-                                                <h4>Seleccione punto de llegada</h4>
-                                                <p>Aqui va el mapa</p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Seleccionar</a>
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="input-field col s6">
-                                        <input id="mNombre" name="mNombre" type="text" class="validate">
+                                        <input id="mNombre" name="nombre" type="text" class="validate">
                                         <label for="mNombre">Nombre Rendición</label>
                                     </div>
                                     <div class="input-field col s6">
-                                        <input id="mBoletas" name="mBoletas" type="text" class="validate">
+                                        <input id="mBoletas" name="nBoleta" type="text" class="validate">
                                         <label for="mBoletas">Boletas</label>
                                     </div>
-                                    <div class="input-field col s6">
-                                        <input id="mRecorrido" name="mRecorrido" type="text" class="validate">
-                                        <label for="mRecorrido">Recorrido</label>
+                                    <div class="input-field col s4">
+                                        <input id="mKmInicial" name="kmInicial" type="text" class="validate">
+                                        <label for="mKmInicial">KM Inicial</label>
+                                    </div>
+                                    <div class="input-field col s4">
+                                        <input id="mKmFinal" name="kmFinal" type="text" class="validate">
+                                        <label for="mKmFinal">KM Final</label>
+                                    </div>
+                                    <div class="input-field col s4">
+                                        <input id="mRecorrido" name="distancia" type="text" class="validate">
+                                        <label for="mRecorrido">Distancia Recorrida</label>
                                     </div>
                                     <div class="input-field col s6">
-                                        <input id="mTiempo" name="mTiempo" type="text" class="validate">
+                                        <input id="mTiempo" name="tiempo" type="text" class="validate">
                                         <label for="mTiempo">Tiempo</label>
                                     </div>
                                     <div class="input-field col s6">
-                                        <input id="mTotal" name="mTotal" type="text" class="validate">
+                                        <input id="mTotal" name="total" type="text" class="validate">
                                         <label for="mTotal">Total</label>
                                     </div>
                                     <div class="input-field col s6">
-                                        <input name="mFecha" class="datepicker" type="text" id="mFecha">
+                                        <input name="fecha" class="datepicker" type="text" id="mFecha">
                                         <label for="mFecha">Fecha</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <input id="mDescripcion" name="descripcion" type="text" class="validate">
+                                        <label for="mDescripcion">Descripción</label>
                                     </div>
                                     <div class="col s12 m12">
                                         <div class="btn">

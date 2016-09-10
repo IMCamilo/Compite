@@ -24,12 +24,15 @@ class RendicionController {
     @Transactional
     def save(Rendicion rendicion) {
         if (rendicion == null) {
+            println "Rendicion es null, no se puede guardar"
             transactionStatus.setRollbackOnly()
             notFound()
             return
         }
 
         if (rendicion.hasErrors()) {
+            println "Rendicion tiene errores, no se puede guardar"
+            println "Esto es rendicion: "+rendicion
             transactionStatus.setRollbackOnly()
             respond rendicion.errors, view:'create'
             return

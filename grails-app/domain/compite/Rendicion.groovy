@@ -1,28 +1,21 @@
 package compite
 
-/**
- * Created by camilo on 16-08-16.
- */
 class Rendicion {
 
-    String tipo
-    String nombre
-    Date fechaCreacion = new Date()
-    String motivo
-    String desde
-    String hasta
-    Integer kmInicial
-    Integer kmFinal
-    Integer distancia
-    Integer tiempo
-    Integer total
-    String nBoleta
-    String descripcion
+    String tipo, nombre, motivo, desde, hasta, nBoleta, descripcion
+    Integer kmInicial, kmFinal, distancia, tiempo, total
+    Date fecha = new Date()
 
     static belongsTo = [proyecto:Proyecto, usuario:Usuario, item:Item]
 
     static constraints = {
-
+        desde nullable: true
+        hasta nullable: true
+        descripcion nullable: true
+        kmInicial nullable: true
+        kmFinal nullable: true
+        distancia nullable: true
+        tiempo nullable: true
     }
 
 }
