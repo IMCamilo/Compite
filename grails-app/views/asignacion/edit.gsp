@@ -11,7 +11,6 @@
             <ul>
                 <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
                 <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-                <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
             </ul>
         </div>
         <div id="edit-asignacion" class="content scaffold-edit" role="main">
@@ -29,7 +28,18 @@
             <g:form resource="${this.asignacion}" method="PUT">
                 <g:hiddenField name="version" value="${this.asignacion?.version}" />
                 <fieldset class="form">
-                    <f:all bean="asignacion"/>
+                    <div class="fieldcontain required">
+                        <label for="tipo">Proyecto<span class="required-indicator">*</span></label>
+                        <input name="proyecto" placeholder="Desplegable proyecto" value="${asignacion.proyectoId}" required="" type="text">
+                    </div>
+                    <div class="fieldcontain required">
+                        <label for="tipo">Usuario<span class="required-indicator">*</span></label>
+                        <input name="usuario" placeholder="Desplegable usuario" value="${asignacion.usuarioId}" required="" maxlength="13" type="text">
+                    </div>
+                    <div class="fieldcontain required">
+                        <label for="tipo">Detalle<span class="required-indicator">*</span></label>
+                        <textarea  name="detalle" required="" rows="4" cols="50">${asignacion.detalle}</textarea>
+                    </div>
                 </fieldset>
                 <fieldset class="buttons">
                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
