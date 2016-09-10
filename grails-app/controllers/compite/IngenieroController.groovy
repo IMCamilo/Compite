@@ -1,6 +1,7 @@
 package compite
 
 import grails.transaction.Transactional
+import grails.web.servlet.mvc.GrailsParameterMap
 
 import static org.springframework.http.HttpStatus.OK
 
@@ -81,9 +82,8 @@ class IngenieroController {
         [proyectosPrivados:proyectosPrivados, proyectosPublicos:proyectosPublicos]
     }
 
-    def nuevarendicion (Integer id) {
-        respond new Rendicion(params)
-        
+    def nuevarendicion (Integer id){
+
         println "id: "+id
         //al seleccionar un proyecto llegar a esta vista, la pantalla  entrega datos personalizados
         def itemsMovilizacion = Item.findAll("from Item as item where item.tipo='Movilizacion'")
@@ -107,9 +107,9 @@ class IngenieroController {
             listTransportes.add(mapTrans)
         }
 
-        [itemMovilizacion:listItemMov, transportes:listTransportes, id: id]
-
-
+        def rendicion = new Rendicion(params)
+        rendicion.properties = params
+        [itemMovilizacion:listItemMov, transportes:listTransportes, id: id, rendicion: rendicion]
     }
 
 
