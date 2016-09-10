@@ -158,7 +158,6 @@ class IngenieroController {
     }
 
     def update ={
-
         redirect(action: "perfil", params: [id: usuarioId])
     }
 }

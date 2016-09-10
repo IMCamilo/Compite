@@ -44,13 +44,13 @@
                                             </g:eachError>
                                         </ul>
                                     </g:hasErrors>
-                                    <g:form action="update" method="PUT">
+                                    <g:form resource="${this.usuario}" method="PUT">
                                         <g:hiddenField name="version" value="${this.usuario?.version}" />
                                         <div class="fieldcontain required col s6">
                                             <label for="rut">Rut
                                                 <span class="required-indicator">*</span>
                                             </label>
-                                            <input name="rut" value="${usuario.rut}" maxlength="13" id="rut">
+                                            <input name="rut" value="${usuario.rut}" maxlength="13" id="rut" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Rut no se puede modificar" disable/>
                                         </div>
                                         <div class="fieldcontain required col s6">
                                             <label for="nombres">Nombres
