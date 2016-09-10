@@ -52,6 +52,7 @@ class UsuarioController {
 
     @Transactional
     def update(Usuario usuario) {
+        println "Estoy actualizando el usuario"
         if (usuario == null) {
             transactionStatus.setRollbackOnly()
             notFound()
@@ -64,14 +65,20 @@ class UsuarioController {
             return
         }
 
+        println "Tipo de usuario: "+usuario.tipo
         usuario.save flush:true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'usuario.label', default: 'Usuario'), usuario.id])
-                redirect usuario
+        /*Si el tipo de usuario es Ingeniero, que me redireccione al perfil del Ingeniero*/
+        if (usuario.tipo == 2) {
+            redirect(controller: "ingeniero", action: "perfil", params: [id: usuario.id])
+            flash.message = "Perfil Actualizado Correctamente"
+        } else {
+            request.withFormat {
+                form multipartForm {
+                    flash.message = message(code: 'default.updated.message', args: [message(code: 'usuario.label', default: 'Usuario'), usuario.id])
+                    redirect usuario
+                }
+                '*'{ respond usuario, [status: OK] }
             }
-            '*'{ respond usuario, [status: OK] }
         }
     }
 
