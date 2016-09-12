@@ -39,7 +39,7 @@
                     </g:each>
                 </ul>
                 <ul class="right hide-on-med-and-down">
-                    <li class="tab col s4"><a class="active" href="${createLink(controller:'administrador', action:'index')}">INICIO</a></li>
+                    <li class="tab col s4"><a class="active" href="${createLink(controller:'administrador', action:'index')}">PROYECTOS</a></li>
                     <li class="tab col s4"><a href="${createLink(controller:'administrador', action:'administrar')}">ADMINISTRAR</a></li>
                     <li class="tab col s4"><a href="${createLink(controller:'administrador', action:'reportes')}">REPORTES</a></li>
                     <li><a href="${createLink(controller:'login', action:'login')}">Cerrar Sesión</a></li>
