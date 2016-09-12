@@ -1,4 +1,5 @@
 <meta name="layout" content="auditoria/auditoria.main"/>
+
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
@@ -13,29 +14,31 @@
     <div class="row">
     <g:form class="col s12" action="save">
         <div class="input-field col s4">
-            <select name="usuario" value="" class="browser-default" required>
+            <select name="usuario" value=""  required="" required="" >
                 <option value="">Seleccione Usuario</option>
-                <g:each var="usuario" in="${compite.Usuario.list()}">
+                <g:each var="usuario" in="${compite.Usuario.executeQuery("from Usuario where tipo = 3")}">
                     <option value="${usuario.id}">${usuario}</option>
                 </g:each>
             </select>
         </div>
         <div class="input-field col s4">
-            <select name="proyecto" value="" class="browser-default" required>
+            <select name="proyecto" value=""  required="" required="" >
                 <option value="">Seleccione Proyecto</option>
-                <g:each var="proyecto" in="${compite.Proyecto.list()}">
+                <g:each var="proyecto" in="${compite.Proyecto.executeQuery("from Proyecto where tipo = 'PUBLICO' ")}">
                     <option value="${proyecto.id}">${proyecto.nombre}</option>
                 </g:each>
             </select>
         </div>
         <div class="input-field col s4">
-            <select name="estado" value="" required="" required="">
-                <option value="" disabled selected>Seleccione Estado</option>
-                <option value="1">Estado 1</option>
-                <option value="2">Estado 2</option>
+            <select name="estado" value="" required="" required="" >
+                <option value="" >Seleccione Estado</option>
+                <option value="1">Aprobado</option>
+                <option value="2">Rechazado</option>
+                <option value="3">En Cola</option>
             </select>
             <label>Estado</label>
         </div>
+
         <div class="input-field col s12">
         <textarea name="descripcion" required="" id="textarea1" class="materialize-textarea"></textarea>
         <label for="textarea1">Descripción</label>
