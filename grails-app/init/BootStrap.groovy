@@ -76,8 +76,8 @@ class BootStrap {
 
         if (!Asignacion.list()) {
             new Asignacion(detalle: "Asignacion 1, cargada automaticamente", fecha: "2016-08-19 11:49:00.0", usuario: 1, proyecto: 1, creadoPor:"admin").save(failOnError: true)
-            new Asignacion(detalle: "Asignación para Ingeniero 1, proyecto 2", fecha: "2016-08-10 00:0:00.0", usuario: 3, proyecto: 2, creadoPor:"admin").save(failOnError: true)
-            new Asignacion(detalle: "Asignación para Ingeniero 1, proyecto 3", fecha: "2016-08-10 00:0:00.0", usuario: 3, proyecto: 3, creadoPor:"admin").save(failOnError: true)
+            new Asignacion(detalle: "Asignación para Ingeniero 1, proyecto 2", fecha: "2016-08-10 00:0:00.0", usuario: 4, proyecto: 2, creadoPor:"admin").save(failOnError: true)
+            new Asignacion(detalle: "Asignación para Ingeniero 1, proyecto 3", fecha: "2016-08-10 00:0:00.0", usuario: 4, proyecto: 3, creadoPor:"admin").save(failOnError: true)
         }
 
     }

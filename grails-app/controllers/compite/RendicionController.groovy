@@ -41,13 +41,13 @@ class RendicionController {
         rendicion.save flush:true
         redirect(controller: "ingeniero", action: "rendiciones")
 
-        /*request.withFormat {
+        request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'rendicion.label', default: 'Rendicion'), rendicion.id])
                 redirect rendicion
             }
             '*' { respond rendicion, [status: CREATED] }
-        }*/
+        }
     }
 
     def edit(Rendicion rendicion) {

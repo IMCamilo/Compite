@@ -3,6 +3,8 @@ package compite
 import grails.transaction.Transactional
 import grails.web.servlet.mvc.GrailsParameterMap
 
+import static org.springframework.http.HttpStatus.CREATED
+import static org.springframework.http.HttpStatus.NOT_FOUND
 import static org.springframework.http.HttpStatus.OK
 
 @Transactional(readOnly = true)
@@ -19,20 +21,6 @@ class IngenieroController {
         //def gg = Asignacion.findAll("from Asignacion as asig where asig.detalle=?", ['asignacion 1, cargada automaticamente'])
         def asignaciones = Asignacion.findAll("from Asignacion as asig where asig.usuario="+usuarioId)
 
-       /* println "id : "+ asignaciones.id[0]
-        println "version : "+ asignaciones.version[0]
-        println "detalle : "+ asignaciones.detalle[0]
-        println "fecha : "+ asignaciones.fecha[0]
-        println "proyecto : "+ asignaciones.proyectoId[0]
-        println "usuario : "+ asignaciones.usuarioId[0]
-
-        println "id : "+ asignaciones.id[1]
-        println "version : "+ asignaciones.version[1]
-        println "detalle : "+ asignaciones.detalle[1]
-        println "fecha : "+ asignaciones.fecha[1]
-        println "proyecto : "+ asignaciones.proyectoId[1]
-        println "usuario : "+ asignaciones.usuarioId[1]*/
-
         //viene nada, uno o mas en una lista de asignaciones
         println "asignaciones:"+asignaciones.proyectoId
 
@@ -43,17 +31,7 @@ class IngenieroController {
         //recorrer la lista de proyectos, en gsp tal como esta abajo, en para separar publicos de privados, hacer esto 2 veces
         //no demora nada, así que cumple con el objetivo.
         //si nos pusieramos pulcros usariamos un join.
-        /*
-        println "proyectos : "+proyectos
-        println "#"+proyectos.id
-        println "#"+proyectos.version
-        println "#"+proyectos.codigo
-        println "#"+proyectos.empresaId
-        println "#"+proyectos.estado
-        println "#"+proyectos.fechaCreacion
-        println "#"+proyectos.fechaFin
-        println "#"+proyectos.nombre
-        */
+
         def proyectosPrivados = []
         def proyectosPublicos = []
 
@@ -128,23 +106,33 @@ class IngenieroController {
         //lista rendiciones
     }
 
-    def save() {
-
-        mItem = parameters.mItem
-
-        /*if (rendicion == null) {
+    @Transactional
+    def guardar (Rendicion rendicion) {
+        if (rendicion == null) {
+            println "Rendicion es null, no se puede guardar"
             transactionStatus.setRollbackOnly()
             notFound()
             return
         }
 
         if (rendicion.hasErrors()) {
+            println "Rendicion tiene errores, no se puede guardar"
+
             transactionStatus.setRollbackOnly()
-            respond rendicion.errors, view:'create'
+            respond rendicion.errors, view:'nuevarendicion'
             return
         }
 
-        rendicion.save flush:true*/
+        rendicion.save flush:true
+        redirect(controller: "ingeniero", action: "rendiciones")
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.created.message', args: [message(code: 'rendicion.label', default: 'Rendicion'), rendicion.id])
+                redirect rendicion
+            }
+            '*' { respond ingeniero, [status: CREATED] }
+        }
     }
 
     //perfil del ingniero
@@ -163,5 +151,14 @@ class IngenieroController {
 
     def update ={
         redirect(action: "perfil", params: [id: usuarioId])
+    }
+    protected void notFound() {
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.not.found.message', args: [message(code: 'rendicion.label', default: 'Rendicion'), params.id])
+                redirect action: "index", method: "GET"
+            }
+            '*'{ render status: NOT_FOUND }
+        }
     }
 }

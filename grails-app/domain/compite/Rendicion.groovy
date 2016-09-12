@@ -32,6 +32,7 @@ class Rendicion {
         tiempo nullable: true
         estado nullable: true
         creadoPor nullable: true, blank: true
+
     }
 
 }

@@ -50,7 +50,14 @@
                         <div class="collapsible-header"><i class="material-icons">navigation</i>MOVILIZACION</div>
                         <div class="collapsible-body">
                             <div class="row">
-                                <g:form controller="rendicion" action="save" class="col s12">
+                                <g:hasErrors bean="${this.rendicion}">
+                                    <ul class="errors" role="alert">
+                                        <g:eachError bean="${this.rendicion}" var="error">
+                                            <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
+                                        </g:eachError>
+                                    </ul>
+                                </g:hasErrors>
+                                <g:form action="guardar" class="col s12">
                                     <input type="hidden" name="proyecto" value="${id}"/>
                                     <input type="hidden" name="usuario" value="${session.usuarioLogueado.id}"/>
                                     <input type="hidden" name="tipo" value="Movilizacion"/>
