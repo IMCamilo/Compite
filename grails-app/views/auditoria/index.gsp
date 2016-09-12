@@ -1,4 +1,4 @@
-<meta name="layout" content="auditoria/auditoria.main"/>
+<meta name="layout" content="base"/>
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
