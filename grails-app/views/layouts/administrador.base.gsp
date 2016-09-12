@@ -25,11 +25,21 @@
             </g:each>
         </ul>
         <ul class="right hide-on-med-and-down">
-            <li><a href="/${controllerName}">Inicio</a></li>
-            <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Controladores Disponibles<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a href="${createLink(controller:'transporte', action:'index')}">Transporte</a></li>
+            <li><a href="${createLink(controller:'empresa', action:'index')}">Empresa</a></li>
+            <li><a href="${createLink(controller:'asignacion', action:'index')}">Asignacion</a></li>
+            <li><a href="${createLink(controller:'proyecto', action:'index')}">Proyecto</a></li>
+            <li><a href="${createLink(controller:'auditoria', action:'index')}">Auditoria</a></li>
+            <li><a href="${createLink(controller:'usuario', action:'index')}">Usuarios</a></li>
+            <li><a href="${createLink(controller:'item', action:'index')}">Item</a></li>
+            <li><a href="${createLink(controller:'rendicion', action:'index')}">Rendicion</a></li>
+            <li><a href="${createLink(controller:'Egreso', action:'index')}">Egreso</a></li>
+            <li><a href="${createLink(controller:'administrador', action:'reportes')}">Reportes</a></li>
+            <li><a class="dropdown-button" href="#!" data-activates="dropdown1">(Controllers)<i class="material-icons right">arrow_drop_down</i></a></li>
             <li><a href="${createLink(controller:'login', action:'logout')}">Carrar Sesión</a></li>
         </ul>
 
+        <!-- Para moviles -->
         <ul id="dropdown2" class="dropdown-content">
             <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.name } }">
                 <li><g:link controller="${c.logicalPropertyName}">${c.name}</g:link></li>
