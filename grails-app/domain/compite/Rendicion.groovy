@@ -20,6 +20,8 @@ class Rendicion {
 
     static belongsTo = [proyecto:Proyecto, usuario:Usuario, item:Item]
 
+    static hasMany = [detalleAudRen:DetalleAudRen]
+
     static constraints = {
         desde nullable: true
         hasta nullable: true

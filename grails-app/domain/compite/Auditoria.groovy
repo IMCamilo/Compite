@@ -12,9 +12,14 @@ class Auditoria {
 
     static belongsTo = [proyecto:Proyecto, usuario:Usuario]
 
+    static hasMany = [detalleAudRen:DetalleAudRen]
+
     static constraints = {
-        descripcion nullable: false, blanzk: false, size: 1..35
+        proyecto nullable: true, blank: true
+        usuario nullable: true, blank: true
         creadoPor nullable: true, blank: true
+        descripcion nullable: true, blanzk: true, size: 1..35
+        estado nullable: true, blank: true
     }
 
 }
