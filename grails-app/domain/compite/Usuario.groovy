@@ -20,7 +20,7 @@ class Usuario {
 
     static constraints = {
         rut nullable: false, unique: true, blank: false, size: 1..13
-        nombres nullable: false, blank: false, size: 1..15
+        nombres nullable: false, blank: false, size: 1..10
         paterno nullable: false, blank: false, size: 1..10
         materno nullable: false, blank: false, size: 1..10
         direccion nullable: false, blank: false, size: 1..35
