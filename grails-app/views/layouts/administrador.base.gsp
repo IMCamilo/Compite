@@ -28,15 +28,15 @@
             <li><a href="${createLink(controller:'proyecto', action:'index')}">Proyectos</a></li>
             <li><a href="${createLink(controller:'transporte', action:'index')}">Transporte</a></li>
             <li><a href="${createLink(controller:'empresa', action:'index')}">Empresa</a></li>
-            <li><a href="${createLink(controller:'asignacion', action:'index')}">Asignacion</a></li>
-            <li><a href="${createLink(controller:'auditoria', action:'index')}">Auditoria</a></li>
+            <li><a href="${createLink(controller:'asignacion', action:'index')}">Asignación</a></li>
+            <li><a href="${createLink(controller:'auditoria', action:'index')}">Auditoría</a></li>
             <li><a href="${createLink(controller:'usuario', action:'index')}">Usuarios</a></li>
             <li><a href="${createLink(controller:'item', action:'index')}">Item</a></li>
-            <li><a href="${createLink(controller:'rendicion', action:'index')}">Rendicion</a></li>
+            <li><a href="${createLink(controller:'rendicion', action:'index')}">Rendición</a></li>
             <li><a href="${createLink(controller:'Egreso', action:'index')}">Egreso</a></li>
             <li><a href="${createLink(controller:'administrador', action:'reportes')}">Reportes</a></li>
             <!-- <li><a class="dropdown-button" href="#!" data-activates="dropdown1">(Controllers)<i class="material-icons right">arrow_drop_down</i></a></li> -->
-            <li><a href="${createLink(controller:'login', action:'logout')}">Carrar Sesión</a></li>
+            <li><a href="${createLink(controller:'login', action:'logout')}">Cerrar Sesión</a></li>
         </ul>
 
         <!-- Para moviles -->
@@ -49,15 +49,15 @@
             <li><a href="${createLink(controller:'proyecto', action:'index')}">Proyectos</a></li>
             <li><a href="${createLink(controller:'transporte', action:'index')}">Transporte</a></li>
             <li><a href="${createLink(controller:'empresa', action:'index')}">Empresa</a></li>
-            <li><a href="${createLink(controller:'asignacion', action:'index')}">Asignacion</a></li>
-            <li><a href="${createLink(controller:'auditoria', action:'index')}">Auditoria</a></li>
+            <li><a href="${createLink(controller:'asignacion', action:'index')}">Asignación</a></li>
+            <li><a href="${createLink(controller:'auditoria', action:'index')}">Auditoría</a></li>
             <li><a href="${createLink(controller:'usuario', action:'index')}">Usuarios</a></li>
             <li><a href="${createLink(controller:'item', action:'index')}">Item</a></li>
-            <li><a href="${createLink(controller:'rendicion', action:'index')}">Rendicion</a></li>
+            <li><a href="${createLink(controller:'rendicion', action:'index')}">Rendición</a></li>
             <li><a href="${createLink(controller:'Egreso', action:'index')}">Egreso</a></li>
             <li><a href="${createLink(controller:'administrador', action:'reportes')}">Reportes</a></li>
             <!-- <li><a class="dropdown-button" href="#!" data-activates="dropdown1">(Controllers)<i class="material-icons right">arrow_drop_down</i></a></li> -->
-            <li><a href="${createLink(controller:'login', action:'logout')}">Carrar Sesión</a></li>
+            <li><a href="${createLink(controller:'login', action:'logout')}">Cerrar Sesión</a></li>
         </ul>
         <a href="" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
