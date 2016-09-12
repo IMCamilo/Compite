@@ -25,10 +25,10 @@
             </g:each>
         </ul>
         <ul class="right hide-on-med-and-down">
+            <li><a href="${createLink(controller:'proyecto', action:'index')}">Proyectos</a></li>
             <li><a href="${createLink(controller:'transporte', action:'index')}">Transporte</a></li>
             <li><a href="${createLink(controller:'empresa', action:'index')}">Empresa</a></li>
             <li><a href="${createLink(controller:'asignacion', action:'index')}">Asignacion</a></li>
-            <li><a href="${createLink(controller:'proyecto', action:'index')}">Proyecto</a></li>
             <li><a href="${createLink(controller:'auditoria', action:'index')}">Auditoria</a></li>
             <li><a href="${createLink(controller:'usuario', action:'index')}">Usuarios</a></li>
             <li><a href="${createLink(controller:'item', action:'index')}">Item</a></li>
