@@ -53,7 +53,9 @@
         <a href="" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
 </nav>
-    <g:layoutBody/>
+    <div class="container">
+        <g:layoutBody/>
+    </div>
 <footer class="page-footer teal">
     <div class="container">
         <div class="row">
