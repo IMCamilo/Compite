@@ -31,7 +31,7 @@ class AuditoriaController {
 
         if (auditoria.hasErrors()) {
             transactionStatus.setRollbackOnly()
-            respond auditoria.errors, view:'create'
+            respond auditoria.errors, view:'index'
             return
         }
 

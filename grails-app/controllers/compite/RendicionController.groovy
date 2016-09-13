@@ -34,7 +34,7 @@ class RendicionController {
             println "Rendicion tiene errores, no se puede guardar"
             println "Esto es rendicion: "+rendicion
             transactionStatus.setRollbackOnly()
-            respond rendicion.errors, view:'create'
+            respond rendicion.errors, view:'index'
             return
         }
 

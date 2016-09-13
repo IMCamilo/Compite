@@ -31,7 +31,7 @@ class TransporteController {
 
         if (transporte.hasErrors()) {
             transactionStatus.setRollbackOnly()
-            respond transporte.errors, view:'create'
+            respond transporte.errors, view:'index'
             return
         }
 

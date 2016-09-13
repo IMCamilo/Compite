@@ -31,7 +31,7 @@ class ProyectoController {
 
         if (proyecto.hasErrors()) {
             transactionStatus.setRollbackOnly()
-            respond proyecto.errors, view:'create'
+            respond proyecto.errors, view:'index'
             return
         }
 

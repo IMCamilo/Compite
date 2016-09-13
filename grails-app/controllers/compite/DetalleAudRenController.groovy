@@ -31,7 +31,7 @@ class DetalleAudRenController {
 
         if (detalleAudRen.hasErrors()) {
             transactionStatus.setRollbackOnly()
-            respond detalleAudRen.errors, view:'create'
+            respond detalleAudRen.errors, view:'index'
             return
         }
 

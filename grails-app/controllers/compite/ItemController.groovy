@@ -31,7 +31,7 @@ class ItemController {
 
         if (item.hasErrors()) {
             transactionStatus.setRollbackOnly()
-            respond item.errors, view:'create'
+            respond item.errors, view:'index'
             return
         }
 

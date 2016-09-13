@@ -9,8 +9,9 @@ class AsignacionController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
+        def userList = Usuario.findAll()
         params.max = Math.min(max ?: 10, 100)
-        respond Asignacion.list(params), model:[asignacionCount: Asignacion.count()]
+        respond Asignacion.list(params), model:[asignacionCount: Asignacion.count(), usuarios:userList]
     }
 
     def show(Asignacion asignacion) {
@@ -23,6 +24,15 @@ class AsignacionController {
 
     @Transactional
     def save(Asignacion asignacion) {
+        //estoy haciendo esto a mano, hasta encontrar un plugin o mejorar el uso de typeahead en grails.
+        //lo cual parece esta en bastante desarrollado
+        String[] rutObtenido = ((String) params.nombreUsuario).split(" , ");
+        println "rutObtenido: "+rutObtenido
+        println "rut unico: -${rutObtenido[1]}-"
+        def u = Usuario.findByRut(rutObtenido[1])
+        params.usuario = u.id
+        println "id de usuario : "+params.usuario
+
         if (asignacion == null) {
             transactionStatus.setRollbackOnly()
             notFound()
@@ -31,7 +41,7 @@ class AsignacionController {
 
         if (asignacion.hasErrors()) {
             transactionStatus.setRollbackOnly()
-            respond asignacion.errors, view:'create'
+            respond asignacion.errors, view:'index'
             return
         }
 

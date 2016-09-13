@@ -31,7 +31,7 @@ class EmpresaController {
 
         if (empresa.hasErrors()) {
             transactionStatus.setRollbackOnly()
-            respond empresa.errors, view:'create'
+            respond empresa.errors, view:'index'
             return
         }
 

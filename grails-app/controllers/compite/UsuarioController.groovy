@@ -32,7 +32,7 @@ class UsuarioController {
 
         if (usuario.hasErrors()) {
             transactionStatus.setRollbackOnly()
-            respond usuario.errors, view:'create'
+            respond usuario.errors, view:'index'
             return
         }
 

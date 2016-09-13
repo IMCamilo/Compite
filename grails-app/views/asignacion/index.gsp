@@ -32,19 +32,13 @@
                 </g:hasErrors>
                 <g:form action="save">
                     <fieldset class="form">
-                        <div class="example" >
-                        </div>
-                        <div class="fieldcontain required" id="usuarioinputdiv">
-                            <label for="tipo">Usuario Autocompletado<span class="required-indicator">*</span></label>
-                            <input class="typeahead" type="text" placeholder="Busca un usuario">
-                        </div>
                         <div class="fieldcontain required">
                             <label for="tipo">Proyecto<span class="required-indicator">*</span></label>
                             <input name="proyecto" placeholder="Desplegable proyecto" value="" required="" type="text">
                         </div>
-                        <div class="fieldcontain required">
-                            <label for="tipo">Usuario<span class="required-indicator">*</span></label>
-                            <input name="usuario" placeholder="Desplegable usuario" value="" required="" maxlength="13" type="text">
+                        <div class="fieldcontain required" id="usuarioinputdiv">
+                            <label for="tipo">Usuario Autocompletado<span class="required-indicator">*</span></label>
+                                <input class="typeahead" name="nombreUsuario" type="text" placeholder="Busca un usuario">
                         </div>
                         <div class="fieldcontain required">
                             <label for="tipo">Detalle<span class="required-indicator">*</span></label>
@@ -85,15 +79,10 @@
                         cb(matches);
                     };
                 };
-                var usuarios = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
-                    'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
-                    'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
-                    'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
-                    'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
-                    'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
-                    'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
-                    'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
-                    'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming', 'Camilo Jorquera Ampuero | 18653290-2'
+                var usuarios = [
+                    <g:each in="${usuarios}">
+                        '${it.nombres} ${it.paterno} , ${it.rut}',
+                    </g:each>
                 ];
                 $('#usuarioinputdiv .typeahead').typeahead({
                     hint: true,

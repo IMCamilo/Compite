@@ -31,7 +31,7 @@ class EgresoController {
 
         if (egreso.hasErrors()) {
             transactionStatus.setRollbackOnly()
-            respond egreso.errors, view:'create'
+            respond egreso.errors, view:'index'
             return
         }
 
