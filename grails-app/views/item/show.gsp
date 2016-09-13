@@ -11,6 +11,7 @@
             <ul>
                 <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
                 <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
+                <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
             </ul>
         </div>
         <div id="show-item" class="content scaffold-show" role="main">
@@ -18,18 +19,7 @@
             <g:if test="${flash.message}">
             <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <label for="tipo">Tipo:
-                ${item.tipo}
-            </label></br>
-            <label for="tipo">Descripcion
-                ${item.descripcion}
-            </label></br>
-            <label for="tipo">Valor
-                ${item.valor}
-            </label></br>
-            <label for="tipo">Nombre
-                ${item.nombre}
-            </label></br>
+            <f:display bean="item" />
             <g:form resource="${this.item}" method="DELETE">
                 <fieldset class="buttons">
                     <g:link class="edit" action="edit" resource="${this.item}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
