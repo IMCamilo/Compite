@@ -21,21 +21,30 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="${createLink(controller:'proyecto', action:'index')}">Proyectos</a>
-                <a class="navbar-brand" href="${createLink(controller:'transporte', action:'index')}">Transporte</a>
-                <a class="navbar-brand" href="${createLink(controller:'empresa', action:'index')}">Empresa</a>
-                <a class="navbar-brand" href="${createLink(controller:'asignacion', action:'index')}">Asignación</a>
-                <a class="navbar-brand" href="${createLink(controller:'auditoria', action:'index')}">Auditoría</a>
-                <a class="navbar-brand" href="${createLink(controller:'usuario', action:'index')}">Usuarios</a>
-                <a class="navbar-brand" href="${createLink(controller:'item', action:'index')}">Item</a>
-                <a class="navbar-brand" href="${createLink(controller:'rendicion', action:'index')}">Rendición</a>
-                <a class="navbar-brand" href="${createLink(controller:'Egreso', action:'index')}">Egreso</a>
-                <a class="navbar-brand" href="${createLink(controller:'administrador', action:'reportes')}">Reportes</a>
-                <!-- <li><a class="dropdown-button" href="#!" data-activates="dropdown1">(Controllers)<i class="material-icons right">arrow_drop_down</i></a></li> -->
-                <a class="navbar-brand" href="${createLink(controller:'login', action:'logout')}">Cerrar Sesión</a>
             </div>
             <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0.8px;">
+                <ul class="nav navbar-nav navbar-left">
+                    <li>
+                        <a href="${createLink(controller:'proyecto', action:'index')}">
+                            <i class="fa grails-icon">
+                                <asset:image src="grails-cupsonly-logo-white.svg"/>
+                            </i> COMPITE
+                        </a>
+                    </li>
+                </ul>
+
                 <ul class="nav navbar-nav navbar-right">
+                    <li><a class="navbar-brand" href="${createLink(controller:'proyecto', action:'index')}">Proyectos</a></li>
+                    <li><a class="navbar-brand" href="${createLink(controller:'transporte', action:'index')}">Transporte</a></li>
+                    <li><a class="navbar-brand" href="${createLink(controller:'empresa', action:'index')}">Empresa</a></li>
+                    <li><a class="navbar-brand" href="${createLink(controller:'asignacion', action:'index')}">Asignación</a></li>
+                    <li><a class="navbar-brand" href="${createLink(controller:'auditoria', action:'index')}">Auditoría</a></li>
+                    <li><a class="navbar-brand" href="${createLink(controller:'usuario', action:'index')}">Usuarios</a></li>
+                    <li><a class="navbar-brand" href="${createLink(controller:'item', action:'index')}">Item</a></li>
+                    <li><a class="navbar-brand" href="${createLink(controller:'rendicion', action:'index')}">Rendición</a></li>
+                    <li><a class="navbar-brand" href="${createLink(controller:'Egreso', action:'index')}">Egreso</a></li>
+                    <li><a class="navbar-brand" href="${createLink(controller:'administrador', action:'reportes')}">Reportes</a></li>
+                    <li><a class="navbar-brand" href="${createLink(controller:'login', action:'logout')}">Cerrar Sesión</a></li>
                     <g:pageProperty name="page.nav" />
                 </ul>
             </div>
