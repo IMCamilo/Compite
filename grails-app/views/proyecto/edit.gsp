@@ -1,20 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta name="layout" content="main" />
+        <meta name="layout" content="administrador.base" />
         <g:set var="entityName" value="${message(code: 'proyecto.label', default: 'Proyecto')}" />
         <title><g:message code="default.edit.label" args="[entityName]" /></title>
     </head>
     <body>
-        <a href="#edit-proyecto" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-        <div class="nav" role="navigation">
-            <ul>
-                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-            </ul>
-        </div>
         <div id="edit-proyecto" class="content scaffold-edit" role="main">
-            <h1><g:message code="default.edit.label" args="[entityName]" /></h1>
+            <h3><g:message code="default.edit.label" args="[entityName]" /></h3>
             <g:if test="${flash.message}">
             <div class="message" role="status">${flash.message}</div>
             </g:if>
@@ -25,114 +18,88 @@
                 </g:eachError>
             </ul>
             </g:hasErrors>
-            <g:form resource="${this.proyecto}" method="PUT">
+            <div class="row">
+                <g:form resource="${this.proyecto}" method="PUT">
                 <g:hiddenField name="version" value="${this.proyecto?.version}" />
-                <fieldset class="form">
-                    <div class="fieldcontain">
-                        <label class="" for="presupuesto">Presupuesto</label>
-                        <input name="presupuesto" value="${proyecto.presupuesto}" id="presupuesto" type="number">
+                <g:hiddenField name="creadoPor" value="${this.proyecto?.creadoPor}" />
+                    <div class="col s12">
+                        <div class="input-field col s6">
+                            <label class="" for="presupuesto">Presupuesto</label>
+                            <input name="presupuesto" id="presupuesto" value="${proyecto.presupuesto}" type="text" class="validate" required="" onKeyPress="return soloNumeros(event)">
+                        </div>
+                        <div class="input-field col s6">
+                            <label for="codigo">Codigo
+                                <span class="required-indicator">*</span>
+                            </label>
+                            <input name="codigo" value="${proyecto.codigo}" required="" id="codigo" type="text" class="validate">
+                        </div>
                     </div>
-                    <div class="fieldcontain required">
-                        <label for="codigo">Codigo
-                            <span class="required-indicator">*</span>
-                        </label>
-                        <input name="codigo" value="${proyecto.codigo}" required="" id="codigo" type="text">
+                    <div class="col s12">
+                        <div class="input-field col s6">
+                            <select name="estado" required="" id="estado" class="validate">
+                                <g:if test="${proyecto.estado == 'ACTIVO'}">
+                                    <option value="${proyecto.estado}" selected>Activo</option>
+                                    <option value="${proyecto.estado}">--</option>
+                                </g:if>
+                                <g:elseif test="${proyecto.estado == 'INACTIVO'}">
+                                    <option value="${proyecto.estado}" selected>Inactivo</option>
+                                    <option value="${proyecto.estado}">--</option>
+                                </g:elseif>
+                                <option value="ACTIVO">Activo</option>
+                                <option value="INACTIVO">Inactivo</option>
+                            </select>
+                        </div>
+                        <div class="input-field col s6">
+                            <select name="tipo" required="" id="tipo" class="validate">
+                                <g:if test="${proyecto.tipo == 'PUBLICO'}">
+                                    <option value="${proyecto.tipo}" selected>Publico</option>
+                                    <option value="${proyecto.tipo}">--</option>
+                                </g:if>
+                                <g:elseif test="${proyecto.tipo == 'PRIVADO'}">
+                                    <option value="${proyecto.tipo}" selected>Privado</option>
+                                    <option value="${proyecto.tipo}">--</option>
+                                </g:elseif>
+                                <option value="PUBLICO">Publico</option>
+                                <option value="PRIVADO">Privado</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="fieldcontain required">
-                        <label for="estado">Estado
-                            <span class="required-indicator">*</span>
-                        </label>
-                        <select name="estado" value="${proyecto.estado}" required="" id="estado">
-                            <option value="" disabled>Seleccione Estado</option>
-                            <option value="ACTIVO">Activo</option>
-                            <option value="INACTIVO">Inactivo</option>
-                        </select>
+                    <div class="col s12">
+                        <div class="input-field col s6">
+                            <select name="empresa" required="" id="empresa">
+                                <option value="${proyecto.empresaId}" disabled selected>${nombreEmpresa}</option>
+                                <option value="${proyecto.empresaId}">--</option>
+                                <g:each in="${empresas}">
+                                    <option value="${it.id}">${it.nombre}</option>
+                                </g:each>
+                            </select>
+                        </div>
+                        <div class="input-field col s6">
+                            <label for="nombre">Nombre
+                                <span class="required-indicator">*</span>
+                            </label>
+                            <input name="nombre" value="${proyecto.nombre}" required="" id="nombre" type="text" class="validate">
+                        </div>
                     </div>
-                    <div class="fieldcontain required">
-                        <label for="tipo">Tipo
-                            <span class="required-indicator">*</span>
-                        </label>
-                        <select name="tipo" value="${proyecto.tipo}" required="" id="tipo">
-                            <option value="" disabled>Seleccione Tipo</option>
-                            <option value="PUBLICO">Publico</option>
-                            <option value="PRIVADO">Privado</option>
-                        </select>
+                    <div class="col s12">
+                        <div class="input-field col s6">
+                            <input id="fechaCreacion" value="${proyecto.fechaCreacion}" name="fechaCreacion" type="date" class="datepicker" required/>
+                            <!--<label for="fechaCreacion">Fecha Creación</label>-->
+                        </div>
+                        <div class="input-field col s6">
+                            <input type="date" value="${proyecto.fechaFin}" name="fechaFin" class="datepicker" id="fechaFin">
+                            <!--<label for="fechaFin">Fecha Fin</label>-->
+                        </div>
                     </div>
-                    <div class="fieldcontain required">
-                        <label for="estado">Empresa
-                            <span class="required-indicator">*</span>
-                        </label>
-                        <input name="empresa" value="${proyecto.empresaId}" placeholder="desplegable empresa acá" required="" id="estado" type="text">
+                    <div class="col s12 m12">
+                        <input class="save btn" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
                     </div>
-                    <div class="fieldcontain required">
-                        <label for="nombre">Nombre
-                            <span class="required-indicator">*</span>
-                        </label>
-                        <input name="nombre" value="${proyecto.nombre}" required="" id="nombre" type="text">
+                    <div class="col s12 m12">
+                        <br>
+                        <g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link>
                     </div>
-                    <div class="fieldcontain required">
-                        <label for="fechaFin">Fecha Fin
-                            <span class="required-indicator">*</span>
-                        </label>
-                        <input name="fechaFin" value="date.struct" type="hidden">
-                        <select name="fechaFin_day" id="fechaFin_day" aria-labelledby="fechaFin">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9" selected="selected">9</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                            <option value="13">13</option>
-                            <option value="14">14</option>
-                            <option value="15">15</option>
-                            <option value="16">16</option>
-                            <option value="17">17</option>
-                            <option value="18">18</option>
-                            <option value="19">19</option>
-                            <option value="20">20</option>
-                            <option value="21">21</option>
-                            <option value="22">22</option>
-                            <option value="23">23</option>
-                            <option value="24">24</option>
-                            <option value="25">25</option>
-                            <option value="26">26</option>
-                            <option value="27">27</option>
-                            <option value="28">28</option>
-                            <option value="29">29</option>
-                            <option value="30">30</option>
-                            <option value="31">31</option>
-                        </select>
-                        <select name="fechaFin_month" id="fechaFin_month" aria-labelledby="fechaFin">
-                            <option value="1">enero</option>
-                            <option value="2">febrero</option>
-                            <option value="3">marzo</option>
-                            <option value="4">abril</option>
-                            <option value="5">mayo</option>
-                            <option value="6">junio</option>
-                            <option value="7">julio</option>
-                            <option value="8">agosto</option>
-                            <option value="9" selected="selected">septiembre</option>
-                            <option value="10">octubre</option>
-                            <option value="11">noviembre</option>
-                            <option value="12">diciembre</option>
-                        </select>
-                        <select name="fechaFin_year" id="fechaFin_year" aria-labelledby="fechaFin">
-                            <option value="2018">2018</option>
-                            <option value="2017">2017</option>
-                            <option value="2016" selected="selected">2016</option>
-                        </select>
-                    </div>
-                </fieldset>
-                <fieldset class="buttons">
-                    <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
-                </fieldset>
-            </g:form>
+                </g:form>
+            </div>
         </div>
     </body>
 </html>

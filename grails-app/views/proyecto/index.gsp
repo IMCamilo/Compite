@@ -53,19 +53,19 @@
                                                 <label for="codigo">Codigo
                                                     <span class="required-indicator">*</span>
                                                 </label>
-                                                <input name="codigo" value="" required="" id="codigo" type="text">
+                                                <input name="codigo" class="validate" required="" id="codigo" type="text">
                                             </div>
                                         </div>
                                         <div class="col s12">
                                             <div class="input-field col s6">
-                                                <select name="estado" value="" required="" id="estado">
+                                                <select name="estado" required="" id="estado" class="validate">
                                                     <option value="" disabled selected>Seleccione Estado</option>
                                                     <option value="ACTIVO">Activo</option>
                                                     <option value="INACTIVO">Inactivo</option>
                                                 </select>
                                             </div>
                                             <div class="input-field col s6">
-                                                <select name="tipo" value="" required="" id="tipo">
+                                                <select name="tipo" required="" id="tipo" class="validate">
                                                     <option value="" disabled selected>Seleccione Tipo</option>
                                                     <option value="PUBLICO">Publico</option>
                                                     <option value="PRIVADO">Privado</option>
@@ -74,7 +74,7 @@
                                         </div>
                                         <div class="col s12">
                                             <div class="input-field col s6">
-                                                <select name="empresa" value="" required="" id="empresa">
+                                                <select name="empresa" required="" id="empresa" class="validate">
                                                     <option value="" disabled selected>Seleccione Empresa</option>
                                                     <g:each in="${empresas}">
                                                         <option value="${it.id}">${it.nombre}</option>
@@ -85,16 +85,16 @@
                                                 <label for="nombre">Nombre
                                                     <span class="required-indicator">*</span>
                                                 </label>
-                                                <input name="nombre" required="" id="nombre" type="text">
+                                                <input name="nombre" required="" id="nombre" type="text" class="validate">
                                             </div>
                                         </div>
                                         <div class="col s12">
                                             <div class="input-field col s6">
-                                                <input id="fechaCreacion" name="fechaCreacion" type="date" class="datepicker" required/>
+                                                <input id="fechaCreacion" name="fechaCreacion" type="date" class="datepicker" required="" class="validate"/>
                                                 <label for="fechaCreacion">Fecha Creación</label>
                                             </div>
                                             <div class="input-field col s6">
-                                                <input type="date" name="fechaFin" class="datepicker" id="fechaFin">
+                                                <input type="date" name="fechaFin" class="datepicker" id="fechaFin" required="" class="validate">
                                                 <label for="fechaFin">Fecha Fin</label>
                                             </div>
                                         </div>
@@ -115,8 +115,33 @@
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
+            <!--<table>
+                <thead>
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Nombre</th>
+                        <th>Presupuesto</th>
+                        <th>Tipo</th>
+                        <th>Estado</th>
+                        <th>Creado por</th>
+                        <th>Asignaciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <g:each in="${proyectoList}">
+                        <tr>
+                            <td>${it.codigo}</td>
+                            <td>${it.nombre}</td>
+                            <td>${it.presupuesto}</td>
+                            <td>${it.tipo}</td>
+                            <td>${it.estado}</td>
+                            <td>${it.creadoPor}</td>
+                            <td>${it.asignacion}</td>
+                        </tr>
+                    </g:each>
+                </tbody>
+            </table>-->
             <f:table collection="${proyectoList}" />
-
             <div class="pagination">
                 <g:paginate total="${proyectoCount ?: 0}" />
             </div>

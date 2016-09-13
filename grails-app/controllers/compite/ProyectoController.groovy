@@ -64,18 +64,35 @@ class ProyectoController {
     }
 
     def edit(Proyecto proyecto) {
-        respond proyecto
+
+        def nombreEmpresa = Empresa.executeQuery("select nombre from Empresa where id="+proyecto.empresa.id)
+        def nombre = nombreEmpresa[0]
+
+        def empresas = Empresa.findAll()
+        def listEmp = []
+        empresas.each { emp ->
+            def mapEmp = [:]
+            mapEmp.id = emp.id
+            mapEmp.nombre = emp.nombre
+            listEmp.add(mapEmp)
+        }
+
+        println "Lista de Empresas: "+listEmp
+        respond proyecto, model: [empresas: listEmp, nombreEmpresa: nombre]
     }
 
     @Transactional
     def update(Proyecto proyecto) {
+        println "Estoy en el update de Proyecto"
         if (proyecto == null) {
+            println "Proyecto viene null"
             transactionStatus.setRollbackOnly()
             notFound()
             return
         }
 
         if (proyecto.hasErrors()) {
+            println "Proyecto tiene errores"
             transactionStatus.setRollbackOnly()
             respond proyecto.errors, view:'edit'
             return
