@@ -15,8 +15,8 @@ class BootStrap {
 
         if (!Usuario.count()) {
             //ingresen sus usuarios.
-            new Usuario(rut: "14353123-k", nombres: "Cristian", paterno: "Pardo", materno: "-", direccion: "-", correo: "usuarioadminuno@grails.org", telefono: "-", clave: "qwerty", tipo: 1, creadoPor:"admin").save(failOnError: true)
-            new Usuario(rut: "16524533-k", nombres: "Jonathan", paterno: "Cardenas", materno: "-", direccion: "-", correo: "usuarioadmindos@grails.org", telefono: "-", clave: "qwerty", tipo: 1, creadoPor:"admin").save(failOnError: true)
+            new Usuario(rut: "14353123-k", nombres: "Cristian", paterno: "Pardo", materno: "-", direccion: "-", correo: "cristian.pardo@compite.cl", telefono: "78522266", clave: "qwerty", tipo: 2, creadoPor:"admin").save(failOnError: true)
+            new Usuario(rut: "16524533-k", nombres: "Jonathan", paterno: "Cardenas", materno: "-", direccion: "Las Cascadas # 901, Portal de Alerce", correo: "jonathan.cardenas@compite.cl", telefono: "90875522", clave: "qwerty", tipo: 2, creadoPor:"admin").save(failOnError: true)
             new Usuario(rut: "14524533-k", nombres: "Rodrigo", paterno: "Cardenas", materno: "-", direccion: "-", correo: "usuarioadmindos@grails.org", telefono: "-", clave: "qwerty", tipo: 1, creadoPor:"admin").save(failOnError: true)
             new Usuario(rut: "18653290-2", nombres: "Camilo", paterno: "Jorquera", materno: "Ampuero", direccion: "Seminario 372", correo: "camilo.jorquera.a@gmail.com", telefono: "-", clave: "qwerty", tipo: 1, creadoPor:"admin").save(failOnError: true)
             new Usuario(rut: "13553677-1", nombres: "Pablo", paterno: "Zumelzu", materno: "-", direccion: "Avda. Siempre Viva", correo: "ingeniero1@gmail.com", telefono: "78787878", clave: "pantalla1", tipo: 2, creadoPor:"admin").save(failOnError: true)
@@ -80,8 +80,8 @@ class BootStrap {
 
         if (!Asignacion.list()) {
             new Asignacion(detalle: "Asignacion 1, cargada automaticamente", fecha: "2016-08-19 11:49:00.0", usuario: 1, proyecto: 1, creadoPor:"admin").save(failOnError: true)
-            new Asignacion(detalle: "Asignación para Ingeniero 1, proyecto 2", fecha: "2016-08-10 00:0:00.0", usuario: 4, proyecto: 2, creadoPor:"admin").save(failOnError: true)
-            new Asignacion(detalle: "Asignación para Ingeniero 1, proyecto 3", fecha: "2016-08-10 00:0:00.0", usuario: 4, proyecto: 3, creadoPor:"admin").save(failOnError: true)
+            new Asignacion(detalle: "Asignación para Ingeniero 1, proyecto 2", fecha: "2016-08-10 00:0:00.0", usuario: 2, proyecto: 2, creadoPor:"admin").save(failOnError: true)
+            new Asignacion(detalle: "Asignación para Ingeniero 1, proyecto 3", fecha: "2016-08-10 00:0:00.0", usuario: 1, proyecto: 3, creadoPor:"admin").save(failOnError: true)
         }
 
     }
