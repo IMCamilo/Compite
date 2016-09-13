@@ -9,26 +9,13 @@ class ProyectoController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
+        def listaEmpresas = Empresa.findAll()
         params.max = Math.min(max ?: 10, 100)
-        def empresas = Empresa.findAll()
-        def listEmp = []
-        empresas.each { emp ->
-            def mapEmp = [:]
-            mapEmp.id = emp.id
-            mapEmp.nombre = emp.nombre
-            listEmp.add(mapEmp)
-        }
-
-        println "Lista de Empresas: "+listEmp
-        respond Proyecto.list(params), model:[proyectoCount: Proyecto.count(), empresas:listEmp]
+        respond Proyecto.list(params), model:[proyectoCount: Proyecto.count(), empresas:listaEmpresas]
     }
 
     def show(Proyecto proyecto) {
-        //println "empresa: "+proyecto.empresa.id
-        def nombreEmpresa = Empresa.executeQuery("select nombre from Empresa where id="+proyecto.empresa.id)
-        def nombre = nombreEmpresa[0]
-        //println "El nombre de la empresa es ${nombre}"
-        respond proyecto, model: [nombreEmpresa: nombre]
+        respond proyecto
     }
 
     def create() {
@@ -36,8 +23,11 @@ class ProyectoController {
     }
 
     @Transactional
-    def save(Proyecto proyecto) {
-        println "Estoy en el save de Proyecto"
+    def save() {
+        String[] empresaObtenida = ((String) params.nombreEmpresa).split(" , ");
+        params.empresa = empresaObtenida[1]
+
+        def proyecto = new Proyecto(params)
         if (proyecto == null) {
             "Proyecto viene null"
             transactionStatus.setRollbackOnly()
@@ -52,7 +42,7 @@ class ProyectoController {
             return
         }
 
-        proyecto.save flush:true
+        proyecto.save flush:true, failOnError: true
 
         request.withFormat {
             form multipartForm {
@@ -64,32 +54,26 @@ class ProyectoController {
     }
 
     def edit(Proyecto proyecto) {
-
-        def nombreEmpresa = Empresa.executeQuery("select nombre from Empresa where id="+proyecto.empresa.id)
-        def nombre = nombreEmpresa[0]
-
-        def empresas = Empresa.findAll()
-        def listEmp = []
-        empresas.each { emp ->
-            def mapEmp = [:]
-            mapEmp.id = emp.id
-            mapEmp.nombre = emp.nombre
-            listEmp.add(mapEmp)
-        }
-
-        println "Lista de Empresas: "+listEmp
-        respond proyecto, model: [empresas: listEmp, nombreEmpresa: nombre]
+        def empresa = Empresa.findById(proyecto.empresaId)
+        def listaEmpresas = Empresa.findAll()
+        respond proyecto, model: [empresas: listaEmpresas, empresa: empresa]
     }
 
     @Transactional
-    def update(Proyecto proyecto) {
-        println "Estoy en el update de Proyecto"
+    def update() {
+        String[] empresaObtenida = ((String) params.nombreEmpresa).split(" , ");
+        params.empresa = empresaObtenida[1]
+
+        def proyecto = Proyecto.get(params.id)
+        proyecto.properties = params
+
         if (proyecto == null) {
             println "Proyecto viene null"
             transactionStatus.setRollbackOnly()
             notFound()
             return
         }
+
 
         if (proyecto.hasErrors()) {
             println "Proyecto tiene errores"
@@ -98,7 +82,7 @@ class ProyectoController {
             return
         }
 
-        proyecto.save flush:true
+        proyecto.save flush:true, failOnError:true
 
         request.withFormat {
             form multipartForm {
