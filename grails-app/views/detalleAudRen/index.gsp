@@ -77,12 +77,12 @@
                 };
                 var auditorias = [
                     <g:each in="${auditorias}">
-                        '${it.nombre} ${it.motivo} , ${it.id}',
+                        '${it.descripcion} , ${it.id}',
                     </g:each>
                 ];
                 var rendiciones = [
                     <g:each in="${rendiciones}">
-                        '${it.nombre} ${it.motivo} , ${it.id}',
+                        '${it.nombre} ${it.descripcion} , ${it.id}',
                     </g:each>
                 ];
                 $('#auditoriainputdiv .typeahead').typeahead({
