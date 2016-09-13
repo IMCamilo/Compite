@@ -5,6 +5,8 @@ package compite
  */
 class Auditoria {
 
+    String nombre
+    String motivo
     String descripcion
     String estado
     Date fechaCreacion = new Date()

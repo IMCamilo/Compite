@@ -62,7 +62,8 @@ class BootStrap {
         }
 
         if (!Auditoria.list()) {
-            new Auditoria(fecha: "2016-08-19 11:49:00.0", descripcion: "Auditoria cargada automaticamente", estado: "En espera de aporvación por el administrador", usuario: 1, proyecto: 1, creadoPor:"admin").save(failOnError: true)
+            new Auditoria(fecha: "2016-08-19 11:49:00.0", nombre:"Auditoria numeor 1", motivo:"estandar", descripcion: "Auditoria cargada automaticamente", estado: "En espera de aporvación por el administrador", usuario: 1, proyecto: 1, creadoPor:"admin").save(failOnError: true)
+            new Auditoria(fecha: "2016-08-19 11:49:00.0", nombre:"Auditoria numeor 2", motivo:"pro", descripcion: "Auditoria cargada automaticamente", estado: "En espera de aporvación por el administrador", usuario: 2, proyecto: 1, creadoPor:"admin").save(failOnError: true)
         }
 
         if (!DetalleAudRen.list()) {
