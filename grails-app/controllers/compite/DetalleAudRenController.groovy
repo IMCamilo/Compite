@@ -9,8 +9,10 @@ class DetalleAudRenController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
+        def auditoriaList = Auditoria.findAll()
+        def rendicionList = Rendicion.findAll()
         params.max = Math.min(max ?: 10, 100)
-        respond DetalleAudRen.list(params), model:[detalleAudRenCount: DetalleAudRen.count()]
+        respond DetalleAudRen.list(params), model:[detalleAudRenCount: DetalleAudRen.count(), auditorias: auditoriaList, rendiciones: rendicionList]
     }
 
     def show(DetalleAudRen detalleAudRen) {
@@ -22,7 +24,16 @@ class DetalleAudRenController {
     }
 
     @Transactional
-    def save(DetalleAudRen detalleAudRen) {
+    def save() {
+
+        String[] rendicionObtenido = ((String) params.nombreRendicion).split(" , ");
+        String[] auditoriaObtenida = ((String) params.nombreAuditoria).split(" , ");
+        def r = Rendicion.findById(rendicionObtenido[1])
+        params.rendicion = r.id
+        def a = Auditoria.findById(auditoriaObtenida[1])
+        params.auditoria = a.id
+
+        def detalleAudRen = new DetalleAudRen(params)
         if (detalleAudRen == null) {
             transactionStatus.setRollbackOnly()
             notFound()
@@ -35,7 +46,7 @@ class DetalleAudRenController {
             return
         }
 
-        detalleAudRen.save flush:true
+        detalleAudRen.save flush:true, failOnError: true
 
         request.withFormat {
             form multipartForm {
@@ -47,11 +58,25 @@ class DetalleAudRenController {
     }
 
     def edit(DetalleAudRen detalleAudRen) {
-        respond detalleAudRen
+        def rendicion = Rendicion.findById(detalleAudRen.rendicionId)
+        def auditoria = Auditoria.findById(detalleAudRen.auditoriaId)
+        def auditoriaList = Auditoria.findAll()
+        def rendicionList = Rendicion.findAll()
+        respond detalleAudRen, model:[auditorias:auditoriaList, rendiciones:rendicionList, rendicion:rendicion, auditoria:auditoria]
     }
 
     @Transactional
-    def update(DetalleAudRen detalleAudRen) {
+    def update() {
+        String[] rendicionObtenido = ((String) params.nombreRendicion).split(" , ");
+        String[] auditoriaObtenida = ((String) params.nombreAuditoria).split(" , ");
+        def r = Rendicion.findById(rendicionObtenido[1])
+        params.rendicion = r.id
+        def a = Auditoria.findById(auditoriaObtenida[1])
+        params.auditoria = a.id
+
+        def detalleAudRen = DetalleAudRen.get(params.id)
+        detalleAudRen.properties = params
+
         if (detalleAudRen == null) {
             transactionStatus.setRollbackOnly()
             notFound()
@@ -64,7 +89,7 @@ class DetalleAudRenController {
             return
         }
 
-        detalleAudRen.save flush:true
+        detalleAudRen.save flush:true, failOnError: true
 
         request.withFormat {
             form multipartForm {
