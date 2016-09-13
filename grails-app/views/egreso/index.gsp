@@ -27,22 +27,6 @@
             </g:hasErrors>
             <g:form action="save">
                 <fieldset class="form">
-                    <div class="fieldcontain required">
-                    <label for="nombres">Sede Envío
-                        <span class="required-indicator">*</span>
-                    </label>
-                    <input name="sedeEnvio" value="" required="" type="text"></div>
-                    <div class="fieldcontain required">
-                    <label for="nombres">Concepto
-                        <span class="required-indicator">*</span>
-                    </label>
-                    <input name="concepto" value="" required="" type="text"></div>
-
-                    <div class="fieldcontain required">
-                    <label for="nombres">Monto
-                        <span class="required-indicator">*</span>
-                    </label>
-                    <input name="monto" value="" required="" type="text"></div>
                     <div class="fieldcontain required" id="proyectoinputdiv">
                         <label for="tipo">Proyecto<span class="required-indicator">*</span></label>
                         <input class="typeahead" name="nombreProyecto" type="text" required="" placeholder="Busca un proyecto">
@@ -51,16 +35,60 @@
                         <label for="tipo">Usuario<span class="required-indicator">*</span></label>
                         <input class="typeahead" name="nombreUsuario" type="text" required="" placeholder="Busca un usuario">
                     </div>
+                    <div class="fieldcontain required" id="iteminputdiv">
+                        <label for="tipo">Item<span class="required-indicator">*</span></label>
+                        <input class="typeahead" name="nombreItem" type="text" required="" placeholder="Busca un Item">
+                    </div>
                     <div class="fieldcontain required">
-                    <label for="nombres">Tipo Rendición
-                        <span class="required-indicator">*</span>
-                    </label>
-                    <input name="tipoRendicion" value="" required="" type="text"></div>
+                        <label for="nombre">Aprobación
+                            <span class="required-indicator">*</span>
+                        </label>
+                        <input name="aprobacion" value="" required="" id="aprobacion" type="text">
+                    </div>
                     <div class="fieldcontain required">
-                    <label for="nombres">Aprobación
-                        <span class="required-indicator">*</span>
-                    </label>
-                    <input name="aprobacion" value="" required="" type="text"></div>
+                        <label for="nombre">Concepto
+                            <span class="required-indicator">*</span>
+                        </label>
+                        <input name="concepto" value="" required="" id="concepto" type="text">
+                    </div>
+                    <div class="fieldcontain required">
+                        <label for="nombre">fecha
+                            <span class="required-indicator">*</span>
+                        </label>
+                        <input name="fecha" value="" required="" id="fecha" type="text">
+                    </div>
+                    <div class="fieldcontain required">
+                        <label for="nombre">Monto
+                            <span class="required-indicator">*</span>
+                        </label>
+                        <input name="monto" value="" required="" id="monto" type="text">
+                    </div>
+                    <div class="fieldcontain required">
+                        <label for="nombre">Numero de documento
+                            <span class="required-indicator">*</span>
+                        </label>
+                        <input name="ndocumento" value="" required="" id="nDocumento" type="text">
+                    </div>
+                    <div class="fieldcontain required">
+                        <label for="nombre">Pagado A
+                            <span class="required-indicator">*</span>
+                        </label>
+                        <input name="pagadoA" value="" required="" id="pagadoA" type="text">
+                    </div>
+                    <div class="fieldcontain required">
+                        <label for="nombre">Rut Empresa
+                            <span class="required-indicator">*</span>
+                        </label>
+                        <input name="rutEmpresa" value="" required="" id="rutEmpresa" type="text">
+                    </div>
+                    <div class="fieldcontain required">
+                        <label for="nombre">Tipo Moneda
+                            <span class="required-indicator">*</span>
+                        </label>
+                        <input name="tipoMoneda" value="" required="" id="tipoMoneda" type="text">
+                    </div>
+
+
                     <input name="creadoPor" value="${session.usuarioLogueado.rut}" required="" type="hidden">
                 </fieldset>
                 <fieldset class="buttons">
@@ -100,6 +128,11 @@
                         cb(matches);
                     };
                 };
+                var items = [
+                    <g:each in="${items}">
+                    '${it.itemPresupuetario} ${it.centroCosto} , ${it.descripcion}',
+                    </g:each>
+                ];
                 var usuarios = [
                     <g:each in="${usuarios}">
                         '${it.nombres} ${it.paterno} , ${it.rut}',
@@ -125,6 +158,14 @@
                 }, {
                     name: 'proyectos',
                     source: substringMatcher(proyectos)
+                });
+                $('#iteminputdiv .typeahead').typeahead({
+                    hint: true,
+                    highlight: true,
+                    minLength: 1
+                }, {
+                    name: 'items',
+                    source: substringMatcher(items)
                 });
             });
         </script>

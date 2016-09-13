@@ -56,7 +56,7 @@ class BootStrap {
 
         }
         if (!Egreso.list()) {
-            new Egreso(aprobacion: "Si", concepto: "Servicios Básicos", fechaCreacion: "2016-08-19 11:49:00.0", monto: 12000,  nBoleta: "234567", rutEmpresa: "234567-7", pagadoA: "Pablo Santana", tipoMoneda: "Pesos Chilenos", usuario: 1, proyecto: 1,item: 1, rendicion: 1, creadoPor:"admin").save(failOnError: true)
+            new Egreso(aprobacion: "Si", concepto: "Servicios Básicos", fechaCreacion: "2016-08-19 11:49:00.0", monto: 12000,  nDocumento: "234567", rutEmpresa: "234567-7", pagadoA: "Pablo Santana", tipoMoneda: "Pesos Chilenos", usuario: 1, proyecto: 1,item: 1, rendicion: 1, creadoPor:"admin").save(failOnError: true)
         }
 
         if (!Movilizacion.list()) {

@@ -11,8 +11,9 @@ class EgresoController {
     def index(Integer max) {
         def userList = Usuario.findAll()
         def projectList = Proyecto.findAll()
+        def itemsList = Item.findAll()
         params.max = Math.min(max ?: 10, 100)
-        respond Egreso.list(params), model:[egresoCount: Egreso.count(), usuarios:userList, proyectos:projectList]
+        respond Egreso.list(params), model:[egresoCount: Egreso.count(), usuarios:userList, proyectos:projectList, items:itemsList]
     }
 
     def show(Egreso egreso) {
@@ -27,10 +28,13 @@ class EgresoController {
     def save() {
         String[] rutObtenido = ((String) params.nombreUsuario).split(" , ");
         String[] proyectoObtenido = ((String) params.nombreProyecto).split(" , ");
+        String[] itemObtenido = ((String) params.nombreItem).split(" , ");
         def u = Usuario.findByRut(rutObtenido[1])
         params.usuario = u.id
         def p = Proyecto.findByCodigo(proyectoObtenido[0])
         params.proyecto = p.id
+        def i = Item.findByItemPresupuetario(itemObtenido[0])
+        params.item = i.id
         def egreso = new Egreso(params)
 
         if (egreso == null) {
