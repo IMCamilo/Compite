@@ -9,8 +9,10 @@ class EgresoController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
+        def userList = Usuario.findAll()
+        def projectList = Proyecto.findAll()
         params.max = Math.min(max ?: 10, 100)
-        respond Egreso.list(params), model:[egresoCount: Egreso.count()]
+        respond Egreso.list(params), model:[egresoCount: Egreso.count(), usuarios:userList, proyectos:projectList]
     }
 
     def show(Egreso egreso) {
@@ -22,7 +24,15 @@ class EgresoController {
     }
 
     @Transactional
-    def save(Egreso egreso) {
+    def save() {
+        String[] rutObtenido = ((String) params.nombreUsuario).split(" , ");
+        String[] proyectoObtenido = ((String) params.nombreProyecto).split(" , ");
+        def u = Usuario.findByRut(rutObtenido[1])
+        params.usuario = u.id
+        def p = Proyecto.findByCodigo(proyectoObtenido[0])
+        params.proyecto = p.id
+        def egreso = new Egreso(params)
+
         if (egreso == null) {
             transactionStatus.setRollbackOnly()
             notFound()
@@ -35,7 +45,7 @@ class EgresoController {
             return
         }
 
-        egreso.save flush:true
+        egreso.save flush:true, failOnError: true
 
         request.withFormat {
             form multipartForm {
@@ -47,11 +57,25 @@ class EgresoController {
     }
 
     def edit(Egreso egreso) {
-        respond egreso
+        def usuario = Usuario.findById(egreso.usuarioId)
+        def proyecto = Proyecto.findById(egreso.proyectoId)
+        def userList = Usuario.findAll()
+        def projectList = Proyecto.findAll()
+        respond egreso, model:[usuarios:userList, proyectos:projectList, usuario:usuario, proyecto:proyecto]
     }
 
     @Transactional
-    def update(Egreso egreso) {
+    def update() {
+        String[] rutObtenido = ((String) params.nombreUsuario).split(" , ");
+        String[] proyectoObtenido = ((String) params.nombreProyecto).split(" , ");
+        def u = Usuario.findByRut(rutObtenido[1])
+        params.usuario = u.id
+        def p = Proyecto.findByCodigo(proyectoObtenido[0])
+        params.proyecto = p.id
+
+        def egreso = Egreso.get(params.id)
+        egreso.properties = params
+
         if (egreso == null) {
             transactionStatus.setRollbackOnly()
             notFound()
@@ -64,7 +88,7 @@ class EgresoController {
             return
         }
 
-        egreso.save flush:true
+        egreso.save flush:true, failOnError: true
 
         request.withFormat {
             form multipartForm {
