@@ -32,13 +32,13 @@
                 </g:hasErrors>
                 <g:form action="save">
                     <fieldset class="form">
-                        <div class="fieldcontain required">
+                        <div class="fieldcontain required" id="proyectoinputdiv">
                             <label for="tipo">Proyecto<span class="required-indicator">*</span></label>
-                            <input name="proyecto" placeholder="Desplegable proyecto" value="" required="" type="text">
+                            <input class="typeahead" name="nombreProyecto" type="text" required="" placeholder="Busca un proyecto">
                         </div>
                         <div class="fieldcontain required" id="usuarioinputdiv">
-                            <label for="tipo">Usuario Autocompletado<span class="required-indicator">*</span></label>
-                                <input class="typeahead" name="nombreUsuario" type="text" placeholder="Busca un usuario">
+                            <label for="tipo">Usuario<span class="required-indicator">*</span></label>
+                            <input class="typeahead" name="nombreUsuario" type="text" required="" placeholder="Busca un usuario">
                         </div>
                         <div class="fieldcontain required">
                             <label for="tipo">Detalle<span class="required-indicator">*</span></label>
@@ -84,6 +84,11 @@
                         '${it.nombres} ${it.paterno} , ${it.rut}',
                     </g:each>
                 ];
+                var proyectos = [
+                    <g:each in="${proyectos}">
+                        '${it.codigo} , ${it.nombre}',
+                    </g:each>
+                ];
                 $('#usuarioinputdiv .typeahead').typeahead({
                     hint: true,
                     highlight: true,
@@ -91,6 +96,14 @@
                 }, {
                     name: 'usuarios',
                     source: substringMatcher(usuarios)
+                });
+                $('#proyectoinputdiv .typeahead').typeahead({
+                    hint: true,
+                    highlight: true,
+                    minLength: 1
+                }, {
+                    name: 'proyectos',
+                    source: substringMatcher(proyectos)
                 });
             });
         </script>

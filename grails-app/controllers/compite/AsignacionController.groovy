@@ -10,8 +10,9 @@ class AsignacionController {
 
     def index(Integer max) {
         def userList = Usuario.findAll()
+            def projectList = Proyecto.findAll()
         params.max = Math.min(max ?: 10, 100)
-        respond Asignacion.list(params), model:[asignacionCount: Asignacion.count(), usuarios:userList]
+        respond Asignacion.list(params), model:[asignacionCount: Asignacion.count(), usuarios:userList, proyectos:projectList]
     }
 
     def show(Asignacion asignacion) {
@@ -23,16 +24,21 @@ class AsignacionController {
     }
 
     @Transactional
-    def save(Asignacion asignacion) {
+    def save() {
         //estoy haciendo esto a mano, hasta encontrar un plugin o mejorar el uso de typeahead en grails.
-        //lo cual parece esta en bastante desarrollado
+        //lo cual parece esta en bastante desarrollado, sin embargo no hay tiempo para investigarlo
         String[] rutObtenido = ((String) params.nombreUsuario).split(" , ");
-        println "rutObtenido: "+rutObtenido
+        String[] proyectoObtenido = ((String) params.nombreProyecto).split(" , ");
+        println "rutObtenido: $rutObtenido, proyecto: $proyectoObtenido"
         println "rut unico: -${rutObtenido[1]}-"
+        println "rut unico: -${proyectoObtenido[0]}-"
         def u = Usuario.findByRut(rutObtenido[1])
         params.usuario = u.id
-        println "id de usuario : "+params.usuario
+        def p = Proyecto.findByCodigo(proyectoObtenido[0])
+        params.proyecto = p.id
+        println "id de usuario : $params.usuario, id de proyecto : $params.proyecto"
 
+        def asignacion = new Asignacion(params)
         if (asignacion == null) {
             transactionStatus.setRollbackOnly()
             notFound()
@@ -45,7 +51,7 @@ class AsignacionController {
             return
         }
 
-        asignacion.save flush:true
+        asignacion.save flush: true, failOnError: true
 
         request.withFormat {
             form multipartForm {
