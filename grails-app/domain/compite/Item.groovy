@@ -6,8 +6,7 @@ package compite
 class Item {
 
     Integer centroCosto
-    String itemPresupuetario
-    String tipo
+    String itemPresupuestario
     String descripcion
     Integer valor
     Date fechaCreacion = new Date()
@@ -16,6 +15,7 @@ class Item {
     static hasMany = [egreso:Egreso]
 
     static constraints = {
+        itemPresupuestario nullable: true, blank: true
         creadoPor nullable: true, blank: true
     }
 
