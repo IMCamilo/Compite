@@ -8,7 +8,7 @@ class Proyecto {
     String codigo
     String nombre
     Integer presupuesto
-    Date fechaCreacion = new Date()
+    Date fechaCreacion
     Date fechaFin
     String estado
     String tipo

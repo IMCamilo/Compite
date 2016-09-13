@@ -10,11 +10,25 @@ class ProyectoController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond Proyecto.list(params), model:[proyectoCount: Proyecto.count()]
+        def empresas = Empresa.findAll()
+        def listEmp = []
+        empresas.each { emp ->
+            def mapEmp = [:]
+            mapEmp.id = emp.id
+            mapEmp.nombre = emp.nombre
+            listEmp.add(mapEmp)
+        }
+
+        println "Lista de Empresas: "+listEmp
+        respond Proyecto.list(params), model:[proyectoCount: Proyecto.count(), empresas:listEmp]
     }
 
     def show(Proyecto proyecto) {
-        respond proyecto
+        //println "empresa: "+proyecto.empresa.id
+        def nombreEmpresa = Empresa.executeQuery("select nombre from Empresa where id="+proyecto.empresa.id)
+        def nombre = nombreEmpresa[0]
+        //println "El nombre de la empresa es ${nombre}"
+        respond proyecto, model: [nombreEmpresa: nombre]
     }
 
     def create() {
@@ -23,13 +37,16 @@ class ProyectoController {
 
     @Transactional
     def save(Proyecto proyecto) {
+        println "Estoy en el save de Proyecto"
         if (proyecto == null) {
+            "Proyecto viene null"
             transactionStatus.setRollbackOnly()
             notFound()
             return
         }
 
         if (proyecto.hasErrors()) {
+            "Proyecto tiene errores"
             transactionStatus.setRollbackOnly()
             respond proyecto.errors, view:'index'
             return
