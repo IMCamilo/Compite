@@ -10,7 +10,7 @@ class AsignacionController {
 
     def index(Integer max) {
         def userList = Usuario.findAll()
-            def projectList = Proyecto.findAll()
+        def projectList = Proyecto.findAll()
         params.max = Math.min(max ?: 10, 100)
         respond Asignacion.list(params), model:[asignacionCount: Asignacion.count(), usuarios:userList, proyectos:projectList]
     }
@@ -36,7 +36,7 @@ class AsignacionController {
         params.usuario = u.id
         def p = Proyecto.findByCodigo(proyectoObtenido[0])
         params.proyecto = p.id
-        
+
         println "id de usuario : $params.usuario, id de proyecto : $params.proyecto"
 
         def asignacion = new Asignacion(params)
@@ -64,11 +64,30 @@ class AsignacionController {
     }
 
     def edit(Asignacion asignacion) {
-        respond asignacion
+        def usuario = Usuario.findById(asignacion.usuarioId)
+        def proyecto = Proyecto.findById(asignacion.proyectoId)
+        def userList = Usuario.findAll()
+        def projectList = Proyecto.findAll()
+        respond asignacion, model:[usuarios:userList, proyectos:projectList, usuario:usuario, proyecto:proyecto]
     }
 
     @Transactional
-    def update(Asignacion asignacion) {
+    def update() {
+        String[] rutObtenido = ((String) params.nombreUsuario).split(" , ");
+        String[] proyectoObtenido = ((String) params.nombreProyecto).split(" , ");
+        println "rutObtenido: $rutObtenido, proyecto: $proyectoObtenido"
+        println "rut unico: -${rutObtenido[1]}-"
+        println "rut unico: -${proyectoObtenido[0]}-"
+        def u = Usuario.findByRut(rutObtenido[1])
+        params.usuario = u.id
+        def p = Proyecto.findByCodigo(proyectoObtenido[0])
+        params.proyecto = p.id
+
+        println "id de usuario : $params.usuario, id de proyecto : $params.proyecto"
+
+        def asignacion = Asignacion.get(params.id)
+        asignacion.properties = params
+
         if (asignacion == null) {
             transactionStatus.setRollbackOnly()
             notFound()
@@ -81,7 +100,7 @@ class AsignacionController {
             return
         }
 
-        asignacion.save flush:true
+        asignacion.save flush: true, failOnError: true
 
         request.withFormat {
             form multipartForm {
