@@ -11,6 +11,7 @@
             <ul>
                 <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
                 <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
+                <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
             </ul>
         </div>
         <div id="show-proyecto" class="content scaffold-show" role="main">
@@ -18,30 +19,7 @@
             <g:if test="${flash.message}">
             <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <label for="tipo">Presupuesto:
-                ${proyecto.presupuesto}
-            </label></br>
-            <label for="tipo">Código:
-                ${proyecto.codigo}
-            </label></br>
-            <label for="tipo">Estado:
-                ${proyecto.estado}
-            </label></br>
-            <label for="tipo">Tipo:
-                ${proyecto.tipo}
-            </label></br>
-            <label for="tipo">Fecha Creación:
-                ${proyecto.fechaCreacion}
-            </label></br>
-            <label for="tipo">Empresa:
-                ${proyecto.empresaId} (mostrar nombre en base a este id, hace consulta.)
-            </label></br>
-            <label for="tipo">Nombre:
-                ${proyecto.nombre}
-            </label></br>
-            <label for="tipo">Fecha Finalización:
-                ${proyecto.fechaFin}
-            </label></br>
+            <f:display bean="proyecto" />
             <g:form resource="${this.proyecto}" method="DELETE">
                 <fieldset class="buttons">
                     <g:link class="edit" action="edit" resource="${this.proyecto}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
