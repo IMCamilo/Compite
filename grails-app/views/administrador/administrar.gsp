@@ -1,5 +1,5 @@
 <title>COMPITE - Administrar</title>
-<meta name="layout" content="administrador.base"/>
+<meta name="layout" content="mainadministrador"/>
 <div class="row" style="width:80%">
     <div id="formulario2" class="col s12">
         <div class="card-panel teal lighten-2 90a4ae blue-grey">CREAR NUEVA RENDICIÓN</div>

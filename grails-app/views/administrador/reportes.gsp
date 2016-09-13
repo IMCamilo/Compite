@@ -1,6 +1,6 @@
 <%@ page import="org.apache.tools.ant.property.GetProperty; org.apache.tools.ant.taskdefs.Get" %>
 <title>COMPITE - Reportes de Rendiciones</title>
-<meta name="layout" content="administrador.base"/>
+<meta name="layout" content="mainadministrador"/>
 
 <div class="container section">
 
