@@ -16,18 +16,7 @@ class AsignacionController {
     }
 
     def show(Asignacion asignacion) {
-
-        def consultaNombresApellidosUsuario = Usuario.executeQuery("select nombres, paterno, materno from Usuario where id="+asignacion.usuario.id)
-        def firstPerson = consultaNombresApellidosUsuario [0]
-        def nombres = firstPerson[0]
-        def paterno = firstPerson[1]
-        def materno = firstPerson[2]
-        def nombreCompletoUsuario = nombres+" "+paterno+" "+materno
-
-        def consultaNombreProyecto = Proyecto.executeQuery("select nombre from Proyecto where id="+asignacion.proyecto.id)
-        def nombreProyecto = consultaNombreProyecto[0]
-
-        respond asignacion, model: [nombreCompletoUsuario: nombreCompletoUsuario, nombreProyecto: nombreProyecto]
+        respond asignacion
     }
 
     def create() {
@@ -40,15 +29,10 @@ class AsignacionController {
         //lo cual parece esta en bastante desarrollado, sin embargo no hay tiempo para investigarlo
         String[] rutObtenido = ((String) params.nombreUsuario).split(" , ");
         String[] proyectoObtenido = ((String) params.nombreProyecto).split(" , ");
-        println "rutObtenido: $rutObtenido, proyecto: $proyectoObtenido"
-        println "rut unico: -${rutObtenido[1]}-"
-        println "rut unico: -${proyectoObtenido[0]}-"
         def u = Usuario.findByRut(rutObtenido[1])
         params.usuario = u.id
         def p = Proyecto.findByCodigo(proyectoObtenido[0])
         params.proyecto = p.id
-
-        println "id de usuario : $params.usuario, id de proyecto : $params.proyecto"
 
         def asignacion = new Asignacion(params)
         if (asignacion == null) {
@@ -86,15 +70,10 @@ class AsignacionController {
     def update() {
         String[] rutObtenido = ((String) params.nombreUsuario).split(" , ");
         String[] proyectoObtenido = ((String) params.nombreProyecto).split(" , ");
-        println "rutObtenido: $rutObtenido, proyecto: $proyectoObtenido"
-        println "rut unico: -${rutObtenido[1]}-"
-        println "rut unico: -${proyectoObtenido[0]}-"
         def u = Usuario.findByRut(rutObtenido[1])
         params.usuario = u.id
         def p = Proyecto.findByCodigo(proyectoObtenido[0])
         params.proyecto = p.id
-
-        println "id de usuario : $params.usuario, id de proyecto : $params.proyecto"
 
         def asignacion = Asignacion.get(params.id)
         asignacion.properties = params

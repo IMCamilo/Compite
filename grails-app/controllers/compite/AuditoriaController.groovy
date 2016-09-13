@@ -9,8 +9,10 @@ class AuditoriaController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
+        def userList = Usuario.findAll()
+        def projectList = Proyecto.findAll()
         params.max = Math.min(max ?: 10, 100)
-        respond Auditoria.list(params), model:[auditoriaCount: Auditoria.count()]
+        respond Auditoria.list(params), model:[auditoriaCount: Auditoria.count(), usuarios:userList, proyectos:projectList]
     }
 
     def show(Auditoria auditoria) {
@@ -22,7 +24,16 @@ class AuditoriaController {
     }
 
     @Transactional
-    def save(Auditoria auditoria) {
+    def save() {
+        String[] rutObtenido = ((String) params.nombreUsuario).split(" , ");
+        String[] proyectoObtenido = ((String) params.nombreProyecto).split(" , ");
+        def u = Usuario.findByRut(rutObtenido[1])
+        params.usuario = u.id
+        def p = Proyecto.findByCodigo(proyectoObtenido[0])
+        params.proyecto = p.id
+
+        def auditoria = new Auditoria(params)
+
         if (auditoria == null) {
             transactionStatus.setRollbackOnly()
             notFound()
@@ -35,7 +46,7 @@ class AuditoriaController {
             return
         }
 
-        auditoria.save flush:true
+        auditoria.save flush:true, failOnError: true
 
         request.withFormat {
             form multipartForm {
@@ -47,11 +58,25 @@ class AuditoriaController {
     }
 
     def edit(Auditoria auditoria) {
-        respond auditoria
+        def usuario = Usuario.findById(auditoria.usuarioId)
+        def proyecto = Proyecto.findById(auditoria.proyectoId)
+        def userList = Usuario.findAll()
+        def projectList = Proyecto.findAll()
+        respond auditoria, model:[usuarios:userList, proyectos:projectList, usuario:usuario, proyecto:proyecto]
     }
 
     @Transactional
-    def update(Auditoria auditoria) {
+    def update() {
+        String[] rutObtenido = ((String) params.nombreUsuario).split(" , ");
+        String[] proyectoObtenido = ((String) params.nombreProyecto).split(" , ");
+        def u = Usuario.findByRut(rutObtenido[1])
+        params.usuario = u.id
+        def p = Proyecto.findByCodigo(proyectoObtenido[0])
+        params.proyecto = p.id
+
+        def auditoria = Auditoria.get(params.id)
+
+        auditoria.properties = params
         if (auditoria == null) {
             transactionStatus.setRollbackOnly()
             notFound()
@@ -64,7 +89,7 @@ class AuditoriaController {
             return
         }
 
-        auditoria.save flush:true
+        auditoria.save flush:true, failOnError: true
 
         request.withFormat {
             form multipartForm {
