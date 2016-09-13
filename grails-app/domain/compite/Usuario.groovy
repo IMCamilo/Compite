@@ -23,7 +23,7 @@ class Usuario {
         nombres nullable: false, blank: false, size: 1..15
         paterno nullable: false, blank: false, size: 1..15
         materno nullable: false, blank: false, size: 1..15
-        direccion nullable: false, blank: false, size: 1..35
+        direccion nullable: false, blank: false, size: 1..100
         correo email: true, blank: false, size: 1..30
         telefono nullable: true, blank: false, size: 1..15
         clave nullable: false, blank: false, size: 1..15
