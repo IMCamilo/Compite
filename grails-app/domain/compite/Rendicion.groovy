@@ -4,7 +4,7 @@ class Rendicion {
 
     Date fecha = new Date()
     String tipo
-
+    String creadoPor
 
     static belongsTo = [proyecto:Proyecto, usuario:Usuario]
 

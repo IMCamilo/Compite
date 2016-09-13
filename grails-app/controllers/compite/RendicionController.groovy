@@ -9,8 +9,10 @@ class RendicionController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
+        def userList = Usuario.findAll()
+        def projectList = Proyecto.findAll()
         params.max = Math.min(max ?: 10, 100)
-        respond Rendicion.list(params), model:[rendicionCount: Rendicion.count()]
+        respond Rendicion.list(params), model:[rendicionCount: Rendicion.count(), usuarios:userList, proyectos:projectList]
     }
 
     def show(Rendicion rendicion) {
@@ -22,7 +24,16 @@ class RendicionController {
     }
 
     @Transactional
-    def save(Rendicion rendicion) {
+    def save() {
+        String[] rutObtenido = ((String) params.nombreUsuario).split(" , ");
+        String[] proyectoObtenido = ((String) params.nombreProyecto).split(" , ");
+        def u = Usuario.findByRut(rutObtenido[1])
+        params.usuario = u.id
+        def p = Proyecto.findByCodigo(proyectoObtenido[0])
+        params.proyecto = p.id
+
+        def rendicion = new Rendicion(params)
+
         if (rendicion == null) {
             println "Rendicion es null, no se puede guardar"
             transactionStatus.setRollbackOnly()
@@ -38,8 +49,7 @@ class RendicionController {
             return
         }
 
-        rendicion.save flush:true
-        redirect(controller: "ingeniero", action: "rendiciones")
+        rendicion.save flush:true, failOnError:true
 
         request.withFormat {
             form multipartForm {
@@ -51,11 +61,25 @@ class RendicionController {
     }
 
     def edit(Rendicion rendicion) {
-        respond rendicion
+        def usuario = Usuario.findById(rendicion.usuarioId)
+        def proyecto = Proyecto.findById(rendicion.proyectoId)
+        def userList = Usuario.findAll()
+        def projectList = Proyecto.findAll()
+        respond rendicion, model:[usuarios:userList, proyectos:projectList, usuario:usuario, proyecto:proyecto]
     }
 
     @Transactional
-    def update(Rendicion rendicion) {
+    def update() {
+        String[] rutObtenido = ((String) params.nombreUsuario).split(" , ");
+        String[] proyectoObtenido = ((String) params.nombreProyecto).split(" , ");
+        def u = Usuario.findByRut(rutObtenido[1])
+        params.usuario = u.id
+        def p = Proyecto.findByCodigo(proyectoObtenido[0])
+        params.proyecto = p.id
+
+        def rendicion = Rendicion.get(params.id)
+        rendicion.properties = params
+
         if (rendicion == null) {
             transactionStatus.setRollbackOnly()
             notFound()
@@ -68,7 +92,7 @@ class RendicionController {
             return
         }
 
-        rendicion.save flush:true
+        rendicion.save flush:true, failOnError:true
 
         request.withFormat {
             form multipartForm {
