@@ -5,14 +5,15 @@ package compite
  */
 class Item {
 
-    String nombre
+    Integer centroCosto
+    String itemPresupuetario
     String tipo
     String descripcion
     Integer valor
     Date fechaCreacion = new Date()
     String creadoPor
 
-    static hasMany = [rendicion:Rendicion]
+    static hasMany = [egreso:Egreso]
 
     static constraints = {
         creadoPor nullable: true, blank: true

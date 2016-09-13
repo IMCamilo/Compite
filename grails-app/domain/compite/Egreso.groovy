@@ -9,14 +9,17 @@ class Egreso {
     String concepto
     Date fechaCreacion = new Date()
     Integer monto
-    String sedeEnvio
-    String tipoRendicion
+    String tipoMoneda
     String creadoPor
+    String nBoleta
+    String rutEmpresa
+    String pagadoA
 
-    static belongsTo = [proyecto:Proyecto, usuario:Usuario]
-
+    static belongsTo = [proyecto:Proyecto, usuario:Usuario, item:Item, rendicion:Rendicion]
+    static hasMany = [egresomov:EgresoMov]
     static constraints = {
         creadoPor nullable: true, blank: true
     }
 
 }
+
