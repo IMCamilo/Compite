@@ -8,6 +8,6 @@ class EgresoMov {
     static belongsTo = [egreso:Egreso, movilizacion:Movilizacion]
 
     static constraints = {
-
+        creadoPor nullable: true, blank: true
     }
 }

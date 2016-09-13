@@ -39,6 +39,7 @@
                         <label for="tipo">Usuario<span class="required-indicator">*</span></label>
                         <input class="typeahead" name="nombreUsuario" type="text" required="" placeholder="Busca un usuario">
                     </div>
+                    <input type="hidden" name="creadoPor" value="${session.usuarioLogueado.rut}" id="creadoPor"/>
                 </fieldset>
                 <fieldset class="buttons">
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}"/>
