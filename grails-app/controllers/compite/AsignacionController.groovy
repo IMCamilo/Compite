@@ -36,6 +36,7 @@ class AsignacionController {
         params.usuario = u.id
         def p = Proyecto.findByCodigo(proyectoObtenido[0])
         params.proyecto = p.id
+        
         println "id de usuario : $params.usuario, id de proyecto : $params.proyecto"
 
         def asignacion = new Asignacion(params)

@@ -31,6 +31,7 @@
                 </ul>
                 </g:hasErrors>
                 <g:form action="save">
+                
                     <fieldset class="form">
                         <div class="fieldcontain required" id="proyectoinputdiv">
                             <label for="tipo">Proyecto<span class="required-indicator">*</span></label>
