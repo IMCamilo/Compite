@@ -1,5 +1,5 @@
 <title>COMPITE - Administrador</title>
-<meta name="layout" content="administrador.base"/>
+<meta name="layout" content="mainadministrador"/>
 <div class="row" style="width:80%">
     <div id="formulario1" class="col s12">
         <!--aca va el formulario seleccion de proyecto-->
