@@ -9,8 +9,9 @@ class MovilizacionController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
+        def userList = Usuario.findAll()
         params.max = Math.min(max ?: 10, 100)
-        respond Movilizacion.list(params), model:[movilizacionCount: Movilizacion.count()]
+        respond Movilizacion.list(params), model:[movilizacionCount: Movilizacion.count(), usuarios:userList]
     }
 
     def show(Movilizacion movilizacion) {
