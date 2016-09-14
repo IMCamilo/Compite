@@ -88,16 +88,18 @@
             <table>
                 <thead>
                     <tr>
-                        <g:sortableColumn property="rut" defaultOrder="desc" title="Rut"/></th>
-                        <g:sortableColumn property="nombre" defaultOrder="desc" title="Nombre"/></th>
-                        <g:sortableColumn property="razonSocial" defaultOrder="desc" title="Razon Social"/></th>
-                        <g:sortableColumn property="giro" defaultOrder="desc" title="Giro"/></th>
-                        <g:sortableColumn property="direccion" defaultOrder="desc" title="Direccion"/></th>
+                        <th>ver</th>
+                        <g:sortableColumn property="rut" defaultOrder="desc" title="Rut"/>
+                        <g:sortableColumn property="nombre" defaultOrder="desc" title="Nombre"/>
+                        <g:sortableColumn property="razonSocial" defaultOrder="desc" title="Razon Social"/>
+                        <g:sortableColumn property="giro" defaultOrder="desc" title="Giro"/>
+                        <g:sortableColumn property="direccion" defaultOrder="desc" title="Direccion"/>
                     </tr>
                 </thead>
                 <tbody>
                     <g:each var="empresa" status="i" in="${empresaList}">
                          <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
+                            <td><a href="show/${empresa.id}">ver</a></td>
                             <td>${empresa.rut}</td>
                             <td>${empresa.nombre}</td>
                             <td>${empresa.razonSocial}</td>

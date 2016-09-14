@@ -218,6 +218,7 @@
             <table>
                 <thead>
                     <tr>
+                        <th>ver</th>
                         <g:sortableColumn property="codigo" defaultOrder="desc" title="Codigo"/></th>
                         <g:sortableColumn property="nombre" defaultOrder="desc" title="Nombre"/></th>
                         <g:sortableColumn property="estado" defaultOrder="desc" title="Estado"/></th>
@@ -229,6 +230,7 @@
                 <tbody>
                     <g:each var="proyecto" status="i" in="${proyectoList}">
                          <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
+                            <td><a href="show/${proyecto.id}">ver</a></td>
                             <td>${proyecto.codigo}</td>
                             <td>${proyecto.nombre}</td>
                             <td>${proyecto.estado}</td>

@@ -52,8 +52,28 @@
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:table collection="${asignacionList}" />
-
+            <table>
+                <thead>
+                    <tr>
+                        <th>ver</th>
+                        <g:sortableColumn property="id" defaultOrder="desc" title="Codigo"/></th>
+                        <g:sortableColumn property="creadoPor" defaultOrder="desc" title="Creado por"/></th>
+                        <g:sortableColumn property="detalle" defaultOrder="desc" title="Detalle"/></th>
+                        <g:sortableColumn property="fechaCreacion" defaultOrder="desc" title="Fecha Creacion"/></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <g:each var="asignacion" status="i" in="${asignacionList}">
+                         <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
+                            <td><a href="show/${asignacion.id}">ver</a></td>
+                            <td>${asignacion.id}</td>
+                            <td>${asignacion.creadoPor}</td>
+                            <td>${asignacion.detalle}</td>
+                            <td>${formatDate(format:"yyyy/MM/dd HH:mm:ss", date: asignacion.fechaCreacion)}</td>
+                        </tr>
+                    </g:each>
+                </tbody>
+            </table>
             <div class="pagination">
                 <g:paginate total="${asignacionCount ?: 0}" />
             </div>
