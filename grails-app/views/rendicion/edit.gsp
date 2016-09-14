@@ -4,6 +4,7 @@
         <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'rendicion.label', default: 'Rendicion')}" />
         <title><g:message code="default.edit.label" args="[entityName]" /></title>
+        <asset:stylesheet src="compite/autocomplete.css"/>
     </head>
     <body>
         <a href="#edit-rendicion" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
@@ -28,12 +29,73 @@
             <g:form resource="${this.rendicion}" method="PUT">
                 <g:hiddenField name="version" value="${this.rendicion?.version}" />
                 <fieldset class="form">
-                    <f:all bean="rendicion"/>
+                    <div class='fieldcontain required'>
+                        <label for='tipo'>Tipo
+                            <span class='required-indicator'>*</span>
+                        </label><input type="text" name="tipo" value="${rendicion.tipo}" required="" id="tipo"/>
+                    </div>
+                    <div class="fieldcontain required" id="proyectoinputdiv">
+                        <label for="tipo">Proyecto<span class="required-indicator">*</span></label>
+                        <input class="typeahead" name="nombreProyecto" value="${proyecto.codigo} , ${proyecto.nombre}" type="text" required="" placeholder="Busca un proyecto">
+                    </div>
+                    <div class="fieldcontain required" id="usuarioinputdiv">
+                        <label for="tipo">Usuario<span class="required-indicator">*</span></label>
+                        <input class="typeahead" name="nombreUsuario" value="${usuario.nombres} ${usuario.paterno} , ${usuario.rut}" type="text" required="" placeholder="Busca un usuario">
+                    </div>
                 </fieldset>
                 <fieldset class="buttons">
                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
                 </fieldset>
             </g:form>
         </div>
+        <asset:javascript src="compite/jquery-2.1.1.min.js"/>
+        <asset:javascript src="compite/typeahead.bundle.js"/>
+        <script>
+            $(document).ready(function() {
+                var substringMatcher = function(strs) {
+                    return function findMatches(q, cb) {
+                        var matches, substringRegex;
+                        // an array that will be populated with substring matches
+                        matches = [];
+                        // regex used to determine if a string contains the substring `q`
+                        substrRegex = new RegExp(q, 'i');
+                        // iterate through the pool of strings and for any string that
+                        // contains the substring `q`, add it to the `matches` array
+                        $.each(strs, function(i, str) {
+                            if (substrRegex.test(str)) {
+                                matches.push(str);
+                            }
+                        });
+                        cb(matches);
+                    };
+                };
+                var usuarios = [
+                    <g:each in="${usuarios}">
+                        '${it.nombres} ${it.paterno} , ${it.rut}',
+                    </g:each>
+                ];
+                var proyectos = [
+                    <g:each in="${proyectos}">
+                        '${it.codigo} , ${it.nombre}',
+                    </g:each>
+                ];
+                $('#usuarioinputdiv .typeahead').typeahead({
+                    hint: true,
+                    highlight: true,
+                    minLength: 1
+                }, {
+                    name: 'usuarios',
+                    source: substringMatcher(usuarios)
+                });
+                $('#proyectoinputdiv .typeahead').typeahead({
+                    hint: true,
+                    highlight: true,
+                    minLength: 1
+                }, {
+                    name: 'proyectos',
+                    source: substringMatcher(proyectos)
+                });
+            });
+        </script>
     </body>
 </html>
