@@ -52,7 +52,7 @@ class BootStrap {
         }
 
         if (!Item.list()) {
-            new Item(centroCosto: 341, itemPresupuetario: "9110", tipo: "do  ", descripcion: "Servicios básicos", valor: 25000, fechaCreacion: "2016-08-19 11:49:00.0", creadoPor:"admin").save(failOnError: true)
+            new Item(nombre:"mouse. Item 1.", centroCosto: 341, itemPresupuetario: "9110", tipo: "do  ", descripcion: "Servicios básicos", valor: 25000, fechaCreacion: "2016-08-19 11:49:00.0", creadoPor:"admin").save(failOnError: true)
 
         }
         if (!Egreso.list()) {
