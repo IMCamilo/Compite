@@ -4,6 +4,7 @@
         <meta name="layout" content="mainadministrador" />
         <g:set var="entityName" value="${message(code: 'movilizacion.label', default: 'Movilizacion')}" />
         <title><g:message code="default.list.label" args="[entityName]" /></title>
+        <asset:stylesheet src="compite/autocomplete.css"/>
     </head>
     <body>
         <a href="#list-movilizacion" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
@@ -26,42 +27,40 @@
             </g:hasErrors>
             <g:form action="save">
                 <fieldset class="form">
-                  <div class='fieldcontain required'>
-                      <label for='tipo'>Tipo
-                          <span class='required-indicator'>*</span>
-                      </label><input type="text" name="tipo" value="" required="" id="tipo" />
-                  </div>
-                  <div class='fieldcontain required'>
-                      <label for='motivoEmpresa'>Motivo Empresa
-                          <span class='required-indicator'>*</span>
-                      </label><input type="text" name="motivoEmpresa" value="" required="" id="motivoEmpresa" />
-                  </div>
-                  <div class='fieldcontain required'>
-                      <label for='distancia'>Distancia
-                        <span class='required-indicator'>*</span>
-                      </label><input type="number" name="distancia" value="" required="" id="distancia" />
-                  </div>
-                  <div class='fieldcontain required'>
-                      <label for='direccion'>Direccion
-                        <span class='required-indicator'>*</span>
-                      </label><input type="text" name="direccion" value="" required="" id="direccion" />
-                  </div>
-                  <div class='fieldcontain required'>
-                      <label for='concepto'>Concepto
-                        <span class='required-indicator'>*</span>
-                      </label><input type="text" name="concepto" value="" required="" id="concepto" />
-                  </div>
-                  <div class='fieldcontain required'>
-                      <label for='proyecto'>Proyecto
-                        <span class='required-indicator'>*</span>
-                      </label>
-                  </div>
-                  <div class='fieldcontain required'>
-                      <label for='usuario'>Usuario
-                        <span class='required-indicator'>*</span>
-                      </label>
-                  </div>
-                  <input name="creadoPor" value="${session.usuarioLogueado.rut}" required="" type="hidden">
+                    <div class='fieldcontain required'>
+                        <label for='tipo'>Tipo
+                            <span class='required-indicator'>*</span>
+                        </label><input type="text" name="tipo" value="" required="" id="tipo" />
+                    </div>
+                    <div class='fieldcontain required'>
+                        <label for='motivoEmpresa'>Motivo Empresa
+                            <span class='required-indicator'>*</span>
+                        </label><input type="text" name="motivoEmpresa" value="" required="" id="motivoEmpresa" />
+                    </div>
+                    <div class='fieldcontain required'>
+                        <label for='distancia'>Distancia
+                            <span class='required-indicator'>*</span>
+                        </label><input type="number" name="distancia" value="" required="" id="distancia" />
+                    </div>
+                    <div class='fieldcontain required'>
+                        <label for='direccion'>Direccion
+                            <span class='required-indicator'>*</span>
+                        </label><input type="text" name="direccion" value="" required="" id="direccion" />
+                    </div>
+                    <div class='fieldcontain required'>
+                        <label for='concepto'>Concepto
+                            <span class='required-indicator'>*</span>
+                        </label><input type="text" name="concepto" value="" required="" id="concepto" />
+                    </div>
+                    <div class="fieldcontain required" id="usuarioinputdiv">
+                        <label for="tipo">Usuario<span class="required-indicator">*</span></label>
+                        <input class="typeahead" name="nombreUsuario" type="text" required="" placeholder="Busca un usuario">
+                    </div>
+                    <div class="fieldcontain required" id="proyectoinputdiv">
+                        <label for="tipo">Proyecto<span class="required-indicator">*</span></label>
+                        <input class="typeahead" name="nombreProyecto" type="text" required="" placeholder="Busca un proyecto">
+                    </div>
+                    <input name="creadoPor" value="${session.usuarioLogueado.rut}" required="" type="hidden">
                 </fieldset>
                 <fieldset class="buttons">
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
@@ -79,5 +78,50 @@
                 <g:paginate total="${movilizacionCount ?: 0}" />
             </div>
         </div>
+        <asset:javascript src="compite/jquery-2.1.1.min.js"/>
+        <asset:javascript src="compite/typeahead.bundle.js"/>
+        <script>
+            $(document).ready(function() {
+                var substringMatcher = function(strs) {
+                    return function findMatches(q, cb) {
+                        var matches, substringRegex;
+                        matches = [];
+                        substrRegex = new RegExp(q, 'i');
+                        $.each(strs, function(i, str) {
+                            if (substrRegex.test(str)) {
+                                matches.push(str);
+                            }
+                        });
+                        cb(matches);
+                    };
+                };
+                var usuarios = [
+                    <g:each in="${usuarios}">
+                        '${it.nombres} ${it.paterno} ・ ${it.rut}',
+                    </g:each>
+                ];
+                var proyectos = [
+                    <g:each in="${proyectos}">
+                        '${it.nombre} ・ ${it.codigo}',
+                    </g:each>
+                ];
+                $('#usuarioinputdiv .typeahead').typeahead({
+                    hint: true,
+                    highlight: true,
+                    minLength: 1
+                }, {
+                    name: 'usuarios',
+                    source: substringMatcher(usuarios)
+                });
+                $('#proyectoinputdiv .typeahead').typeahead({
+                    hint: true,
+                    highlight: true,
+                    minLength: 1
+                }, {
+                    name: 'proyectos',
+                    source: substringMatcher(proyectos)
+                });
+            });
+        </script>
     </body>
 </html>
