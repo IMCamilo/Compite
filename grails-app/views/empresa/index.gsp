@@ -85,8 +85,28 @@
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:table collection="${empresaList}" />
-
+            <table>
+                <thead>
+                    <tr>
+                        <g:sortableColumn property="rut" defaultOrder="desc" title="Rut"/></th>
+                        <g:sortableColumn property="nombre" defaultOrder="desc" title="Nombre"/></th>
+                        <g:sortableColumn property="razonSocial" defaultOrder="desc" title="Razon Social"/></th>
+                        <g:sortableColumn property="giro" defaultOrder="desc" title="Giro"/></th>
+                        <g:sortableColumn property="direccion" defaultOrder="desc" title="Direccion"/></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <g:each var="empresa" status="i" in="${empresaList}">
+                         <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
+                            <td>${empresa.rut}</td>
+                            <td>${empresa.nombre}</td>
+                            <td>${empresa.razonSocial}</td>
+                            <td>${empresa.giro}</td>
+                            <td>${empresa.direccion}</td>
+                        </tr>
+                    </g:each>
+                </tbody>
+            </table>
             <div class="pagination">
                 <g:paginate total="${empresaCount ?: 0}" />
             </div>
