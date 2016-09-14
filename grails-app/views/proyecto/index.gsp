@@ -214,7 +214,31 @@
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:table collection="${proyectoList}" />
+
+            <table>
+                <thead>
+                    <tr>
+                        <g:sortableColumn property="codigo" defaultOrder="desc" title="Codigo"/></th>
+                        <g:sortableColumn property="nombre" defaultOrder="desc" title="Nombre"/></th>
+                        <g:sortableColumn property="estado" defaultOrder="desc" title="Estado"/></th>
+                        <g:sortableColumn property="fechaCreacion" defaultOrder="desc" title="Fecha Creacion"/></th>
+                        <g:sortableColumn property="fechaFin" defaultOrder="desc" title="Fecha Finalizacion"/></th>
+                        <g:sortableColumn property="tipo" defaultOrder="desc" title="Tipo"/></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <g:each var="proyecto" status="i" in="${proyectoList}">
+                         <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
+                            <td>${proyecto.codigo}</td>
+                            <td>${proyecto.nombre}</td>
+                            <td>${proyecto.estado}</td>
+                            <td>${formatDate(format:"yyyy/MM/dd HH:mm:ss", date: proyecto.fechaCreacion)}</td>
+                            <td>${formatDate(format:"yyyy/MM/dd HH:mm:ss", date: proyecto.fechaFin)}</td>
+                            <td>${proyecto.tipo}</td>
+                        </tr>
+                    </g:each>
+                </tbody>
+            </table>
 
             <div class="pagination">
                 <g:paginate total="${proyectoCount ?: 0}" />
