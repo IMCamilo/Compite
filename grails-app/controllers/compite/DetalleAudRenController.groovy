@@ -26,8 +26,8 @@ class DetalleAudRenController {
     @Transactional
     def save() {
 
-        String[] rendicionObtenido = ((String) params.nombreRendicion).split(" , ");
-        String[] auditoriaObtenida = ((String) params.nombreAuditoria).split(" , ");
+        String[] rendicionObtenido = ((String) params.nombreRendicion).split(" ・ ");
+        String[] auditoriaObtenida = ((String) params.nombreAuditoria).split(" ・ ");
         def r = Rendicion.findById(rendicionObtenido[1])
         params.rendicion = r.id
         def a = Auditoria.findById(auditoriaObtenida[1])
@@ -67,8 +67,8 @@ class DetalleAudRenController {
 
     @Transactional
     def update() {
-        String[] rendicionObtenido = ((String) params.nombreRendicion).split(" , ");
-        String[] auditoriaObtenida = ((String) params.nombreAuditoria).split(" , ");
+        String[] rendicionObtenido = ((String) params.nombreRendicion).split(" ・ ");
+        String[] auditoriaObtenida = ((String) params.nombreAuditoria).split(" ・ ");
         def r = Rendicion.findById(rendicionObtenido[1])
         params.rendicion = r.id
         def a = Auditoria.findById(auditoriaObtenida[1])

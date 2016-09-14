@@ -35,11 +35,11 @@
                     </div>
                     <div class="fieldcontain required" id="proyectoinputdiv">
                         <label for="tipo">Proyecto<span class="required-indicator">*</span></label>
-                        <input class="typeahead" name="nombreProyecto" value="${proyecto.codigo} , ${proyecto.nombre}" type="text" required="" placeholder="Busca un proyecto">
+                        <input class="typeahead" name="nombreProyecto" value="${proyecto.codigo} ・ ${proyecto.nombre}" type="text" required="" placeholder="Busca un proyecto">
                     </div>
                     <div class="fieldcontain required" id="usuarioinputdiv">
                         <label for="tipo">Usuario<span class="required-indicator">*</span></label>
-                        <input class="typeahead" name="nombreUsuario"  value="${usuario.nombres} ${usuario.paterno} , ${usuario.rut}" type="text" required="" placeholder="Busca un usuario">
+                        <input class="typeahead" name="nombreUsuario"  value="${usuario.nombres} ${usuario.paterno} ・ ${usuario.rut}" type="text" required="" placeholder="Busca un usuario">
                     </div>
                     <div class="fieldcontain required">
                         <label for="tipo">Motivo<span class="required-indicator">*</span></label>
@@ -89,12 +89,12 @@
                 };
                 var usuarios = [
                     <g:each in="${usuarios}">
-                        '${it.nombres} ${it.paterno} , ${it.rut}',
+                        '${it.nombres} ${it.paterno} ・ ${it.rut}',
                     </g:each>
                 ];
                 var proyectos = [
                     <g:each in="${proyectos}">
-                        '${it.codigo} , ${it.nombre}',
+                        '${it.codigo} ・ ${it.nombre}',
                     </g:each>
                 ];
                 $('#usuarioinputdiv .typeahead').typeahead({

@@ -25,8 +25,8 @@ class AuditoriaController {
 
     @Transactional
     def save() {
-        String[] rutObtenido = ((String) params.nombreUsuario).split(" , ");
-        String[] proyectoObtenido = ((String) params.nombreProyecto).split(" , ");
+        String[] rutObtenido = ((String) params.nombreUsuario).split(" ・ ");
+        String[] proyectoObtenido = ((String) params.nombreProyecto).split(" ・ ");
         def u = Usuario.findByRut(rutObtenido[1])
         params.usuario = u.id
         def p = Proyecto.findByCodigo(proyectoObtenido[0])
@@ -67,8 +67,8 @@ class AuditoriaController {
 
     @Transactional
     def update() {
-        String[] rutObtenido = ((String) params.nombreUsuario).split(" , ");
-        String[] proyectoObtenido = ((String) params.nombreProyecto).split(" , ");
+        String[] rutObtenido = ((String) params.nombreUsuario).split(" ・ ");
+        String[] proyectoObtenido = ((String) params.nombreProyecto).split(" ・ ");
         def u = Usuario.findByRut(rutObtenido[1])
         params.usuario = u.id
         def p = Proyecto.findByCodigo(proyectoObtenido[0])

@@ -36,11 +36,11 @@
                     </div>
                     <div class="fieldcontain required" id="proyectoinputdiv">
                         <label for="tipo">Proyecto<span class="required-indicator">*</span></label>
-                        <input class="typeahead" name="nombreProyecto" value="${proyecto.codigo} , ${proyecto.nombre}" type="text" required="" placeholder="Busca un proyecto">
+                        <input class="typeahead" name="nombreProyecto" value="${proyecto.codigo} ・ ${proyecto.nombre}" type="text" required="" placeholder="Busca un proyecto">
                     </div>
                     <div class="fieldcontain required" id="usuarioinputdiv">
                         <label for="tipo">Usuario<span class="required-indicator">*</span></label>
-                        <input class="typeahead" name="nombreUsuario" value="${usuario.nombres} ${usuario.paterno} , ${usuario.rut}" type="text" required="" placeholder="Busca un usuario">
+                        <input class="typeahead" name="nombreUsuario" value="${usuario.nombres} ${usuario.paterno} ・ ${usuario.rut}" type="text" required="" placeholder="Busca un usuario">
                     </div>
                 </fieldset>
                 <fieldset class="buttons">
@@ -55,12 +55,8 @@
                 var substringMatcher = function(strs) {
                     return function findMatches(q, cb) {
                         var matches, substringRegex;
-                        // an array that will be populated with substring matches
                         matches = [];
-                        // regex used to determine if a string contains the substring `q`
                         substrRegex = new RegExp(q, 'i');
-                        // iterate through the pool of strings and for any string that
-                        // contains the substring `q`, add it to the `matches` array
                         $.each(strs, function(i, str) {
                             if (substrRegex.test(str)) {
                                 matches.push(str);
@@ -71,12 +67,12 @@
                 };
                 var usuarios = [
                     <g:each in="${usuarios}">
-                        '${it.nombres} ${it.paterno} , ${it.rut}',
+                        '${it.nombres} ${it.paterno} ・ ${it.rut}',
                     </g:each>
                 ];
                 var proyectos = [
                     <g:each in="${proyectos}">
-                        '${it.codigo} , ${it.nombre}',
+                        '${it.codigo} ・ ${it.nombre}',
                     </g:each>
                 ];
                 $('#usuarioinputdiv .typeahead').typeahead({
