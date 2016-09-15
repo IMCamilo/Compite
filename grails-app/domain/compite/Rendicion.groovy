@@ -3,7 +3,14 @@ package compite
 class Rendicion {
 
     Date fecha = new Date()
-    String tipo
+    String sedeEnvio
+    String tipoRendicion
+    String aprobacion
+    Integer total
+    Integer totalRendido
+    Integer totalAnticipado
+
+
     String creadoPor
 
     static belongsTo = [proyecto:Proyecto, usuario:Usuario]

@@ -47,7 +47,7 @@ class BootStrap {
         }
 
         if (!Rendicion.list()) {
-            new Rendicion(fecha: "2016-08-19 11:49:00.0", tipo:"Reembolso de gastos", usuario: 3, proyecto: 2, creadoPor:"admin").save(failOnError: true)
+            new Rendicion(fecha: "2016-08-19 11:49:00.0", tipoRendicion: "Reembolso de gastos", sedeEnvio: "Puerto Montt",aprobacion: "Si", total:240000, totalAnticipado: 10000, totalRendido: 340000, usuario: 3, proyecto: 2, creadoPor:"admin").save(failOnError: true)
         }
 
         if (!Item.list()) {
