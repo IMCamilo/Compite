@@ -69,7 +69,30 @@
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:table collection="${auditoriaList}" />
+            <table>
+                <thead>
+                    <tr>
+                        <th>ver</th>
+                        <g:sortableColumn property="nombre" defaultOrder="desc" title="Nombre"/>
+                        <g:sortableColumn property="motivo" defaultOrder="desc" title="Motivo"/>
+                        <g:sortableColumn property="estado" defaultOrder="desc" title="Estado"/>
+                        <g:sortableColumn property="fechaCreacion" defaultOrder="desc" title="Fecha Creacion"/>
+                        <g:sortableColumn property="descripcion" defaultOrder="desc" title="Descripcion"/>
+                    </tr>
+                </thead>
+                <tbody>
+                    <g:each var="auditoria" status="i" in="${auditoriaList}">
+                         <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
+                            <td><a href="show/${auditoria.id}">ver</a></td>
+                            <td>${auditoria.nombre}</td>
+                            <td>${auditoria.motivo}</td>
+                            <td>${auditoria.estado}</td>
+                            <td>${formatDate(format:"yyyy/MM/dd", date: auditoria.fechaCreacion)}</td>
+                            <td>${auditoria.descripcion}</td>
+                        </tr>
+                    </g:each>
+                </tbody>
+            </table>
             <div class="pagination">
                 <g:paginate total="${auditoriaCount ?: 0}" />
             </div>
