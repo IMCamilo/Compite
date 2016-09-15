@@ -17,7 +17,7 @@
         <div id="edit-movilizacion" class="content scaffold-edit" role="main">
             <h1><g:message code="default.edit.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
-            <div class="message" role="status">${flash.message}</div>
+                <div class="message" role="status">${flash.message}</div>
             </g:if>
             <g:hasErrors bean="${this.movilizacion}">
             <ul class="errors" role="alert">
@@ -32,27 +32,27 @@
                     <div class='fieldcontain required'>
                         <label for='tipo'>Tipo
                             <span class='required-indicator'>*</span>
-                        </label><input type="text" name="tipo" value="" required="" id="tipo" />
+                        </label><input type="text" name="tipo" value="${movilizacion.tipo}" required="" id="tipo" />
                     </div>
                     <div class='fieldcontain required'>
                         <label for='motivoEmpresa'>Motivo Empresa
                             <span class='required-indicator'>*</span>
-                        </label><input type="text" name="motivoEmpresa" value="" required="" id="motivoEmpresa" />
+                        </label><input type="text" name="motivoEmpresa" value="${movilizacion.motivoEmpresa}" required="" id="motivoEmpresa" />
                     </div>
                     <div class='fieldcontain required'>
                         <label for='distancia'>Distancia
                             <span class='required-indicator'>*</span>
-                        </label><input type="number" name="distancia" value="" required="" id="distancia" />
+                        </label><input type="number" name="distancia" value="${movilizacion.distancia}" required="" id="distancia" />
                     </div>
                     <div class='fieldcontain required'>
                         <label for='direccion'>Direccion
                             <span class='required-indicator'>*</span>
-                        </label><input type="text" name="direccion" value="" required="" id="direccion" />
+                        </label><input type="text" name="direccion" value="${movilizacion.direccion}" required="" id="direccion" />
                     </div>
                     <div class='fieldcontain required'>
                         <label for='concepto'>Concepto
                             <span class='required-indicator'>*</span>
-                        </label><input type="text" name="concepto" value="" required="" id="concepto" />
+                        </label><input type="text" name="concepto" value="${movilizacion.concepto}" required="" id="concepto" />
                     </div>
                     <div class="fieldcontain required" id="proyectoinputdiv">
                         <label for="tipo">Proyecto<span class="required-indicator">*</span></label>
