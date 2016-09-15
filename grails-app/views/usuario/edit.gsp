@@ -32,7 +32,8 @@
                     <div class='fieldcontain required'>
                         <label for='rut'>Rut
                             <span class='required-indicator'>*</span>
-                        </label><input type="text" name="rut" value="${usuario.rut}" required="" maxlength="13" id="rut"/>
+                        </label>
+                        <input type="text" id="rut" value="${usuario.rut}" name="rut" required oninput="checkRut(this)" placeholder="Ingrese RUT">
                     </div>
                     <div class='fieldcontain required'>
                         <label for='nombres'>Nombres
@@ -79,5 +80,6 @@
                 </fieldset>
             </g:form>
         </div>
+    <asset:javascript src="compite/validarut.js"/>
     </body>
 </html>

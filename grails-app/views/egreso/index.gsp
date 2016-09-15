@@ -53,7 +53,7 @@
                     <div class='fieldcontain required'>
                         <label for='rutEmpresa'>Rut Empresa
                             <span class='required-indicator'>*</span>
-                        </label><input type="text" name="rutEmpresa" value="" required="" id="rutEmpresa"/>
+                        </label><input type="text" id="rutEmpresa" name="rutEmpresa" required oninput="checkRut(this)" placeholder="Ingrese RUT">
                     </div>
                     <div class='fieldcontain required'>
                         <label for='numeroDocumento'>Numero documento
@@ -142,6 +142,7 @@
             </div>
         </div>
         <asset:javascript src="compite/jquery-2.1.1.min.js"/>
+        <asset:javascript src="compite/validarut.js"/>
         <asset:javascript src="compite/typeahead.bundle.js"/>
         <script>
             $(document).ready(function() {

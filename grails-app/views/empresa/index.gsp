@@ -30,7 +30,7 @@
                     <label for="tipo">Rut
                         <span class="required-indicator">*</span>
                     </label>
-                    <input name="rut" value="" required="" maxlength="13" id="rut" type="text"></div>
+                        <input type="text" id="rut" name="rut" required oninput="checkRut(this)" placeholder="Ingrese RUT"></div>
                     <div class="fieldcontain required">
                     <label for="descripcion">Tipo
                         <span class="required-indicator">*</span>
@@ -112,5 +112,7 @@
                 <g:paginate total="${empresaCount ?: 0}" />
             </div>
         </div>
+    <asset:javascript src="compite/validarut.js"/>
+
     </body>
 </html>
