@@ -31,11 +31,11 @@
                 <fieldset class="form">
                     <div class="fieldcontain required" id="auditoriainputdiv">
                         <label for="tipo">Auditoria<span class="required-indicator">*</span></label>
-                        <input class="typeahead" name="nombreAuditoria" value="${auditoria.descripcion} , ${auditoria.id}" type="text" required="" placeholder="Busca una auditoria">
+                        <input class="typeahead" name="nombreAuditoria" value="${auditoria.descripcion} ・ ${auditoria.id}" type="text" required="" placeholder="Busca una auditoria">
                     </div>
                     <div class="fieldcontain required" id="rendicioninputdiv">
                         <label for="tipo">Rendicion<span class="required-indicator">*</span></label>
-                        <input class="typeahead" name="nombreRendicion" value="${rendicion.nombre} ${rendicion.descripcion} , ${rendicion.id}" type="text" required="" placeholder="Busca una rendicion">
+                        <input class="typeahead" name="nombreRendicion" value="${rendicion.nombre} ${rendicion.descripcion} ・ ${rendicion.id}" type="text" required="" placeholder="Busca una rendicion">
                     </div>
                     <div class="fieldcontain required">
                         <label for="tipo">Detalle<span class="required-indicator">*</span></label>
@@ -66,12 +66,12 @@
                 };
                 var auditorias = [
                     <g:each in="${auditorias}">
-                        '${it.descripcion} , ${it.id}',
+                        '${it.descripcion} ・ ${it.id}',
                     </g:each>
                 ];
                 var rendiciones = [
                     <g:each in="${rendiciones}">
-                        '${it.nombre} ${it.descripcion} , ${it.id}',
+                        '${it.nombre} ${it.descripcion} ・ ${it.id}',
                     </g:each>
                 ];
                 $('#auditoriainputdiv .typeahead').typeahead({

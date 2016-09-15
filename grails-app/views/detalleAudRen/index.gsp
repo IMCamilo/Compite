@@ -39,8 +39,7 @@
                         <label for="tipo">Detalle<span class="required-indicator">*</span></label>
                         <textarea  name="detalle" required="" rows="4" cols="50"></textarea>
                     </div>
-                    <div class="fieldcontain required">
-                    <input name="creadoPor" value="${session.usuarioLogueado.rut}" required="" type="hidden"></div>
+                    <input name="creadoPor" value="${session.usuarioLogueado.rut}" required="" type="hidden">
                 </fieldset>
                 <fieldset class="buttons">
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
@@ -77,12 +76,12 @@
                 };
                 var auditorias = [
                     <g:each in="${auditorias}">
-                        '${it.descripcion} , ${it.id}',
+                        '${it.descripcion} ・ ${it.id}',
                     </g:each>
                 ];
                 var rendiciones = [
                     <g:each in="${rendiciones}">
-                        '${it.nombre} ${it.descripcion} , ${it.id}',
+                        '${it.nombre} ${it.descripcion} ・ ${it.id}',
                     </g:each>
                 ];
                 $('#auditoriainputdiv .typeahead').typeahead({

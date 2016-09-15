@@ -24,7 +24,7 @@ class ProyectoController {
 
     @Transactional
     def save() {
-        String[] empresaObtenida = ((String) params.nombreEmpresa).split(" , ");
+        String[] empresaObtenida = ((String) params.nombreEmpresa).split(" ・ ");
         params.empresa = empresaObtenida[1]
 
         def proyecto = new Proyecto(params)
@@ -53,6 +53,10 @@ class ProyectoController {
         }
     }
 
+    def find() {
+        println "Estoy en el Find de Proyecto"
+    }
+
     def edit(Proyecto proyecto) {
         def empresa = Empresa.findById(proyecto.empresaId)
         def listaEmpresas = Empresa.findAll()
@@ -61,7 +65,7 @@ class ProyectoController {
 
     @Transactional
     def update() {
-        String[] empresaObtenida = ((String) params.nombreEmpresa).split(" , ");
+        String[] empresaObtenida = ((String) params.nombreEmpresa).split(" ・ ");
         params.empresa = empresaObtenida[1]
 
         def proyecto = Proyecto.get(params.id)

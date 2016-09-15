@@ -37,7 +37,7 @@
                     </div>
                     <div class="fieldcontain required" id="empresainputdiv">
                         <label for="tipo">Empresa<span class="required-indicator">*</span></label>
-                        <input class="typeahead" name="nombreEmpresa" value="${empresa.nombre} ${empresa.rut} , ${empresa.id}" type="text" required="" placeholder="Busca una empresa">
+                        <input class="typeahead" name="nombreEmpresa" value="${empresa.nombre} ${empresa.rut} ・ ${empresa.id}" type="text" required="" placeholder="Busca una empresa">
                     </div>
                     <div class="fieldcontain required">
                         <label for="codigo">Codigo
@@ -210,7 +210,7 @@
                 };
                 var empresas = [
                     <g:each in="${empresas}">
-                        '${it.nombre} ${it.rut} , ${it.id}',
+                        '${it.nombre} ${it.rut} ・ ${it.id}',
                     </g:each>
                 ];
                 $('#empresainputdiv .typeahead').typeahead({

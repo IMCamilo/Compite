@@ -6,6 +6,7 @@ package compite
 class Item {
 
     Integer centroCosto
+    String nombre
     String itemPresupuestario
     String descripcion
     Integer valor
@@ -16,6 +17,7 @@ class Item {
 
     static constraints = {
         itemPresupuestario nullable: true, blank: true
+        nombre nullable: true, blank: true
         creadoPor nullable: true, blank: true
     }
 

@@ -10,10 +10,11 @@ class EgresoController {
 
     def index(Integer max) {
         def userList = Usuario.findAll()
-        def projectList = Proyecto.findAll()
+        def rendicionList = Rendicion.findAll()
         def itemsList = Item.findAll()
+        def proyectoList = Proyecto.findAll()
         params.max = Math.min(max ?: 10, 100)
-        respond Egreso.list(params), model:[egresoCount: Egreso.count(), usuarios:userList, proyectos:projectList, items:itemsList]
+        respond Egreso.list(params), model:[egresoCount: Egreso.count(), usuarios:userList, proyectos:proyectoList, rendiciones:rendicionList, items:itemsList]
     }
 
     def show(Egreso egreso) {
@@ -26,15 +27,19 @@ class EgresoController {
 
     @Transactional
     def save() {
-        String[] rutObtenido = ((String) params.nombreUsuario).split(" , ");
-        String[] proyectoObtenido = ((String) params.nombreProyecto).split(" , ");
-        String[] itemObtenido = ((String) params.nombreItem).split(" , ");
+        String[] rutObtenido = ((String) params.nombreUsuario).split(" ・ ");
+        String[] proyectoObtenido = ((String) params.nombreProyecto).split(" ・ ");
+        String[] itemObtenido = ((String) params.nombreItem).split(" ・ ");
+        String[] rendicionObtenido = ((String) params.nombreRendicion).split(" ・ ");
         def u = Usuario.findByRut(rutObtenido[1])
         params.usuario = u.id
-        def p = Proyecto.findByCodigo(proyectoObtenido[0])
+        def p = Proyecto.findByCodigo(proyectoObtenido[1])
         params.proyecto = p.id
-        def i = Item.findByItemPresupuetario(itemObtenido[0])
+        def i = Item.findById(itemObtenido[1])
         params.item = i.id
+        def r = Rendicion.findById(rendicionObtenido[1])
+        params.rendicion = i.id
+
         def egreso = new Egreso(params)
 
         if (egreso == null) {
@@ -62,20 +67,30 @@ class EgresoController {
 
     def edit(Egreso egreso) {
         def usuario = Usuario.findById(egreso.usuarioId)
+        def item = Item.findById(egreso.proyectoId)
+        def rendicion = Rendicion.findById(egreso.proyectoId)
         def proyecto = Proyecto.findById(egreso.proyectoId)
         def userList = Usuario.findAll()
-        def projectList = Proyecto.findAll()
-        respond egreso, model:[usuarios:userList, proyectos:projectList, usuario:usuario, proyecto:proyecto]
+        def rendicionList = Rendicion.findAll()
+        def itemsList = Item.findAll()
+        def proyectoList = Proyecto.findAll()
+        respond egreso, model:[usuarios:userList, proyectos:proyectoList, rendiciones:rendicionList, items:itemsList, usuario:usuario, item:item, rendicion:rendicion, proyecto:proyecto]
     }
 
     @Transactional
     def update() {
-        String[] rutObtenido = ((String) params.nombreUsuario).split(" , ");
-        String[] proyectoObtenido = ((String) params.nombreProyecto).split(" , ");
+        String[] rutObtenido = ((String) params.nombreUsuario).split(" ・ ");
+        String[] proyectoObtenido = ((String) params.nombreProyecto).split(" ・ ");
+        String[] itemObtenido = ((String) params.nombreItem).split(" ・ ");
+        String[] rendicionObtenido = ((String) params.nombreRendicion).split(" ・ ");
         def u = Usuario.findByRut(rutObtenido[1])
         params.usuario = u.id
-        def p = Proyecto.findByCodigo(proyectoObtenido[0])
+        def p = Proyecto.findByCodigo(proyectoObtenido[1])
         params.proyecto = p.id
+        def i = Item.findById(itemObtenido[1])
+        params.item = i.id
+        def r = Rendicion.findById(rendicionObtenido[1])
+        params.rendicion = i.id
 
         def egreso = Egreso.get(params.id)
         egreso.properties = params

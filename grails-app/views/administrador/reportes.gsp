@@ -1,88 +1,154 @@
+
+
 <%@ page import="org.apache.tools.ant.property.GetProperty; org.apache.tools.ant.taskdefs.Get" %>
 <title>COMPITE - Reportes de Rendiciones</title>
 <meta name="layout" content="mainadministrador"/>
 
-<div class="container section">
-
     <g:form method="GET" action="reportes">
-                <label>Usuario</label>
-                <select name="usuario" class="browser-default" required id="usuario">
-                    <option value="">Usuario</option>
-                    <g:each var="usuario" in="${compite.Usuario.list()}">
-                        <option value="${usuario.id}">${usuario}</option>
-                    </g:each>
-                </select>
-
-                <label>Proyecto</label>
-                <select name="proyecto" class="browser-default" required id="proyecto">
-                    <option value="">Proyecto</option>
-                    <g:each var="proyecto" in="${compite.Proyecto.list()}">
-                        <option value="${proyecto.id}">${proyecto.nombre}</option>
-                    </g:each>
-                </select>
-
-
-        <div class="row">
-            <div class="col l4 offset-l4 input-field">
-                <button class="waves-effect waves-light btn">Buscar</button>
-            </div>
+        <div>
+            <label>Proyecto</label>
+            <select class="form-control" name="proyecto" required id="proyecto">
+                <option value="">Proyecto</option>
+                <g:each var="proyecto" in="${compite.Proyecto.list()}">
+                    <option value="${proyecto.id.toString()}">${proyecto.nombre}</option>
+                </g:each>
+            </select>
         </div>
+        <br>
+        <button >Buscar</button>
     </g:form>
-</div>
 
-<div class="divider"></div>
+<form>
+    <br>
+    <br>
+    <div>
+        <h1>Reporte de Rendicion de Gastos</h1>
+        <div id="fecha" class="col-md-6">
+            <label for="fecha">FECHA RENDICION</label>
+            <input type="text" placeholder="Fecha Rendicion" class="form-control">
+        </div>
+        <div id="sede" class="col-md-6">
+            <label for="sede" class="col-md-6">SEDE ENVIO</label>
+            <input class="form-control" type="text" placeholder="Sede Envio">
+        </div>
+        <div id="nombre" class="col-md-12">
+            <label for="nombre">NOMBRE RESPONSABLE</label>
+            <input class="form-control"  type="text" placeholder="Nombre Responsable">
+        </div>
+        <div id="rut" class="col-md-6">
+            <label for="rut">RUT</label>
+            <input class="form-control" type="text" placeholder="RUT">
+        </div>
+        <div id="tipo" class="col-md-6">
+            <label for="nombre">TIPO RENDICION</label>
+            <input class="form-control" type="text" placeholder="Tipo Rendicion">
+        </div>
+    </div>
+</form>
 
-<div class="section">
-    <div class="col l12">
-        <table class="table highlight responsive-table bordered centered" id="table">
-            <thead class="teal white-text">
+<br>
+<br>
+
+    <div>
+
+        <table>
+            <thead>
             <tr>
-                <th>Usuario</th>
-                <th>Proyecto</th>
-                <th>Tipo</th>
-                <th>Nombre</th>
+                <th>Proyecto ID</th>
+                <th>Numero Documento</th>
                 <th>Fecha Creacion</th>
-                <th>Motivo</th>
-                <th>Kilometros Iniciales</th>
-                <th>Kilometros Finales</th>
-                <th>Desde</th>
-                <th>Hasta</th>
-                <th>Distancia</th>
-                <th>Tiempo</th>
-                <th>Total</th>
-                <th>Cantidad Boletas</th>
-                <th>Descripcion</th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th>Rut Empresa</th>
+                <th>Pagado A</th>
+                <th>Centro de Costos</th>
+                <th>Item Presupuestario</th>
+                <th>Concepto</th>
+                <th>Monto</th>
             </tr>
             </thead>
-            <tbody class="black-text">
-            <g:each var="rendicion" in="${compite.Rendicion.executeQuery("from Rendicion where usuario = ${params.usuario} and proyecto= ${params.proyecto} " ) }">
+            <tbody>
+            <g:each var="reporte" in="${compite.Egreso.executeQuery("from Egreso where proyecto = ${params.proyecto}")}" >
                 <tr>
-                    <td>${rendicion.usuario}</td>
-                    <td>${rendicion.proyecto}</td>
-                    <td>${rendicion.tipo}</td>
-                    <td>${rendicion.nombre}</td>
-                    <td>${rendicion.fecha}</td>
-                    <td>${rendicion.motivo}</td>
-                    <td>${rendicion.kmInicial}</td>
-                    <td>${rendicion.kmFinal}</td>
-                    <td>${rendicion.desde}</td>
-                    <td>${rendicion.hasta}</td>
-                    <td>${rendicion.distancia}</td>
-                    <td>${rendicion.tiempo}</td>
-                    <td>${rendicion.total}</td>
-                    <td>${rendicion.nBoleta}</td>
-                    <td>${rendicion.descripcion}</td>
-                    <td><g:link action="show" resource="${rendicion}">Detalles</g:link></td>
-                    <td><g:link action="edit" resource="${rendicion}">Editar</g:link></td>
-                    <td><g:link action="delete" resource="${rendicion}">Borrar</g:link></td>
+                    <td>${reporte.proyectoId}</td>
+                    <td>${reporte.nDocumento}</td>
+                    <td>${reporte.fechaCreacion.dateString}</td>
+                    <td>${reporte.rutEmpresa}</td>
+                    <td>${reporte.pagadoA}</td>
+                    <td>${reporte.item.centroCosto}</td>
+                    <td>${reporte.item.itemPresupuestario} ${reporte.item.descripcion}</td>
+                    <td>${reporte.concepto}</td>
+                    <td>${reporte.monto}</td>
                 </tr>
             </g:each>
             </tbody>
         </table>
-    </div>
-</div>
 
+    </div>
+<br>
+<br>
+<br>
+
+<h1>Reporte de Movilizacion</h1>
+
+<form>
+    <div id="vehiculo" class="col-md-6">
+        <label for="vehiculo">Dueño Vehiculo</label>
+        <input type="text" placeholder="Vehiculo" class="form-control">
+    </div>
+    <div id="mantencion" class="col-md-6">
+        <label for="mantencion">Mantencion Vehiculo</label>
+        <input type="text" placeholder="Mantencion" class="form-control">
+    </div>
+    <div id="seguro" class="col-md-6">
+        <label for="fecha">Seguro Automóvil</label>
+        <input type="text" placeholder="Seguro Automovil" class="form-control">
+    </div>
+    <div id="valor_bencina" class="col-md-6">
+        <label for="valor_bencina">Valor Bencina</label>
+        <input type="text" placeholder="Valor Bencina" class="form-control">
+    </div>
+    <div id="valor_uf" class="col-md-6">
+        <label for="valor_uf">Valor UF</label>
+        <input type="text" placeholder="Valor UF" class="form-control">
+    </div>
+    <div id="rendimiento" class="col-md-6">
+        <label for="rendimiento">Rendimiento Promedio</label>
+        <input type="text" placeholder="Rendimiento" class="form-control">
+    </div>
+    <div id="peso_km" class="col-md-6">
+        <label for="peso_km">$ Por Km.</label>
+        <input type="text" placeholder="$ por Km." class="form-control">
+    </div>
+    <div id="UF_km" class="col-md-6">
+        <label for="uf_km">UF por Km</label>
+        <input type="text" placeholder="UF por KM" class="form-control">
+    </div>
+    <br>
+    <br>
+</form>
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>Numero</th>
+                <th>Fecha</th>
+                <th>Motivo / Empresa </th>
+                <th>Dirección</th>
+                <th>Distancia Ida / Vuelta</th>
+                <th>Estacionamiento / TAG / Peaje / Metro</th>
+            </tr>
+        </thead>
+        <tbody>
+            <g:each var="movil" in="${compite.Movilizacion.executeQuery("from Movilizacion where proyecto = ${params.proyecto}")}" >
+                <tr>
+                    <td>${movil.id}</td>
+                    <td>${movil.fechaCreacion}</td>
+                    <td>${movil.motivoEmpresa}</td>
+                    <td>${movil.direccion}</td>
+                    <td>${movil.distancia}</td>
+                    <td>${movil.egresomov.egreso.monto}</td>
+                </tr>
+            </g:each>
+        </tbody>
+    </table>
+</div>
 

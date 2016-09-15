@@ -209,13 +209,71 @@
                 </fieldset>
             </g:form>
         </div>
-        <div id="list-proyecto" class="content scaffold-list" role="main">
+        <div id="find-proyecto" class="content" role="main">
+            <h1>Buscar</h1>
+            <g:form action="find">
+                <fieldset class="form">
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain">
+                                <label for="tipoBusqueda">Tipo de Proyecto
+                                </label>
+                                <select name="tipoBusqueda" id="tipoBusqueda">
+                                    <option value="" disabled selected>Seleccione Tipo</option>
+                                    <option value="PUBLICO">Publico</option>
+                                    <option value="PRIVADO">Privado</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain">
+                                <label for="estadoBusqueda">Estado de Proyecto
+                                </label>
+                                <select name="estadoBusqueda" id="estadoBusqueda">
+                                    <option value="" disabled selected>Seleccione Estado</option>
+                                    <option value="ACTIVO">Activo</option>
+                                    <option value="INACTIVO">Inactivo</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="buttons">
+                    <g:submitButton name="find" class="search" value="Buscar" />
+                </fieldset>
+            </g:form>
+        </div>
+        <div id="list-proyecto" class="content scaffold-list" role="main" style="border-top: 1px solid #009688">
             <h1><g:message code="default.list.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:table collection="${proyectoList}" />
-
+            <table>
+                <thead>
+                    <tr>
+                        <th>ver</th>
+                        <g:sortableColumn property="codigo" defaultOrder="desc" title="Codigo"/></th>
+                        <g:sortableColumn property="nombre" defaultOrder="desc" title="Nombre"/></th>
+                        <g:sortableColumn property="estado" defaultOrder="desc" title="Estado"/></th>
+                        <g:sortableColumn property="fechaCreacion" defaultOrder="desc" title="Fecha Creacion"/></th>
+                        <g:sortableColumn property="fechaFin" defaultOrder="desc" title="Fecha Finalizacion"/></th>
+                        <g:sortableColumn property="tipo" defaultOrder="desc" title="Tipo"/></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <g:each var="proyecto" status="i" in="${proyectoList}">
+                         <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
+                            <td><a href="show/${proyecto.id}">ver</a></td>
+                            <td>${proyecto.codigo}</td>
+                            <td>${proyecto.nombre}</td>
+                            <td>${proyecto.estado}</td>
+                            <td>${formatDate(format:"yyyy/MM/dd HH:mm:ss", date: proyecto.fechaCreacion)}</td>
+                            <td>${formatDate(format:"yyyy/MM/dd HH:mm:ss", date: proyecto.fechaFin)}</td>
+                            <td>${proyecto.tipo}</td>
+                        </tr>
+                    </g:each>
+                </tbody>
+            </table>
             <div class="pagination">
                 <g:paginate total="${proyectoCount ?: 0}" />
             </div>
@@ -239,7 +297,7 @@
                 };
                 var empresas = [
                     <g:each in="${empresas}">
-                        '${it.nombre} ${it.rut} , ${it.id}',
+                        '${it.nombre} ${it.rut} ・ ${it.id}',
                     </g:each>
                 ];
                 $('#empresainputdiv .typeahead').typeahead({

@@ -48,24 +48,26 @@ class BootStrap {
 
         if (!Rendicion.list()) {
             new Rendicion(fecha: "2016-08-19 11:49:00.0", tipo:"Reembolso de gastos", usuario: 3, proyecto: 2, creadoPor:"admin").save(failOnError: true)
-
         }
 
         if (!Item.list()) {
-            new Item(centroCosto: 341, itemPresupuetario: "9110", tipo: "do  ", descripcion: "Servicios básicos", valor: 25000, fechaCreacion: "2016-08-19 11:49:00.0", creadoPor:"admin").save(failOnError: true)
+            new Item(nombre:"mouse. Item 1.", centroCosto: 341, itemPresupuetario: "9110", tipo: "do  ", descripcion: "Servicios básicos", valor: 25000, fechaCreacion: "2016-08-19 11:49:00.0", creadoPor:"admin").save(failOnError: true)
 
         }
         if (!Egreso.list()) {
-            new Egreso(aprobacion: "Si", concepto: "Servicios Básicos", fechaCreacion: "2016-08-19 11:49:00.0", monto: 12000,  nDocumento: "234567", rutEmpresa: "234567-7", pagadoA: "Pablo Santana", tipoMoneda: "Pesos Chilenos", usuario: 1, proyecto: 1,item: 1, rendicion: 1, creadoPor:"admin").save(failOnError: true)
+            new Egreso(aprobacion: "Si", concepto: "Servicios Básicos", fechaCreacion: "2016-08-19 11:49:00.0", monto: 12000,  nDocumento: "234567", rutEmpresa: "98544511-7", pagadoA: "Pablo Santana", tipoMoneda: "CLP", usuario: 1, proyecto: 1,item: 1, rendicion: 1, creadoPor:"admin").save(failOnError: true)
+            new Egreso(aprobacion: "Si", concepto: "Servicio de Automotora", fechaCreacion: "2016-08-19 11:49:00.0", monto: 13000,  nDocumento: "667", rutEmpresa: "65987234-1", pagadoA: "Rodrigo Cardenas", tipoMoneda: "CLP", usuario: 1, proyecto: 1,item: 1, rendicion: 1, creadoPor:"admin").save(failOnError: true)
+            new Egreso(aprobacion: "Si", concepto: "Servicios tecnicos", fechaCreacion: "2016-08-19 11:49:00.0", monto: 13000,  nDocumento: "4555", rutEmpresa: "65187214-4", pagadoA: "Pablo Zumelzu", tipoMoneda: "CLP", usuario: 1, proyecto: 1,item: 1, rendicion: 1, creadoPor:"admin").save(failOnError: true)
         }
 
         if (!Movilizacion.list()) {
             new Movilizacion(fechaCreacion: "2016-08-19 11:49:00.0", motivoEmpresa: "Viaje", direccion: "avenida", distancia: 8, concepto: "Movilizacion regional", tipo: "peaje", creadoPor:"admin", proyecto: 1, usuario: 1).save(failOnError: true)
+            new Movilizacion(fechaCreacion: "2016-08-19 11:49:00.0", motivoEmpresa: "Peaje", direccion: "Pto Varas", distancia: 8, concepto: "Movilizacion regional", tipo: "peaje", creadoPor:"admin", proyecto: 1, usuario: 2).save(failOnError: true)
+            new Movilizacion(fechaCreacion: "2016-08-19 11:49:00.0", motivoEmpresa: "Viaje", direccion: "avenida", distancia: 8, concepto: "Movilizacion regional", tipo: "peaje", creadoPor:"admin", proyecto: 1, usuario: 2).save(failOnError: true)
         }
 
-
         if (!EgresoMov.list()) {
-            new EgresoMov(fecha:"2016-08-19 11:49:00.0", egreso: 1, movilizacion: 1).save(failOnError: true)
+            new EgresoMov(creadoPor:"admin", fecha:"2016-08-19 11:49:00.0", egreso: 1, movilizacion: 1).save(failOnError: true)
         }
 
         if (!Auditoria.list()) {
@@ -76,8 +78,6 @@ class BootStrap {
         if (!DetalleAudRen.list()) {
             new DetalleAudRen(fecha: "2016-08-19 11:49:00.0", detalle: "Informacion sobre auditoria 1 y rendicion 1.", auditoria: 1, rendicion: 1, creadoPor:"admin").save(failOnError: true)
         }
-
-
 
         if (!Transporte.list()) {
             new Transporte(tipo: "Sedán", marca: "BMW", modelo: "z3", combustible: "bencina", kmPorLitro: 20, descripcion: "Automovil estándar", usuario: 3, creadoPor:"admin").save(failOnError: true)

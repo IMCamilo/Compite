@@ -27,8 +27,8 @@ class AsignacionController {
     def save() {
         //estoy haciendo esto a mano, hasta encontrar un plugin o mejorar el uso de typeahead en grails.
         //lo cual parece esta en bastante desarrollado, sin embargo no hay tiempo para investigarlo
-        String[] rutObtenido = ((String) params.nombreUsuario).split(" , ");
-        String[] proyectoObtenido = ((String) params.nombreProyecto).split(" , ");
+        String[] rutObtenido = ((String) params.nombreUsuario).split(" ・ ");
+        String[] proyectoObtenido = ((String) params.nombreProyecto).split(" ・ ");
         def u = Usuario.findByRut(rutObtenido[1])
         params.usuario = u.id
         def p = Proyecto.findByCodigo(proyectoObtenido[0])
@@ -68,8 +68,8 @@ class AsignacionController {
 
     @Transactional
     def update() {
-        String[] rutObtenido = ((String) params.nombreUsuario).split(" , ");
-        String[] proyectoObtenido = ((String) params.nombreProyecto).split(" , ");
+        String[] rutObtenido = ((String) params.nombreUsuario).split(" ・ ");
+        String[] proyectoObtenido = ((String) params.nombreProyecto).split(" ・ ");
         def u = Usuario.findByRut(rutObtenido[1])
         params.usuario = u.id
         def p = Proyecto.findByCodigo(proyectoObtenido[0])

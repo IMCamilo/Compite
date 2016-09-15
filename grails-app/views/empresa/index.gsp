@@ -72,8 +72,7 @@
                         <span class="required-indicator">*</span>
                     </label>
                     <input name="telefono" value="" required="" maxlength="10" id="materno" type="text"></div>
-                    <div class="fieldcontain required">
-                    <input name="creadoPor" value="${session.usuarioLogueado.rut}" required="" type="hidden"></div>
+                    <input name="creadoPor" value="${session.usuarioLogueado.rut}" required="" type="hidden">
                 </fieldset>
                 <fieldset class="buttons">
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}"/>
@@ -85,8 +84,30 @@
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:table collection="${empresaList}" />
-
+            <table>
+                <thead>
+                    <tr>
+                        <th>ver</th>
+                        <g:sortableColumn property="rut" defaultOrder="desc" title="Rut"/>
+                        <g:sortableColumn property="nombre" defaultOrder="desc" title="Nombre"/>
+                        <g:sortableColumn property="razonSocial" defaultOrder="desc" title="Razon Social"/>
+                        <g:sortableColumn property="giro" defaultOrder="desc" title="Giro"/>
+                        <g:sortableColumn property="direccion" defaultOrder="desc" title="Direccion"/>
+                    </tr>
+                </thead>
+                <tbody>
+                    <g:each var="empresa" status="i" in="${empresaList}">
+                         <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
+                            <td><a href="show/${empresa.id}">ver</a></td>
+                            <td>${empresa.rut}</td>
+                            <td>${empresa.nombre}</td>
+                            <td>${empresa.razonSocial}</td>
+                            <td>${empresa.giro}</td>
+                            <td>${empresa.direccion}</td>
+                        </tr>
+                    </g:each>
+                </tbody>
+            </table>
             <div class="pagination">
                 <g:paginate total="${empresaCount ?: 0}" />
             </div>

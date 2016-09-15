@@ -4,6 +4,7 @@
         <meta name="layout" content="mainadministrador" />
         <g:set var="entityName" value="${message(code: 'transporte.label', default: 'Transporte')}" />
         <title><g:message code="default.list.label" args="[entityName]" /></title>
+        <asset:stylesheet src="compite/autocomplete.css"/>
     </head>
     <body>
         <a href="#list-transporte" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
@@ -26,6 +27,10 @@
             </g:hasErrors>
             <g:form action="save">
                 <fieldset class="form">
+                    <div class="fieldcontain required" id="usuarioinputdiv">
+                        <label for="tipo">Usuario<span class="required-indicator">*</span></label>
+                        <input class="typeahead" name="nombreUsuario" type="text" required="" placeholder="Busca un usuario">
+                    </div>
                     <div class="fieldcontain required">
                     <label for="rut">Tipo
                         <span class="required-indicator">*</span>
@@ -56,11 +61,7 @@
                         <span class="required-indicator">*</span>
                     </label>
                     <input name="combustible" value="" required="" maxlength="30" id="correo" type="text"></div>
-                    <div class="fieldcontain">
-                    <label for="telefono">Usuario</label>
-                    <input name="usuario" value="" placeholder="aca un autocompletar" maxlength="15" id="telefono" type="text"></div>
-                    <div class="fieldcontain required">
-                    <input name="creadoPor" value="${session.usuarioLogueado.rut}" required="" type="hidden"></div>
+                    <input name="creadoPor" value="${session.usuarioLogueado.rut}" required="" type="hidden">
                 </fieldset>
                 <fieldset class="buttons">
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}"/>
@@ -73,10 +74,67 @@
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:table collection="${transporteList}" />
+            <table>
+                <thead>
+                    <tr>
+                        <th>ver</th>
+                        <g:sortableColumn property="tipo" defaultOrder="desc" title="Tipo"/>
+                        <g:sortableColumn property="marca" defaultOrder="desc" title="Marca"/>
+                        <g:sortableColumn property="modelo" defaultOrder="desc" title="Modelo"/>
+                        <g:sortableColumn property="combustible" defaultOrder="desc" title="Combustible"/>
+                        <g:sortableColumn property="kmPorLitro" defaultOrder="desc" title="Km Por Litro"/>
+                        <g:sortableColumn property="descripcion" defaultOrder="desc" title="Descripcion"/>
+                    </tr>
+                </thead>
+                <tbody>
+                    <g:each var="transporte" status="i" in="${transporteList}">
+                         <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
+                            <td><a href="show/${transporte.id}">ver</a></td>
+                            <td>${transporte.tipo}</td>
+                            <td>${transporte.marca}</td>
+                            <td>${transporte.modelo}</td>
+                            <td>${transporte.combustible}</td>
+                            <td>${transporte.kmPorLitro}</td>
+                            <td>${transporte.descripcion}</td>
+                        </tr>
+                    </g:each>
+                </tbody>
+            </table>
             <div class="pagination">
                 <g:paginate total="${transporteCount ?: 0}" />
             </div>
         </div>
+        <asset:javascript src="compite/jquery-2.1.1.min.js"/>
+        <asset:javascript src="compite/typeahead.bundle.js"/>
+        <script>
+            $(document).ready(function() {
+                var substringMatcher = function(strs) {
+                    return function findMatches(q, cb) {
+                        var matches, substringRegex;
+                        matches = [];
+                        substrRegex = new RegExp(q, 'i');
+                        $.each(strs, function(i, str) {
+                            if (substrRegex.test(str)) {
+                                matches.push(str);
+                            }
+                        });
+                        cb(matches);
+                    };
+                };
+                var usuarios = [
+                    <g:each in="${usuarios}">
+                        '${it.nombres} ${it.paterno} ・ ${it.rut}',
+                    </g:each>
+                ];
+                $('#usuarioinputdiv .typeahead').typeahead({
+                    hint: true,
+                    highlight: true,
+                    minLength: 1
+                }, {
+                    name: 'usuarios',
+                    source: substringMatcher(usuarios)
+                });
+            });
+        </script>
     </body>
 </html>

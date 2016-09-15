@@ -80,12 +80,12 @@
                 };
                 var usuarios = [
                     <g:each in="${usuarios}">
-                        '${it.nombres} ${it.paterno} , ${it.rut}',
+                        '${it.nombres} ${it.paterno} ・ ${it.rut}',
                     </g:each>
                 ];
                 var proyectos = [
                     <g:each in="${proyectos}">
-                        '${it.codigo} , ${it.nombre}',
+                        '${it.codigo} ・ ${it.nombre}',
                     </g:each>
                 ];
                 $('#usuarioinputdiv .typeahead').typeahead({
