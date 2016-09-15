@@ -45,7 +45,10 @@ function checkRut(rut) {
     // Si todo sale bien, eliminar errores (decretar que es válido)
     rut.setCustomValidity('');
 }
-function formato(fecha){
-
+function ffecha(fecha){
+    // Despejar Puntos
+    var valor = fecha.value.replace('/','/','/');
+    // Despejar Guión
+    valor = valor.replace('/','');
 
 }

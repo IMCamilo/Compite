@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="layout" content="mainadministrador" />
+    <g:set var="entityName" value="${message(code: 'asignacion.label', default: 'Asignacion')}" />
+    <title><g:message code="default.list.label" args="[entityName]" /></title>
+    <asset:stylesheet src="compite/autocomplete.css"/>
+</head>
+<body>
 <%@ page import="org.apache.tools.ant.property.GetProperty; org.apache.tools.ant.taskdefs.Get" %>
 <title>COMPITE - Reportes de Rendiciones</title>
 <meta name="layout" content="mainadministrador"/>
@@ -5,8 +14,8 @@
         <fieldset class="form">
 
             <div class="fieldcontain required" id="proyectoinputdiv">
-                <label for="proyectoinputdiv">Proyecto<span class="required-indicator">*</span></label>
-                <input class="typeahead" name="proyecto" type="text" required="" placeholder="Busca un proyecto">
+                <label for="tipo">Proyecto<span class="required-indicator">*</span></label>
+                <input class="typeahead" name="nombreProyecto" type="text" required="" placeholder="Busca un proyecto">
             </div>
 
         </fieldset>
@@ -95,14 +104,24 @@
                 cb(matches);
             };
         };
-
-
-        var proyecto = [
+        var usuarios = [
+            <g:each in="${usuarios}">
+            '${it.nombres} ${it.paterno} ・ ${it.rut}',
+            </g:each>
+        ];
+        var proyectos = [
             <g:each in="${proyectos}">
             '${it.codigo} ・ ${it.nombre}',
             </g:each>
         ];
-
+        $('#usuarioinputdiv .typeahead').typeahead({
+            hint: true,
+            highlight: true,
+            minLength: 1
+        }, {
+            name: 'usuarios',
+            source: substringMatcher(usuarios)
+        });
         $('#proyectoinputdiv .typeahead').typeahead({
             hint: true,
             highlight: true,
@@ -113,4 +132,8 @@
         });
     });
 </script>
+
+</body>
+</html>
+
 

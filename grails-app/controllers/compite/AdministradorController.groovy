@@ -1,6 +1,10 @@
 package compite
 
+import grails.transaction.Transactional
+
+@Transactional(readOnly = true)
 class AdministradorController {
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index = {
         redirect(action: "proyectos")
@@ -16,6 +20,8 @@ class AdministradorController {
     }
 
     def reportes = {
+        def projectList = Proyecto.findAll()
+        respond Asignacion.list(params), model:[proyectos:projectList]
 
     }
 }

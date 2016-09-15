@@ -27,6 +27,10 @@
             <g:form action="save">
                 <fieldset class="form">
                     <div class="fieldcontain required">
+                        <div class="required">
+                            <label for="rendicion">Fecha de documento<span class="required-indicator">*</span></label>
+                            <g:datePicker id="fechaCreacion" name="fechaCreacion" type="date" required="" dataformatas="dd/mm/aaaa" oninput="format(this)"/>
+                        </div>
                         <label for="tipoDocumento">Tipo Documento<span class="required-indicator">*</span></label>
                         <select name="tipoDocumento" value="" required="" id="tipoDocumento">
                             <option value="" disabled selected>Seleccione Documento</option>
@@ -211,6 +215,7 @@
                     name: 'items',
                     source: substringMatcher(items)
                 });
+
             });
         </script>
     </body>
