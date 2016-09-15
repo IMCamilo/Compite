@@ -29,7 +29,7 @@
                                 <label for="nombre">Nombre
                                     <span class="required-indicator">*</span>
                                 </label>
-                                <input name="nombre" value="" required="" id="nombre" type="text">
+                                <input name="nombre" required="" id="nombre" type="text" minlength="5" maxlength="50" onkeypress="return val(event)">
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -45,7 +45,7 @@
                                 <label for="codigo">Codigo
                                     <span class="required-indicator">*</span>
                                 </label>
-                                <input name="codigo" value="" required="" id="codigo" type="text">
+                                <input name="codigo" required="" id="codigo" type="text" minlength="5" maxlength="50">
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -53,7 +53,7 @@
                                 <label for="estado">Estado
                                     <span class="required-indicator">*</span>
                                 </label>
-                                <select name="estado" value="" required="" id="estado">
+                                <select name="estado" required="" id="estado">
                                     <option value="" disabled selected>Seleccione Estado</option>
                                     <option value="ACTIVO">Activo</option>
                                     <option value="INACTIVO">Inactivo</option>
@@ -75,9 +75,11 @@
                             </div>
                         </div>
                         <div class="col-sm-6">
-                            <div class="fieldcontain">
-                                <label class="" for="presupuesto">Presupuesto</label>
-                                <input name="presupuesto" value="" id="presupuesto" type="number">
+                            <div class="fieldcontain required">
+                                <label for="presupuesto">Presupuesto
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input name="presupuesto" required="" id="presupuesto" type="text" minlength="5" maxlength="10" onkeypress="return valida(event)">
                             </div>
                         </div>
                     </div>
@@ -87,7 +89,7 @@
                                 <label for="fechaCreacion">Fecha Inicio
                                     <span class="required-indicator">*</span>
                                 </label>
-                                <input name="fechaCreacion" value="date.struct" type="hidden">
+                                <input id="fechaCreacion" name="fechaCreacion" value="date.struct" type="hidden">
                                 <select name="fechaCreacion_day" id="fechaCreacion_day" aria-labelledby="fechaCreacion">
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -147,7 +149,7 @@
                                 <label for="fechaFin">Fecha Fin
                                     <span class="required-indicator">*</span>
                                 </label>
-                                <input name="fechaFin" value="date.struct" type="hidden">
+                                <input id="fechaFin" name="fechaFin" value="date.struct" type="hidden">
                                 <select name="fechaFin_day" id="fechaFin_day" aria-labelledby="fechaFin">
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -219,12 +221,12 @@
                 <thead>
                     <tr>
                         <th>ver</th>
-                        <g:sortableColumn property="codigo" defaultOrder="desc" title="Codigo"/></th>
-                        <g:sortableColumn property="nombre" defaultOrder="desc" title="Nombre"/></th>
-                        <g:sortableColumn property="estado" defaultOrder="desc" title="Estado"/></th>
-                        <g:sortableColumn property="fechaCreacion" defaultOrder="desc" title="Fecha Creacion"/></th>
-                        <g:sortableColumn property="fechaFin" defaultOrder="desc" title="Fecha Finalizacion"/></th>
-                        <g:sortableColumn property="tipo" defaultOrder="desc" title="Tipo"/></th>
+                        <g:sortableColumn property="codigo" defaultOrder="desc" title="Codigo"/>
+                        <g:sortableColumn property="nombre" defaultOrder="desc" title="Nombre"/>
+                        <g:sortableColumn property="estado" defaultOrder="desc" title="Estado"/>
+                        <g:sortableColumn property="fechaCreacion" defaultOrder="desc" title="Fecha Creacion"/>
+                        <g:sortableColumn property="fechaFin" defaultOrder="desc" title="Fecha Finalizacion"/>
+                        <g:sortableColumn property="tipo" defaultOrder="desc" title="Tipo"/>
                     </tr>
                 </thead>
                 <tbody>
@@ -277,6 +279,29 @@
                     source: substringMatcher(empresas)
                 });
             });
+        </script>
+        <script>
+            /*funcion que permite el ingreso de solo letras*/
+            function val(e) {
+                tecla = (document.all) ? e.keyCode : e.which;
+                if (tecla==8) return true;
+                patron =/[A-Za-z]/;
+                te = String.fromCharCode(tecla);
+                return patron.test(te);
+            }
+
+            /*funcion que permite el ingreso de solo numeros*/
+            function valida(e){
+                tecla = (document.all) ? e.keyCode : e.which;
+
+                if (tecla==8){
+                    return true;
+                }
+
+                patron =/[0-9]/;
+                tecla_final = String.fromCharCode(tecla);
+                return patron.test(tecla_final);
+            }
         </script>
     </body>
 </html>
