@@ -211,12 +211,45 @@
                 </fieldset>
             </g:form>
         </div>
-        <div id="list-proyecto" class="content scaffold-list" role="main">
+        <div id="find-proyecto" class="content" role="main">
+            <h1>Buscar</h1>
+            <g:form action="find">
+                <fieldset class="form">
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain">
+                                <label for="tipoBusqueda">Tipo de Proyecto
+                                </label>
+                                <select name="tipoBusqueda" id="tipoBusqueda">
+                                    <option value="" disabled selected>Seleccione Tipo</option>
+                                    <option value="PUBLICO">Publico</option>
+                                    <option value="PRIVADO">Privado</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain">
+                                <label for="estadoBusqueda">Estado de Proyecto
+                                </label>
+                                <select name="estadoBusqueda" id="estadoBusqueda">
+                                    <option value="" disabled selected>Seleccione Estado</option>
+                                    <option value="ACTIVO">Activo</option>
+                                    <option value="INACTIVO">Inactivo</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="buttons">
+                    <g:submitButton name="find" class="search" value="Buscar" />
+                </fieldset>
+            </g:form>
+        </div>
+        <div id="list-proyecto" class="content scaffold-list" role="main" style="border-top: 1px solid #009688">
             <h1><g:message code="default.list.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
-
             <table>
                 <thead>
                     <tr>
@@ -243,7 +276,6 @@
                     </g:each>
                 </tbody>
             </table>
-
             <div class="pagination">
                 <g:paginate total="${proyectoCount ?: 0}" />
             </div>

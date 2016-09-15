@@ -53,6 +53,10 @@ class ProyectoController {
         }
     }
 
+    def find() {
+        println "Estoy en el Find de Proyecto"
+    }
+
     def edit(Proyecto proyecto) {
         def empresa = Empresa.findById(proyecto.empresaId)
         def listaEmpresas = Empresa.findAll()
