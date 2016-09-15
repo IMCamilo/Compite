@@ -51,8 +51,30 @@
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:table collection="${detalleAudRenList}" />
-
+            <table>
+                <thead>
+                    <tr>
+                        <th>ver</th>
+                        <g:sortableColumn property="creadoPor" defaultOrder="desc" title="Creado po"/>
+                        <g:sortableColumn property="detalle" defaultOrder="desc" title="Detalle"/>
+                        <g:sortableColumn property="fechaCreacion" defaultOrder="desc" title="Fecha Creación"/>
+                        <g:sortableColumn property="rendicion" defaultOrder="desc" title="Rendición"/>
+                        <g:sortableColumn property="auditoria" defaultOrder="desc" title="Auditoría"/>
+                    </tr>
+                </thead>
+                <tbody>
+                    <g:each var="audren" status="i" in="${detalleAudRenList}">
+                         <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
+                            <td><a href="show/${audren.id}">ver</a></td>
+                            <td>${audren.creadoPor}</td>
+                            <td>${audren.detalle}</td>
+                            <td>${formatDate(format:"yyyy/MM/dd", date: audren.fechaCreacion)}</td>
+                            <td>${audren.rendicionId}</td>
+                            <td>${audren.rendicionId}</td>
+                        </tr>
+                    </g:each>
+                </tbody>
+            </table>
             <div class="pagination">
                 <g:paginate total="${detalleAudRenCount ?: 0}" />
             </div>
