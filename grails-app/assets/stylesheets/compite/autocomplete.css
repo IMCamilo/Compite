@@ -3,15 +3,7 @@
 .typeahead,
 .tt-query,
 .tt-hint {
-  width: 400px;
-  padding: 8px 12px;
-  font-size: 19px;
-  line-height: 30px;
-  border: 2px solid #ccc;
-  -webkit-border-radius: 8px;
-     -moz-border-radius: 8px;
-          border-radius: 8px;
-  outline: none;
+  
 }
 
 .typeahead {
