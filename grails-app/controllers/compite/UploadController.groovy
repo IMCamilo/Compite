@@ -9,7 +9,7 @@ class UploadController {
 
     //TODO: esto puede ser un folder a traves de configuracion, de preferencia fuera de la app.
     //TODO: lo puse dentro de la app para demo
-    private static final String FILES_PATH = '/home/camilo/Documents/Grails/compite/archivos/'
+    private static final String FILES_PATH = '/compite/archivos/'
 
     /**
      * archivo es el nombre del parametro en la peticion

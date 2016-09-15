@@ -16,6 +16,6 @@ class AdministradorController {
     }
 
     def reportes = {
-        //si no tiene nada, simplemente carga la vista index.gsp
+
     }
 }

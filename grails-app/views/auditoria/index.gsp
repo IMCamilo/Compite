@@ -40,12 +40,12 @@
                         <input class="typeahead" name="nombreUsuario" type="text" required="" placeholder="Busca un usuario">
                     </div>
                     <div class="fieldcontain required">
-                        <label for="tipo">Motivo<span class="required-indicator">*</span></label>
-                        <input name="motivo" value="" required="" type="text">
+                        <label for="tipo">Archivo de auditoría<span class="required-indicator">*</span></label>
+                        <input name="motivo" value="" required="" type="text" placeholder="Aqui es necesario cargar un archivo">
                     </div>
                     <div class="fieldcontain required">
                         <label for="tipo">Descripción<span class="required-indicator">*</span></label>
-                        <textarea  name="descripcion" required="" rows="4" cols="50"></textarea>
+                        <textarea  name="descripcion" required="" rows="4" cols="50" placeholder="Ingrese el resumen de la auditoría realizada"></textarea>
                     </div>
                     <div class="fieldcontain required">
                         <label for="estado">Estado

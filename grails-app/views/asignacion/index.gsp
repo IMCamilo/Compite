@@ -37,7 +37,7 @@
                     </div>
                     <div class="fieldcontain required">
                         <label for="tipo">Detalle<span class="required-indicator">*</span></label>
-                        <textarea  name="detalle" required="" rows="4" cols="50"></textarea>
+                        <textarea  name="detalle" required="" rows="4" cols="50" placeholder="Ingrese motivo de asignacion"></textarea>
                     </div>
                     <input name="creadoPor" value="${session.usuarioLogueado.rut}" required="" type="hidden">
                 </fieldset>
