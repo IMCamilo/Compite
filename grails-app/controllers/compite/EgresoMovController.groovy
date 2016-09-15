@@ -9,8 +9,10 @@ class EgresoMovController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
+        def movList = Movilizacion.findAll()
+        def egresoList = Egreso.findAll()
         params.max = Math.min(max ?: 10, 100)
-        respond EgresoMov.list(params), model:[egresoMovCount: EgresoMov.count()]
+        respond EgresoMov.list(params), model:[egresoMovCount: EgresoMov.count(), movilizaciones: movList, egresos: egresoList]
     }
 
     def show(EgresoMov egresoMov) {
@@ -22,7 +24,16 @@ class EgresoMovController {
     }
 
     @Transactional
-    def save(EgresoMov egresoMov) {
+    def save() {
+        String[] movilizacionObt = ((String) params.nombreMovilizacion).split(" ・ ");
+        String[] egresoObt = ((String) params.nombreEgreso).split(" ・ ");
+        def m = Movilizacion.findById(movilizacionObt[1])
+        def e = Egreso.findById(egresoObt[1])
+        params.movilizacion = m.id
+        params.egreso = e.id
+
+        def egresoMov = new EgresoMov(params)
+
         if (egresoMov == null) {
             transactionStatus.setRollbackOnly()
             notFound()
@@ -35,7 +46,7 @@ class EgresoMovController {
             return
         }
 
-        egresoMov.save flush:true
+        egresoMov.save flush:true, failOnError:true
 
         request.withFormat {
             form multipartForm {
@@ -47,11 +58,26 @@ class EgresoMovController {
     }
 
     def edit(EgresoMov egresoMov) {
-        respond egresoMov
+        def egreso = Egreso.findById(egresoMov.egresoId)
+        def movilizacion = Movilizacion.findById(egresoMov.movilizacionId)
+        def egresosList = Egreso.findAll()
+        def movtList = Movilizacion.findAll()
+        respond egresoMov, model:[egreso: egreso, movilizacion: movilizacion, egresos: egresosList, movilizaciones: movtList]
     }
 
     @Transactional
-    def update(EgresoMov egresoMov) {
+    def update() {
+        String[] movilizacionObt = ((String) params.nombreMovilizacion).split(" ・ ");
+        String[] egresoObt = ((String) params.nombreEgreso).split(" ・ ");
+        def m = Movilizacion.findById(movilizacionObt[1])
+        def e = Egreso.findById(egresoObt[1])
+        params.movilizacion = m.id
+        params.egreso = e.id
+
+        def egresoMov = EgresoMov.get(params.id)
+        egresoMov.properties = params
+
+
         if (egresoMov == null) {
             transactionStatus.setRollbackOnly()
             notFound()
@@ -64,7 +90,7 @@ class EgresoMovController {
             return
         }
 
-        egresoMov.save flush:true
+        egresoMov.save flush:true, failOnError:true
 
         request.withFormat {
             form multipartForm {
