@@ -9,8 +9,9 @@ class TransporteController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
+        def userList = Usuario.findAll()
         params.max = Math.min(max ?: 10, 100)
-        respond Transporte.list(params), model:[transporteCount: Transporte.count()]
+        respond Transporte.list(params), model:[transporteCount: Transporte.count(), usuarios:userList]
     }
 
     def show(Transporte transporte) {
@@ -22,7 +23,12 @@ class TransporteController {
     }
 
     @Transactional
-    def save(Transporte transporte) {
+    def save() {
+        String[] rutObtenido = ((String) params.nombreUsuario).split(" ・ ");
+        def u = Usuario.findByRut(rutObtenido[1])
+        params.usuario = u.id
+        def transporte = new Transporte(params)
+
         if (transporte == null) {
             transactionStatus.setRollbackOnly()
             notFound()
@@ -35,7 +41,7 @@ class TransporteController {
             return
         }
 
-        transporte.save flush:true
+        transporte.save flush:true, failOnError:true
 
         request.withFormat {
             form multipartForm {
@@ -47,11 +53,19 @@ class TransporteController {
     }
 
     def edit(Transporte transporte) {
-        respond transporte
+        def usuario = Usuario.findById(transporte.usuarioId)
+        def userList = Usuario.findAll()
+        respond transporte, model:[usuarios:userList, usuario:usuario]
     }
 
     @Transactional
-    def update(Transporte transporte) {
+    def update() {
+        String[] rutObtenido = ((String) params.nombreUsuario).split(" ・ ");
+        def u = Usuario.findByRut(rutObtenido[1])
+        params.usuario = u.id
+        def transporte = Transporte.get(params.id)
+        transporte.properties = params
+
         if (transporte == null) {
             transactionStatus.setRollbackOnly()
             notFound()
@@ -64,7 +78,7 @@ class TransporteController {
             return
         }
 
-        transporte.save flush:true
+        transporte.save flush:true, failOnError:true
 
         request.withFormat {
             form multipartForm {
