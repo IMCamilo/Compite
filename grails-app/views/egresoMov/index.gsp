@@ -47,8 +47,28 @@
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:table collection="${egresoMovList}" />
-
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ver detalles</th>
+                        <g:sortableColumn property="creadoPor" defaultOrder="desc" title="Creado por"/>
+                        <g:sortableColumn property="fecha" defaultOrder="desc" title="Fecha"/>
+                        <g:sortableColumn property="egreso" defaultOrder="desc" title="Egreso"/>
+                        <g:sortableColumn property="movilizacion" defaultOrder="desc" title="Movilización"/>
+                    </tr>
+                </thead>
+                <tbody>
+                    <g:each var="egresomov" status="i" in="${egresoMovList}">
+                         <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
+                            <td><a href="show/${egresomov.id}">ver</a></td>
+                            <td>${egresomov.creadoPor}</td>
+                            <td>${egresomov.fecha}</td>
+                            <td>${egresomov.egreso}</td>
+                            <td>${egresomov.movilizacion}</td>
+                        </tr>
+                    </g:each>
+                </tbody>
+            </table>
             <div class="pagination">
                 <g:paginate total="${egresoMovCount ?: 0}" />
             </div>

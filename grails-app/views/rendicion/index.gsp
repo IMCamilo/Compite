@@ -51,8 +51,32 @@
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:table collection="${rendicionList}" />
-
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ver detalles</th>
+                        <g:sortableColumn property="tipoRendicion" defaultOrder="desc" title="Tipo Rendicion"/>
+                        <g:sortableColumn property="sedeEnvio" defaultOrder="desc" title="Sede de Envío"/>
+                        <g:sortableColumn property="total" defaultOrder="desc" title="Total"/>
+                        <g:sortableColumn property="totalAnticipado" defaultOrder="desc" title="Total Anticipado"/>
+                        <g:sortableColumn property="totalRendido" defaultOrder="desc" title="Total Rendido"/>
+                        <g:sortableColumn property="aprobacion" defaultOrder="desc" title="Aprobación"/>
+                    </tr>
+                </thead>
+                <tbody>
+                    <g:each var="rendicion" status="i" in="${rendicionList}">
+                         <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
+                            <td><a href="show/${rendicion.id}">ver</a></td>
+                            <td>${rendicion.tipoRendicion}</td>
+                            <td>${rendicion.sedeEnvio}</td>
+                            <td>$ ${rendicion.total}</td>
+                            <td>$ ${rendicion.totalAnticipado}</td>
+                            <td>$ ${rendicion.totalRendido}</td>
+                            <td>${rendicion.aprobacion}</td>
+                        </tr>
+                    </g:each>
+                </tbody>
+            </table>
             <div class="pagination">
                 <g:paginate total="${rendicionCount ?: 0}" />
             </div>

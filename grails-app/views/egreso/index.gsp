@@ -101,8 +101,42 @@
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:table collection="${egresoList}" />
-
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ver detalles</th>
+                        <g:sortableColumn property="concepto" defaultOrder="desc" title="Concepto"/>
+                        <g:sortableColumn property="aprobacion" defaultOrder="desc" title="Aprobación"/>
+                        <g:sortableColumn property="tipoMoneda" defaultOrder="desc" title="Tipo Moneda"/>
+                        <g:sortableColumn property="monto" defaultOrder="desc" title="Monto"/>
+                        <g:sortableColumn property="tipoDocumento" defaultOrder="desc" title="Tipo Documento"/>
+                        <g:sortableColumn property="pagadoA" defaultOrder="desc" title="Pagado a"/>
+                    </tr>
+                </thead>
+                <tbody>
+                    <g:each var="egreso" status="i" in="${egresoList}">
+                         <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
+                            <td><a href="show/${egreso.id}">ver</a></td>
+                            <td>${egreso.concepto}</td>
+                            <td>${egreso.aprobacion}</td>
+                            <td>
+                                <g:if test="${egreso.tipoMoneda == 'CLP'}">
+                                    Pesos Chilenos
+                                </g:if>
+                                <g:elseif test="${egreso.tipoMoneda == 'USD'}">
+                                    Dolar Américano
+                                </g:elseif>
+                                <g:else>
+                                    Euro
+                                </g:else>
+                            </td>
+                            <td>$ ${egreso.monto}</td>
+                            <td>${egreso.tipoDocumento}</td>
+                            <td>${egreso.pagadoA}</td>
+                        </tr>
+                    </g:each>
+                </tbody>
+            </table>
             <div class="pagination">
                 <g:paginate total="${egresoCount ?: 0}" />
             </div>
@@ -136,7 +170,7 @@
                 ];
                 var rendiciones = [
                     <g:each in="${rendiciones}">
-                        '${it.tipo} - ${formatDate(format:"yyyy/MM/dd", date: it.fecha)} ・ ${it.id}',
+                        '${it.tipoRendicion} - ${formatDate(format:"yyyy/MM/dd", date: it.fecha)} ・ ${it.id}',
                     </g:each>
                 ];
                 var items = [

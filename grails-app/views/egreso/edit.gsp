@@ -47,7 +47,7 @@
                     </div>
                     <div class="fieldcontain required" id="rendicioninputdiv">
                         <label for="rendicion">Rendicion<span class="required-indicator">*</span></label>
-                        <input class="typeahead" name="nombreRendicion" value="${rendicion.tipo} - ${formatDate(format:"yyyy/MM/dd", date: rendicion.fecha)} ・ ${rendicion.id}" type="text" required="" placeholder="Busca una rendicion">
+                        <input class="typeahead" name="nombreRendicion" value="${rendicion.tipoRendicion} - ${formatDate(format:"yyyy/MM/dd", date: rendicion.fecha)} ・ ${rendicion.id}" type="text" required="" placeholder="Busca una rendicion">
                     </div>
                     <div class="fieldcontain required" id="iteminputdiv">
                         <label for="item">Item<span class="required-indicator">*</span></label>
@@ -56,17 +56,17 @@
                     <div class='fieldcontain required'>
                         <label for='rutEmpresa'>Rut Empresa
                             <span class='required-indicator'>*</span>
-                        </label><input type="text" name="rutEmpresa" value="" required="" id="rutEmpresa"/>
+                        </label><input type="text" name="rutEmpresa" value="${egreso.rutEmpresa}" required="" id="rutEmpresa"/>
                     </div>
                     <div class='fieldcontain required'>
                         <label for='numeroDocumento'>Numero documento
                             <span class='required-indicator'>*</span>
-                        </label><input type="number" name="nDocumento" value="" required="" id="numeroDocumento"/>
+                        </label><input type="number" name="nDocumento" value="${egreso.nDocumento}" required="" id="numeroDocumento"/>
                     </div>
                     <div class='fieldcontain required'>
                         <label for='aprobacion'>Aprobacion
                             <span class='required-indicator'>*</span>
-                        </label><input type="text" name="aprobacion" value="" required="" id="aprobacion"/>
+                        </label><input type="text" name="aprobacion" value="${egreso.aprobacion}" required="" id="aprobacion"/>
                     </div>
                     <div class="fieldcontain required">
                         <label for="tipoDocumento">Tipo Moneda<span class="required-indicator">*</span></label>
@@ -80,17 +80,17 @@
                     <div class='fieldcontain required'>
                         <label for='pagadoA'>Pagado a
                             <span class='required-indicator'>*</span>
-                        </label><input type="text" name="pagadoA" value="" required="" id="pagadoA"/>
+                        </label><input type="text" name="pagadoA" value="${egreso.pagadoA}" required="" id="pagadoA"/>
                     </div>
                     <div class='fieldcontain required'>
                         <label for='monto'>Monto
                             <span class='required-indicator'>*</span>
-                        </label><input type="number" name="monto" value="" required="" id="monto"/>
+                        </label><input type="number" name="monto" value="${egreso.monto}" required="" id="monto"/>
                     </div>
                     <div class='fieldcontain required'>
                         <label for='concepto'>Concepto
                             <span class='required-indicator'>*</span>
-                        </label><input type="text" name="concepto" value="" required="" id="concepto"/>
+                        </label><input type="text" name="concepto" value="${egreso.concepto}" required="" id="concepto"/>
                     </div>
                 </fieldset>
                 <fieldset class="buttons">
@@ -127,7 +127,7 @@
                 ];
                 var rendiciones = [
                     <g:each in="${rendiciones}">
-                        '${it.tipo} - ${formatDate(format:"yyyy/MM/dd", date: it.fecha)} ・ ${it.id}',
+                        '${it.tipoRendicion} - ${formatDate(format:"yyyy/MM/dd", date: it.fecha)} ・ ${it.id}',
                     </g:each>
                 ];
                 var items = [

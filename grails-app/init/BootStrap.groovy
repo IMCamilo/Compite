@@ -55,9 +55,9 @@ class BootStrap {
 
         }
         if (!Egreso.list()) {
-            new Egreso(aprobacion: "Si", concepto: "Servicios Básicos", fechaCreacion: "2016-08-19 11:49:00.0", monto: 12000,  nDocumento: "234567", rutEmpresa: "98544511-7", pagadoA: "Pablo Santana", tipoMoneda: "CLP", usuario: 1, proyecto: 1,item: 1, rendicion: 1, creadoPor:"admin").save(failOnError: true)
-            new Egreso(aprobacion: "Si", concepto: "Servicio de Automotora", fechaCreacion: "2016-08-19 11:49:00.0", monto: 13000,  nDocumento: "667", rutEmpresa: "65987234-1", pagadoA: "Rodrigo Cardenas", tipoMoneda: "CLP", usuario: 1, proyecto: 1,item: 1, rendicion: 1, creadoPor:"admin").save(failOnError: true)
-            new Egreso(aprobacion: "Si", concepto: "Servicios tecnicos", fechaCreacion: "2016-08-19 11:49:00.0", monto: 13000,  nDocumento: "4555", rutEmpresa: "65187214-4", pagadoA: "Pablo Zumelzu", tipoMoneda: "CLP", usuario: 1, proyecto: 1,item: 1, rendicion: 1, creadoPor:"admin").save(failOnError: true)
+            new Egreso(aprobacion: "Si", concepto: "Servicios Básicos", fechaCreacion: "2016-08-19 11:49:00.0", monto: 12000,  nDocumento: "234567", rutEmpresa: "98544511-7", pagadoA: "Pablo Santana", tipoDocumento:"BOLETA", tipoMoneda: "CLP", usuario: 1, proyecto: 1,item: 1, rendicion: 1, creadoPor:"admin").save(failOnError: true)
+            new Egreso(aprobacion: "Si", concepto: "Servicio de Automotora", fechaCreacion: "2016-08-19 11:49:00.0", monto: 13000,  nDocumento: "667", rutEmpresa: "65987234-1", pagadoA: "Rodrigo Cardenas", tipoDocumento:"FACTURA", tipoMoneda: "CLP", usuario: 1, proyecto: 1,item: 1, rendicion: 1, creadoPor:"admin").save(failOnError: true)
+            new Egreso(aprobacion: "Si", concepto: "Servicios tecnicos", fechaCreacion: "2016-08-19 11:49:00.0", monto: 13000,  nDocumento: "4555", rutEmpresa: "65187214-4", pagadoA: "Pablo Zumelzu", tipoDocumento:"BOLETA", tipoMoneda: "CLP", usuario: 1, proyecto: 1,item: 1, rendicion: 1, creadoPor:"admin").save(failOnError: true)
         }
 
         if (!Movilizacion.list()) {
