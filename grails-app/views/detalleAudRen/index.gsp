@@ -81,7 +81,7 @@
                 ];
                 var rendiciones = [
                     <g:each in="${rendiciones}">
-                        '${it.nombre} ${it.descripcion} ・ ${it.id}',
+                        '${it.tipoRendicion}, ${it.sedeEnvio} ・ ${it.id}',
                     </g:each>
                 ];
                 $('#auditoriainputdiv .typeahead').typeahead({
