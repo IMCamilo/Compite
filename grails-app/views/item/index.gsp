@@ -60,8 +60,30 @@
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:table collection="${itemList}" />
-
+            <table>
+                <thead>
+                    <tr>
+                        <th>ver</th>
+                        <g:sortableColumn property="nombre" defaultOrder="desc" title="Nombre"/>
+                        <g:sortableColumn property="valor" defaultOrder="desc" title="Valor"/>
+                        <g:sortableColumn property="itemPresupuestario" defaultOrder="desc" title="Item Presupuestario"/>
+                        <g:sortableColumn property="centroCosto" defaultOrder="desc" title="Centro de Costo"/>
+                        <g:sortableColumn property="descripcion" defaultOrder="desc" title="Descripción"/>
+                    </tr>
+                </thead>
+                <tbody>
+                    <g:each var="item" status="i" in="${itemList}">
+                         <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
+                            <td><a href="show/${item.id}">ver</a></td>
+                            <td>${item.nombre}</td>
+                            <td>$ ${item.valor}</td>
+                            <td>${item.itemPresupuestario}</td>
+                            <td>${item.centroCosto}</td>
+                            <td>${item.descripcion}</td>
+                        </tr>
+                    </g:each>
+                </tbody>
+            </table>
             <div class="pagination">
                 <g:paginate total="${itemCount ?: 0}" />
             </div>

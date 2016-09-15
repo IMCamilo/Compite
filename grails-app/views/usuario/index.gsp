@@ -81,8 +81,34 @@
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:table collection="${usuarioList}" />
-
+            <table>
+                <thead>
+                    <tr>
+                        <th>ver</th>
+                        <g:sortableColumn property="rut" defaultOrder="desc" title="Rut"/>
+                        <g:sortableColumn property="nombres" defaultOrder="desc" title="Nombres"/>
+                        <g:sortableColumn property="paterno" defaultOrder="desc" title="Apellido Paterno"/>
+                        <g:sortableColumn property="materno" defaultOrder="desc" title="Apellido Materno"/>
+                        <g:sortableColumn property="telefono" defaultOrder="desc" title="Telefono"/>
+                        <g:sortableColumn property="correo" defaultOrder="desc" title="Correo"/>
+                        <g:sortableColumn property="direccion" defaultOrder="desc" title="Dirección"/>
+                    </tr>
+                </thead>
+                <tbody>
+                    <g:each var="usuario" status="i" in="${usuarioList}">
+                         <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
+                            <td><a href="show/${usuario.id}">ver</a></td>
+                            <td>${usuario.rut}</td>
+                            <td>${usuario.nombres}</td>
+                            <td>${usuario.paterno}</td>
+                            <td>${usuario.materno}</td>
+                            <td>${usuario.telefono}</td>
+                            <td>${usuario.correo}</td>
+                            <td>${usuario.direccion}</td>
+                        </tr>
+                    </g:each>
+                </tbody>
+            </table>
             <div class="pagination">
                 <g:paginate total="${usuarioCount ?: 0}" />
             </div>
