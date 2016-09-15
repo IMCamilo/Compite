@@ -74,7 +74,32 @@
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:table collection="${transporteList}" />
+            <table>
+                <thead>
+                    <tr>
+                        <th>ver</th>
+                        <g:sortableColumn property="tipo" defaultOrder="desc" title="Tipo"/>
+                        <g:sortableColumn property="marca" defaultOrder="desc" title="Marca"/>
+                        <g:sortableColumn property="modelo" defaultOrder="desc" title="Modelo"/>
+                        <g:sortableColumn property="combustible" defaultOrder="desc" title="Combustible"/>
+                        <g:sortableColumn property="kmPorLitro" defaultOrder="desc" title="Km Por Litro"/>
+                        <g:sortableColumn property="descripcion" defaultOrder="desc" title="Descripcion"/>
+                    </tr>
+                </thead>
+                <tbody>
+                    <g:each var="transporte" status="i" in="${transporteList}">
+                         <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
+                            <td><a href="show/${transporte.id}">ver</a></td>
+                            <td>${transporte.tipo}</td>
+                            <td>${transporte.marca}</td>
+                            <td>${transporte.modelo}</td>
+                            <td>${transporte.combustible}</td>
+                            <td>${transporte.kmPorLitro}</td>
+                            <td>${transporte.descripcion}</td>
+                        </tr>
+                    </g:each>
+                </tbody>
+            </table>
             <div class="pagination">
                 <g:paginate total="${transporteCount ?: 0}" />
             </div>
