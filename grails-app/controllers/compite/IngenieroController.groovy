@@ -64,30 +64,34 @@ class IngenieroController {
 
         println "id: "+id
         //al seleccionar un proyecto llegar a esta vista, la pantalla  entrega datos personalizados
-        def itemsMovilizacion = Item.findAll("from Item as item where item.tipo='Movilizacion'")
+        //def itemsMovilizacion = Item.findAll("from Item as item where item.tipo='Movilizacion'")
 
-        def transportesUsuario = Transporte.findAll("from Transporte as trans where trans.usuario="+usuarioId)
+        def movilizacionUsuario = Movilizacion.findAll("from Movilizacion as mov where mov.usuario="+usuarioId)
 
-        def listItemMov = []
-        def listTransportes = []
-        itemsMovilizacion.each { mov ->
+        //def listItemMov = []
+        def listMovilizacion = []
+        //itemsMovilizacion.each { mov ->
+        //    def mapMov = [:]
+        //    mapMov.id = mov.id
+        //    mapMov.nombre = mov.nombre
+        //    mapMov.valor = mov.valor
+        //    listItemMov.add(mapMov)
+        //}
+
+        movilizacionUsuario.each { trans ->
             def mapMov = [:]
-            mapMov.id = mov.id
-            mapMov.nombre = mov.nombre
-            mapMov.valor = mov.valor
-            listItemMov.add(mapMov)
+            mapMov.id = trans.id
+            mapMov.concepto = trans.concepto
+            listMovilizacion.add(mapMov)
         }
 
-        transportesUsuario.each { trans ->
-            def mapTrans = [:]
-            mapTrans.id = trans.id
-            mapTrans.descripcion = trans.descripcion
-            listTransportes.add(mapTrans)
-        }
+        def movilizacion = new Movilizacion(params)
+        movilizacion.properties = params
+        [movilizacionUsuario:listMovilizacion, id: id]
 
-        def rendicion = new Rendicion(params)
-        rendicion.properties = params
-        [itemMovilizacion:listItemMov, transportes:listTransportes, id: id, rendicion: rendicion]
+        //def rendicion = new Rendicion(params)
+        //rendicion.properties = params
+        //[itemMovilizacion:listItemMov, transportes:listTransportes, id: id, rendicion: rendicion]
     }
 
 
