@@ -203,15 +203,22 @@
                             </div>
                         </div>
                     </div>
-                </fieldset>
-                <fieldset class="buttons">
-                    <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+                    <div class="col-md-12">
+                        <br>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-sm-1">
+                        </div>
+                        <div class="col-sm-6">
+                            <g:submitButton name="create" class="save btn btn-info" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+                        </div>
+                    </div>
                 </fieldset>
             </g:form>
         </div>
         <div id="find-proyecto" class="content" role="main">
             <h1>Buscar</h1>
-            <g:form action="find">
+            <g:form method="GET" action="index">
                 <fieldset class="form">
                     <div class="col-md-12">
                         <div class="col-sm-6">
@@ -225,7 +232,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-6">
+                        <!--<div class="col-sm-6">
                             <div class="fieldcontain">
                                 <label for="estadoBusqueda">Estado de Proyecto
                                 </label>
@@ -235,11 +242,18 @@
                                     <option value="INACTIVO">Inactivo</option>
                                 </select>
                             </div>
+                        </div>-->
+                    </div>
+                    <div class="col-md-12">
+                        <br>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-sm-1">
+                        </div>
+                        <div class="col-sm-6">
+                            <g:submitButton name="find" class="save btn btn-success" value="Buscar" />
                         </div>
                     </div>
-                </fieldset>
-                <fieldset class="buttons">
-                    <g:submitButton name="find" class="search" value="Buscar" />
                 </fieldset>
             </g:form>
         </div>
@@ -252,12 +266,12 @@
                 <thead>
                     <tr>
                         <th>ver</th>
-                        <g:sortableColumn property="codigo" defaultOrder="desc" title="Codigo"/></th>
-                        <g:sortableColumn property="nombre" defaultOrder="desc" title="Nombre"/></th>
-                        <g:sortableColumn property="estado" defaultOrder="desc" title="Estado"/></th>
-                        <g:sortableColumn property="fechaCreacion" defaultOrder="desc" title="Fecha Creacion"/></th>
-                        <g:sortableColumn property="fechaFin" defaultOrder="desc" title="Fecha Finalizacion"/></th>
-                        <g:sortableColumn property="tipo" defaultOrder="desc" title="Tipo"/></th>
+                        <g:sortableColumn property="codigo" defaultOrder="desc" title="Codigo"/>
+                        <g:sortableColumn property="nombre" defaultOrder="desc" title="Nombre"/>
+                        <g:sortableColumn property="estado" defaultOrder="desc" title="Estado"/>
+                        <g:sortableColumn property="fechaCreacion" defaultOrder="desc" title="Fecha Creacion"/>
+                        <g:sortableColumn property="fechaFin" defaultOrder="desc" title="Fecha Finalizacion"/>
+                        <g:sortableColumn property="tipo" defaultOrder="desc" title="Tipo"/>
                     </tr>
                 </thead>
                 <tbody>
@@ -267,8 +281,8 @@
                             <td>${proyecto.codigo}</td>
                             <td>${proyecto.nombre}</td>
                             <td>${proyecto.estado}</td>
-                            <td>${formatDate(format:"yyyy/MM/dd HH:mm:ss", date: proyecto.fechaCreacion)}</td>
-                            <td>${formatDate(format:"yyyy/MM/dd HH:mm:ss", date: proyecto.fechaFin)}</td>
+                            <td>${formatDate(format:"dd/MM/yyyy", date: proyecto.fechaCreacion)}</td>
+                            <td>${formatDate(format:"dd/MM/yyyy", date: proyecto.fechaFin)}</td>
                             <td>${proyecto.tipo}</td>
                         </tr>
                     </g:each>

@@ -9,9 +9,23 @@ class ProyectoController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
-        def listaEmpresas = Empresa.findAll()
-        params.max = Math.min(max ?: 10, 100)
-        respond Proyecto.list(params), model:[proyectoCount: Proyecto.count(), empresas:listaEmpresas]
+        def tipo = params.tipoBusqueda
+        def estado = params.estadoBusqueda
+        if (tipo || estado) {
+            println "Realizando busqueda"
+            def listaProyectos = Proyecto.findAllByTipo(tipo)
+            def listaEmpresas = Empresa.findAll()
+            params.max = Math.min(max ?: 10, 100)
+            [proyectoCount: Proyecto.count(), empresas:listaEmpresas, proyectoList: listaProyectos]
+
+        } else {
+            println "No vienen parametros"
+            def listaEmpresas = Empresa.findAll()
+            params.max = Math.min(max ?: 10, 100)
+            respond Proyecto.list(params), model:[proyectoCount: Proyecto.count(), empresas:listaEmpresas]
+        }
+
+
     }
 
     def show(Proyecto proyecto) {
@@ -51,10 +65,6 @@ class ProyectoController {
             }
             '*' { respond proyecto, [status: CREATED] }
         }
-    }
-
-    def find() {
-        println "Estoy en el Find de Proyecto"
     }
 
     def edit(Proyecto proyecto) {
