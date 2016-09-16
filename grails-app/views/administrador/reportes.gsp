@@ -6,7 +6,7 @@
 
             <div class="fieldcontain required" id="proyectoinputdiv">
                 <label for="proyectoinputdiv">Proyecto<span class="required-indicator">*</span></label>
-                <input class="typeahead" name="nombreProyecto" type="text" required="" placeholder="Busca un proyecto">
+                <input class="typeahead" name="proyecto" type="text" required="" placeholder="Busca un proyecto">
             </div>
 
         </fieldset>
@@ -55,17 +55,17 @@
             </tr>
             </thead>
             <tbody>
-            <g:each var="reporte" in="${compite.Proyecto.executeQuery("from Proyecto where nombre = ${params.proyecto} ")}" >
+            <g:each var="reporte" in="${compite.Egreso.executeQuery("from Egreso where proyecto = ${params.proyecto}")}" >
                 <tr>
-                    <td>${reporte.egreso.proyectoId}</td>
-                    <td>${reporte.egreso.nDocumento}</td>
-                    <td>${reporte.egreso.fechaCreacion.dateString}</td>
-                    <td>${reporte.egreso.rutEmpresa}</td>
-                    <td>${reporte.egreso.pagadoA}</td>
-                    <td>${reporte.egreso.item.centroCosto}</td>
-                    <td>${reporte.egreso.item.itemPresupuestario}</td>
-                    <td>${reporte.egreso.concepto}</td>
-                    <td>${reporte.egreso.monto}</td>
+                    <td>${reporte.proyectoId}</td>
+                    <td>${reporte.nDocumento}</td>
+                    <td>${reporte.fechaCreacion.dateString}</td>
+                    <td>${reporte.rutEmpresa}</td>
+                    <td>${reporte.pagadoA}</td>
+                    <td>${reporte.item.centroCosto}</td>
+                    <td>${reporte.item.itemPresupuestario}</td>
+                    <td>${reporte.concepto}</td>
+                    <td>${reporte.monto}</td>
                 </tr>
             </g:each>
             </tbody>
