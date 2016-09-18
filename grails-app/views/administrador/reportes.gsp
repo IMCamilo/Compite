@@ -24,7 +24,7 @@
         </fieldset>
     </form>
 
-<form action="save_rendicion" controller="rendicion">
+<g:form action="save" controller="rendicion">
     <div>
         <h1>Reporte de Rendicion de Gastos</h1>
         <div id="fecha" class="fieldcontain">
@@ -52,21 +52,24 @@
         <table>
             <thead>
             <tr>
-                <th>Proyecto ID</th>
+                <th>Referencia</th>
+                <th>Tipo</th>
                 <th>Numero Documento</th>
                 <th>Fecha Creacion</th>
                 <th>Rut Empresa</th>
                 <th>Pagado A</th>
                 <th>Centro de Costos</th>
                 <th>Item Presupuestario</th>
-                <th>Concepto</th>
-                <th>Monto</th>
+                <th>Descripcion del Gasto</th>
+                <th>$ Valor</th>
             </tr>
             </thead>
             <tbody>
-            <g:each var="reporte" in="${compite.Egreso.executeQuery("from Egreso where proyecto = ${params.proyecto}")}" >
+            <g:each var="reporte" in="${compite.Egreso.executeQuery("from Egreso where proyecto IN " +
+                    "(SELECT id from Proyecto where nombre = '${params.nombreProyecto}')")}" >
                 <tr>
-                    <td>${reporte.proyectoId}</td>
+                    <td><g:link controller="egreso" action="show" id="${reporte.id}">${reporte.id}</g:link></td>
+                    <td>${reporte.tipoDocumento}</td>
                     <td>${reporte.nDocumento}</td>
                     <td>${reporte.fechaCreacion.dateString}</td>
                     <td>${reporte.rutEmpresa}</td>
@@ -79,10 +82,22 @@
             </g:each>
             </tbody>
         </table>
+        <div id="totalrendido" class="fieldcontain">
+            <label for="totalrendido">TOTAL RENDIDO</label>
+            <input type="text" placeholder="">
+        </div>
+        <div id="totalanticipado" class="fieldcontain">
+            <label for="totalanticipado">TOTAL ANTICIPADO</label>
+            <input type="text" placeholder="">
+        </div>
+        <div id="total" class="fieldcontain">
+            <label for="total">TOTAL</label>
+            <input type="text" placeholder="">
+        </div>
     </div>
     <button>Guardar Reporte Rendicion</button>
-</form>
-
+    <button>Imprimir Reporte Rendicion</button>
+</g:form>
 <asset:javascript src="compite/jquery-2.1.1.min.js"/>
 <asset:javascript src="compite/typeahead.bundle.js"/>
 <script>
@@ -104,24 +119,13 @@
                 cb(matches);
             };
         };
-        var usuarios = [
-            <g:each in="${usuarios}">
-            '${it.nombres} ${it.paterno} ・ ${it.rut}',
-            </g:each>
-        ];
+
         var proyectos = [
             <g:each in="${proyectos}">
-            '${it.codigo} ・ ${it.nombre}',
+            '${it.nombre}',
             </g:each>
         ];
-        $('#usuarioinputdiv .typeahead').typeahead({
-            hint: true,
-            highlight: true,
-            minLength: 1
-        }, {
-            name: 'usuarios',
-            source: substringMatcher(usuarios)
-        });
+
         $('#proyectoinputdiv .typeahead').typeahead({
             hint: true,
             highlight: true,
