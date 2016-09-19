@@ -17,7 +17,6 @@
                 <label for="tipo">Proyecto<span class="required-indicator">*</span></label>
                 <input class="typeahead" name="nombreProyecto" type="text" required="" placeholder="Busca un proyecto">
             </div>
-
         </fieldset>
         <fieldset class="buttons">
             <button>Buscar</button>

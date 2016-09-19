@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="layout" content="mainadministrador" />
+    <g:set var="entityName" value="${message(code: 'asignacion.label', default: 'Asignacion')}" />
+    <title><g:message code="default.list.label" args="[entityName]" /></title>
+    <asset:stylesheet src="compite/autocomplete.css"/>
+</head>
+<body>
 <%@ page import="org.apache.tools.ant.property.GetProperty; org.apache.tools.ant.taskdefs.Get" %>
 <title>COMPITE - Reportes de Rendiciones</title>
 <meta name="layout" content="mainadministrador"/>
@@ -64,4 +73,5 @@
         </table>
     </div>
 </g:form>
-
+</body>
+</html>
