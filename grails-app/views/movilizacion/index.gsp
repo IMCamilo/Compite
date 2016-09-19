@@ -27,10 +27,25 @@
             </g:hasErrors>
             <g:form action="save">
                 <fieldset class="form">
+                    <div class="fieldcontain required" id="proyectoinputdiv">
+                        <label for="tipo">Proyecto<span class="required-indicator">*</span></label>
+                        <input class="typeahead" name="nombreProyecto" type="text" required="" placeholder="Busca un proyecto">
+                    </div>
                     <div class='fieldcontain required'>
-                        <label for='tipo'>Tipo
+                        <label for='motivoEmpresa'>Fecha Documento
                             <span class='required-indicator'>*</span>
-                        </label><input type="text" name="tipo" value="" required="" id="tipo" />
+                        </label><input type="date" name="motivoEmpresa" value="" required="" id="fecha" />
+                    </div>
+                    <div class='fieldcontain required'>
+                        <label for='motivoEmpresa'>Item de movilización
+                            <span class='required-indicator'>*</span>
+                        </label>
+                        <select name="tipo" class="fieldcontain required">
+                            <option value="combustible">Combustible</option>
+                            <option value="peaje">Peaje</option>
+                            <option value="tag">Tag</option>
+                            <option value="estacionamiento">Estacionamiento</option>
+                        </select>
                     </div>
                     <div class='fieldcontain required'>
                         <label for='motivoEmpresa'>Motivo Empresa
@@ -51,14 +66,6 @@
                         <label for='concepto'>Concepto
                             <span class='required-indicator'>*</span>
                         </label><input type="text" name="concepto" value="" required="" id="concepto" />
-                    </div>
-                    <div class="fieldcontain required" id="usuarioinputdiv">
-                        <label for="tipo">Usuario<span class="required-indicator">*</span></label>
-                        <input class="typeahead" name="nombreUsuario" type="text" required="" placeholder="Busca un usuario">
-                    </div>
-                    <div class="fieldcontain required" id="proyectoinputdiv">
-                        <label for="tipo">Proyecto<span class="required-indicator">*</span></label>
-                        <input class="typeahead" name="nombreProyecto" type="text" required="" placeholder="Busca un proyecto">
                     </div>
                     <input name="creadoPor" value="${session.usuarioLogueado.rut}" required="" type="hidden">
                 </fieldset>

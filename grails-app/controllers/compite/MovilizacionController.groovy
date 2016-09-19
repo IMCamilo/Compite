@@ -5,7 +5,7 @@ import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
 class MovilizacionController {
-
+    private BigInteger usuarioId = session.usuarioLogueado.id
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
@@ -128,5 +128,14 @@ class MovilizacionController {
             }
             '*'{ render status: NOT_FOUND }
         }
+    }
+
+    //Crear rendicion de movilizacion personalizada
+    def nuevamovilizacion(Integer id,Integer max){
+        def proyecto=Proyecto.findById(id)
+        def movs = Movilizacion.executeQuery("from Movilizacion where usuario_id=1 and proyecto_id=1")
+        println ("IDmovilizacion:"+movs.id)
+        params.max = Math.min(max ?: 10, 100)
+        [movsList:movs, proyecto: proyecto]
     }
 }
