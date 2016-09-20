@@ -11,28 +11,27 @@ class ProyectoController {
     def index(Integer max) {
         def tipo = params.tipoBusqueda
         def estado = params.estadoBusqueda
-        def rendiciones = params.rendicionesBusqueda
-        if (tipo || estado || rendiciones != 'ALL') {
+        if (tipo || estado) {
             println "Realizando busqueda"
-            println "tipo: "+tipo+" estado: "+estado+" rendiciones: "+rendiciones
+            println "tipo: "+tipo+" estado: "+estado
             if (tipo && estado) {
                 println "Viene tipo y estado"
                 def listado = Proyecto.findAll("from Proyecto p where p.tipo = ? and p.estado = ?", [tipo, estado])
                 def listaEmpresas = Empresa.findAll()
                 params.max = Math.min(max ?: 10, 100)
-                [proyectoCount: Proyecto.count(), empresas:listaEmpresas, proyectoList: listado]
+                [proyectoCount: Proyecto.count(), empresas:listaEmpresas, proyectoList: listado, tipoContext: tipo, estadoContext: estado]
             } else if (tipo) {
                 println "Solo viene tipo"
                 def listaProyectos = Proyecto.findAllByTipo(tipo)
                 def listaEmpresas = Empresa.findAll()
                 params.max = Math.min(max ?: 10, 100)
-                [proyectoCount: Proyecto.count(), empresas:listaEmpresas, proyectoList: listaProyectos]
+                [proyectoCount: Proyecto.count(), empresas:listaEmpresas, proyectoList: listaProyectos, tipoContext: tipo, estadoContext: null]
             } else if (estado) {
                 println "Solo viene estado"
                 def listaProyectos = Proyecto.findAllByEstado(estado)
                 def listaEmpresas = Empresa.findAll()
                 params.max = Math.min(max ?: 10, 100)
-                [proyectoCount: Proyecto.count(), empresas:listaEmpresas, proyectoList: listaProyectos]
+                [proyectoCount: Proyecto.count(), empresas:listaEmpresas, proyectoList: listaProyectos, tipoContext: null, estadoContext: estado]
             }
         } else {
             println "No vienen parametros"

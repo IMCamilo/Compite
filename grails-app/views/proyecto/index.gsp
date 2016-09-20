@@ -223,28 +223,62 @@
                     <div class="col-md-12">
                         <div class="col-sm-6">
                             <div class="fieldcontain">
-                                <label for="tipoBusqueda">Tipo de Proyecto
-                                </label>
-                                <select name="tipoBusqueda" id="tipoBusqueda">
-                                    <option value="" disabled selected>Seleccione Tipo</option>
-                                    <option value="PUBLICO">Publico</option>
-                                    <option value="PRIVADO">Privado</option>
-                                </select>
+                                <label for="tipoBusqueda">Tipo de Proyecto</label>
+                                <g:if test="${tipoContext != null}">
+                                    <g:if test="${tipoContext == "PUBLICO"}">
+                                        <select name="tipoBusqueda" id="tipoBusqueda">
+                                            <option value="" disabled>Seleccione Tipo</option>
+                                            <option value="PUBLICO" selected>Publico</option>
+                                            <option value="PRIVADO">Privado</option>
+                                        </select>
+                                    </g:if>
+                                    <g:else>
+                                        <select name="tipoBusqueda" id="tipoBusqueda">
+                                            <option value="" disabled>Seleccione Tipo</option>
+                                            <option value="PUBLICO">Publico</option>
+                                            <option value="PRIVADO" selected>Privado</option>
+                                        </select>
+                                    </g:else>
+                                </g:if>
+                                <g:else>
+                                    <select name="tipoBusqueda" id="tipoBusqueda">
+                                        <option value="" disabled selected>Seleccione Tipo</option>
+                                        <option value="PUBLICO">Publico</option>
+                                        <option value="PRIVADO">Privado</option>
+                                    </select>
+                                </g:else>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="fieldcontain">
-                                <label for="estadoBusqueda">Estado de Proyecto
-                                </label>
-                                <select name="estadoBusqueda" id="estadoBusqueda">
-                                    <option value="" disabled selected>Seleccione Estado</option>
-                                    <option value="ACTIVO">Activo</option>
-                                    <option value="INACTIVO">Inactivo</option>
-                                </select>
+                                <label for="estadoBusqueda">Estado de Proyecto</label>
+                                <g:if test="${estadoContext != null}">
+                                    <g:if test="${estadoContext == "ACTIVO"}">
+                                        <select name="estadoBusqueda" id="estadoBusqueda">
+                                            <option value="" disabled>Seleccione Estado</option>
+                                            <option value="ACTIVO" selected>Activo</option>
+                                            <option value="INACTIVO">Inactivo</option>
+                                        </select>
+                                    </g:if>
+                                    <g:else>
+                                        <select name="estadoBusqueda" id="estadoBusqueda">
+                                            <option value="" disabled>Seleccione Estado</option>
+                                            <option value="ACTIVO">Activo</option>
+                                            <option value="INACTIVO" selected>Inactivo</option>
+                                        </select>
+                                    </g:else>
+                                </g:if>
+                                <g:else>
+                                    <select name="estadoBusqueda" id="estadoBusqueda">
+                                        <option value="" disabled selected>Seleccione Estado</option>
+                                        <option value="ACTIVO">Activo</option>
+                                        <option value="INACTIVO">Inactivo</option>
+                                    </select>
+                                </g:else>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12">
+                    <!--<div class="col-md-12">
                         <div class="col-sm-6">
                             <div class="fieldcontain">
                                 <label>¿Con Rendiciones?</label>
@@ -253,7 +287,7 @@
                                 <input type="radio" name="rendicionesBusqueda" value="N"> No
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                     <div class="col-md-12">
                         <br>
                     </div>
