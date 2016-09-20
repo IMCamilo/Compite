@@ -10,12 +10,11 @@
 <%@ page import="org.apache.tools.ant.property.GetProperty; org.apache.tools.ant.taskdefs.Get" %>
 <title>COMPITE - Reportes de Rendiciones</title>
 <meta name="layout" content="mainadministrador"/>
-    <form method="GET" action="reportes">
+    <form method="POST" action="reportes">
         <fieldset class="form">
-
             <div class="fieldcontain required" id="proyectoinputdiv">
-                <label for="tipo">Proyecto<span class="required-indicator">*</span></label>
-                <input class="typeahead" name="nombreProyecto" type="text" required="" placeholder="Busca un proyecto">
+                <label for="proyectoinputdiv">Proyecto<span class="required-indicator">*</span></label>
+                <input class="typeahead" name="proyecto" type="text" required="" placeholder="Busca un proyecto">
             </div>
         </fieldset>
         <fieldset class="buttons">
@@ -26,25 +25,29 @@
 <g:form action="save" controller="rendicion">
     <div>
         <h1>Reporte de Rendicion de Gastos</h1>
+        <div id="idProyecto" class="fieldcontain">
+            <label for="idProyecto">ID Proyecto</label>
+            <input type="text" name="id" value="" placeholder="Proyecto">
+        </div>
+        <div id="nombreProyecto" class="fieldcontain">
+            <label for="nombreProyecto">Nombre Proyecto</label>
+            <input type="text" name="nombreProyecto" value="" placeholder="Proyecto">
+        </div>
         <div id="fecha" class="fieldcontain">
-            <label for="fecha">FECHA RENDICION</label>
-            <input type="text" placeholder="Fecha Rendicion">
+            <label for="fecha">FECHA RENDICION<span class="required-indicator">*</span></label>
+            <input type="text" placeholder="Fecha Rendicion" name="fecha">
         </div>
-        <div id="sede" class="fieldcontain">
-            <label for="sede">SEDE ENVIO</label>
-            <input type="text" placeholder="Sede Envio">
+        <div id="sedeEnvio" class="fieldcontain">
+            <label for="sedeEnvio">SEDE ENVIO</label>
+            <input type="text" placeholder="Sede Envio" name="sedeEnvio">
         </div>
-        <div id="nombre" class="fieldcontain">
-            <label for="nombre">NOMBRE RESPONSABLE</label>
-            <input type="text" placeholder="Nombre Responsable">
+        <div id="nombreUsuario" class="fieldcontain">
+            <label for="nombreUsuario">NOMBRE RESPONSABLE - RUT<span class="required-indicator">*</span></label>
+            <input type="text" placeholder="Nombre Responsable" name="nombreUsuario">
         </div>
-        <div id="rut" class="fieldcontain">
-            <label for="rut">RUT</label>
-            <input type="text" placeholder="RUT">
-        </div>
-        <div id="tipo" class="fieldcontain">
-            <label for="nombre">TIPO RENDICION</label>
-            <input type="text" placeholder="Tipo Rendicion">
+        <div id="tipoRendicion" class="fieldcontain">
+            <label for="tipoRendicion">TIPO RENDICION<span class="required-indicator">*</span></label>
+            <input type="text" placeholder="Tipo Rendicion" name="tipo">
         </div>
     </div>
     <div>
@@ -65,7 +68,7 @@
             </thead>
             <tbody>
             <g:each var="reporte" in="${compite.Egreso.executeQuery("from Egreso where proyecto IN " +
-                    "(SELECT id from Proyecto where nombre = '${params.nombreProyecto}')")}" >
+                    "(SELECT id from Proyecto where nombre = '${params.proyecto}')")}" >
                 <tr>
                     <td><g:link controller="egreso" action="show" id="${reporte.id}">${reporte.id}</g:link></td>
                     <td>${reporte.tipoDocumento}</td>
@@ -81,21 +84,20 @@
             </g:each>
             </tbody>
         </table>
-        <div id="totalrendido" class="fieldcontain">
-            <label for="totalrendido">TOTAL RENDIDO</label>
-            <input type="text" placeholder="">
+        <div id="totalRendido" class="fieldcontain">
+            <label for="totalRendido">TOTAL RENDIDO</label>
+            <input type="text" placeholder="" name="totalRendido">
         </div>
-        <div id="totalanticipado" class="fieldcontain">
-            <label for="totalanticipado">TOTAL ANTICIPADO</label>
-            <input type="text" placeholder="">
+        <div id="totalAnticipado" class="fieldcontain">
+            <label for="totalAnticipado">TOTAL ANTICIPADO</label>
+            <input type="text" placeholder="" name="totalAnticipado">
         </div>
         <div id="total" class="fieldcontain">
             <label for="total">TOTAL</label>
-            <input type="text" placeholder="">
+            <input type="text" placeholder="" name="total">
         </div>
     </div>
     <button>Guardar Reporte Rendicion</button>
-    <button>Imprimir Reporte Rendicion</button>
 </g:form>
 <asset:javascript src="compite/jquery-2.1.1.min.js"/>
 <asset:javascript src="compite/typeahead.bundle.js"/>
@@ -118,13 +120,24 @@
                 cb(matches);
             };
         };
-
+        var usuarios = [
+            <g:each in="${usuarios}">
+            '${it.nombres} ${it.paterno} ・ ${it.rut}',
+            </g:each>
+        ];
         var proyectos = [
             <g:each in="${proyectos}">
             '${it.nombre}',
             </g:each>
         ];
-
+        $('#usuarioinputdiv .typeahead').typeahead({
+            hint: true,
+            highlight: true,
+            minLength: 1
+        }, {
+            name: 'usuarios',
+            source: substringMatcher(usuarios)
+        });
         $('#proyectoinputdiv .typeahead').typeahead({
             hint: true,
             highlight: true,
