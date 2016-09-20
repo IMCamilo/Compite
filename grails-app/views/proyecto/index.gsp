@@ -77,7 +77,7 @@
                         <div class="col-sm-6">
                             <div class="fieldcontain">
                                 <label class="" for="presupuesto">Presupuesto</label>
-                                <input name="presupuesto" value="" id="presupuesto" type="text" placeholder="" maxlength="15" onkeypress="return isNumber(event)">
+                                <input name="presupuesto" value="" id="presupuesto" type="text" placeholder="Valor monetario asignado al proyecto" maxlength="15" onkeypress="return isNumber(event)">
                             </div>
                         </div>
                     </div>

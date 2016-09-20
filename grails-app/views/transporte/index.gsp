@@ -35,32 +35,32 @@
                     <label for="rut">Tipo
                         <span class="required-indicator">*</span>
                     </label>
-                    <input name="tipo" value="" required="" maxlength="13" id="rut" type="text"></div>
+                    <input name="tipo" value="" required="" placeholder="Ingrese el tipo de vehiculo Ej: Sedan, Camioneta, Avan" maxlength="13" id="rut" type="text"></div>
                     <div class="fieldcontain required">
                     <label for="nombres">Descripción
                         <span class="required-indicator">*</span>
                     </label>
-                    <input name="descripcion" value="" required="" maxlength="15" id="nombres" type="text"></div>
+                    <input name="descripcion" value="" required="" placeholder="Descripcion del vehiculo Ej: Automovil estandar" maxlength="30" id="nombres" type="text"></div>
                     <div class="fieldcontain required">
                     <label for="paterno">Marca
                         <span class="required-indicator">*</span>
                     </label>
-                    <input name="marca" value="" required="" maxlength="10" id="paterno" type="text"></div>
+                    <input name="marca" value="" required="" placeholder="Ej: Toyota" maxlength="10" id="paterno" type="text"></div>
                     <div class="fieldcontain required">
                     <label for="materno">Km Por Litro
                         <span class="required-indicator">*</span>
                     </label>
-                    <input name="kmPorLitro" value="" required="" maxlength="10" id="materno" type="text"></div>
+                    <input name="kmPorLitro" value="" required="" placeholder="Ingrese valor rendimiento en kilometros" maxlength="6" id="materno" type="text" onkeypress="return isNumber(event)"></div>
                     <div class="fieldcontain required">
                     <label for="direccion">Modelo
                         <span class="required-indicator">*</span>
                     </label>
-                    <input name="modelo" value="" required="" maxlength="35" id="direccion" type="text"></div>
+                    <input name="modelo" value="" required="" placeholder="Ej: Yaris XLS" maxlength="35" id="direccion" type="text"></div>
                     <div class="fieldcontain required">
                     <label for="correo">Combustible
                         <span class="required-indicator">*</span>
                     </label>
-                    <input name="combustible" value="" required="" maxlength="30" id="correo" type="text"></div>
+                    <input name="combustible" value="" required="" placeholder="Ej: Diesel, Gas 93, Gas 95, Gas 97, Hybid" maxlength="30" id="correo" type="text"></div>
                     <input name="creadoPor" value="${session.usuarioLogueado.rut}" required="" type="hidden">
                 </fieldset>
                 <fieldset class="buttons">
