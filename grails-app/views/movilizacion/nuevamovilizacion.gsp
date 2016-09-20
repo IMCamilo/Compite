@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="layout" content="mainadministrador" />
+    <meta name="layout" content="mainingeniero" />
     <g:set var="entityName" value="${message(code: 'movilizacion.label', default: 'Movilizacion')}" />
     <title><g:message code="default.list.label" args="[entityName]" /></title>
     <asset:stylesheet src="compite/autocomplete.css"/>
@@ -30,7 +30,7 @@
             <div class='fieldcontain required'>
                 <label for='motivoEmpresa'>Fecha Documento
                     <span class='required-indicator'>*</span>
-                </label><input type="date" name="motivoEmpresa" value="" required="" id="fecha" />
+                </label><input type="date" name="fechain" value="" required="" id="fecha" />
             </div>
             <div class='fieldcontain required'>
                 <label for='motivoEmpresa'>Item de movilización
@@ -94,7 +94,7 @@
         <tbody>
         <g:each var="movilizacion" status="i" in="${movsList}">
             <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
-                <td><a href="show/${movilizacion.id}">ver</a></td>
+                <td><a href="../show/${movilizacion.id}">ver</a></td>
                 <td>${formatDate(format:"dd/MM/yyyy", date: movilizacion.fechaCreacion)}</td>
                 <td>${movilizacion.motivoEmpresa}</td>
                 <td>${movilizacion.direccion}</td>

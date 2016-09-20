@@ -140,35 +140,65 @@ class MovilizacionController {
         params.max = Math.min(max ?: 10, 100)
         [movsList:movs, proyecto: proyecto]
     }
+    //verificacion de boltas por el consumo de combustible
 
     def verificar(){
         if(params.tipo=="combustible"){
             def kmsxlitro= Transporte.find("from Transporte where usuario_id="+usuarioId)
             if (kmsxlitro==null){
                 println ("no tiene vehiculo en el sistema")
-                redirect (controller:"movilizacion", action: "nuevamovilizacion", id:idproyecto, message("no tiene vehiculos inscritos, Actualize su perfil"))
+                respond (controller:"movilizacion", action: "nuevamovilizacion", id:idproyecto, message("no tiene vehiculos inscritos, Actualize su perfil"))
             }else {
                 Integer combustible=700
-                Integer dis=params.ditancia
-                Integer precio=params.precio.toInteger()
+                Integer dis=Integer.parseInt(params.distancia)
+                Integer precio=Integer.parseInt(params.precio)
                 Integer kmlitro=kmsxlitro.kmPorLitro
 
-                Integer conlitro=dis/kmlitro
-                Integer precioaprox=conlitro*combustible
-                println ("precio de aproximado que debio ocupar= "+ precioaprox+"precio que pago por la boleta ="+precio)
+                double conlitro=dis/kmlitro
+                Integer preciocal=conlitro*combustible
 
-                println("Kilometros por litro: " + kmsxlitro.kmPorLitro.toString())
-                println ("distancia: "+ params.distancia)
-                redirect (controller:"movilizacion", action: "nuevamovilizacion", id:idproyecto)
+
+                println ("precio de aproximado que debio ocupar= "+preciocal.toString()+" ,precio que pago por la boleta = "+precio.toString())
+
+                if(preciocal*0.7<=precio&&precio<=preciocal*1.3){
+                    return guardar()
+                }else{
+                    redirect (controller:"movilizacion", action: "nuevamovilizacion", id:idproyecto)
+                }
             }
 
 
         }else{
-
-            redirect view:'nuevamovilizacion', id:idproyecto
+            respond guardar;
         }
     }
     def guardar(){
+        params.usuario=usuarioId
+        params.proyecto=idproyecto
+
+        def movilizacion = new Movilizacion(params)
+
+        if (movilizacion == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        if (movilizacion.hasErrors()) {
+            transactionStatus.setRollbackOnly()
+            respond movilizacion.errors, view:'create'
+            return
+        }
+
+        movilizacion.save flush:true, failOnError:true
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.created.message', args: [message(code: 'movilizacion.label', default: 'Movilizacion'), movilizacion.id])
+                redirect (controller:"movilizacion", action: "nuevamovilizacion", id:idproyecto)
+            }
+            '*' { respond movilizacion, [status: CREATED] }
+        }
 
 
     }
