@@ -44,29 +44,29 @@
                 </select>
             </div>
             <div class='fieldcontain required'>
-                <label for='motivoEmpresa'>Motivo Empresa
+                <label for='motivoEmpresa'>Motivo/Empresa
                     <span class='required-indicator'>*</span>
-                </label><input type="text" name="motivoEmpresa" value="" required="" id="motivoEmpresa" />
+                </label><input type="text" name="motivoEmpresa" maxlength="40" value="" required="" id="motivoEmpresa" placeholder="Describa motivo de la movilización"/>
             </div>
             <div class='fieldcontain required'>
-                <label for='distancia'>Distancia/Tiempo(hrs)
+                <label for='distancia'>Distancia(kmtrs)/Tiempo(hrs)
                     <span class='required-indicator'>*</span>
-                </label><input type="number" name="distancia" value="" required="" id="distancia" />
+                </label><input type="number" name="distancia" value="" required="" id="distancia" max="100000" onkeypress="return isNumber(event)" placeholder="Ingrese la distancia total"/>
             </div>
             <div class='fieldcontain required'>
                 <label for='direccion'>Direccion
                     <span class='required-indicator'>*</span>
-                </label><input type="text" name="direccion" value="" required="" id="direccion" />
+                </label><input type="text" name="direccion" value="" required="" id="direccion" maxlength="60" placeholder="Ingrese la dirección"/>
             </div>
             <div class='fieldcontain required'>
-                <label for='concepto'>Concepto
+                <label for='concepto'>Empresa
                     <span class='required-indicator'>*</span>
-                </label><input type="text" name="concepto" value="" required="" id="concepto" />
+                </label><input type="text" name="concepto" value="" required="" id="concepto" maxlength="20" placeholder="Empresa a la que se cancela la boleta" />
             </div>
             <div class='fieldcontain required'>
                 <label for='concepto'>Total
                     <span class='required-indicator'>*</span>
-                </label><input type="text" name="precio" value="" required="" id="precio" />
+                </label><input type="number" name="precio" value="" required="" id="precio" max="100000" onkeypress="return isNumber(event)" placeholder="Total de boleta"/>
             </div>
             <input name="creadoPor" value="${session.usuarioLogueado.rut}" required="" type="hidden">
         </fieldset>
@@ -94,7 +94,7 @@
         <tbody>
         <g:each var="movilizacion" status="i" in="${movsList}">
             <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
-                <td><a href="../show/${movilizacion.id}">ver</a></td>
+                <td><a href="../editarmov/${movilizacion.id}">Editar</a></td>
                 <td>${formatDate(format:"dd/MM/yyyy", date: movilizacion.fechaCreacion)}</td>
                 <td>${movilizacion.motivoEmpresa}</td>
                 <td>${movilizacion.direccion}</td>

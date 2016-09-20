@@ -202,4 +202,35 @@ class MovilizacionController {
 
 
     }
+    def editarmov(Movilizacion movilizacion){
+        respond movilizacion
+    }
+    def editguardar(){
+        params.usuario=usuarioId
+        params.proyecto=idproyecto
+        def movilizacion = Movilizacion.get(params.id)
+        movilizacion.properties = params
+
+        if (movilizacion == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        if (movilizacion.hasErrors()) {
+            transactionStatus.setRollbackOnly()
+            respond movilizacion.errors, view:'editarmov'
+            return
+        }
+
+        movilizacion.save flush:true, failOnError:true
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'movilizacion.label', default: 'Movilizacion'), movilizacion.id])
+                redirect (controller:"movilizacion", action: "nuevamovilizacion", id:idproyecto)
+            }
+            '*'{ respond movilizacion, [status: OK] }
+        }
+    }
 }
