@@ -14,19 +14,32 @@ class ProyectoController {
         def rendiciones = params.rendicionesBusqueda
         if (tipo || estado || rendiciones != 'ALL') {
             println "Realizando busqueda"
-            def listaProyectos = Proyecto.findAllByTipo(tipo)
-            def listaEmpresas = Empresa.findAll()
-            params.max = Math.min(max ?: 10, 100)
-            [proyectoCount: Proyecto.count(), empresas:listaEmpresas, proyectoList: listaProyectos]
-
+            println "tipo: "+tipo+" estado: "+estado+" rendiciones: "+rendiciones
+            if (tipo && estado) {
+                println "Viene tipo y estado"
+                def listado = Proyecto.findAll("from Proyecto p where p.tipo = ? and p.estado = ?", [tipo, estado])
+                def listaEmpresas = Empresa.findAll()
+                params.max = Math.min(max ?: 10, 100)
+                [proyectoCount: Proyecto.count(), empresas:listaEmpresas, proyectoList: listado]
+            } else if (tipo) {
+                println "Solo viene tipo"
+                def listaProyectos = Proyecto.findAllByTipo(tipo)
+                def listaEmpresas = Empresa.findAll()
+                params.max = Math.min(max ?: 10, 100)
+                [proyectoCount: Proyecto.count(), empresas:listaEmpresas, proyectoList: listaProyectos]
+            } else if (estado) {
+                println "Solo viene estado"
+                def listaProyectos = Proyecto.findAllByEstado(estado)
+                def listaEmpresas = Empresa.findAll()
+                params.max = Math.min(max ?: 10, 100)
+                [proyectoCount: Proyecto.count(), empresas:listaEmpresas, proyectoList: listaProyectos]
+            }
         } else {
             println "No vienen parametros"
             def listaEmpresas = Empresa.findAll()
             params.max = Math.min(max ?: 10, 100)
             respond Proyecto.list(params), model:[proyectoCount: Proyecto.count(), empresas:listaEmpresas]
         }
-
-
     }
 
     def show(Proyecto proyecto) {
