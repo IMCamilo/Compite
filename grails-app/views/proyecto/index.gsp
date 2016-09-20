@@ -286,15 +286,28 @@
                 </thead>
                 <tbody>
                     <g:each var="proyecto" status="i" in="${proyectoList}">
-                         <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
-                            <td><a href="show/${proyecto.id}">ver</a></td>
-                            <td>${proyecto.codigo}</td>
-                            <td>${proyecto.nombre}</td>
-                            <td>${proyecto.estado}</td>
-                            <td>${formatDate(format:"dd/MM/yyyy", date: proyecto.fechaCreacion)}</td>
-                            <td>${formatDate(format:"dd/MM/yyyy", date: proyecto.fechaFin)}</td>
-                            <td>${proyecto.tipo}</td>
-                        </tr>
+                        <g:if test="${proyecto.rendicion.isEmpty()}">
+                            <tr style="background-color: #EF5350">
+                                <td><a href="show/${proyecto.id}">ver</a></td>
+                                <td>${proyecto.codigo}</td>
+                                <td>${proyecto.nombre}</td>
+                                <td>${proyecto.estado}</td>
+                                <td>${formatDate(format:"dd/MM/yyyy", date: proyecto.fechaCreacion)}</td>
+                                <td>${formatDate(format:"dd/MM/yyyy", date: proyecto.fechaFin)}</td>
+                                <td>${proyecto.tipo}</td>
+                            </tr>
+                        </g:if>
+                        <g:else>
+                            <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
+                                <td><a href="show/${proyecto.id}">ver</a></td>
+                                <td>${proyecto.codigo}</td>
+                                <td>${proyecto.nombre}</td>
+                                <td>${proyecto.estado}</td>
+                                <td>${formatDate(format:"dd/MM/yyyy", date: proyecto.fechaCreacion)}</td>
+                                <td>${formatDate(format:"dd/MM/yyyy", date: proyecto.fechaFin)}</td>
+                                <td>${proyecto.tipo}</td>
+                            </tr>
+                        </g:else>
                     </g:each>
                 </tbody>
             </table>
