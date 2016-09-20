@@ -22,20 +22,21 @@
         </fieldset>
     </form>
 
-<g:form action="save" controller="rendicion">
+<g:form action="save" controller="rendicion" >
     <div>
         <h1>Reporte de Rendicion de Gastos</h1>
-        <div id="idProyecto" class="fieldcontain">
+        <div id="idproyecto" class="fieldcontain">
             <label for="idProyecto">ID Proyecto</label>
-            <input type="text" name="id" value="" placeholder="Proyecto">
+            <input type="text" name="proyecto" value="${compite.Proyecto.executeQuery("SELECT id from Proyecto where nombre = '${params.proyecto}'")}"
+                   placeholder="Proyecto">
         </div>
         <div id="nombreProyecto" class="fieldcontain">
             <label for="nombreProyecto">Nombre Proyecto</label>
-            <input type="text" name="nombreProyecto" value="" placeholder="Proyecto">
+            <input type="text" name="nombreProyecto" value="${params.proyecto}" placeholder="Proyecto">
         </div>
         <div id="fecha" class="fieldcontain">
             <label for="fecha">FECHA RENDICION<span class="required-indicator">*</span></label>
-            <input type="text" placeholder="Fecha Rendicion" name="fecha">
+            <input type="text" placeholder="Fecha Rendicion" name="fecha" value="${}" >
         </div>
         <div id="sedeEnvio" class="fieldcontain">
             <label for="sedeEnvio">SEDE ENVIO</label>
@@ -47,7 +48,7 @@
         </div>
         <div id="tipoRendicion" class="fieldcontain">
             <label for="tipoRendicion">TIPO RENDICION<span class="required-indicator">*</span></label>
-            <input type="text" placeholder="Tipo Rendicion" name="tipo">
+            <input type="text" placeholder="Tipo Rendicion" name="tipoRendicion">
         </div>
     </div>
     <div>
@@ -86,17 +87,27 @@
         </table>
         <div id="totalRendido" class="fieldcontain">
             <label for="totalRendido">TOTAL RENDIDO</label>
-            <input type="text" placeholder="" name="totalRendido">
+            <input type="text" placeholder="TOTAL RENDIDO" name="totalRendido" value="${compite.Egreso.executeQuery("Select sum (monto) from Egreso where proyecto IN" +
+                    "(SELECT id from Proyecto where nombre = '${params.proyecto}')")}" >
         </div>
         <div id="totalAnticipado" class="fieldcontain">
             <label for="totalAnticipado">TOTAL ANTICIPADO</label>
-            <input type="text" placeholder="" name="totalAnticipado">
+            <input type="text" placeholder="" name="totalAnticipado" value="">
         </div>
         <div id="total" class="fieldcontain">
             <label for="total">TOTAL</label>
-            <input type="text" placeholder="" name="total">
+            <input type="text" placeholder="" name="total" value="">
         </div>
+        <div id="aprobacion" class="fieldcontain">
+            <label for="aprobacion">APROBACION</label>
+        </div>
+        <input type="radio" name="aprobacion" value="SI">SI
+        <input type="radio" name="aprobacion" value="NO">NO
     </div>
+        <div id="creadopor" class="fieldcontain">
+            <label for="creadopor">CREADO POR</label>
+            <input type="text" placeholder="CREADO POR" name="creadoPor" value="">
+        </div>
     <button>Guardar Reporte Rendicion</button>
 </g:form>
 <asset:javascript src="compite/jquery-2.1.1.min.js"/>
