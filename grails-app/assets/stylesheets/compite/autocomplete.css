@@ -8,6 +8,8 @@
 
 .typeahead {
   background-color: #fff;
+    width: 100%;
+    padding: 0.2em 0.4em;
 }
 
 .typeahead:focus {
@@ -21,6 +23,8 @@
 }
 
 .tt-hint {
+    padding: 0.2em 0.4em;
+    width: 100%;
   color: #999
 }
 

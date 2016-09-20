@@ -220,11 +220,18 @@ label {
     margin: 0 0.25em 0 0;
 }
 
-input, select, textarea {
+input, textarea {
     background-color: #fcfcfc;
     border: 1px solid #cccccc;
     font-size: 1em;
     padding: 0.2em 0.4em;
+}
+input, textarea {
+    background-color: #fcfcfc;
+    border: 1px solid #cccccc;
+    font-size: 1em;
+    padding: 0.2em 0.4em;
+    width: 50%;
 }
 
 select {

@@ -29,7 +29,7 @@
                                 <label for="nombre">Nombre
                                     <span class="required-indicator">*</span>
                                 </label>
-                                <input name="nombre" value="" required="" id="nombre" type="text" placeholder="Nombre del Proyecto">
+                                <input name="nombre" value="" required="" id="nombre" type="text" maxlength="25" placeholder="Nombre del Proyecto">
                             </div>
                         </div>
                         <div class="col-sm-6">
