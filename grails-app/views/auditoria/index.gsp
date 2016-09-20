@@ -28,23 +28,23 @@
             <g:form action="save">
                 <fieldset class="form">
                     <div class="fieldcontain required">
-                        <label for="tipo">Nombre<span class="required-indicator">*</span></label>
+                        <label>Nombre<span class="required-indicator">*</span></label>
                         <input name="nombre" value="" required="" type="text">
                     </div>
                     <div class="fieldcontain required" id="proyectoinputdiv">
-                        <label for="tipo">Proyecto<span class="required-indicator">*</span></label>
+                        <label>Proyecto<span class="required-indicator">*</span></label>
                         <input class="typeahead" name="nombreProyecto" type="text" required="" placeholder="Busca un proyecto">
                     </div>
                     <div class="fieldcontain required" id="usuarioinputdiv">
-                        <label for="tipo">Usuario<span class="required-indicator">*</span></label>
+                        <label>Usuario<span class="required-indicator">*</span></label>
                         <input class="typeahead" name="nombreUsuario" type="text" required="" placeholder="Busca un usuario">
                     </div>
                     <div class="fieldcontain required">
-                        <label for="tipo">Archivo de auditoría<span class="required-indicator">*</span></label>
+                        <label>Archivo de auditoría<span class="required-indicator">*</span></label>
                         <input name="motivo" value="" required="" type="text" placeholder="Aqui es necesario cargar un archivo">
                     </div>
                     <div class="fieldcontain required">
-                        <label for="tipo">Descripción<span class="required-indicator">*</span></label>
+                        <label>Descripción<span class="required-indicator">*</span></label>
                         <textarea  name="descripcion" required="" rows="4" cols="50" placeholder="Ingrese el resumen de la auditoría realizada"></textarea>
                     </div>
                     <div class="fieldcontain required">

@@ -27,44 +27,95 @@
             </g:hasErrors>
             <g:form action="save">
                 <fieldset class="form">
-                    <div class="fieldcontain required" id="usuarioinputdiv">
-                        <label>Usuario<span class="required-indicator">*</span></label>
-                        <input class="typeahead" name="nombreUsuario" type="text" required="" placeholder="Busca un usuario">
-                    </div>
-                    <div class="fieldcontain required">
-                    <label for="rut">Tipo
-                        <span class="required-indicator">*</span>
-                    </label>
-                    <input name="tipo" value="" required="" placeholder="Ingrese el tipo de vehiculo Ej: Sedan, Camioneta, Avan" maxlength="13" id="rut" type="text"></div>
-                    <div class="fieldcontain required">
-                    <label for="nombres">Descripción
-                        <span class="required-indicator">*</span>
-                    </label>
-                    <input name="descripcion" value="" required="" placeholder="Descripcion del vehiculo Ej: Automovil estandar" maxlength="30" id="nombres" type="text"></div>
-                    <div class="fieldcontain required">
-                    <label for="paterno">Marca
-                        <span class="required-indicator">*</span>
-                    </label>
-                    <input name="marca" value="" required="" placeholder="Ej: Toyota" maxlength="10" id="paterno" type="text"></div>
-                    <div class="fieldcontain required">
-                    <label for="materno">Km Por Litro
-                        <span class="required-indicator">*</span>
-                    </label>
-                    <input name="kmPorLitro" value="" required="" placeholder="Ingrese valor rendimiento en kilometros" maxlength="6" id="materno" type="text" onkeypress="return isNumber(event)"></div>
-                    <div class="fieldcontain required">
-                    <label for="direccion">Modelo
-                        <span class="required-indicator">*</span>
-                    </label>
-                    <input name="modelo" value="" required="" placeholder="Ej: Yaris XLS" maxlength="35" id="direccion" type="text"></div>
-                    <div class="fieldcontain required">
-                    <label for="correo">Combustible
-                        <span class="required-indicator">*</span>
-                    </label>
-                    <input name="combustible" value="" required="" placeholder="Ej: Diesel, Gas 93, Gas 95, Gas 97, Hybid" maxlength="30" id="correo" type="text"></div>
                     <input name="creadoPor" value="${session.usuarioLogueado.rut}" required="" type="hidden">
-                </fieldset>
-                <fieldset class="buttons">
-                    <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}"/>
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required" id="usuarioinputdiv">
+                                <label>Usuario
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input class="typeahead" name="nombreUsuario" type="text" required="" placeholder="Busca un usuario">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="tipo">Tipo Vehículo
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <select name="tipo" value="" required="" id="tipo">
+                                    <option value="" disabled selected>Seleccione Tipo</option>
+                                    <option value="SEDAN">Sedán</option>
+                                    <option value="JEEP">Jeep</option>
+                                    <option value="VAN">Van</option>
+                                    <option value="CAMIONETA">Camioneta</option>
+                                    <option value="4X4">4x4</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="descripcion">Descripción
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input name="descripcion" required="" placeholder="Descripcion del vehiculo Ej: Automovil estandar" maxlength="30" id="descripcion" type="text">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="marca">Marca
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input name="marca" required="" placeholder="Ej: Toyota" maxlength="10" id="marca" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="kmPorLitro">Kms. Por Litro
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input name="kmPorLitro" required="" placeholder="Ingrese valor rendimiento en kilometros" maxlength="6" id="kmPorLitro" type="text" onkeypress="return isNumber(event)">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="modelo">Modelo
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input name="modelo" required="" placeholder="Ej: Yaris XLS" maxlength="35" id="modelo" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="combustible">Combustible
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <select name="combustible" required="" id="combustible">
+                                    <option value="" disabled selected>Seleccione Combustible</option>
+                                    <option value="BENCINA93">GAS. 93</option>
+                                    <option value="BENCINA95">GAS. 95</option>
+                                    <option value="BENCINA97">GAS. 97</option>
+                                    <option value="DIESEL">Petróleo</option>
+                                    <option value="GAS">Gas Licuado</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <br>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-sm-1">
+                        </div>
+                        <div class="col-sm-6">
+                            <g:submitButton name="create" class="save btn btn-success" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+                        </div>
+                    </div>
                 </fieldset>
             </g:form>
         </div>
