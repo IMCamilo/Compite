@@ -35,43 +35,43 @@
                     <label for="descripcion">Tipo
                         <span class="required-indicator">*</span>
                     </label>
-                    <input name="tipo" value="" required="" maxlength="15" id="nombres" type="text"></div>
+                    <input name="tipo" value="" required="" placeholder="Nombre tipo empresa Ej: Software" maxlength="15" id="nombres" type="text"></div>
                     <div class="fieldcontain required">
                     <label for="valor">Nombre
                         <span class="required-indicator">*</span>
                     </label>
-                    <input name="nombre" value="" required="" maxlength="10" id="paterno" type="text"></div>
+                    <input name="nombre" value="" required="" placeholder="Nombre ficticio empresa" maxlength="10" id="paterno" type="text"></div>
                     <div class="fieldcontain required">
                     <label for="valor">Razón Social
                         <span class="required-indicator">*</span>
                     </label>
-                    <input name="razonSocial" value="" required="" maxlength="10" id="paterno" type="text"></div>
+                    <input name="razonSocial" value="" required="" placeholder="Razon Social" maxlength="10" id="paterno" type="text"></div>
                     <div class="fieldcontain required">
                     <label for="nombre">Giro
                         <span class="required-indicator">*</span>
                     </label>
-                    <input name="giro" value="" required="" maxlength="10" id="materno" type="text"></div>
+                    <input name="giro" value="" required="" placeholder="Giro de la empresa Ej: Consultores de Software" maxlength="10" id="materno" type="text"></div>
                     <div class="fieldcontain required">
                     <label for="nombre">Gerente
                         <span class="required-indicator">*</span>
                     </label>
-                    <input name="gerente" value="" required="" maxlength="10" id="materno" type="text"></div>
+                    <input name="gerente" value="" required="" placeholder="Nombre del representante legal" maxlength="10" id="materno" type="text"></div>
                     <div class="fieldcontain required">
                     <label for="nombre">Dirección
                         <span class="required-indicator">*</span>
                     </label>
-                    <input name="direccion" value="" required="" maxlength="10" id="materno" type="text"></div>
+                    <input name="direccion" value="" required="" placeholder="Region/Comuna/Area/Calle/Numero" maxlength="10" id="materno" type="text"></div>
                     <div class="fieldcontain required">
                     <label for="nombre">Correo
                         <span class="required-indicator">*</span>
                     </label>
-                    <input name="correo" value="" required="" maxlength="10" id="materno" type="email"></div>
+                    <input name="correo" value="" required="" placeholder="Ej: correo@dominio.cl" maxlength="10" id="materno" type="email"></div>
 
                     <div class="fieldcontain required">
                     <label for="nombre">Telefono
                         <span class="required-indicator">*</span>
                     </label>
-                    <input name="telefono" value="" required="" maxlength="10" id="materno" type="text"></div>
+                    <input name="telefono" value="" required="" placeholder="(Cod. Area)+numero Ej: 56 2 123456" maxlength="10" id="materno" type="text" onkeypress="return isNumber(event)"></div>
                     <input name="creadoPor" value="${session.usuarioLogueado.rut}" required="" type="hidden">
                 </fieldset>
                 <fieldset class="buttons">

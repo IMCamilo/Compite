@@ -28,7 +28,7 @@
             <g:form action="save">
                 <fieldset class="form">
                     <div class="fieldcontain required" id="usuarioinputdiv">
-                        <label for="tipo">Usuario<span class="required-indicator">*</span></label>
+                        <label>Usuario<span class="required-indicator">*</span></label>
                         <input class="typeahead" name="nombreUsuario" type="text" required="" placeholder="Busca un usuario">
                     </div>
                     <div class="fieldcontain required">
