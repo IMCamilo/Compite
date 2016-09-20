@@ -6,6 +6,7 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class MovilizacionController {
     private BigInteger usuarioId = session.usuarioLogueado.id
+    static Integer idproyecto;
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
@@ -21,7 +22,7 @@ class MovilizacionController {
 
     def create() {
         respond new Movilizacion(params)
-    }
+}
 
     @Transactional
     def save() {
@@ -132,10 +133,43 @@ class MovilizacionController {
 
     //Crear rendicion de movilizacion personalizada
     def nuevamovilizacion(Integer id,Integer max){
+        idproyecto=id
         def proyecto=Proyecto.findById(id)
-        def movs = Movilizacion.executeQuery("from Movilizacion where usuario_id=1 and proyecto_id=1")
+        def movs = Movilizacion.executeQuery("from Movilizacion where usuario_id="+usuarioId+"and proyecto_id="+id)
         println ("IDmovilizacion:"+movs.id)
         params.max = Math.min(max ?: 10, 100)
         [movsList:movs, proyecto: proyecto]
+    }
+
+    def verificar(){
+        if(params.tipo=="combustible"){
+            def kmsxlitro= Transporte.find("from Transporte where usuario_id="+usuarioId)
+            if (kmsxlitro==null){
+                println ("no tiene vehiculo en el sistema")
+                redirect (controller:"movilizacion", action: "nuevamovilizacion", id:idproyecto, message("no tiene vehiculos inscritos, Actualize su perfil"))
+            }else {
+                Integer combustible=700
+                Integer dis=params.ditancia
+                Integer precio=params.precio.toInteger()
+                Integer kmlitro=kmsxlitro.kmPorLitro
+
+                Integer conlitro=dis/kmlitro
+                Integer precioaprox=conlitro*combustible
+                println ("precio de aproximado que debio ocupar= "+ precioaprox+"precio que pago por la boleta ="+precio)
+
+                println("Kilometros por litro: " + kmsxlitro.kmPorLitro.toString())
+                println ("distancia: "+ params.distancia)
+                redirect (controller:"movilizacion", action: "nuevamovilizacion", id:idproyecto)
+            }
+
+
+        }else{
+
+            redirect view:'nuevamovilizacion', id:idproyecto
+        }
+    }
+    def guardar(){
+
+
     }
 }

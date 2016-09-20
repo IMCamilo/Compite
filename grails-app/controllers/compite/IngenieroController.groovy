@@ -59,7 +59,7 @@ class IngenieroController {
 
         [proyectosPrivados:proyectosPrivados, proyectosPublicos:proyectosPublicos, proyectos:listaProyectos]
     }
-    
+
     //perfil del ingniero
 
 

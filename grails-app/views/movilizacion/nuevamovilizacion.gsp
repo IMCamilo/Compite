@@ -25,7 +25,7 @@
             </g:eachError>
         </ul>
     </g:hasErrors>
-    <g:form action="save">
+    <g:form action="verificar">
         <fieldset class="form">
             <div class='fieldcontain required'>
                 <label for='motivoEmpresa'>Fecha Documento
@@ -49,7 +49,7 @@
                 </label><input type="text" name="motivoEmpresa" value="" required="" id="motivoEmpresa" />
             </div>
             <div class='fieldcontain required'>
-                <label for='distancia'>Distancia
+                <label for='distancia'>Distancia/Tiempo(hrs)
                     <span class='required-indicator'>*</span>
                 </label><input type="number" name="distancia" value="" required="" id="distancia" />
             </div>
@@ -62,6 +62,11 @@
                 <label for='concepto'>Concepto
                     <span class='required-indicator'>*</span>
                 </label><input type="text" name="concepto" value="" required="" id="concepto" />
+            </div>
+            <div class='fieldcontain required'>
+                <label for='concepto'>Total
+                    <span class='required-indicator'>*</span>
+                </label><input type="text" name="precio" value="" required="" id="precio" />
             </div>
             <input name="creadoPor" value="${session.usuarioLogueado.rut}" required="" type="hidden">
         </fieldset>

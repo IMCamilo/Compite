@@ -8,6 +8,7 @@ class Movilizacion {
     Integer distancia
     String concepto
     String tipo
+    Integer precio
     String creadoPor
 
     static belongsTo = [usuario:Usuario, proyecto:Proyecto]
