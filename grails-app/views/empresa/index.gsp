@@ -26,56 +26,99 @@
             </g:hasErrors>
             <g:form action="save">
                 <fieldset class="form">
-                    <div class="fieldcontain required">
-                    <label for="tipo">Rut
-                        <span class="required-indicator">*</span>
-                    </label>
-                        <input type="text" id="rut" name="rut" required oninput="checkRut(this)" placeholder="Ingrese RUT"></div>
-                    <div class="fieldcontain required">
-                    <label for="descripcion">Tipo
-                        <span class="required-indicator">*</span>
-                    </label>
-                    <input name="tipo" value="" required="" placeholder="Nombre tipo empresa Ej: Software" maxlength="15" id="nombres" type="text"></div>
-                    <div class="fieldcontain required">
-                    <label for="valor">Nombre
-                        <span class="required-indicator">*</span>
-                    </label>
-                    <input name="nombre" value="" required="" placeholder="Nombre ficticio empresa" maxlength="10" id="paterno" type="text"></div>
-                    <div class="fieldcontain required">
-                    <label for="valor">Razón Social
-                        <span class="required-indicator">*</span>
-                    </label>
-                    <input name="razonSocial" value="" required="" placeholder="Razon Social" maxlength="10" id="paterno" type="text"></div>
-                    <div class="fieldcontain required">
-                    <label for="nombre">Giro
-                        <span class="required-indicator">*</span>
-                    </label>
-                    <input name="giro" value="" required="" placeholder="Giro de la empresa Ej: Consultores de Software" maxlength="10" id="materno" type="text"></div>
-                    <div class="fieldcontain required">
-                    <label for="nombre">Gerente
-                        <span class="required-indicator">*</span>
-                    </label>
-                    <input name="gerente" value="" required="" placeholder="Nombre del representante legal" maxlength="10" id="materno" type="text"></div>
-                    <div class="fieldcontain required">
-                    <label for="nombre">Dirección
-                        <span class="required-indicator">*</span>
-                    </label>
-                    <input name="direccion" value="" required="" placeholder="Region/Comuna/Area/Calle/Numero" maxlength="10" id="materno" type="text"></div>
-                    <div class="fieldcontain required">
-                    <label for="nombre">Correo
-                        <span class="required-indicator">*</span>
-                    </label>
-                    <input name="correo" value="" required="" placeholder="Ej: correo@dominio.cl" maxlength="10" id="materno" type="email"></div>
-
-                    <div class="fieldcontain required">
-                    <label for="nombre">Telefono
-                        <span class="required-indicator">*</span>
-                    </label>
-                    <input name="telefono" value="" required="" placeholder="(Cod. Area)+numero Ej: 56 2 123456" maxlength="10" id="materno" type="text" onkeypress="return isNumber(event)"></div>
                     <input name="creadoPor" value="${session.usuarioLogueado.rut}" required="" type="hidden">
-                </fieldset>
-                <fieldset class="buttons">
-                    <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}"/>
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="rut">Rut
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input type="text" id="rut" name="rut" required oninput="checkRut(this)" placeholder="Ingrese RUT">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="tipo">Tipo
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input name="tipo" required="" placeholder="Nombre tipo empresa Ej: Software" maxlength="15" id="tipo" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="nombre">Nombre
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input name="nombre" required="" placeholder="Nombre ficticio empresa" minlength="10" maxlength="100" id="nombre" type="text">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="razonSocial">Razón Social
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input name="razonSocial" required="" placeholder="Razon Social" maxlength="100" id="razonSocial" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="giro">Giro
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input name="giro" required="" placeholder="Giro de la empresa Ej: Consultores de Software" maxlength="100" id="giro" type="text">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="gerente">Gerente
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input name="gerente" required="" placeholder="Nombre del representante legal" maxlength="50" id="gerente" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="direccion">Dirección
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input name="direccion" required="" placeholder="Region/Comuna/Area/Calle/Numero" maxlength="100" id="direccion" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="correo">Correo
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input name="correo" required="" placeholder="Ej: correo@dominio.cl" maxlength="100" id="correo" type="email">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="telefono">Teléfono
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input name="telefono" required="" placeholder="(Cod. Area)+numero Ej: 56 2 123456" maxlength="11" id="telefono" type="text" onkeypress="return isNumber(event)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <br>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-sm-1">
+                        </div>
+                        <div class="col-sm-6">
+                            <g:submitButton name="create" class="save btn btn-success" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+                        </div>
+                    </div>
                 </fieldset>
             </g:form>
         </div>
