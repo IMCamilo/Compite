@@ -36,7 +36,7 @@
                     </div>
                     <div class="col-sm-6">
                         <label>Empresa :</label>
-                        <label style="color: dimgray">${it.empresa}</label>
+                        <label style="color: dimgray">${nombreEmpresa}</label>
                     </div>
                 </div>
                 <div class="col-md-12">

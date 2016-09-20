@@ -43,7 +43,9 @@ class ProyectoController {
     }
 
     def show(Proyecto proyecto) {
-        respond proyecto
+        def listaEmpresa = Empresa.executeQuery("select razonSocial from Empresa e where e.id = ?", [proyecto.empresaId])
+        def nombreEmpresa = listaEmpresa [0]
+        respond proyecto, model: [nombreEmpresa: nombreEmpresa]
     }
 
     def create() {
