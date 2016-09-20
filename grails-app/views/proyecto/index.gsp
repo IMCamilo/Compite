@@ -232,7 +232,7 @@
                                 </select>
                             </div>
                         </div>
-                        <!--<div class="col-sm-6">
+                        <div class="col-sm-6">
                             <div class="fieldcontain">
                                 <label for="estadoBusqueda">Estado de Proyecto
                                 </label>
@@ -242,7 +242,17 @@
                                     <option value="INACTIVO">Inactivo</option>
                                 </select>
                             </div>
-                        </div>-->
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain">
+                                <label>¿Con Rendiciones?</label>
+                                <input type="radio" name="rendicionesBusqueda" value="ALL" checked> Todas
+                                <input type="radio" name="rendicionesBusqueda" value="Y"> Sí
+                                <input type="radio" name="rendicionesBusqueda" value="N"> No
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-12">
                         <br>

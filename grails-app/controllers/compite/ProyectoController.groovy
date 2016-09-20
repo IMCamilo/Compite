@@ -11,7 +11,8 @@ class ProyectoController {
     def index(Integer max) {
         def tipo = params.tipoBusqueda
         def estado = params.estadoBusqueda
-        if (tipo || estado) {
+        def rendiciones = params.rendicionesBusqueda
+        if (tipo || estado || rendiciones != 'ALL') {
             println "Realizando busqueda"
             def listaProyectos = Proyecto.findAllByTipo(tipo)
             def listaEmpresas = Empresa.findAll()
