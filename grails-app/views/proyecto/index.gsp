@@ -29,7 +29,7 @@
                                 <label for="nombre">Nombre
                                     <span class="required-indicator">*</span>
                                 </label>
-                                <input name="nombre" value="" required="" id="nombre" type="text">
+                                <input name="nombre" value="" required="" id="nombre" type="text" placeholder="Nombre del Proyecto">
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -45,7 +45,7 @@
                                 <label for="codigo">Codigo
                                     <span class="required-indicator">*</span>
                                 </label>
-                                <input name="codigo" value="" required="" id="codigo" type="text">
+                                <input name="codigo" value="" required="" id="codigo" type="text" maxlength="15" placeholder="Ej: PR-00">
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -77,7 +77,7 @@
                         <div class="col-sm-6">
                             <div class="fieldcontain">
                                 <label class="" for="presupuesto">Presupuesto</label>
-                                <input name="presupuesto" value="" id="presupuesto" type="number">
+                                <input name="presupuesto" value="" id="presupuesto" type="text" placeholder="" maxlength="15" onkeypress="return isNumber(event)">
                             </div>
                         </div>
                     </div>
