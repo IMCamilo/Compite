@@ -29,7 +29,7 @@
                                 <label for="nombre">Nombre
                                     <span class="required-indicator">*</span>
                                 </label>
-                                <input name="nombre" value="" required="" id="nombre" type="text" maxlength="25" placeholder="Nombre del Proyecto">
+                                <input name="nombre" required="" id="nombre" type="text" minlength="5" maxlength="50" placeholder="Nombre del Proyecto">
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -45,7 +45,7 @@
                                 <label for="codigo">Codigo
                                     <span class="required-indicator">*</span>
                                 </label>
-                                <input name="codigo" value="" required="" id="codigo" type="text" maxlength="15" placeholder="Ej: PR-00">
+                                <input name="codigo" required="" id="codigo" type="text" minlength="5" maxlength="15" placeholder="Ej: PR-00">
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -77,7 +77,7 @@
                         <div class="col-sm-6">
                             <div class="fieldcontain">
                                 <label class="" for="presupuesto">Presupuesto</label>
-                                <input name="presupuesto" value="" id="presupuesto" type="text" placeholder="Valor monetario asignado al proyecto" maxlength="15" onkeypress="return isNumber(event)">
+                                <input name="presupuesto" minlength="5" maxlength="15" required="" id="presupuesto" type="text" placeholder="Valor monetario asignado al proyecto" onkeypress="return soloNumeros(event)">
                             </div>
                         </div>
                     </div>
@@ -87,8 +87,8 @@
                                 <label for="fechaCreacion">Fecha Inicio
                                     <span class="required-indicator">*</span>
                                 </label>
-                                <input name="fechaCreacion" value="date.struct" type="hidden">
-                                <select name="fechaCreacion_day" id="fechaCreacion_day" aria-labelledby="fechaCreacion">
+                                <input name="fechaCreacion" value="date.struct" type="hidden" required="">
+                                <select name="fechaCreacion_day" id="fechaCreacion_day" aria-labelledby="fechaCreacion" required="">
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -121,7 +121,7 @@
                                     <option value="30">30</option>
                                     <option value="31">31</option>
                                 </select>
-                                <select name="fechaCreacion_month" id="fechaCreacion_month" aria-labelledby="fechaCreacion">
+                                <select name="fechaCreacion_month" id="fechaCreacion_month" aria-labelledby="fechaCreacion" required="">
                                     <option value="1">enero</option>
                                     <option value="2">febrero</option>
                                     <option value="3">marzo</option>
@@ -135,7 +135,7 @@
                                     <option value="11">noviembre</option>
                                     <option value="12">diciembre</option>
                                 </select>
-                                <select name="fechaCreacion_year" id="fechaCreacion_year" aria-labelledby="fechaCreacion">
+                                <select name="fechaCreacion_year" id="fechaCreacion_year" aria-labelledby="fechaCreacion" required="">
                                     <option value="2018">2018</option>
                                     <option value="2017">2017</option>
                                     <option value="2016" selected="selected">2016</option>
@@ -380,6 +380,27 @@
                     source: substringMatcher(empresas)
                 });
             });
+        </script>
+        <script>
+            /*funcion que permite el ingreso de solo letras*/
+            function soloLetras(e) {
+                tecla = (document.all) ? e.keyCode : e.which;
+                if (tecla==8) return true;
+                patron =/[A-Za-z]/;
+                te = String.fromCharCode(tecla);
+                return patron.test(te);
+            }
+
+            /*funcion que permite el ingreso de solo numeros*/
+            function soloNumeros (e){
+                tecla = (document.all) ? e.keyCode : e.which;
+                if (tecla==8){
+                    return true;
+                }
+                patron =/[0-9]/;
+                tecla_final = String.fromCharCode(tecla);
+                return patron.test(tecla_final);
+            }
         </script>
     </body>
 </html>
