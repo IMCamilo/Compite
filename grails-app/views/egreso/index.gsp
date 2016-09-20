@@ -109,6 +109,7 @@
                 <thead>
                     <tr>
                         <th>Ver detalles</th>
+                        <g:sortableColumn property="proyecto" defaultOrder="desc" title="Proyecto"/>
                         <g:sortableColumn property="concepto" defaultOrder="desc" title="Concepto"/>
                         <g:sortableColumn property="aprobacion" defaultOrder="desc" title="Aprobación"/>
                         <g:sortableColumn property="tipoMoneda" defaultOrder="desc" title="Tipo Moneda"/>
@@ -121,6 +122,7 @@
                     <g:each var="egreso" status="i" in="${egresoList}">
                          <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
                             <td><a href="show/${egreso.id}">ver</a></td>
+                             <td>${egreso.proyecto.nombre}</td>
                             <td>${egreso.concepto}</td>
                             <td>${egreso.aprobacion}</td>
                             <td>
