@@ -4,6 +4,17 @@
         <meta name="layout" content="mainadministrador" />
         <g:set var="entityName" value="${message(code: 'usuario.label', default: 'Usuario')}" />
         <title><g:message code="default.list.label" args="[entityName]" /></title>
+        <script>
+            function comprobarClave(){
+                clave1 = document.f1.clave.value
+                clave2 = document.f1.clave2.value
+                if (clave1 == clave2) {
+                    console.log("las claves son iguales")
+                } else {
+                    alert("Las dos claves son distintas...\nFavor revisar")
+                }
+            }
+        </script>
     </head>
     <body>
         <a href="#list-usuario" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
@@ -24,7 +35,7 @@
             </g:eachError>
         </ul>
     </g:hasErrors>
-    <g:form action="save">
+    <g:form action="save" name="f1">
         <fieldset class="form">
             <input type="hidden" name="creadoPor" value="${session.usuarioLogueado.rut}" id="creadoPor"/>
             <div class="col-md-12">
@@ -109,7 +120,7 @@
                         <label for="clave">Contraseña
                             <span class="required-indicator">*</span>
                         </label>
-                        <input type="password" name="clave" value="" required="" maxlength="15" id="clave"/>
+                        <input type="password" name="clave" required="" maxlength="15" id="clave"/>
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -117,7 +128,7 @@
                         <label for="clave2">Repita Contraseña
                             <span class="required-indicator">*</span>
                         </label>
-                        <input type="password" name="clave" value="" required="" maxlength="15" id="clave2"/>
+                        <input type="password" name="clave2" required="" maxlength="15" id="clave2"/>
                     </div>
                 </div>
             </div>
@@ -128,7 +139,7 @@
                 <div class="col-sm-1">
                 </div>
                 <div class="col-sm-6">
-                    <g:submitButton name="create" class="save btn btn-success" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+                    <g:submitButton name="create" class="save btn btn-success" onClick="comprobarClave()" value="${message(code: 'default.button.create.label', default: 'Create')}" />
                 </div>
             </div>
         </fieldset>
