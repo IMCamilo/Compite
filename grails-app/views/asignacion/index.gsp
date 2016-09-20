@@ -7,12 +7,6 @@
         <asset:stylesheet src="compite/autocomplete.css"/>
     </head>
     <body>
-        <a href="#list-asignacion" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-        <div class="nav" role="navigation">
-            <ul>
-                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-            </ul>
-        </div>
         <div id="create-asignacion" class="content scaffold-create" role="main">
             <h1><g:message code="default.create.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
@@ -27,22 +21,45 @@
             </g:hasErrors>
             <g:form action="save">
                 <fieldset class="form">
-                    <div class="fieldcontain required" id="proyectoinputdiv">
-                        <label for="tipo">Proyecto<span class="required-indicator">*</span></label>
-                        <input class="typeahead" name="nombreProyecto" type="text" required="" placeholder="Busca un proyecto">
-                    </div>
-                    <div class="fieldcontain required" id="usuarioinputdiv">
-                        <label for="tipo">Usuario<span class="required-indicator">*</span></label>
-                        <input class="typeahead" name="nombreUsuario" type="text" required="" placeholder="Busca un usuario">
-                    </div>
-                    <div class="fieldcontain required">
-                        <label for="tipo">Detalle<span class="required-indicator">*</span></label>
-                        <textarea  name="detalle" required="" rows="4" cols="50" placeholder="Ingrese motivo de asignacion"></textarea>
-                    </div>
                     <input name="creadoPor" value="${session.usuarioLogueado.rut}" required="" type="hidden">
-                </fieldset>
-                <fieldset class="buttons">
-                    <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required" id="proyectoinputdiv">
+                                <label for="nombreProyecto">Proyecto
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input id="nombreProyecto" class="typeahead" name="nombreProyecto" type="text" required="" placeholder="Busca un proyecto">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required" id="usuarioinputdiv">
+                                <label for="nombreUsuario">Usuario
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input id="nombreUsuario" class="typeahead" name="nombreUsuario" type="text" required="" placeholder="Busca un usuario">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="detalle">Detalle
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <textarea id="detalle" name="detalle" required="" rows="4" cols="50" placeholder="Ingrese motivo de asignacion"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <br>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-sm-1">
+                        </div>
+                        <div class="col-sm-6">
+                            <g:submitButton name="create" class="save btn btn-success" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+                        </div>
+                    </div>
                 </fieldset>
             </g:form>
         </div>
@@ -55,10 +72,10 @@
                 <thead>
                     <tr>
                         <th>ver</th>
-                        <g:sortableColumn property="id" defaultOrder="desc" title="Codigo"/></th>
-                        <g:sortableColumn property="creadoPor" defaultOrder="desc" title="Creado por"/></th>
-                        <g:sortableColumn property="detalle" defaultOrder="desc" title="Detalle"/></th>
-                        <g:sortableColumn property="fechaCreacion" defaultOrder="desc" title="Fecha Creacion"/></th>
+                        <g:sortableColumn property="id" defaultOrder="desc" title="Codigo"/>
+                        <g:sortableColumn property="creadoPor" defaultOrder="desc" title="Creado por"/>
+                        <g:sortableColumn property="detalle" defaultOrder="desc" title="Detalle"/>
+                        <g:sortableColumn property="fechaCreacion" defaultOrder="desc" title="Fecha Creacion"/>
                     </tr>
                 </thead>
                 <tbody>

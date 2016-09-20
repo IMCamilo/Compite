@@ -7,12 +7,6 @@
         <asset:stylesheet src="compite/autocomplete.css"/>
     </head>
     <body>
-        <a href="#list-item" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-        <div class="nav" role="navigation">
-            <ul>
-                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-            </ul>
-        </div>
         <div id="create-item" class="content scaffold-create" role="main">
             <h1><g:message code="default.create.label" args="[entityName]"/></h1>
             <g:if test="${flash.message}">
@@ -26,32 +20,55 @@
             </g:hasErrors>
             <g:form action="save">
                 <fieldset class="form">
-                    <fieldset class="form">
-                        <div class="fieldcontain required" id="itempreinputdiv">
-                            <label for="tipo">Item Presupuestario<span class="required-indicator">*</span></label>
-                            <input class="typeahead" name="itemPresupuestario" type="text" required="" placeholder="Busca un item">
+                    <input type="hidden" name="creadoPor" value="${session.usuarioLogueado.rut}" id="creadoPor"/>
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required" id="itempreinputdiv">
+                                <label for="itemPresupuestario">Item
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input id="itemPresupuestario" class="typeahead" name="itemPresupuestario" type="text" required="" placeholder="Busca un item">
+                            </div>
                         </div>
-                        <input type="hidden" name="creadoPor" value="${session.usuarioLogueado.rut}" id="creadoPor"/>
-                        <div class='fieldcontain required'>
-                            <label for='centroCosto'>Centro Costo
-                                <span class='required-indicator'>*</span>
-                            </label>
-                            <input type="text" name="centroCosto" value="" required="" id="centroCosto" onkeypress="return isNumber(event)"/>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required" id="proyectoinputdiv">
+                                <label for="centroCosto">Centro Costo
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input type="text" name="centroCosto" required="" id="centroCosto" onkeypress="return isNumber(event)"/>
+                            </div>
                         </div>
-                        <div class='fieldcontain required'>
-                            <label for='valor'>Valor
-                                <span class='required-indicator'>*</span>
-                            </label>
-                            <input type="text" name="valor" value="" required="" id="valor" onkeypress="return isNumber(event)"/>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="valor">Valor
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input type="text" name="valor" required="" id="valor" onkeypress="return isNumber(event)"/>
+                            </div>
                         </div>
-                        <div class='fieldcontain required'>
-                            <label for="tipo">Descripcion<span class="required-indicator">*</span></label>
-                            <textarea  name="descripcion" required="" rows="4" cols="50"></textarea>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="descripcion">Descripción
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <textarea id="descripcion" name="descripcion" required="" rows="4" cols="50"></textarea>
+                            </div>
                         </div>
-                    </fieldset>
-                </fieldset>
-                <fieldset class="buttons">
-                    <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}"/>
+                    </div>
+                    <div class="col-md-12">
+                        <br>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-sm-1">
+                        </div>
+                        <div class="col-sm-6">
+                            <g:submitButton name="create" class="save btn btn-success" onClick="comprobarClave()" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+                        </div>
+                    </div>
                 </fieldset>
             </g:form>
         </div>

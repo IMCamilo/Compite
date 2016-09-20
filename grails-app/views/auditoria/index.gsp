@@ -7,12 +7,6 @@
         <asset:stylesheet src="compite/autocomplete.css"/>
     </head>
     <body>
-        <a href="#list-auditoria" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-        <div class="nav" role="navigation">
-            <ul>
-                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-            </ul>
-        </div>
         <div id="create-auditoria" class="content scaffold-create" role="main">
             <h1><g:message code="default.create.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
@@ -27,40 +21,75 @@
             </g:hasErrors>
             <g:form action="save">
                 <fieldset class="form">
-                    <div class="fieldcontain required">
-                        <label>Nombre<span class="required-indicator">*</span></label>
-                        <input name="nombre" value="" required="" type="text">
-                    </div>
-                    <div class="fieldcontain required" id="proyectoinputdiv">
-                        <label>Proyecto<span class="required-indicator">*</span></label>
-                        <input class="typeahead" name="nombreProyecto" type="text" required="" placeholder="Busca un proyecto">
-                    </div>
-                    <div class="fieldcontain required" id="usuarioinputdiv">
-                        <label>Usuario<span class="required-indicator">*</span></label>
-                        <input class="typeahead" name="nombreUsuario" type="text" required="" placeholder="Busca un usuario">
-                    </div>
-                    <div class="fieldcontain required">
-                        <label>Archivo de auditoría<span class="required-indicator">*</span></label>
-                        <input name="motivo" value="" required="" type="text" placeholder="Aqui es necesario cargar un archivo">
-                    </div>
-                    <div class="fieldcontain required">
-                        <label>Descripción<span class="required-indicator">*</span></label>
-                        <textarea  name="descripcion" required="" rows="4" cols="50" placeholder="Ingrese el resumen de la auditoría realizada"></textarea>
-                    </div>
-                    <div class="fieldcontain required">
-                        <label for="estado">Estado
-                            <span class="required-indicator">*</span>
-                        </label>
-                        <select name="estado" value="" required="" id="estado">
-                            <option value="" disabled selected>Seleccione Estado</option>
-                            <option value="APROBADA">Aprobada</option>
-                            <option value="RECHAZADA">Rechazada</option>
-                        </select>
-                    </div>
                     <input name="creadoPor" value="${session.usuarioLogueado.rut}" required="" type="hidden">
-                </fieldset>
-                <fieldset class="buttons">
-                    <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="nombre">Nombre
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input id="nombre" name="nombre" value="" required="" type="text">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required" id="proyectoinputdiv">
+                                <label for="nombreProyecto">Proyecto
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input id="nombreProyecto" class="typeahead" name="nombreProyecto" type="text" required="" placeholder="Busca un proyecto">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required" id="usuarioinputdiv">
+                                <label for="nombreUsuario">Usuario
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input id="nombreUsuario" class="typeahead" name="nombreUsuario" type="text" required="" placeholder="Busca un usuario">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="estado">Estado
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <select name="estado" value="" required="" id="estado">
+                                    <option value="" disabled selected>Seleccione Estado</option>
+                                    <option value="APROBADA">Aprobada</option>
+                                    <option value="RECHAZADA">Rechazada</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="descripcion">Descripción
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <textarea id="descripcion" name="descripcion" required="" rows="4" cols="50" placeholder="Ingrese el resumen de la auditoría realizada"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="archivo">Archivo
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input id="archivo" name="motivo" required="" type="text" placeholder="Aqui es necesario cargar un archivo">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <br>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-sm-1">
+                        </div>
+                        <div class="col-sm-6">
+                            <g:submitButton name="create" class="save btn btn-success" onClick="comprobarClave()" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+                        </div>
+                    </div>
                 </fieldset>
             </g:form>
         </div>
