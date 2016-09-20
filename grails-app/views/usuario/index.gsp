@@ -49,15 +49,15 @@
             <div class='fieldcontain required'>
                 <label for='direccion'>Direccion
                     <span class='required-indicator'>*</span>
-                </label><input type="text" name="direccion" value="" required="" maxlength="100" id="direccion"/>
+                </label><input type="text" name="direccion" value="" required="" placeholder="Region/Comuna/Area/Calle/Numero" maxlength="100" id="direccion"/>
             </div>
             <div class='fieldcontain required'>
                 <label for='correo'>Correo
                     <span class='required-indicator'>*</span>
-                </label><input type="email" name="correo" value="" required="" maxlength="30" id="correo"/>
+                </label><input type="email" name="correo" value="" required="" placeholder="Ej: correo@dominio.cl" maxlength="30" id="correo"/>
             </div>
             <div class='fieldcontain'>
-                <label for='telefono'>Telefono</label><input type="text" name="telefono" value="" maxlength="15" id="telefono"/>
+                <label for='telefono'>Telefono</label><input type="text" name="telefono" value="" maxlength="15" id="telefono" onkeypress="return isNumber(event)"/>
             </div>
             <div class='fieldcontain required'>
                 <label for='clave'>Clave
@@ -67,7 +67,12 @@
             <div class='fieldcontain required'>
                 <label for='tipo'>Tipo
                     <span class='required-indicator'>*</span>
-                </label><input type="number" name="tipo" value="" required="" id="tipo"/>
+                </label>
+                <select name="tipo" required="" id="tipo" type="number">
+                    <option value="" disabled selected>Seleccione Privilegio</option>
+                    <option value="1">Administrador</option>
+                    <option value="2">Ingeniero</option>
+                </select>
             </div>
             <input type="hidden" name="creadoPor" value="${session.usuarioLogueado.rut}" id="creadoPor"/>
         </fieldset>

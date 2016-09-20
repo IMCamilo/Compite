@@ -36,13 +36,13 @@
                             <label for='centroCosto'>Centro Costo
                                 <span class='required-indicator'>*</span>
                             </label>
-                            <input type="number" name="centroCosto" value="" required="" id="centroCosto"/>
+                            <input type="text" name="centroCosto" value="" required="" id="centroCosto" onkeypress="return isNumber(event)"/>
                         </div>
                         <div class='fieldcontain required'>
                             <label for='valor'>Valor
                                 <span class='required-indicator'>*</span>
                             </label>
-                            <input type="number" name="valor" value="" required="" id="valor"/>
+                            <input type="text" name="valor" value="" required="" id="valor" onkeypress="return isNumber(event)"/>
                         </div>
                         <div class='fieldcontain required'>
                             <label for="tipo">Descripcion<span class="required-indicator">*</span></label>
