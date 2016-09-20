@@ -5,10 +5,11 @@ import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
 class EgresoMovController {
-
+    static Integer idproyecto
+    private BigInteger usuarioId = session.usuarioLogueado.id
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index(Integer max) {
+    def index(Integer max, Integer id) {
         def movList = Movilizacion.findAll()
         def egresoList = Egreso.findAll()
         params.max = Math.min(max ?: 10, 100)
@@ -129,5 +130,14 @@ class EgresoMovController {
             }
             '*'{ render status: NOT_FOUND }
         }
+    }
+    //Seleccion de movilizaciones
+    def egresos(Integer id, Integer max){
+        idproyecto=id
+        def proyecto=Proyecto.findById(id)
+        def movs = Movilizacion.executeQuery("from Movilizacion where usuario_id="+usuarioId+"and proyecto_id="+id)
+        println ("IDmovilizacion:"+movs.id)
+        params.max = Math.min(max ?: 10, 100)
+        [movsList:movs, proyecto: proyecto]
     }
 }

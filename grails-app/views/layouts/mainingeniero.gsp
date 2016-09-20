@@ -35,7 +35,7 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li><a class="navbar-brand" href="${createLink(controller:'ingeniero', action:'index')}">Proyectos</a></li>
-                <li><a class="navbar-brand" href="${createLink(controller:'ingeniero', action:'rendiciones')}">Rendiciones</a></li>
+                <li><a class="navbar-brand" href="${createLink(controller:'egresoMov', action:'index')}">Egreso Movilizacion</a></li>
                 <li><a class="navbar-brand" href="${createLink(controller:'ingeniero', action:'cargaperfil',)}">Perfil</a></li>
                 <li><a class="navbar-brand" href="${createLink(controller:'login', action:'logout')}">Cerrar Sesión</a></li>
                 <g:pageProperty name="page.nav" />

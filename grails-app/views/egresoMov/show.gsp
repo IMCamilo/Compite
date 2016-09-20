@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta name="layout" content="mainadministrador" />
+        <meta name="layout" content="mainingeniero" />
         <g:set var="entityName" value="${message(code: 'egresoMov.label', default: 'EgresoMov')}" />
         <title><g:message code="default.show.label" args="[entityName]" /></title>
     </head>

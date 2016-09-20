@@ -89,6 +89,7 @@
             <g:sortableColumn property="direccion" defaultOrder="desc" title="Dirección"/>
             <g:sortableColumn property="distancia" defaultOrder="desc" title="Distancia"/>
             <g:sortableColumn property="tipo" defaultOrder="desc" title="Tipo"/>
+            <g:sortableColumn property="precio" defaultOrder="desc" title="Precio"/>
         </tr>
         </thead>
         <tbody>
@@ -100,6 +101,7 @@
                 <td>${movilizacion.direccion}</td>
                 <td>${movilizacion.distancia}</td>
                 <td>${movilizacion.tipo}</td>
+                <td>${movilizacion.precio}</td>
             </tr>
         </g:each>
         </tbody>
