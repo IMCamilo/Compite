@@ -61,9 +61,9 @@ class BootStrap {
         }
 
         if (!Movilizacion.list()) {
-            new Movilizacion(fechaCreacion: "2016-08-19 11:49:00.0", motivoEmpresa: "Viaje", direccion: "avenida", distancia: 8, concepto: "Movilizacion regional", tipo: "peaje", creadoPor:"admin", proyecto: 1, usuario: 1).save(failOnError: true)
-            new Movilizacion(fechaCreacion: "2016-08-19 11:49:00.0", motivoEmpresa: "Peaje", direccion: "Pto Varas", distancia: 8, concepto: "Movilizacion regional", tipo: "peaje", creadoPor:"admin", proyecto: 1, usuario: 2).save(failOnError: true)
-            new Movilizacion(fechaCreacion: "2016-08-19 11:49:00.0", motivoEmpresa: "Viaje", direccion: "avenida", distancia: 8, concepto: "Movilizacion regional", tipo: "peaje", creadoPor:"admin", proyecto: 1, usuario: 2).save(failOnError: true)
+            new Movilizacion(fechaCreacion: "2016-08-19 11:49:00.0", motivoEmpresa: "Viaje", direccion: "avenida", distancia: 8, concepto: "Movilizacion regional", tipo: "peaje", precio:10000, creadoPor:"admin", proyecto: 1, usuario: 1).save(failOnError: true)
+            new Movilizacion(fechaCreacion: "2016-08-19 11:49:00.0", motivoEmpresa: "Peaje", direccion: "Pto Varas", distancia: 8, concepto: "Movilizacion regional", tipo: "peaje", precio:10000, creadoPor:"admin", proyecto: 1, usuario: 2).save(failOnError: true)
+            new Movilizacion(fechaCreacion: "2016-08-19 11:49:00.0", motivoEmpresa: "Viaje", direccion: "avenida", distancia: 8, concepto: "Movilizacion regional", tipo: "peaje", precio:10000, creadoPor:"admin", proyecto: 1, usuario: 2).save(failOnError: true)
         }
 
         if (!EgresoMov.list()) {
