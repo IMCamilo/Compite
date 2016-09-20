@@ -57,100 +57,14 @@ class IngenieroController {
         println "proyectosPublicos: "+proyectosPublicos
         println "proyectosPrivados: "+proyectosPrivados
 
-        [proyectosPrivados:proyectosPrivados, proyectosPublicos:proyectosPublicos]
+        [proyectosPrivados:proyectosPrivados, proyectosPublicos:proyectosPublicos, proyectos:listaProyectos]
     }
-
-    def nuevarendicion (Integer id){
-
-        println "id: "+id
-        //al seleccionar un proyecto llegar a esta vista, la pantalla  entrega datos personalizados
-        //def itemsMovilizacion = Item.findAll("from Item as item where item.tipo='Movilizacion'")
-
-        def movilizacionUsuario = Movilizacion.findAll("from Movilizacion as mov where mov.usuario="+usuarioId)
-
-        //def listItemMov = []
-        def listMovilizacion = []
-        //itemsMovilizacion.each { mov ->
-        //    def mapMov = [:]
-        //    mapMov.id = mov.id
-        //    mapMov.nombre = mov.nombre
-        //    mapMov.valor = mov.valor
-        //    listItemMov.add(mapMov)
-        //}
-
-        movilizacionUsuario.each { trans ->
-            def mapMov = [:]
-            mapMov.id = trans.id
-            mapMov.concepto = trans.concepto
-            listMovilizacion.add(mapMov)
-        }
-
-        def movilizacion = new Movilizacion(params)
-        movilizacion.properties = params
-        [movilizacionUsuario:listMovilizacion, id: id]
-
-        //def rendicion = new Rendicion(params)
-        //rendicion.properties = params
-        //[itemMovilizacion:listItemMov, transportes:listTransportes, id: id, rendicion: rendicion]
-    }
-
-
-
-
-
-    def actualizarperfil = {
-
-    }
-
-    def detalle = {
-        //detalle rendicion o proyecto
-    }
-
-    def rendiciones = {
-        //lista rendiciones
-    }
-
-    @Transactional
-    def guardar (Rendicion rendicion) {
-        if (rendicion == null) {
-            println "Rendicion es null, no se puede guardar"
-            transactionStatus.setRollbackOnly()
-            notFound()
-            return
-        }
-
-        if (rendicion.hasErrors()) {
-            println "Rendicion tiene errores, no se puede guardar"
-
-            transactionStatus.setRollbackOnly()
-            respond rendicion.errors, view:'nuevarendicion'
-            return
-        }
-
-        rendicion.save flush:true
-        redirect(controller: "ingeniero", action: "rendiciones")
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'rendicion.label', default: 'Rendicion'), rendicion.id])
-                redirect rendicion
-            }
-            '*' { respond ingeniero, [status: CREATED] }
-        }
-    }
-
+    
     //perfil del ingniero
 
 
     def cargaperfil = {
         redirect(action: "perfil", params: [id: usuarioId])
-    }
-
-    def perfil(Usuario usuario, Integer max) {
-        respond usuario
-        params.max = Math.min(max ?: 10, 100)
-        respond Transporte.list(params), model:[transporteCount: Transporte.count()]
-
     }
 
     def update ={
