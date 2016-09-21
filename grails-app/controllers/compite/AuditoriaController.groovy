@@ -6,8 +6,6 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class AuditoriaController {
 
-    static final String FILES_PATH = '/home/cjorquera/Documentos/compite/archivos/'
-
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
@@ -18,16 +16,19 @@ class AuditoriaController {
     }
 
     def show(Auditoria auditoria) {
-        def archivos = Archivo.findByEntidadAndEntidadId("auditoria",auditoria.id)
-        respond auditoria, model:[archivos:archivos]
+        def listaArchivos = Archivo.findAllByEntidadAndEntidadId("auditoria",auditoria.id)
+        respond auditoria, model:[archivos:listaArchivos]
     }
 
     def create() {
         respond new Auditoria(params)
     }
 
+
     @Transactional
     def save() {
+
+        def FILES_PATH = '/home/cjorquera/Documentos/compite/archivos/'
 
         String[] rutObtenido = ((String) params.nombreUsuario).split(" ・ ");
         String[] proyectoObtenido = ((String) params.nombreProyecto).split(" ・ ");
@@ -103,6 +104,7 @@ class AuditoriaController {
 
         auditoria.save flush:true, failOnError: true
 
+
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'auditoria.label', default: 'Auditoria'), auditoria.id])
@@ -110,6 +112,26 @@ class AuditoriaController {
             }
             '*'{ respond auditoria, [status: OK] }
         }
+    }
+    //carga archivos en accion separada.
+    @Transactional
+    def upload() {
+
+        def FILES_PATH = '/home/cjorquera/Documentos/compite/archivos/'
+
+        println "auditoria id > "+params.idAuditoria
+        def f = request.getFile('archivo')
+        if (f.empty) {
+            flash.message = "Debes seleccionar un archivo para cargarlo a una auditoria."
+            redirect(controller: "auditoria", action: "edit", id: params.idAuditoria)
+            return
+        }
+        String filePath = FILES_PATH + f?.filename
+        f.transferTo(new File(filePath))
+        Archivo archivo = new Archivo(nombre: f?.filename, ruta: filePath, entidad: 'auditoria', entidadId: params.idAuditoria, creadoPor:session.usuarioLogueado.rut).save(flush:true, failOnError: true)
+        assert archivo.id
+        flash.message = "Archivo Cargado Correctamente en Auditoria $params.idAuditoria"
+        redirect(controller: "auditoria")
     }
 
     @Transactional

@@ -17,7 +17,7 @@
         <div id="edit-auditoria" class="content scaffold-edit" role="main">
             <h1><g:message code="default.edit.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
-            <div class="message" role="status">${flash.message}</div>
+            <div class="message" role="status"><p>${flash.message} ${message}</p></div>
             </g:if>
             <g:hasErrors bean="${this.auditoria}">
             <ul class="errors" role="alert">
@@ -65,6 +65,18 @@
                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
                 </fieldset>
             </g:form>
+        </div>
+        <div class="content scaffold-edit">
+            <h1>Cargar archivos para auditoria ${auditoria.nombre}</h1>
+            <g:uploadForm controller="auditoria" action="upload">
+                <fieldset class="form">
+                    <input type="file" name="archivo" />
+                </fieldset>
+                <input type="hidden" name="idAuditoria" value="${auditoria.id}">
+                <fieldset class="buttons">
+                    <input class="save" type="submit" value="Cargar" />
+                </fieldset>
+            </g:uploadForm>
         </div>
         <asset:javascript src="compite/jquery-2.1.1.min.js"/>
         <asset:javascript src="compite/typeahead.bundle.js"/>

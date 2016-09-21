@@ -28,11 +28,27 @@
             <p>Estado : ${auditoria.estado}</p>
             <p>Motivo : ${auditoria.motivo}</p>
             <p>Fecha de Auditoria : ${auditoria.fechaCreacion}</p>
-            <p>Archivos</p>
-            <g:each var="archivo" in="${archivos}">
-                <p style='text-indent: 3em'>Fecha : ${formatDate(format:"dd/MM/yyyy", date: archivos.date)}</p>
-                <p style='text-indent: 3em'>Nombre : ${archivos.nombre}</p>
-            </g:each>
+            <div style="width:300px">
+                <p>Archivos</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Creado Por</th>
+                            <th>Nombre Archivo</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <g:each var="archivo" status="i" in="${archivos}">
+                             <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
+                                <td>${archivo.creadoPor}</td>
+                                <td>${archivo.nombre}</td>
+                                <td>${formatDate(format:"dd/MM/yyyy", date: archivo.date)}</td>
+                            </tr>
+                        </g:each>
+                    </tbody>
+                </table>
+            </div>
             <g:form resource="${this.auditoria}" method="DELETE">
                 <fieldset class="buttons">
                     <g:link class="edit" action="edit" resource="${this.auditoria}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
