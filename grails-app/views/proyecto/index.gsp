@@ -42,7 +42,7 @@
                     <div class="col-md-12">
                         <div class="col-sm-6">
                             <div class="fieldcontain required">
-                                <label for="codigo">Codigo
+                                <label for="codigo">Código
                                     <span class="required-indicator">*</span>
                                 </label>
                                 <input name="codigo" required="" id="codigo" type="text" minlength="5" maxlength="15" placeholder="Ej: PR-00">
