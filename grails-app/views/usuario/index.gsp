@@ -24,120 +24,121 @@
             </g:if>
             <g:hasErrors bean="${this.usuario}">
                 <ul class="errors" role="alert">
-                    <g:eachError bean="${this.usuario}" var="error"><li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-            </g:eachError>
-        </ul>
-    </g:hasErrors>
-    <g:form action="save" name="f1">
-        <fieldset class="form">
-            <input type="hidden" name="creadoPor" value="${session.usuarioLogueado.rut}" id="creadoPor"/>
-            <div class="col-md-12">
-                <div class="col-sm-6">
-                    <div class="fieldcontain required">
-                        <label for="rut">Rut
-                            <span class="required-indicator">*</span>
-                        </label>
-                        <input type="text" id="rut" name="rut" required oninput="checkRut(this)" placeholder="Ingrese RUT">
+                    <g:eachError bean="${this.usuario}" var="error">
+                        <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
+                    </g:eachError>
+                </ul>
+            </g:hasErrors>
+            <g:form action="save" name="f1">
+                <fieldset class="form">
+                    <input type="hidden" name="creadoPor" value="${session.usuarioLogueado.rut}" id="creadoPor"/>
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="rut">Rut
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input type="text" id="rut" name="rut" required oninput="checkRut(this)" placeholder="Ingrese RUT">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="nombres">Nombres
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input type="text" name="nombres" required="" maxlength="50" id="nombres" onkeypress="return soloLetras(event)"/>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="fieldcontain required">
-                        <label for="nombres">Nombres
-                            <span class="required-indicator">*</span>
-                        </label>
-                        <input type="text" name="nombres" required="" maxlength="50" id="nombres" onkeypress="return soloLetras(event)"/>
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="paterno">Apellido Paterno
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input type="text" name="paterno" required="" maxlength="100" id="paterno" onkeypress="return soloLetras(event)"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="materno">Apellido Materno
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input type="text" name="materno" required="" maxlength="100" id="materno" onkeypress="return soloLetras(event)"/>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="col-sm-6">
-                    <div class="fieldcontain required">
-                        <label for="paterno">Apellido Paterno
-                            <span class="required-indicator">*</span>
-                        </label>
-                        <input type="text" name="paterno" required="" maxlength="100" id="paterno" onkeypress="return soloLetras(event)"/>
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="direccion">Dirección
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input type="text" name="direccion" required="" placeholder="Region/Comuna/Area/Calle/Numero" maxlength="100" id="direccion"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="correo">Correo
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input type="email" name="correo" required="" placeholder="Ej: correo@dominio.cl" maxlength="50" id="correo" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"/>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="fieldcontain required">
-                        <label for="materno">Apellido Materno
-                            <span class="required-indicator">*</span>
-                        </label>
-                        <input type="text" name="materno" required="" maxlength="100" id="materno" onkeypress="return soloLetras(event)"/>
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="telefono">Teléfono
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input type="text" name="telefono" maxlength="15" id="telefono" onkeypress="return isNumber(event)"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="tipo">Tipo
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <select name="tipo" required="" id="tipo" type="number">
+                                    <option value="" disabled selected>Seleccione Tipo de Usuario</option>
+                                    <option value="1">Administrador</option>
+                                    <option value="2">Ingeniero</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="col-sm-6">
-                    <div class="fieldcontain required">
-                        <label for="direccion">Dirección
-                            <span class="required-indicator">*</span>
-                        </label>
-                        <input type="text" name="direccion" required="" placeholder="Region/Comuna/Area/Calle/Numero" maxlength="100" id="direccion"/>
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="clave">Contraseña
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input type="password" name="clave" required="" maxlength="15" id="clave"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="clave2">Repita Contraseña
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input type="password" name="clave2" required="" maxlength="15" id="clave2"/>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="fieldcontain required">
-                        <label for="correo">Correo
-                            <span class="required-indicator">*</span>
-                        </label>
-                        <input type="email" name="correo" required="" placeholder="Ej: correo@dominio.cl" maxlength="50" id="correo" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"/>
+                    <div class="col-md-12">
+                        <br>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="col-sm-6">
-                    <div class="fieldcontain required">
-                        <label for="telefono">Teléfono
-                            <span class="required-indicator">*</span>
-                        </label>
-                        <input type="text" name="telefono" maxlength="15" id="telefono" onkeypress="return isNumber(event)"/>
+                    <div class="col-md-12">
+                        <div class="col-sm-1">
+                        </div>
+                        <div class="col-sm-6">
+                            <g:submitButton name="create" class="save btn btn-success" onClick="comprobarClave()" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+                        </div>
                     </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="fieldcontain required">
-                        <label for="tipo">Tipo
-                            <span class="required-indicator">*</span>
-                        </label>
-                        <select name="tipo" required="" id="tipo" type="number">
-                            <option value="" disabled selected>Seleccione Tipo de Usuario</option>
-                            <option value="1">Administrador</option>
-                            <option value="2">Ingeniero</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="col-sm-6">
-                    <div class="fieldcontain required">
-                        <label for="clave">Contraseña
-                            <span class="required-indicator">*</span>
-                        </label>
-                        <input type="password" name="clave" required="" maxlength="15" id="clave"/>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="fieldcontain required">
-                        <label for="clave2">Repita Contraseña
-                            <span class="required-indicator">*</span>
-                        </label>
-                        <input type="password" name="clave2" required="" maxlength="15" id="clave2"/>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <br>
-            </div>
-            <div class="col-md-12">
-                <div class="col-sm-1">
-                </div>
-                <div class="col-sm-6">
-                    <g:submitButton name="create" class="save btn btn-success" onClick="comprobarClave()" value="${message(code: 'default.button.create.label', default: 'Create')}" />
-                </div>
-            </div>
-        </fieldset>
-    </g:form>
-</div>
+                </fieldset>
+            </g:form>
+        </div>
         <div id="list-usuario" class="content scaffold-list" role="main">
             <h1><g:message code="default.list.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
