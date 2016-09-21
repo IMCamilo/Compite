@@ -20,77 +20,134 @@
             </g:hasErrors>
             <g:form action="save">
                 <fieldset class="form">
-                    <div class="fieldcontain required">
-                        <div class="required">
-                            <label for="rendicion">Fecha de documento<span class="required-indicator">*</span></label>
-                            <g:datePicker id="fechaCreacion" name="fechaCreacion" type="date" required="" dataformatas="dd/mm/aaaa" oninput="format(this)"/>
-                        </div>
-                        <label for="tipoDocumento">Tipo Documento<span class="required-indicator">*</span></label>
-                        <select name="tipoDocumento" value="" required="" id="tipoDocumento">
-                            <option value="" disabled selected>Seleccione Documento</option>
-                            <option value="B0LETA">B0LETA</option>
-                            <option value="FACTURA">FACTURA</option>
-                        </select>
-                    </div>
-                    <div class="fieldcontain required" id="usuarioinputdiv">
-                        <label for="usuario">Usuario<span class="required-indicator">*</span></label>
-                        <input class="typeahead" name="nombreUsuario" type="text" required="" placeholder="Busca un usuario">
-                    </div>
-                    <div class="fieldcontain required" id="proyectoinputdiv">
-                        <label for="tipo">Proyecto<span class="required-indicator">*</span></label>
-                        <input class="typeahead" name="nombreProyecto" type="text" required="" placeholder="Busca un proyecto">
-                    </div>
-                    <div class="fieldcontain required" id="rendicioninputdiv">
-                        <label for="rendicion">Rendicion<span class="required-indicator">*</span></label>
-                        <input class="typeahead" name="nombreRendicion" type="text" required="" placeholder="Busca una rendicion">
-                    </div>
-                    <div class="fieldcontain required" id="iteminputdiv">
-                        <label for="item">Item<span class="required-indicator">*</span></label>
-                        <input class="typeahead" name="nombreItem" type="text" required="" placeholder="Busca un item">
-                    </div>
-                    <div class='fieldcontain required'>
-                        <label for='rutEmpresa'>Rut Empresa
-                            <span class='required-indicator'>*</span>
-                        </label><input type="text" id="rutEmpresa" name="rutEmpresa" required oninput="checkRut(this)" placeholder="Ingrese RUT">
-                    </div>
-                    <div class='fieldcontain required'>
-                        <label for='numeroDocumento'>Numero documento
-                            <span class='required-indicator'>*</span>
-                        </label><input type="number" name="nDocumento" value="" required="" id="numeroDocumento"/>
-                    </div>
-                    <div class='fieldcontain required'>
-                        <label for='aprobacion'>Aprobacion
-                            <span class='required-indicator'>*</span>
-                        </label><input type="text" name="aprobacion" value="" required="" id="aprobacion"/>
-                    </div>
-                    <div class="fieldcontain required">
-                        <label for="tipoDocumento">Tipo Moneda<span class="required-indicator">*</span></label>
-                        <select name="tipoMoneda" value="" required="" id="tipoMoneda">
-                            <option value="" disabled selected>Seleccione Moneda</option>
-                            <option value="clp">Peso Chileno</option>
-                            <option value="usd">Dolar Americano</option>
-                            <option value="eur">Euro</option>
-                        </select>
-                    </div>
-                    <div class='fieldcontain required'>
-                        <label for='pagadoA'>Pagado a
-                            <span class='required-indicator'>*</span>
-                        </label><input type="text" name="pagadoA" value="" required="" id="pagadoA"/>
-                    </div>
-                    <div class='fieldcontain required'>
-                        <label for='monto'>Monto
-                            <span class='required-indicator'>*</span>
-                        </label><input type="number" name="monto" value="" required="" id="monto"/>
-                    </div>
-                    <div class='fieldcontain required'>
-                        <label for='concepto'>Concepto
-                            <span class='required-indicator'>*</span>
-                        </label><input type="text" name="concepto" value="" required="" id="concepto"/>
-                    </div>
                     <input type="hidden" name="creadoPor" value="${session.usuarioLogueado.rut}" id="creadoPor"/>
-                </fieldset>
-                <fieldset class="buttons">
-                    <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}"/>
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="fechaCreacion">Fecha Documento
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input id="fechaCreacion" type="date" name="fechaCreacion" required="" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="tipoDocumento">Tipo Documento
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <select name="tipoDocumento" value="" required="" id="tipoDocumento">
+                                    <option value="" disabled selected>Seleccione Documento</option>
+                                    <option value="B0LETA">B0LETA</option>
+                                    <option value="FACTURA">FACTURA</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required" id="usuarioinputdiv">
+                                <label for='nombreUsuario'>Usuario
+                                    <span class='required-indicator'>*</span>
+                                </label>
+                                <input id="nombreUsuario" class="typeahead" name="nombreUsuario" type="text" required="" placeholder="Busca un usuario">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required" id="proyectoinputdiv">
+                                <label for="nombreProyecto">Proyecto
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input id="nombreProyecto" class="typeahead" name="nombreProyecto" type="text" required="" placeholder="Busca un proyecto">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required" id="rendicioninputdiv">
+                                <label for="nombreRendicion">Rendición
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input id="nombreRendicion" class="typeahead" name="nombreRendicion" type="text" required="" placeholder="Busca una rendicion">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required" id="iteminputdiv">
+                                <label for='nombreItem'>Item
+                                    <span class='required-indicator'>*</span>
+                                </label>
+                                <input id="nombreItem" class="typeahead" name="nombreItem" type="text" required="" placeholder="Busca un item">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="rutEmpresa">Rut Empresa
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input type="text" id="rutEmpresa" name="rutEmpresa" required oninput="checkRut(this)" placeholder="Ingrese RUT">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for='numeroDocumento'>N° documento
+                                    <span class='required-indicator'>*</span>
+                                </label>
+                                <input type="number" name="numeroDocumento" value="" required="" id="numeroDocumento"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="tipoMoneda">Tipo Moneda
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <select name="tipoMoneda" required="" id="tipoMoneda">
+                                    <option value="" disabled selected>Seleccione Moneda</option>
+                                    <option value="clp">Peso Chileno</option>
+                                    <option value="usd">Dolar Americano</option>
+                                    <option value="eur">Euro</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for='pagadoA'>Pagado a
+                                    <span class='required-indicator'>*</span>
+                                </label>
+                                <input type="text" name="pagadoA" value="" required="" id="pagadoA"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="monto">Monto
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input type="number" name="monto" value="" required="" id="monto"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for='concepto'>Concepto
+                                    <span class='required-indicator'>*</span>
+                                </label>
+                                <input type="text" name="concepto" value="" required="" id="concepto"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <br>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-sm-1">
+                        </div>
+                        <div class="col-sm-6">
+                            <g:submitButton name="create" class="save btn btn-info" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+                        </div>
+                    </div>
                 </fieldset>
             </g:form>
         </div>
@@ -176,7 +233,7 @@
                 ];
                 var items = [
                     <g:each in="${items}">
-                        '${it.nombre} ・ ${it.id}'
+                    '${it.nombre} ・ ${it.id}'
                     </g:each>
                 ];
                 $('#usuarioinputdiv .typeahead').typeahead({
@@ -211,7 +268,6 @@
                     name: 'items',
                     source: substringMatcher(items)
                 });
-
             });
         </script>
     </body>
