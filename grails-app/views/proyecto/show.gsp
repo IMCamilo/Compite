@@ -52,11 +52,11 @@
                 <div class="col-md-12">
                     <div class="col-sm-6">
                         <label>Fecha creación :</label>
-                        <label style="color: dimgray">${it.fechaCreacion}</label>
+                        <label style="color: dimgray">${formatDate(format:"dd/MM/yyyy", date: it.fechaCreacion)}</label>
                     </div>
                     <div class="col-sm-6">
                         <label>Fecha Fin :</label>
-                        <label style="color: dimgray">${it.fechaFin}</label>
+                        <label style="color: dimgray">${formatDate(format:"dd/MM/yyyy", date: it.fechaFin)}</label>
                     </div>
                 </div>
                 <div class="col-md-12">
