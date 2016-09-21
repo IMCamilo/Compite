@@ -26,7 +26,7 @@
             </g:eachError>
         </ul>
     </g:hasErrors>
-    <g:form resource="${this.usuario}" method="PUT">
+    <g:form action="update" resource="${this.usuario}" method="PUT">
         <g:hiddenField name="version" value="${this.usuario?.version}" />
         <fieldset class="form">
             <div class='fieldcontain required'>
@@ -38,22 +38,22 @@
             <div class='fieldcontain required'>
                 <label for='nombres'>Nombres
                     <span class='required-indicator'>*</span>
-                </label><input type="text" name="nombres" value="${usuario.nombres}" required="" maxlength="15" id="nombres"/>
+                </label><input type="text" name="nombres" value="${usuario.nombres}" required="" maxlength="30" id="nombres"/>
             </div>
             <div class='fieldcontain required'>
                 <label for='paterno'>Paterno
                     <span class='required-indicator'>*</span>
-                </label><input type="text" name="paterno" value="${usuario.paterno}" required="" maxlength="15" id="paterno"/>
+                </label><input type="text" name="paterno" value="${usuario.paterno}" required="" maxlength="20" id="paterno"/>
             </div>
             <div class='fieldcontain required'>
                 <label for='materno'>Materno
                     <span class='required-indicator'>*</span>
-                </label><input type="text" name="materno" value="${usuario.materno}" required="" maxlength="15" id="materno"/>
+                </label><input type="text" name="materno" value="${usuario.materno}" required="" maxlength="20" id="materno"/>
             </div>
             <div class='fieldcontain required'>
                 <label for='direccion'>Direccion
                     <span class='required-indicator'>*</span>
-                </label><input type="text" name="direccion" value="${usuario.direccion}" required="" maxlength="100" id="direccion"/>
+                </label><input type="text" name="direccion" value="${usuario.direccion}" required="" maxlength="70" id="direccion"/>
             </div>
             <div class='fieldcontain required'>
                 <label for='correo'>Correo
@@ -66,12 +66,7 @@
             <div class='fieldcontain required'>
                 <label for='clave'>Clave
                     <span class='required-indicator'>*</span>
-                </label><input type="text" name="clave" value="${usuario.clave}" required="" maxlength="15" id="clave"/>
-            </div>
-            <div class='fieldcontain required'>
-                <label for='tipo'>Tipo
-                    <span class='required-indicator'>*</span>
-                </label><input type="number" name="tipo" value="${usuario.tipo}" required="" id="tipo"/>
+                </label><input type="password" name="clave" value="${usuario.clave}" required="" maxlength="15" id="clave"/>
             </div>
             <input type="hidden" name="creadoPor" value="${session.usuarioLogueado.rut}" id="creadoPor"/>
         </fieldset>

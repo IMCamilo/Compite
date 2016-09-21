@@ -59,16 +59,41 @@ class IngenieroController {
 
         [proyectosPrivados:proyectosPrivados, proyectosPublicos:proyectosPublicos, proyectos:listaProyectos]
     }
-
-    //perfil del ingniero
-
-
-    def cargaperfil = {
-        redirect(action: "perfil", params: [id: usuarioId])
+    def cargarperfil(){
+        redirect (controller: "ingeniero", action: "perfil", id: usuarioId)
     }
 
-    def update ={
-        redirect(action: "perfil", params: [id: usuarioId])
+    //perfil del ingniero
+    def perfil(Usuario usuario){
+        respond usuario
+    }
+
+    @Transactional
+    def update(Usuario usuario) {
+        if (usuario == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        if (usuario.hasErrors()) {
+            transactionStatus.setRollbackOnly()
+            respond usuario.errors, view:'edit'
+            return
+        }
+        usuario.save flush:true
+
+        redirect(controller: "ingeniero", action: "perfil", params: [id: usuarioId])
+        flash.message = "Perfil Actualizado Correctamente"
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'usuario.label', default: 'Usuario'), usuario.id])
+                redirect usuario
+                }
+            '*'{ respond usuario, [status: OK] }
+            }
+
     }
     protected void notFound() {
         request.withFormat {

@@ -147,7 +147,8 @@ class MovilizacionController {
             def kmsxlitro= Transporte.find("from Transporte where usuario_id="+usuarioId)
             if (kmsxlitro==null){
                 println ("no tiene vehiculo en el sistema")
-                respond (controller:"movilizacion", action: "nuevamovilizacion", id:idproyecto, message("no tiene vehiculos inscritos, Actualize su perfil"))
+                redirect (controller:"movilizacion", action: "nuevamovilizacion", id:idproyecto)
+                flash.message="No tiene vehiculo en el sistema"
             }else {
                 Integer combustible=700
                 Integer dis=Integer.parseInt(params.distancia)
@@ -164,12 +165,13 @@ class MovilizacionController {
                     return guardar()
                 }else{
                     redirect (controller:"movilizacion", action: "nuevamovilizacion", id:idproyecto)
+                    flash.message= "El precio de la boletaexcede el máximo o mínimo"
                 }
             }
 
 
         }else{
-            respond guardar;
+            return guardar();
         }
     }
     def guardar(){
