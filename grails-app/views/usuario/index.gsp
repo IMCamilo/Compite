@@ -155,6 +155,7 @@
                         <g:sortableColumn property="telefono" defaultOrder="desc" title="Telefono"/>
                         <g:sortableColumn property="correo" defaultOrder="desc" title="Correo"/>
                         <g:sortableColumn property="direccion" defaultOrder="desc" title="Dirección"/>
+                        <th>Asignaciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -168,6 +169,16 @@
                             <td>${usuario.telefono}</td>
                             <td>${usuario.correo}</td>
                             <td>${usuario.direccion}</td>
+                            <g:if test="${usuario.asignacion.isEmpty()}">
+                                <td>Sin asignacion</td>
+                            </g:if>
+                            <g:else>
+                                <td>
+                                    <g:each in="${usuario.asignacion}">
+                                        <g:link target="_blank" controller="asignacion" action="show" id="${it.id}">${it.id}</g:link>
+                                    </g:each>
+                                </td>
+                            </g:else>
                         </tr>
                     </g:each>
                 </tbody>
