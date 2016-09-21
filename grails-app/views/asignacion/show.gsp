@@ -16,20 +16,32 @@
         <div id="show-asignacion" class="content scaffold-show" role="main">
             <h1><g:message code="default.show.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
-            <div class="message" role="status">${flash.message}</div>
+                <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <label for="tipo">Fecha Creación:
-                ${asignacion.fechaCreacion}
-            </label></br>
-            <label for="tipo">Proyecto:
-                ${asignacion.proyectoId} (poner nombre, en vez de id visible)
-            </label></br>
-            <label for="tipo">Usuario:
-                ${asignacion.usuario} (poner nombre, en vez de id visible)
-            </label></br>
-            <label for="tipo">Detalle:
-                ${asignacion.detalle}
-            </label></br>
+            <g:each in="${asignacion}">
+                <div class="col-md-12">
+                    <div class="col-sm-6">
+                        <label>Fecha Creación :</label>
+                        <label style="color: dimgray">${formatDate(format:"dd/MM/yyyy", date: it.fechaCreacion)}</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <label>Detalle :</label>
+                        <label style="color: dimgray">${it.detalle}</label>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-sm-6">
+                        <label>Usuario :</label>
+                        <label style="color: dimgray">${it.usuario}</label>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-sm-6">
+                        <label>Proyecto :</label>
+                        <label style="color: dimgray">${it.proyecto}</label>
+                    </div>
+                </div>
+            </g:each>
             <g:form resource="${this.asignacion}" method="DELETE">
                 <fieldset class="buttons">
                     <g:link class="edit" action="edit" resource="${this.asignacion}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
