@@ -6,17 +6,10 @@
         <title><g:message code="default.edit.label" args="[entityName]" /></title>
     </head>
     <body>
-        <a href="#edit-empresa" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-        <div class="nav" role="navigation">
-            <ul>
-                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-            </ul>
-        </div>
         <div id="edit-empresa" class="content scaffold-edit" role="main">
             <h1><g:message code="default.edit.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
-            <div class="message" role="status">${flash.message}</div>
+                <div class="message" role="status">${flash.message}</div>
             </g:if>
             <g:hasErrors bean="${this.empresa}">
             <ul class="errors" role="alert">
@@ -28,50 +21,105 @@
             <g:form resource="${this.empresa}" method="PUT">
                 <g:hiddenField name="version" value="${this.empresa?.version}" />
                 <fieldset class="form">
-                    <div class="fieldcontain required">
-                    <label for="tipo">Rut
-                        <span class="required-indicator">*</span>
-                    </label><input type="text" id="rut" name="rut" value="${empresa.rut}"  required oninput="checkRut(this)" placeholder="Ingrese RUT">
-                    </div>
-                    <div class="fieldcontain required">
-                    <label for="descripcion">Tipo
-                        <span class="required-indicator">*</span>
-                    </label>
-                    <input name="tipo" value="${empresa.tipo}" required="" maxlength="15" id="nombres" type="text"></div>
-                    <div class="fieldcontain required">
-                    <label for="valor">Nombre
-                        <span class="required-indicator">*</span>
-                    </label>
-                    <input name="nombre" value="${empresa.nombre}" required="" maxlength="10" id="paterno" type="text"></div>
-                    <div class="fieldcontain required">
-                    <label for="nombre">Giro
-                        <span class="required-indicator">*</span>
-                    </label>
-                    <input name="giro" value="${empresa.giro}" required="" maxlength="10" id="materno" type="text"></div>
-                    <div class="fieldcontain required">
-                    <label for="nombre">Gerente
-                        <span class="required-indicator">*</span>
-                    </label>
-                    <input name="gerente" value="${empresa.gerente}" required="" maxlength="10" id="materno" type="text"></div>
-                    <div class="fieldcontain required">
-                    <label for="nombre">Dirección
-                        <span class="required-indicator">*</span>
-                    </label>
-                    <input name="direccion" value="${empresa.direccion}" required="" maxlength="10" id="materno" type="text"></div>
-                    <div class="fieldcontain required">
-                    <label for="nombre">Correo
-                        <span class="required-indicator">*</span>
-                    </label>
-                    <input name="correo" value="${empresa.correo}" required="" maxlength="10" id="materno" type="email"></div>
 
-                    <div class="fieldcontain required">
-                    <label for="nombre">Telefono
-                        <span class="required-indicator">*</span>
-                    </label>
-                    <input name="telefono" value="${empresa.telefono}" required="" maxlength="10" id="materno" type="text"></div>
-                </fieldset>
-                <fieldset class="buttons">
-                    <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="rut">Rut
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input value="${empresa.rut}" type="text" id="rut" name="rut" required oninput="checkRut(this)" placeholder="Ingrese RUT">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="tipo">Tipo
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input value="${empresa.tipo}" name="tipo" required="" placeholder="Nombre tipo empresa Ej: Software" maxlength="15" id="tipo" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="nombre">Nombre
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input value="${empresa.nombre}" name="nombre" required="" placeholder="Nombre ficticio empresa" minlength="10" maxlength="100" id="nombre" type="text">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="razonSocial">Razón Social
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input value="${empresa.razonSocial}" name="razonSocial" required="" placeholder="Razon Social" maxlength="100" id="razonSocial" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="giro">Giro
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input value="${empresa.giro}" name="giro" required="" placeholder="Giro de la empresa Ej: Consultores de Software" maxlength="100" id="giro" type="text">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="gerente">Gerente
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input value="${empresa.gerente}" name="gerente" required="" placeholder="Nombre del representante legal" maxlength="50" id="gerente" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="direccion">Dirección
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input value="${empresa.direccion}" name="direccion" required="" placeholder="Region/Comuna/Area/Calle/Numero" maxlength="100" id="direccion" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="correo">Correo
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input value="${empresa.correo}" name="correo" required="" placeholder="Ej: correo@dominio.cl" maxlength="100" id="correo" type="email">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="telefono">Teléfono
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input value="${empresa.telefono}" name="telefono" required="" placeholder="(Cod. Area)+numero Ej: 56 2 123456" maxlength="11" id="telefono" type="text" onkeypress="return isNumber(event)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <br>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="col-sm-3">
+                            <input class="save btn btn-info" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <br>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="col-sm-3">
+                            <g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link>
+                        </div>
+                    </div>
                 </fieldset>
             </g:form>
         </div>
