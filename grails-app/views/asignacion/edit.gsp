@@ -7,17 +7,10 @@
         <asset:stylesheet src="compite/autocomplete.css"/>
     </head>
     <body>
-        <a href="#edit-asignacion" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-        <div class="nav" role="navigation">
-            <ul>
-                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-            </ul>
-        </div>
         <div id="edit-asignacion" class="content scaffold-edit" role="main">
             <h1><g:message code="default.edit.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
-            <div class="message" role="status">${flash.message}</div>
+                <div class="message" role="status">${flash.message}</div>
             </g:if>
             <g:hasErrors bean="${this.asignacion}">
             <ul class="errors" role="alert">
@@ -29,21 +22,50 @@
             <g:form resource="${this.asignacion}" method="PUT">
                 <g:hiddenField name="version" value="${this.asignacion?.version}" />
                 <fieldset class="form">
-                    <div class="fieldcontain required" id="proyectoinputdiv">
-                        <label for="tipo">Proyecto<span class="required-indicator">*</span></label>
-                        <input class="typeahead" name="nombreProyecto" value="${proyecto.codigo} ・ ${proyecto.nombre}" type="text" required="" placeholder="Busca un proyecto">
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required" id="proyectoinputdiv">
+                                <label for="nombreProyecto">Proyecto
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input value="${proyecto.codigo} ・ ${proyecto.nombre}" id="nombreProyecto" class="typeahead" name="nombreProyecto" type="text" required="" placeholder="Busca un proyecto">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required" id="usuarioinputdiv">
+                                <label for="nombreUsuario">Usuario
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input value="${usuario.nombres} ${usuario.paterno} ・ ${usuario.rut}" id="nombreUsuario" class="typeahead" name="nombreUsuario" type="text" required="" placeholder="Busca un usuario">
+                            </div>
+                        </div>
                     </div>
-                    <div class="fieldcontain required" id="usuarioinputdiv">
-                        <label for="tipo">Usuario<span class="required-indicator">*</span></label>
-                        <input class="typeahead" name="nombreUsuario" value="${usuario.nombres} ${usuario.paterno} ・ ${usuario.rut}" type="text" required="" placeholder="Busca un usuario">
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="detalle">Detalle
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <textarea id="detalle" name="detalle" required="" rows="4" cols="50" placeholder="Ingrese motivo de asignacion">${asignacion.detalle}</textarea>
+                            </div>
+                        </div>
                     </div>
-                    <div class="fieldcontain required">
-                        <label for="tipo">Detalle<span class="required-indicator">*</span></label>
-                        <textarea  name="detalle" required="" rows="4" cols="50">${asignacion.detalle}</textarea>
+                    <div class="col-md-12">
+                        <br>
                     </div>
-                </fieldset>
-                <fieldset class="buttons">
-                    <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+                    <div class="col-md-10">
+                        <div class="col-sm-3">
+                            <input class="save btn btn-info" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <br>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="col-sm-3">
+                            <g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link>
+                        </div>
+                    </div>
                 </fieldset>
             </g:form>
         </div>
