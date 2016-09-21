@@ -16,7 +16,17 @@ class AsignacionController {
     }
 
     def show(Asignacion asignacion) {
-        respond asignacion
+        def lista = Usuario.executeQuery("select nombres, paterno, materno from Usuario u where u.id = ?", [asignacion.usuarioId])
+        def persona = lista[0]
+        def nombres = persona [0]
+        def paterno = persona [1]
+        def materno = persona [2]
+
+        def datosProyecto = Proyecto.executeQuery("select codigo, nombre from Proyecto p where p.id = ?", [asignacion.proyectoId])
+        def proyecto = datosProyecto[0]
+        def codigo = proyecto [0]
+        def nombreProyecto = proyecto [1]
+        respond asignacion, model: [nombreUsuario: nombres+" "+paterno+" "+materno, datosProyecto: codigo+" - "+nombreProyecto]
     }
 
     def create() {

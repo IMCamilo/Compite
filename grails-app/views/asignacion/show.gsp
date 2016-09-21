@@ -32,13 +32,13 @@
                 <div class="col-md-12">
                     <div class="col-sm-6">
                         <label>Usuario :</label>
-                        <label style="color: dimgray">${it.usuario}</label>
+                        <label style="color: dimgray">${nombreUsuario}</label>
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="col-sm-6">
                         <label>Proyecto :</label>
-                        <label style="color: dimgray">${it.proyecto}</label>
+                        <label style="color: dimgray">${datosProyecto}</label>
                     </div>
                 </div>
             </g:each>
