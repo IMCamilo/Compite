@@ -16,30 +16,47 @@
         <div id="show-transporte" class="content scaffold-show" role="main">
             <h1><g:message code="default.show.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
-            <div class="message" role="status">${flash.message}</div>
+                <div class="message" role="status">${flash.message}</div>
             </g:if>
 
-            <label for="tipo">Tipo:
-                ${transporte.tipo}
-            </label></br>
-            <label for="tipo">Descripcion
-                ${transporte.descripcion}
-            </label></br>
-            <label for="tipo">Marca
-                ${transporte.marca}
-            </label></br>
-            <label for="tipo">Km Por Litro
-                ${transporte.kmPorLitro}
-            </label></br>
-            <label for="tipo">Modelo
-                ${transporte.modelo}
-            </label></br>
-            <label for="tipo">Combustible
-                ${transporte.combustible}
-            </label></br>
-            <label for="tipo">Usuario
-                ${transporte.usuario}
-            </label></br>
+            <g:each in="${transporte}">
+                <div class="col-md-12">
+                    <div class="col-sm-6">
+                        <label>Tipo :</label>
+                        <label style="color: dimgray">${it.tipo}</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <label>Descripción :</label>
+                        <label style="color: dimgray">${it.descripcion}</label>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-sm-6">
+                        <label>Marca :</label>
+                        <label style="color: dimgray">${it.marca}</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <label>Kms Por Litro :</label>
+                        <label style="color: dimgray">${it.kmPorLitro}</label>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-sm-6">
+                        <label>Modelo :</label>
+                        <label style="color: dimgray">${it.modelo}</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <label>Combustible :</label>
+                        <label style="color: dimgray">${it.combustible}</label>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-sm-6">
+                        <label>Usuario :</label>
+                        <label style="color: dimgray">${nombreUsuario}</label>
+                    </div>
+                </div>
+            </g:each>
             <g:form resource="${this.transporte}" method="DELETE">
                 <fieldset class="buttons">
                     <g:link class="edit" action="edit" resource="${this.transporte}"><g:message code="default.button.edit.label" default="Edit" /></g:link>

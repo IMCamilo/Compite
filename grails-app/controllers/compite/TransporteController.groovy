@@ -15,7 +15,12 @@ class TransporteController {
     }
 
     def show(Transporte transporte) {
-        respond transporte
+        def lista = Usuario.executeQuery("select nombres, paterno, materno from Usuario u where u.id = ?", [transporte.usuarioId])
+        def persona = lista[0]
+        def nombres = persona [0]
+        def paterno = persona [1]
+        def materno = persona [2]
+        respond transporte, model: [nombreUsuario: nombres+" "+paterno+" "+materno]
     }
 
     def create() {
