@@ -6,6 +6,8 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class AuditoriaController {
 
+    static final String FILES_PATH = '/home/cjorquera/Documentos/compite/archivos/'
+
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
@@ -16,7 +18,8 @@ class AuditoriaController {
     }
 
     def show(Auditoria auditoria) {
-        respond auditoria
+        def archivos = Archivo.findByEntidadAndEntidadId("auditoria",auditoria.id)
+        respond auditoria, model:[archivos:archivos]
     }
 
     def create() {
@@ -25,6 +28,7 @@ class AuditoriaController {
 
     @Transactional
     def save() {
+
         String[] rutObtenido = ((String) params.nombreUsuario).split(" ・ ");
         String[] proyectoObtenido = ((String) params.nombreProyecto).split(" ・ ");
         def u = Usuario.findByRut(rutObtenido[1])
@@ -47,6 +51,14 @@ class AuditoriaController {
         }
 
         auditoria.save flush:true, failOnError: true
+
+        //carga archivos
+        def f = request.getFile('archivo')
+        String filePath = FILES_PATH + f?.filename
+        f.transferTo(new File(filePath))
+        Archivo archivo = new Archivo(nombre: f?.filename, ruta: filePath, entidad: 'auditoria', entidadId: auditoria.id, creadoPor:session.usuarioLogueado.rut).save(flush: true)
+        assert archivo.id
+        //
 
         request.withFormat {
             form multipartForm {

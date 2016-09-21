@@ -26,7 +26,7 @@ class UploadController {
         String filePath = FILES_PATH + f?.filename
         f.transferTo(new File(filePath))
         //TODO: Esto puede ir en un servicio, lo agregue aqui por demostracion
-        Archivo archivo = new Archivo(nombre: f?.filename, ruta: filePath, entidad: 'auditoria', creadoPor:'18.653.290-2').save(flush: true)
+        Archivo archivo = new Archivo(nombre: f?.filename, ruta: filePath, entidad: 'auditoria', creadoPor:session.usuarioLogueado.rut).save(flush: true)
         //TODO: esto no es necesario, solo es para validar que se creo el objeto -> DEMO
         assert archivo.id
         render(view: '/archivos', model: [message: 'Carga exitosa'])

@@ -4,6 +4,7 @@ class Archivo {
     String nombre
     String ruta
     String entidad
+    Integer entidadId
     String creadoPor
     Date date = new Date()
 

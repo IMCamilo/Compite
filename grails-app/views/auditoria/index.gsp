@@ -19,7 +19,7 @@
                 </g:eachError>
             </ul>
             </g:hasErrors>
-            <g:form action="save">
+            <g:uploadForm action="save">
                 <fieldset class="form">
                     <input name="creadoPor" value="${session.usuarioLogueado.rut}" required="" type="hidden">
                     <div class="col-md-12">
@@ -73,10 +73,15 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="fieldcontain required">
-                                <label for="archivo">Archivo
+                                <input type="file" name="archivo"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required" id="motivo">
+                                <label for="nombreProyecto">Motivo
                                     <span class="required-indicator">*</span>
                                 </label>
-                                <input id="archivo" name="motivo" required="" type="text" placeholder="Aqui es necesario cargar un archivo">
+                                <input id="motivo" name="motivo" type="text" required="" placeholder="Motivo de la auditoria">
                             </div>
                         </div>
                     </div>
@@ -91,7 +96,7 @@
                         </div>
                     </div>
                 </fieldset>
-            </g:form>
+            </g:uploadForm>
         </div>
         <div id="list-auditoria" class="content scaffold-list" role="main">
             <h1><g:message code="default.list.label" args="[entityName]" /></h1>

@@ -18,7 +18,21 @@
             <g:if test="${flash.message}">
             <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:display bean="auditoria" />
+            <!--  Proyecto Usuario  Creado Por  Descripcion  Estado  Motivo  Fecha Creacion  Nombre  -->
+
+            <p>Nombre : ${auditoria.nombre}</p>
+            <p>Proyecto : ${auditoria.proyectoId}</p>
+            <p>Usuario : ${auditoria.usuarioId}</p>
+            <p>Creado Por : ${auditoria.creadoPor}</p>
+            <p>Descripción : ${auditoria.descripcion}</p>
+            <p>Estado : ${auditoria.estado}</p>
+            <p>Motivo : ${auditoria.motivo}</p>
+            <p>Fecha de Auditoria : ${auditoria.fechaCreacion}</p>
+            <p>Archivos</p>
+            <g:each var="archivo" in="${archivos}">
+                <p style='text-indent: 3em'>Fecha : ${formatDate(format:"dd/MM/yyyy", date: archivos.date)}</p>
+                <p style='text-indent: 3em'>Nombre : ${archivos.nombre}</p>
+            </g:each>
             <g:form resource="${this.auditoria}" method="DELETE">
                 <fieldset class="buttons">
                     <g:link class="edit" action="edit" resource="${this.auditoria}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
