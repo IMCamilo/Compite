@@ -66,6 +66,7 @@ class TransporteController {
     @Transactional
     def update() {
         String[] rutObtenido = ((String) params.nombreUsuario).split(" ・ ");
+        println "rutObtenido: "+rutObtenido[1]
         def u = Usuario.findByRut(rutObtenido[1])
         params.usuario = u.id
         def transporte = Transporte.get(params.id)
