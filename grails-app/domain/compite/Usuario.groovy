@@ -19,15 +19,6 @@ class Usuario {
     static hasMany = [rendicion:Rendicion, transporte:Transporte, auditoria:Auditoria, egreso:Egreso, asignacion:Asignacion]
 
     static constraints = {
-        rut nullable: false, unique: true, blank: false, size: 1..13
-        nombres nullable: false, blank: false, size: 1..15
-        paterno nullable: false, blank: false, size: 1..15
-        materno nullable: false, blank: false, size: 1..15
-        direccion nullable: false, blank: false, size: 1..100
-        correo email: true, blank: false, size: 1..30
-        telefono nullable: true, blank: false, size: 1..15
-        clave nullable: false, blank: false, size: 1..15
-        tipo nullable: false, blank: false
-        creadoPor nullable: true, blank: true
+
     }
 }
