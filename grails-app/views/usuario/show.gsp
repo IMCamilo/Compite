@@ -62,7 +62,14 @@
                     </div>
                     <div class="col-sm-6">
                         <label>Transporte :</label>
-                        <label style="color: dimgray">${it.transporte.patente}</label>
+                        <label style="color: dimgray">
+                            <g:if test="${it.transporte.isEmpty()}">
+                                Sin transporte
+                            </g:if>
+                            <g:else>
+                                ${it.transporte.patente}
+                            </g:else>
+                        </label>
                     </div>
                 </div>
             </g:each>
