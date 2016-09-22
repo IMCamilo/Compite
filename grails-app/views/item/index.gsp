@@ -42,6 +42,14 @@
                     <div class="col-md-12">
                         <div class="col-sm-6">
                             <div class="fieldcontain required">
+                                <label for="nombre">Nombre
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input type="text" name="nombre" required="" id="nombre" maxlength="100"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
                                 <label for="valor">Valor
                                     <span class="required-indicator">*</span>
                                 </label>
