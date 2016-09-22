@@ -1,6 +1,6 @@
 rutaArchivos:
     carpeta:
-        absoluta: ejemplo: C:/Users/ElMisifu/Desktop/Grails/compite/archivos/
+        absoluta: ejemplo C:/Users/ElMisifu/Desktop/Grails/compite/archivos/
 
 grails:
     controllers:
