@@ -55,7 +55,7 @@
                                 <label for="descripcion">Descripción
                                     <span class="required-indicator">*</span>
                                 </label>
-                                <textarea id="descripcion" name="descripcion" required="" rows="4" cols="50"></textarea>
+                                <textarea id="descripcion" name="descripcion" required="" rows="4" cols="50" maxlength="255"></textarea>
                             </div>
                         </div>
                     </div>
