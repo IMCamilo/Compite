@@ -454,6 +454,7 @@ th.desc a {
 
 th:hover, tr:hover {
     background: #1abc9c;
+    color: white;
 }
 
 /* PAGINATION */
