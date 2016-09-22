@@ -3,6 +3,7 @@ package compite
 class  Transporte {
 
     String tipo
+    String patente
     String marca
     String modelo
     String combustible
