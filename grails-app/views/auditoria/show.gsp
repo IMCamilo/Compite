@@ -36,6 +36,7 @@
                             <th>Creado Por</th>
                             <th>Nombre Archivo</th>
                             <th>Fecha</th>
+                            <th>Acción</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,6 +45,13 @@
                                 <td>${archivo.creadoPor}</td>
                                 <td>${archivo.nombre}</td>
                                 <td>${formatDate(format:"dd/MM/yyyy", date: archivo.date)}</td>
+                                <td>
+                                    <g:form action="download">
+                                        <g:hiddenField name="rutaAbsoluta" value="${archivo.ruta}"/>
+                                        <g:hiddenField name="nombreArchivo" value="${archivo.nombre}"/>
+                                        <g:submitButton name="name" style="width:100%" value="Descargar"/>
+                                    </g:form>
+                                </td>
                             </tr>
                         </g:each>
                     </tbody>

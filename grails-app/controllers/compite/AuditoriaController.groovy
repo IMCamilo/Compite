@@ -2,9 +2,12 @@ package compite
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+import grails.core.GrailsApplication
 
 @Transactional(readOnly = true)
 class AuditoriaController {
+
+    GrailsApplication grailsApplication
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -27,9 +30,6 @@ class AuditoriaController {
 
     @Transactional
     def save() {
-
-        def FILES_PATH = '/home/lancaster/Documentos/Grails/compite/archivos/'
-
         String[] rutObtenido = ((String) params.nombreUsuario).split(" ・ ");
         String[] proyectoObtenido = ((String) params.nombreProyecto).split(" ・ ");
         def u = Usuario.findByRut(rutObtenido[1])
@@ -56,7 +56,7 @@ class AuditoriaController {
         //carga archivos
         def f = request.getFile('archivo')
         if (!f.empty) {
-            String filePath = FILES_PATH + f?.filename
+            String filePath = grailsApplication.config.getProperty('rutaArchivos.carpeta.absoluta') + f?.filename
             f.transferTo(new File(filePath))
             Archivo archivo = new Archivo(nombre: f?.filename, ruta: filePath, entidad: 'auditoria', entidadId: auditoria.id, creadoPor:session.usuarioLogueado.rut).save(flush: true)
             assert archivo.id
@@ -118,9 +118,6 @@ class AuditoriaController {
     //carga archivos en accion separada.
     @Transactional
     def upload() {
-
-        def FILES_PATH = '/home/lancaster/Documentos/Grails/compite/archivos/'
-
         println "auditoria id > "+params.idAuditoria
         def f = request.getFile('archivo')
         if (f.empty) {
@@ -128,12 +125,30 @@ class AuditoriaController {
             redirect(controller: "auditoria", action: "edit", id: params.idAuditoria)
             return
         }
-        String filePath = FILES_PATH + f?.filename
+        String filePath = grailsApplication.config.getProperty('rutaArchivos.carpeta.absoluta') + f?.filename
         f.transferTo(new File(filePath))
         Archivo archivo = new Archivo(nombre: f?.filename, ruta: filePath, entidad: 'auditoria', entidadId: params.idAuditoria, creadoPor:session.usuarioLogueado.rut).save(flush:true, failOnError: true)
         assert archivo.id
         flash.message = "Archivo Cargado Correctamente en Auditoria $params.idAuditoria"
         redirect(controller: "auditoria", action: "show", id: params.idAuditoria)
+    }
+
+    @Transactional
+    def download() {
+        InputStream contentStream
+        try {
+            def file = new File(params.rutaAbsoluta)
+            response.setHeader "Content-disposition", "attachment; filename=${params.nombreArchivo}"
+            response.setHeader("Content-Length", "file-size")
+            response.setContentType("file-mime-type")
+            contentStream = file.newInputStream()
+            response.outputStream << contentStream
+            webRequest.renderView = false
+        catch (Exception e) {
+            println "error en : $e.getMessage()"
+        } finally {
+            IOUtils.closeQuietly(contentStream)
+        }
     }
 
     @Transactional

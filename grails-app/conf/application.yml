@@ -1,6 +1,12 @@
----
 rutaArchivos:
-    carpeta: /home/camilo/Documentos/compite/archivos/
+    carpeta:
+        absoluta: /home/lancaster/Documentos/Grails/compite/archivos/
+
+grails:
+    controllers:
+        upload:
+            maxFileSize: 20000000
+            maxRequestSize: 20000000
 
 hibernate:
     cache:
