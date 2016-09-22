@@ -28,7 +28,7 @@ class AuditoriaController {
     @Transactional
     def save() {
 
-        def FILES_PATH = '/home/cjorquera/Documentos/compite/archivos/'
+        def FILES_PATH = '/home/lancaster/Documentos/Grails/compite/archivos/'
 
         String[] rutObtenido = ((String) params.nombreUsuario).split(" ・ ");
         String[] proyectoObtenido = ((String) params.nombreProyecto).split(" ・ ");
@@ -55,10 +55,12 @@ class AuditoriaController {
 
         //carga archivos
         def f = request.getFile('archivo')
-        String filePath = FILES_PATH + f?.filename
-        f.transferTo(new File(filePath))
-        Archivo archivo = new Archivo(nombre: f?.filename, ruta: filePath, entidad: 'auditoria', entidadId: auditoria.id, creadoPor:session.usuarioLogueado.rut).save(flush: true)
-        assert archivo.id
+        if (!f.empty) {
+            String filePath = FILES_PATH + f?.filename
+            f.transferTo(new File(filePath))
+            Archivo archivo = new Archivo(nombre: f?.filename, ruta: filePath, entidad: 'auditoria', entidadId: auditoria.id, creadoPor:session.usuarioLogueado.rut).save(flush: true)
+            assert archivo.id
+        }
         //
 
         request.withFormat {
@@ -117,7 +119,7 @@ class AuditoriaController {
     @Transactional
     def upload() {
 
-        def FILES_PATH = '/home/cjorquera/Documentos/compite/archivos/'
+        def FILES_PATH = '/home/lancaster/Documentos/Grails/compite/archivos/'
 
         println "auditoria id > "+params.idAuditoria
         def f = request.getFile('archivo')
@@ -131,7 +133,7 @@ class AuditoriaController {
         Archivo archivo = new Archivo(nombre: f?.filename, ruta: filePath, entidad: 'auditoria', entidadId: params.idAuditoria, creadoPor:session.usuarioLogueado.rut).save(flush:true, failOnError: true)
         assert archivo.id
         flash.message = "Archivo Cargado Correctamente en Auditoria $params.idAuditoria"
-        redirect(controller: "auditoria")
+        redirect(controller: "auditoria", action: "show", id: params.idAuditoria)
     }
 
     @Transactional

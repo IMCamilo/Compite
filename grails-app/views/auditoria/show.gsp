@@ -28,7 +28,7 @@
             <p>Estado : ${auditoria.estado}</p>
             <p>Motivo : ${auditoria.motivo}</p>
             <p>Fecha de Auditoria : ${auditoria.fechaCreacion}</p>
-            <div style="width:300px">
+            <div style="width:50%">
                 <p>Archivos</p>
                 <table>
                     <thead>

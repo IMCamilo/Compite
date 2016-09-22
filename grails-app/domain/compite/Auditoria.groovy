@@ -20,7 +20,7 @@ class Auditoria {
         proyecto nullable: true, blank: true
         usuario nullable: true, blank: true
         creadoPor nullable: true, blank: true
-        descripcion nullable: true, blanzk: true, size: 1..35
+        descripcion nullable: true, blanzk: true, size: 1..100
         estado nullable: true, blank: true
     }
 
