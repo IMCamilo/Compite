@@ -36,6 +36,7 @@
                             <th>Creado Por</th>
                             <th>Nombre Archivo</th>
                             <th>Fecha</th>
+                            <th>Pretty Fecha</th>
                             <th>Acción</th>
                         </tr>
                     </thead>
@@ -45,6 +46,7 @@
                                 <td>${archivo.creadoPor}</td>
                                 <td>${archivo.nombre}</td>
                                 <td>${formatDate(format:"dd/MM/yyyy", date: archivo.date)}</td>
+                                <td><prettytime:display date="${archivo.date}"/></td>
                                 <td>
                                     <g:form action="download">
                                         <g:hiddenField name="rutaAbsoluta" value="${archivo.ruta}"/>
