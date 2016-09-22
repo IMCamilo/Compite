@@ -6,20 +6,66 @@
         <title><g:message code="default.show.label" args="[entityName]" /></title>
     </head>
     <body>
-        <a href="#show-usuario" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-        <div class="nav" role="navigation">
-            <ul>
-                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-                <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-            </ul>
-        </div>
         <div id="show-usuario" class="content scaffold-show" role="main">
             <h1><g:message code="default.show.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
-            <div class="message" role="status">${flash.message}</div>
+                <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:display bean="usuario" />
+            <g:each in="${usuario}">
+                <div class="col-md-12">
+                    <div class="col-sm-6">
+                        <label>Tipo :</label>
+                        <label style="color: dimgray">
+                            <g:if test="${it.tipo == 2}">
+                                Ingeniero
+                            </g:if>
+                            <g:else>
+                                Administrador
+                            </g:else>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-sm-6">
+                        <label>Rut :</label>
+                        <label style="color: dimgray">${it.rut}</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <label>Nombre :</label>
+                        <label style="color: dimgray">${it.nombres}</label>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-sm-6">
+                        <label>Paterno :</label>
+                        <label style="color: dimgray">${it.paterno}</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <label>Materno :</label>
+                        <label style="color: dimgray">${it.materno}</label>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-sm-6">
+                        <label>Dirección :</label>
+                        <label style="color: dimgray">${it.direccion}</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <label>Correo :</label>
+                        <label style="color: dimgray">${it.correo}</label>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-sm-6">
+                        <label>Teléfono :</label>
+                        <label style="color: dimgray">${it.telefono}</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <label>Transporte :</label>
+                        <label style="color: dimgray">${it.transporte.patente}</label>
+                    </div>
+                </div>
+            </g:each>
             <g:form resource="${this.usuario}" method="DELETE">
                 <fieldset class="buttons">
                     <g:link class="edit" action="edit" resource="${this.usuario}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
