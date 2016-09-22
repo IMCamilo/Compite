@@ -123,24 +123,32 @@
                 <thead>
                     <tr>
                         <th>ver</th>
+                        <g:sortableColumn property="patente" defaultOrder="desc" title="Patente"/>
                         <g:sortableColumn property="tipo" defaultOrder="desc" title="Tipo"/>
                         <g:sortableColumn property="marca" defaultOrder="desc" title="Marca"/>
                         <g:sortableColumn property="modelo" defaultOrder="desc" title="Modelo"/>
                         <g:sortableColumn property="combustible" defaultOrder="desc" title="Combustible"/>
                         <g:sortableColumn property="kmPorLitro" defaultOrder="desc" title="Km Por Litro"/>
                         <g:sortableColumn property="descripcion" defaultOrder="desc" title="Descripcion"/>
+                        <th>Asignado a</th>
                     </tr>
                 </thead>
                 <tbody>
                     <g:each var="transporte" status="i" in="${transporteList}">
                          <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
                             <td><a href="show/${transporte.id}">ver</a></td>
+                            <td>${transporte.patente}</td>
                             <td>${transporte.tipo}</td>
                             <td>${transporte.marca}</td>
                             <td>${transporte.modelo}</td>
                             <td>${transporte.combustible}</td>
                             <td>${transporte.kmPorLitro}</td>
                             <td>${transporte.descripcion}</td>
+                            <td>
+                                <g:link target="_blank" controller="usuario" action="show" id="${transporte.usuario.id}">
+                                    ${transporte.usuario.nombres} ${transporte.usuario.paterno} ${transporte.usuario.materno}
+                                </g:link>
+                            </td>
                         </tr>
                     </g:each>
                 </tbody>

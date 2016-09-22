@@ -80,7 +80,7 @@ class BootStrap {
         }
 
         if (!Transporte.list()) {
-            new Transporte(tipo: "SEDAN", marca: "BMW", modelo: "z3", combustible: "BENCINA93", kmPorLitro: 20, descripcion: "Automovil estándar", usuario: 1, creadoPor:"admin").save(failOnError: true)
+            new Transporte(patente: "ZVGGDD", tipo: "SEDAN", marca: "BMW", modelo: "z3", combustible: "BENCINA93", kmPorLitro: 20, descripcion: "Automovil estándar", usuario: 1, creadoPor:"admin").save(failOnError: true)
         }
 
         if (!Asignacion.list()) {
