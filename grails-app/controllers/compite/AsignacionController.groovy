@@ -35,8 +35,6 @@ class AsignacionController {
 
     @Transactional
     def save() {
-        //estoy haciendo esto a mano, hasta encontrar un plugin o mejorar el uso de typeahead en grails.
-        //lo cual parece esta en bastante desarrollado, sin embargo no hay tiempo para investigarlo
         def u = null
         def p = null
         try {
@@ -49,15 +47,15 @@ class AsignacionController {
         }
         if (!u && !p) {
             flash.message = "Debes seleccionar un usuario y un proyecto para esta asignación"
-            redirect(controller: "asignacion", action: "index", id: params.idAuditoria)
+            redirect(controller: "asignacion", action: "index")
             return
         } else if (!u){
             flash.message = "Debes seleccionar un usuario para esta asignación"
-            redirect(controller: "asignacion", action: "index", id: params.idAuditoria)
+            redirect(controller: "asignacion", action: "index")
             return
         } else {
             flash.message = "Debes seleccionar un proyecto para esta asignación"
-            redirect(controller: "asignacion", action: "index", id: params.idAuditoria)
+            redirect(controller: "asignacion", action: "index")
             return
         }
         params.usuario = u.id
