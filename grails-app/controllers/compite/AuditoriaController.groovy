@@ -145,7 +145,7 @@ class AuditoriaController {
             response.outputStream << contentStream
             webRequest.renderView = false
         } catch (Exception e) {
-            println "error en : $e.getMessage()"
+            println "error en : ${e.getMessage()}"
         } finally {
             IOUtils.closeQuietly(contentStream)
         }

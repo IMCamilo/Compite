@@ -37,26 +37,30 @@ class AsignacionController {
     def save() {
         //estoy haciendo esto a mano, hasta encontrar un plugin o mejorar el uso de typeahead en grails.
         //lo cual parece esta en bastante desarrollado, sin embargo no hay tiempo para investigarlo
-        String[] rutObtenido = ((String) params.nombreUsuario).split(" ・ ");
-        String[] proyectoObtenido = ((String) params.nombreProyecto).split(" ・ ");
-
-        def nRutObtenido = rutObtenido.length
-        def nProyectoObtenido = proyectoObtenido.length
-
-        //Posible solucion al problema de validacion autocompletado solo falta implementar el fash.message
-        if(nRutObtenido < 2){
-            println "\nError en la obtencion de rut en textbox usuario\n"
+        def u = null
+        def p = null
+        try {
+            String[] rutObtenido = ((String) params.nombreUsuario).split(" ・ ");
+            String[] proyectoObtenido = ((String) params.nombreProyecto).split(" ・ ");
+            u = Usuario.findByRut(rutObtenido[1])
+            p = Proyecto.findByCodigo(proyectoObtenido[0])
+        } catch (Exception e) {
+            println "validando asignación. "+e.getMessage()
+        }
+        if (!u && !p) {
+            flash.message = "Debes seleccionar un usuario y un proyecto para esta asignación"
+            redirect(controller: "asignacion", action: "index", id: params.idAuditoria)
+            return
+        } else if (!u){
+            flash.message = "Debes seleccionar un usuario para esta asignación"
+            redirect(controller: "asignacion", action: "index", id: params.idAuditoria)
+            return
+        } else {
+            flash.message = "Debes seleccionar un proyecto para esta asignación"
+            redirect(controller: "asignacion", action: "index", id: params.idAuditoria)
             return
         }
-
-        if(nProyectoObtenido < 2){
-            println "\nError en la obtencion de rut en textbox usuario\n"
-            return
-        }
-
-        def u = Usuario.findByRut(rutObtenido[1])
         params.usuario = u.id
-        def p = Proyecto.findByCodigo(proyectoObtenido[0])
         params.proyecto = p.id
 
         def asignacion = new Asignacion(params)
