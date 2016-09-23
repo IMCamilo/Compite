@@ -39,6 +39,21 @@ class AsignacionController {
         //lo cual parece esta en bastante desarrollado, sin embargo no hay tiempo para investigarlo
         String[] rutObtenido = ((String) params.nombreUsuario).split(" ・ ");
         String[] proyectoObtenido = ((String) params.nombreProyecto).split(" ・ ");
+
+        def nRutObtenido = rutObtenido.length
+        def nProyectoObtenido = proyectoObtenido.length
+
+        //Posible solucion al problema de validacion autocompletado solo falta implementar el fash.message
+        if(nRutObtenido < 2){
+            println "\nError en la obtencion de rut en textbox usuario\n"
+            return
+        }
+
+        if(nProyectoObtenido < 2){
+            println "\nError en la obtencion de rut en textbox usuario\n"
+            return
+        }
+
         def u = Usuario.findByRut(rutObtenido[1])
         params.usuario = u.id
         def p = Proyecto.findByCodigo(proyectoObtenido[0])
