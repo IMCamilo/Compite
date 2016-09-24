@@ -2,7 +2,6 @@
 <html>
     <head>
         <meta name="layout" content="mainadministrador"/>
-        <g:set var="entityName" value="${message(code: 'empresa.label', default: 'Empresa')}"/>
         <title>Información resumida graficamente</title>
     </head>
     <body>
