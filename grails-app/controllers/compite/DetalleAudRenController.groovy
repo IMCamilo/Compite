@@ -25,12 +25,32 @@ class DetalleAudRenController {
 
     @Transactional
     def save() {
+        def r = null
+        def a = null
 
-        String[] rendicionObtenido = ((String) params.nombreRendicion).split(" ・ ");
-        String[] auditoriaObtenida = ((String) params.nombreAuditoria).split(" ・ ");
-        def r = Rendicion.findById(rendicionObtenido[1])
+        try {
+            String[] rendicionObtenido = ((String) params.nombreRendicion).split(" ・ ");
+            String[] auditoriaObtenida = ((String) params.nombreAuditoria).split(" ・ ");
+            r = Rendicion.findById(rendicionObtenido[1])
+            a = Auditoria.findById(auditoriaObtenida[1])
+        } catch (Exception e) {
+            println "validando asignación. "+e.getMessage()
+        }
+        if (!r && !a) {
+            flash.message = "Debes seleccionar una rendicion y una auditoria"
+            redirect(controller: "detalleAudRen", action: "index")
+            return
+        } else if (!r){
+            flash.message = "Debes seleccionar una rendición"
+            redirect(controller: "detalleAudRen", action: "index")
+            return
+        } else {
+            flash.message = "Debes seleccionar una auditoria"
+            redirect(controller: "detalleAudRen", action: "index")
+            return
+        }
+
         params.rendicion = r.id
-        def a = Auditoria.findById(auditoriaObtenida[1])
         params.auditoria = a.id
 
         def detalleAudRen = new DetalleAudRen(params)

@@ -25,7 +25,7 @@
             <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0.8px;">
                 <ul class="nav navbar-nav navbar-left">
                     <li>
-                        <a href="${createLink(controller:'proyecto')}">
+                        <a href="${createLink(controller:'programa')}">
                             <i class="fa grails-icon">
                                 <asset:image src="grails-cupsonly-logo-white.svg"/>
                             </i> COMPITE
@@ -45,11 +45,20 @@
                     <li><a class="navbar-brand" href="${createLink(controller:'Egreso')}">Egreso</a></li>
                     <li><a class="navbar-brand" href="${createLink(controller:'administrador', action:'reportes')}">Reportes</a></li>
                     <li><a class="navbar-brand" href="${createLink(controller:'estadistica')}">Estadísticas</a></li>
-                    <li>
-                        <a class="navbar-brand" href="${createLink(controller:'login', action:'logout')}">
-                            Cerrar sesión ${session.usuarioLogueado.nombres} ${session.usuarioLogueado.paterno}
+                    <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            ${session.usuarioLogueado.nombres} ${session.usuarioLogueado.paterno} <span class="caret"></span>
                         </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="navbar-brand" href="${createLink(controller:'administrador', action:'cargarperfil',)}">Perfil</a></li>
+                            <li>
+                                <a class="navbar-brand" href="${createLink(controller:'login', action:'logout')}">
+                                    Cerrar sesión
+                                </a>
+                            </li>
+                        </ul>
                     </li>
+
                     <g:pageProperty name="page.nav" />
                 </ul>
             </div>
