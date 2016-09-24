@@ -21,7 +21,7 @@
             <!--  Proyecto Usuario  Creado Por  Descripcion  Estado  Motivo  Fecha Creacion  Nombre  -->
 
             <p>Nombre : ${auditoria.nombre}</p>
-            <p>Proyecto : ${auditoria.proyectoId}</p>
+            <p>Proyecto : ${auditoria.programaId}</p>
             <p>Usuario : ${auditoria.usuarioId}</p>
             <p>Creado Por : ${auditoria.creadoPor}</p>
             <p>Descripción : ${auditoria.descripcion}</p>
