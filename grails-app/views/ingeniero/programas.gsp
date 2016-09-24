@@ -19,7 +19,7 @@
         </form>
     </div>-->
 <div id="list-proyectos" class="content scaffold-list" role="main">
-    <h1>Listado de Proyectos por Programa: </h1>
+    <h1>Listado de Proyectos para Programa: ${nombrePrograma} </h1>
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
