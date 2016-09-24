@@ -25,11 +25,30 @@ class RendicionController {
 
     @Transactional
     def save() {
-        String[] rutObtenido = ((String) params.nombreUsuario).split(" ・ ");
-        String[] programaObtenido = ((String) params.nombrePrograma).split(" ・ ");
-        def u = Usuario.findByRut(rutObtenido[1])
+        def u = null
+        def p = null
+        try {
+            String[] rutObtenido = ((String) params.nombreUsuario).split(" ・ ");
+            String[] programaObtenido = ((String) params.nombrePrograma).split(" ・ ");
+            u = Usuario.findByRut(rutObtenido[1])
+            p = Programa.findByCodigo(programaObtenido[0])
+        } catch (Exception e) {
+            println "validando asignación. "+e.getMessage()
+        }
+        if (!u && !p) {
+            flash.message = "Debes seleccionar un usuario y un programa para esta asignación"
+            redirect(controller: "asignacion", action: "index")
+            return
+        } else if (!u){
+            flash.message = "Debes seleccionar un usuario para esta asignación"
+            redirect(controller: "asignacion", action: "index")
+            return
+        } else {
+            flash.message = "Debes seleccionar un programa para esta asignación"
+            redirect(controller: "asignacion", action: "index")
+            return
+        }
         params.usuario = u.id
-        def p = Programa.findByCodigo(programaObtenido[0])
         params.programa = p.id
 
         def rendicion = new Rendicion(params)
