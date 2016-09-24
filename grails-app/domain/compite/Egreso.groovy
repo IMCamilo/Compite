@@ -17,7 +17,6 @@ class Egreso {
     String creadoPor
 
     static belongsTo = [programa:Programa, usuario:Usuario, item:Item, rendicion:Rendicion]
-
     static hasMany = [egresomov:EgresoMov]
     static constraints = {
         tipoDocumento nullable: true, blank: true

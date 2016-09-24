@@ -47,8 +47,8 @@ class BootStrap {
         }
         if (!Programa.list()) {
             new Programa(codigo: "2",nombre: "Compite +1000", region:1, presupuesto: 1200000, fechaInicio: "2016-08-19 11:49:00.0", fechaFin: "2016-08-19 11:49:00.0", estado: "ACTIVO", tipo: "PRIVADO",duracion:10, version:1, centroCosto: 321, usuario: 1, creadoPor: "admin").save(failOnError: true)
-            new Programa(codigo: "2",nombre: "Compite Innova", region:1, presupuesto: 1200000, fechaInicio: "2016-08-19 11:49:00.0", fechaFin: "2016-08-19 11:49:00.0", estado: "ACTIVO", tipo: "PUBLICO",duracion:10, version:1, centroCosto: 341, usuario: 1, creadoPor: "admin").save(failOnError: true)
-            new Programa(codigo: "2",nombre: "Consultoría", region:1, presupuesto: 1200000, fechaInicio: "2016-08-19 11:49:00.0", fechaFin: "2016-08-19 11:49:00.0", estado: "ACTIVO", tipo: "NO APLICA",duracion:10, version:1, centroCosto: 351, usuario: 1, creadoPor: "admin").save(failOnError: true)
+            new Programa(codigo: "4",nombre: "Compite Innova", region:1, presupuesto: 1200000, fechaInicio: "2016-08-19 11:49:00.0", fechaFin: "2016-08-19 11:49:00.0", estado: "ACTIVO", tipo: "PUBLICO",duracion:10, version:1, centroCosto: 341, usuario: 1, creadoPor: "admin").save(failOnError: true)
+            new Programa(codigo: "5",nombre: "Consultoría", region:1, presupuesto: 1200000, fechaInicio: "2016-08-19 11:49:00.0", fechaFin: "2016-08-19 11:49:00.0", estado: "ACTIVO", tipo: "NO APLICA",duracion:10, version:1, centroCosto: 351, usuario: 1, creadoPor: "admin").save(failOnError: true)
         }
 
         if (!Proyecto.list()) {
@@ -96,8 +96,7 @@ class BootStrap {
         if (!Asignacion.list()) {
             new Asignacion(detalle: "Asignacion 1, cargada automaticamente", fecha: "2016-08-19 11:49:00.0", usuario: 1, programa: 1, creadoPor:"admin").save(failOnError: true)
             new Asignacion(detalle: "Asignación para Ingeniero 1, proyecto 2", fecha: "2016-08-10 00:0:00.0", usuario: 2, programa: 2, creadoPor:"admin").save(failOnError: true)
-            new Asignacion(detalle: "Asignación para Ingeniero 1, proyecto 3", fecha: "2016-08-10 00:0:00.0", usuario: 1, programa: 3, creadoPor:"admin").save(failOnError: true)
-            new Asignacion(detalle: "Asignación para Ingeniero 1, proyecto 2", fecha: "2016-09-15 00:0:00.0", usuario: 2, programa: 1, creadoPor:"admin").save(failOnError: true)
+            new Asignacion(detalle: "Asignación para Ingeniero 1, proyecto 3", fecha: "2016-08-10 00:0:00.0", usuario: 5, programa: 3, creadoPor:"admin").save(failOnError: true)
         }
     }
 

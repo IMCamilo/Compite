@@ -12,7 +12,6 @@ class Movilizacion {
     String creadoPor
 
     static belongsTo = [usuario:Usuario, programa:Programa]
-
     static hasMany = [egresomov:EgresoMov]
 
     static constraints = {

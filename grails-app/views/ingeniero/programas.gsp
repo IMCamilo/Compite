@@ -7,20 +7,19 @@
     <asset:stylesheet src="compite/autocomplete.css"/>
 </head>
 <body>
-<a href="#list-rendicion" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-<h1 align="center">Seleccionar una empresa para crear una rendición de movilización</h1>
-<div id="buscar-proyectos" class="content scaffold-list" role="main">
-    <form action="busqueda">
-        <div class="fieldcontain required" id="proyectoinputdiv">
-            <label for="tipo">Busqueda de Proyecto<span class="required-indicator">*</span></label>
-            <input class="typeahead" name="nombreProyecto" type="text" required="" placeholder="Busca un proyecto">
-            <input type="button" value="Crear Movilización">
-        </div>
-    </form>
-
-</div>
+    <a href="#list-rendicion" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
+    <!--<h1 align="center">Seleccionar una empresa para crear una rendición de movilización</h1>
+    <div id="buscar-proyectos" class="content scaffold-list" role="main">
+        <form action="busqueda">
+            <div class="fieldcontain required" id="proyectoinputdiv">
+                <label for="tipo">Busqueda de Proyecto<span class="required-indicator">*</span></label>
+                <input class="typeahead" name="nombreProyecto" type="text" required="" placeholder="Busca un proyecto">
+                <input type="button" value="Crear Movilización">
+            </div>
+        </form>
+    </div>-->
 <div id="list-proyectos" class="content scaffold-list" role="main">
-    <h1>Lista de proyectos Públicos</h1>
+    <h1>Listado de Proyectos por Programa: </h1>
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
@@ -35,33 +34,6 @@
         </thead>
         <tbody>
         <g:each var="proyectos" status="i" in="${proyectosPublicos}">
-            <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
-                <td><g:link controller="movilizacion" action="nuevamovilizacion" id="${proyectos.id}">Seleccionar Proyecto</g:link></td>
-                <td>${proyectos.codigo}</td>
-                <td>${proyectos.nombre}</td>
-                <td>${proyectos.estado}</td>
-            </tr>
-        </g:each>
-        </tbody>
-    </table>
-    <div class="pagination">
-        <g:paginate total="${rendicionCount ?: 0}" />
-    </div>
-    <h1>Lista de proyectos Privados</h1>
-    <g:if test="${flash.message}">
-        <div class="message" role="status">${flash.message}</div>
-    </g:if>
-    <table>
-        <thead>
-        <tr>
-            <th>Seleccionar</th>
-            <g:sortableColumn property="tipoRendicion" defaultOrder="desc" title="Codigo"/>
-            <g:sortableColumn property="sedeEnvio" defaultOrder="desc" title="Nombre"/>
-            <g:sortableColumn property="total" defaultOrder="desc" title="Esado"/>
-        </tr>
-        </thead>
-        <tbody>
-        <g:each var="proyectos" status="i" in="${proyectosPrivados}">
             <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
                 <td><g:link controller="movilizacion" action="nuevamovilizacion" id="${proyectos.id}">Seleccionar Proyecto</g:link></td>
                 <td>${proyectos.codigo}</td>
@@ -110,7 +82,6 @@
             source: substringMatcher(proyectos)
         });
     });
-
 </script>
 </body>
 </html>
