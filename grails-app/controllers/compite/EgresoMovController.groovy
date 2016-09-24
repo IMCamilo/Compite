@@ -26,12 +26,33 @@ class EgresoMovController {
 
     @Transactional
     def save() {
-        String[] movilizacionObt = ((String) params.nombreMovilizacion).split(" ・ ");
-        String[] egresoObt = ((String) params.nombreEgreso).split(" ・ ");
-        def m = Movilizacion.findById(movilizacionObt[1])
-        def e = Egreso.findById(egresoObt[1])
+        def m = null
+        def eg = null
+
+        try {
+            String[] movilizacionObt = ((String) params.nombreMovilizacion).split(" ・ ");
+            String[] egresoObt = ((String) params.nombreEgreso).split(" ・ ");
+            m = Movilizacion.findById(movilizacionObt[1])
+            eg = Egreso.findById(egresoObt[1])
+        } catch (Exception e) {
+            println "validando asignación. "+e.getMessage()
+        }
+        if (!m && !eg) {
+            flash.message = "Debes seleccionar una movilizacion y un egreso"
+            redirect(controller: "egresoMov", action: "index")
+            return
+        } else if (!m){
+            flash.message = "Debes seleccionar una movilización"
+            redirect(controller: "egresoMov", action: "index")
+            return
+        } else {
+            flash.message = "Debes seleccionar un egreso"
+            redirect(controller: "egresoMov", action: "index")
+            return
+        }
+
         params.movilizacion = m.id
-        params.egreso = e.id
+        params.egreso = eg.id
 
         def egresoMov = new EgresoMov(params)
 
