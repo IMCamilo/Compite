@@ -45,7 +45,7 @@
                                 <label for="nombre">Nombre
                                     <span class="required-indicator">*</span>
                                 </label>
-                                <input name="nombre" required="" placeholder="Nombre ficticio empresa" minlength="10" maxlength="100" id="nombre" type="text">
+                                <input name="nombre" required="" placeholder="Nombre ficticio empresa" minlength="2" maxlength="50" id="nombre" type="text">
                             </div>
                         </div>
                         <div class="col-sm-6">
