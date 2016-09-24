@@ -27,20 +27,20 @@
         <thead>
         <tr>
             <th>Seleccionar</th>
-            <g:sortableColumn property="tipoRendicion" defaultOrder="desc" title="Codigo"/>
-            <g:sortableColumn property="sedeEnvio" defaultOrder="desc" title="Nombre"/>
-            <g:sortableColumn property="total" defaultOrder="desc" title="Esado"/>
+            <g:sortableColumn property="codigo" defaultOrder="desc" title="Codigo"/>
+            <g:sortableColumn property="nombre" defaultOrder="desc" title="Nombre"/>
+            <g:sortableColumn property="estado" defaultOrder="desc" title="Estado"/>
         </tr>
         </thead>
         <tbody>
-        <g:each var="proyectos" status="i" in="${proyectosPublicos}">
-            <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
-                <td><g:link controller="movilizacion" action="nuevamovilizacion" id="${proyectos.id}">Seleccionar Proyecto</g:link></td>
-                <td>${proyectos.codigo}</td>
-                <td>${proyectos.nombre}</td>
-                <td>${proyectos.estado}</td>
-            </tr>
-        </g:each>
+            <g:each var="proyecto" status="i" in="${proyectos}">
+                <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
+                    <td><g:link controller="movilizacion" action="nuevamovilizacion" id="${proyecto.id}">Seleccionar Proyecto</g:link></td>
+                    <td>${proyecto.codigo}</td>
+                    <td>${proyecto.nombre}</td>
+                    <td>${proyecto.estado}</td>
+                </tr>
+            </g:each>
         </tbody>
     </table>
     <div class="pagination">

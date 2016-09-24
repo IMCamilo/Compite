@@ -27,38 +27,25 @@ class IngenieroController {
         //http://docs.grails.org/3.1.1/ref/Domain%20Classes/executeQuery.html
         //en la busqueda en programas, pasar una lista, ya que de asignaciones pueden venir muchos id.
 
-        def listaProgramas = Programa.findAll("from Programa as p where p.id in (:asignaciones)", [asignaciones: asignaciones.programaId])
+        def listaProgramas = Proyecto.findAll("from Proyecto as p where p.id = (:asignaciones)", [asignaciones: asignaciones.programaId])
         //recorrer la lista de programas, en gsp tal como esta abajo, en para separar publicos de privados, hacer esto 2 veces
         //no demora nada, así que cumple con el objetivo.
         //si nos pusieramos pulcros usariamos un join.
 
-        def programasPrivados = []
-        def programasPublicos = []
-
+        def proyectos = []
         listaProgramas.each { item ->
-            if (item.tipo == "PRIVADO") {
-                println "programa "+item.id+" es Privado"
-                def result = [:]
-                result.id = item.id
-                result.codigo = item.codigo
-                result.estado = item.estado
-                result.nombre = item.nombre
-                programasPrivados.add(result)
-            } else if (item.tipo == "PUBLICO") {
-                println "programa "+item.id+" es Publico"
-                def result = [:]
-                result.id = item.id
-                result.codigo = item.codigo
-                result.estado = item.estado
-                result.nombre = item.nombre
-                programasPublicos.add(result)
-            }
+            def result = [:]
+            result.id = item.id
+            result.codigo = item.codigo
+            result.estado = item.estado
+            result.nombre = item.nombre
+            proyectos.add(result)
         }
-        println "programasPublicos: "+programasPublicos
-        println "programasPrivados: "+programasPrivados
 
-        [programasPrivados:programasPrivados, programasPublicos:programasPublicos, programas:listaProgramas]
+        println "proyectos: "+proyectos
+        [proyectos:proyectos]
     }
+
     def cargarperfil(){
         redirect (controller: "ingeniero", action: "perfil", id: usuarioId)
     }
