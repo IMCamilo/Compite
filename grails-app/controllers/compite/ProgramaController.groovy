@@ -9,6 +9,9 @@ class ProgramaController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
+        //def programa= Programa.findAll()
+        //def usuario= Usuario.executeQuery("p.id, p.fecha_inicio, p.fecha_fin, p.nombre, p.presupuesto, (select rut from usuario where id=a.usuario_id) from programa p, asignacion a where a.programa_id=p.id")
+        //println "DAtos usuario" +usuario
         params.max = Math.min(max ?: 10, 100)
         respond Programa.list(params), model:[programaCount: Programa.count()]
     }
