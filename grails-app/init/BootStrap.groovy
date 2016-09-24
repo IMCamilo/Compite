@@ -10,6 +10,8 @@ import compite.Rendicion
 import compite.Transporte
 import compite.Usuario
 import compite.DetalleAudRen
+import compite.Programa
+import compite.Region
 
 class BootStrap {
 
@@ -40,14 +42,22 @@ class BootStrap {
             new Empresa(rut: "79.649.310-0", nombre: "C.M. (Chile) Ltda.", razonSocial: "Sistemas de Cielos Metálicos Ltda.", giro: "Salud", gerente: "Grails", tipo: "Sofware", fechaCreacion: "2016-08-19 11:49:00.0", telefono: "232323", direccion: "Direccion 1", correo: "empresatestuno@test.com", creadoPor:"admin").save(failOnError: true)
         }
 
-        if (!Proyecto.list()) {
-            new Proyecto(codigo: "PR-01", presupuesto: 1200000, nombre: "Samsung tecnologias etc", fechaCreacion: "2016-08-19 11:49:00.0", fechaFin: "2016-08-19 11:49:00.0", estado: "ACTIVO", tipo: "PUBLICO", empresa: 1, creadoPor:"admin").save(failOnError: true)
-            new Proyecto(codigo: "PR-02", presupuesto: 800000, nombre: "Proyecto 1 Para el Ingeniero 1", fechaCreacion: "2016-08-01 00:00:00.0", fechaFin: "2016-12-31 00:00:00.0", estado: "ACTIVO", tipo: "PUBLICO", empresa: 2, creadoPor:"admin").save(failOnError: true)
-            new Proyecto(codigo: "PR-03", presupuesto: 2500000, nombre: "Proyecto 2 Para el Ingeniero 1", fechaCreacion: "2016-08-01 00:00:00.0", fechaFin: "2016-12-31 00:00:00.0", estado: "ACTIVO", tipo: "PRIVADO", empresa: 2, creadoPor:"admin").save(failOnError: true)
+        if (!Region.list()) {
+            new Region(nombre:"Puerto Montt", codigo: 1).save(failOnError: true)
+        }
+        if (!Programa.list()) {
+            new Programa(codigo: "2",nombre: "Compite +1000", region:1, presupuesto: 1200000, fechaInicio: "2016-08-19 11:49:00.0", fechaFin: "2016-08-19 11:49:00.0", estado: "ACTIVO", tipo: "PRIVADO",duracion:10, version:1, centroCosto: 321, usuario: 1, creadoPor: "admin").save(failOnError: true)
+            new Programa(codigo: "2",nombre: "Compite Innova", region:1, presupuesto: 1200000, fechaInicio: "2016-08-19 11:49:00.0", fechaFin: "2016-08-19 11:49:00.0", estado: "ACTIVO", tipo: "PUBLICO",duracion:10, version:1, centroCosto: 341, usuario: 1, creadoPor: "admin").save(failOnError: true)
+            new Programa(codigo: "2",nombre: "Consultoría", region:1, presupuesto: 1200000, fechaInicio: "2016-08-19 11:49:00.0", fechaFin: "2016-08-19 11:49:00.0", estado: "ACTIVO", tipo: "NO APLICA",duracion:10, version:1, centroCosto: 351, usuario: 1, creadoPor: "admin").save(failOnError: true)
         }
 
+        if (!Proyecto.list()) {
+            new Proyecto(codigo: "PR-01", presupuesto: 1200000, nombre: "Samsung tecnologias etc", fechaCreacion: "2016-08-19 11:49:00.0", fechaFin: "2016-08-19 11:49:00.0", estado: "ACTIVO", tipo: "PUBLICO",empresa: 2, programa: 1, creadoPor:"admin").save(failOnError: true)
+            new Proyecto(codigo: "PR-02", presupuesto: 800000, nombre: "Proyecto 1 Para el Ingeniero 1", fechaCreacion: "2016-08-01 00:00:00.0", fechaFin: "2016-12-31 00:00:00.0", estado: "ACTIVO", tipo: "PUBLICO", empresa: 2, programa: 1, creadoPor:"admin").save(failOnError: true)
+            new Proyecto(codigo: "PR-03", presupuesto: 2500000, nombre: "Proyecto 2 Para el Ingeniero 1", fechaCreacion: "2016-08-01 00:00:00.0", fechaFin: "2016-12-31 00:00:00.0", estado: "ACTIVO", tipo: "PRIVADO", empresa: 2, programa:1,creadoPor:"admin").save(failOnError: true)
+        }
         if (!Rendicion.list()) {
-            new Rendicion(fecha: "2016-08-19 11:49:00.0", tipoRendicion: "Reembolso de gastos", sedeEnvio: "Puerto Montt",aprobacion: "Si", total:240000, totalAnticipado: 10000, totalRendido: 340000, usuario: 3, proyecto: 2, creadoPor:"admin").save(failOnError: true)
+            new Rendicion(fecha: "2016-08-19 11:49:00.0", tipoRendicion: "Reembolso de gastos", sedeEnvio: "Puerto Montt",aprobacion: "Si", total:240000, totalAnticipado: 10000, totalRendido: 340000, usuario: 3, programa: 1, creadoPor:"admin").save(failOnError: true)
         }
 
         if (!Item.list()) {
@@ -55,15 +65,15 @@ class BootStrap {
 
         }
         if (!Egreso.list()) {
-            new Egreso(aprobacion: "Si", concepto: "Servicios Básicos", fechaCreacion: "2016-08-19 11:49:00.0", monto: 12000,  nDocumento: "234567", rutEmpresa: "98544511-7", pagadoA: "Pablo Santana", tipoDocumento:"BOLETA", tipoMoneda: "CLP", usuario: 1, proyecto: 1,item: 1, rendicion: 1, creadoPor:"admin").save(failOnError: true)
-            new Egreso(aprobacion: "Si", concepto: "Servicio de Automotora", fechaCreacion: "2016-08-19 11:49:00.0", monto: 13000,  nDocumento: "667", rutEmpresa: "65987234-1", pagadoA: "Rodrigo Cardenas", tipoDocumento:"FACTURA", tipoMoneda: "CLP", usuario: 1, proyecto: 1,item: 1, rendicion: 1, creadoPor:"admin").save(failOnError: true)
-            new Egreso(aprobacion: "Si", concepto: "Servicios tecnicos", fechaCreacion: "2016-08-19 11:49:00.0", monto: 13000,  nDocumento: "4555", rutEmpresa: "65187214-4", pagadoA: "Pablo Zumelzu", tipoDocumento:"BOLETA", tipoMoneda: "CLP", usuario: 1, proyecto: 1,item: 1, rendicion: 1, creadoPor:"admin").save(failOnError: true)
+            new Egreso(aprobacion: "Si", concepto: "Servicios Básicos", fechaCreacion: "2016-08-19 11:49:00.0", monto: 12000,  nDocumento: "234567", rutEmpresa: "98544511-7", pagadoA: "Pablo Santana", tipoDocumento:"BOLETA", tipoMoneda: "CLP", usuario: 1, programa: 1,item: 1, rendicion: 1, creadoPor:"admin").save(failOnError: true)
+            new Egreso(aprobacion: "Si", concepto: "Servicio de Automotora", fechaCreacion: "2016-08-19 11:49:00.0", monto: 13000,  nDocumento: "667", rutEmpresa: "65987234-1", pagadoA: "Rodrigo Cardenas", tipoDocumento:"FACTURA", tipoMoneda: "CLP", usuario: 1, programa: 1,item: 1, rendicion: 1, creadoPor:"admin").save(failOnError: true)
+            new Egreso(aprobacion: "Si", concepto: "Servicios tecnicos", fechaCreacion: "2016-08-19 11:49:00.0", monto: 13000,  nDocumento: "4555", rutEmpresa: "65187214-4", pagadoA: "Pablo Zumelzu", tipoDocumento:"BOLETA", tipoMoneda: "CLP", usuario: 1, programa: 1,item: 1, rendicion: 1, creadoPor:"admin").save(failOnError: true)
         }
 
         if (!Movilizacion.list()) {
-            new Movilizacion(fechaCreacion: "2016-08-19 11:49:00.0", motivoEmpresa: "Viaje", direccion: "avenida", distancia: 8, concepto: "Movilizacion regional", tipo: "peaje", precio:10000, creadoPor:"admin", proyecto: 1, usuario: 1).save(failOnError: true)
-            new Movilizacion(fechaCreacion: "2016-08-19 11:49:00.0", motivoEmpresa: "Peaje", direccion: "Pto Varas", distancia: 8, concepto: "Movilizacion regional", tipo: "peaje", precio:10000, creadoPor:"admin", proyecto: 1, usuario: 2).save(failOnError: true)
-            new Movilizacion(fechaCreacion: "2016-08-19 11:49:00.0", motivoEmpresa: "Viaje", direccion: "avenida", distancia: 8, concepto: "Movilizacion regional", tipo: "peaje", precio:10000, creadoPor:"admin", proyecto: 1, usuario: 2).save(failOnError: true)
+            new Movilizacion(fechaCreacion: "2016-08-19 11:49:00.0", motivoEmpresa: "Viaje", direccion: "avenida", distancia: 8, concepto: "Movilizacion regional", tipo: "peaje", precio:10000, creadoPor:"admin", programa: 1, usuario: 1).save(failOnError: true)
+            new Movilizacion(fechaCreacion: "2016-08-19 11:49:00.0", motivoEmpresa: "Peaje", direccion: "Pto Varas", distancia: 8, concepto: "Movilizacion regional", tipo: "peaje", precio:10000, creadoPor:"admin", programa: 1, usuario: 2).save(failOnError: true)
+            new Movilizacion(fechaCreacion: "2016-08-19 11:49:00.0", motivoEmpresa: "Viaje", direccion: "avenida", distancia: 8, concepto: "Movilizacion regional", tipo: "peaje", precio:10000, creadoPor:"admin", programa: 1, usuario: 2).save(failOnError: true)
         }
 
         if (!EgresoMov.list()) {
@@ -71,8 +81,8 @@ class BootStrap {
         }
 
         if (!Auditoria.list()) {
-            new Auditoria(fecha: "2016-08-19 11:49:00.0", nombre:"Auditoria numeor 1", motivo:"estandar", descripcion: "Auditoria cargada automaticamente", estado: "APROBADA", usuario: 1, proyecto: 1, creadoPor:"admin").save(failOnError: true)
-            new Auditoria(fecha: "2016-08-19 11:49:00.0", nombre:"Auditoria numeor 2", motivo:"pro", descripcion: "Auditoria cargada automaticamente", estado: "RECHAZADA", usuario: 2, proyecto: 1, creadoPor:"admin").save(failOnError: true)
+            new Auditoria(fecha: "2016-08-19 11:49:00.0", nombre:"Auditoria numeor 1", motivo:"estandar", descripcion: "Auditoria cargada automaticamente", estado: "APROBADA", usuario: 1, programa: 1, creadoPor:"admin").save(failOnError: true)
+            new Auditoria(fecha: "2016-08-19 11:49:00.0", nombre:"Auditoria numeor 2", motivo:"pro", descripcion: "Auditoria cargada automaticamente", estado: "RECHAZADA", usuario: 2, programa: 1, creadoPor:"admin").save(failOnError: true)
         }
 
         if (!DetalleAudRen.list()) {
@@ -84,12 +94,11 @@ class BootStrap {
         }
 
         if (!Asignacion.list()) {
-            new Asignacion(detalle: "Asignacion 1, cargada automaticamente", fecha: "2016-08-19 11:49:00.0", usuario: 1, proyecto: 1, creadoPor:"admin").save(failOnError: true)
-            new Asignacion(detalle: "Asignación para Ingeniero 1, proyecto 2", fecha: "2016-08-10 00:0:00.0", usuario: 2, proyecto: 2, creadoPor:"admin").save(failOnError: true)
-            new Asignacion(detalle: "Asignación para Ingeniero 1, proyecto 3", fecha: "2016-08-10 00:0:00.0", usuario: 1, proyecto: 3, creadoPor:"admin").save(failOnError: true)
-            new Asignacion(detalle: "Asignación para Ingeniero 1, proyecto 2", fecha: "2016-09-15 00:0:00.0", usuario: 2, proyecto: 1, creadoPor:"admin").save(failOnError: true)
+            new Asignacion(detalle: "Asignacion 1, cargada automaticamente", fecha: "2016-08-19 11:49:00.0", usuario: 1, programa: 1, creadoPor:"admin").save(failOnError: true)
+            new Asignacion(detalle: "Asignación para Ingeniero 1, proyecto 2", fecha: "2016-08-10 00:0:00.0", usuario: 2, programa: 2, creadoPor:"admin").save(failOnError: true)
+            new Asignacion(detalle: "Asignación para Ingeniero 1, proyecto 3", fecha: "2016-08-10 00:0:00.0", usuario: 1, programa: 3, creadoPor:"admin").save(failOnError: true)
+            new Asignacion(detalle: "Asignación para Ingeniero 1, proyecto 2", fecha: "2016-09-15 00:0:00.0", usuario: 2, programa: 1, creadoPor:"admin").save(failOnError: true)
         }
-
     }
 
     def destroy = {

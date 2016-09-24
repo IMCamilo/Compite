@@ -25,41 +25,43 @@
             </g:eachError>
         </ul>
     </g:hasErrors>
-    <g:form action="save">
 
-    </g:form>
 </div>
 <div id="list-movilizacion" class="content scaffold-list" role="main">
-    <h1>Lista de movilizacion para proyecto: ${proyecto.nombre}</h1>
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
-    <table>
-        <thead>
-        <tr>
-            <th>ver</th>
-            <g:sortableColumn property="fecha" defaultOrder="desc" title="Fecha"/>
-            <g:sortableColumn property="motivoEmpresa" defaultOrder="desc" title="Motivo/Empresa"/>
-            <g:sortableColumn property="direccion" defaultOrder="desc" title="Dirección"/>
-            <g:sortableColumn property="distancia" defaultOrder="desc" title="Distancia"/>
-            <g:sortableColumn property="tipo" defaultOrder="desc" title="Tipo"/>
-            <g:sortableColumn property="precio" defaultOrder="desc" title="Precio"/>
-        </tr>
-        </thead>
-        <tbody>
-        <g:each var="movilizacion" status="i" in="${movsList}">
-            <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
-                <td><a href="../editarmov/${movilizacion.id}">Seleccionar</a></td>
-                <td>${formatDate(format:"dd/MM/yyyy", date: movilizacion.fechaCreacion)}</td>
-                <td>${movilizacion.motivoEmpresa}</td>
-                <td>${movilizacion.direccion}</td>
-                <td>${movilizacion.distancia}</td>
-                <td>${movilizacion.tipo}</td>
-                <td>${movilizacion.precio}</td>
+    <g:form action="crearegreso">
+        <table>
+            <thead>
+            <tr>
+                <th>ver</th>
+                <g:sortableColumn property="fecha" defaultOrder="desc" title="Fecha"/>
+                <g:sortableColumn property="motivoEmpresa" defaultOrder="desc" title="Motivo/Empresa"/>
+                <g:sortableColumn property="direccion" defaultOrder="desc" title="Dirección"/>
+                <g:sortableColumn property="distancia" defaultOrder="desc" title="Distancia"/>
+                <g:sortableColumn property="tipo" defaultOrder="desc" title="Tipo"/>
+                <g:sortableColumn property="precio" defaultOrder="desc" title="Precio"/>
             </tr>
-        </g:each>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            <g:each var="movilizacion" status="i" in="${movsList}">
+                <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
+                    <td><input type="checkbox" name="in" value="${movilizacion.id}"></td>
+                    <td>${formatDate(format:"dd/MM/yyyy", date: movilizacion.fechaCreacion)}</td>
+                    <td>${movilizacion.motivoEmpresa}</td>
+                    <td>${movilizacion.direccion}</td>
+                    <td>${movilizacion.distancia}</td>
+                    <td>${movilizacion.tipo}</td>
+                    <td>${movilizacion.precio}</td>
+                </tr>
+            </g:each>
+            </tbody>
+        </table>
+        <fieldset class="buttons">
+            <g:submitButton name="create" class="save" value="Crear Egreso" />
+        </fieldset>
+    </g:form>
     <div class="pagination">
         <g:paginate total="${movilizacionCount ?: 0}" />
     </div>

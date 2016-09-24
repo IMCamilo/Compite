@@ -41,9 +41,9 @@
                         <label for="usuario">Usuario<span class="required-indicator">*</span></label>
                         <input class="typeahead" name="nombreUsuario" value="${usuario.nombres} ${usuario.paterno} ・ ${usuario.rut}" type="text" required="" placeholder="Busca un usuario">
                     </div>
-                    <div class="fieldcontain required" id="proyectoinputdiv">
-                        <label for="tipo">Proyecto<span class="required-indicator">*</span></label>
-                        <input class="typeahead" name="nombreProyecto" value="${proyecto.nombre} ・ ${proyecto.codigo}" type="text" required="" placeholder="Busca un proyecto">
+                    <div class="fieldcontain required" id="programainputdiv">
+                        <label for="tipo">Programa<span class="required-indicator">*</span></label>
+                        <input class="typeahead" name="nombrePrograma" value="${programa.nombre} ・ ${programa.codigo}" type="text" required="" placeholder="Busca un programa">
                     </div>
                     <div class="fieldcontain required" id="rendicioninputdiv">
                         <label for="rendicion">Rendicion<span class="required-indicator">*</span></label>
@@ -123,8 +123,8 @@
                         '${it.nombres} ${it.paterno} ・ ${it.rut}',
                     </g:each>
                 ];
-                var proyectos = [
-                    <g:each in="${proyectos}">
+                var programas = [
+                    <g:each in="${programas}">
                         '${it.nombre} ・ ${it.codigo}',
                     </g:each>
                 ];
@@ -146,13 +146,13 @@
                     name: 'usuarios',
                     source: substringMatcher(usuarios)
                 });
-                $('#proyectoinputdiv .typeahead').typeahead({
+                $('#programainputdiv .typeahead').typeahead({
                     hint: true,
                     highlight: true,
                     minLength: 1
                 }, {
-                    name: 'proyectos',
-                    source: substringMatcher(proyectos)
+                    name: 'programas',
+                    source: substringMatcher(programas)
                 });
                 $('#rendicioninputdiv .typeahead').typeahead({
                     hint: true,

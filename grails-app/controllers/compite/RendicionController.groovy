@@ -10,9 +10,9 @@ class RendicionController {
 
     def index(Integer max) {
         def userList = Usuario.findAll()
-        def projectList = Proyecto.findAll()
+        def projectList = Programa.findAll()
         params.max = Math.min(max ?: 10, 100)
-        respond Rendicion.list(params), model:[rendicionCount: Rendicion.count(), usuarios:userList, proyectos:projectList]
+        respond Rendicion.list(params), model:[rendicionCount: Rendicion.count(), usuarios:userList, programas:projectList]
     }
 
     def show(Rendicion rendicion) {
@@ -26,11 +26,11 @@ class RendicionController {
     @Transactional
     def save() {
         String[] rutObtenido = ((String) params.nombreUsuario).split(" ・ ");
-        String[] proyectoObtenido = ((String) params.nombreProyecto).split(" ・ ");
+        String[] programaObtenido = ((String) params.nombrePrograma).split(" ・ ");
         def u = Usuario.findByRut(rutObtenido[1])
         params.usuario = u.id
-        def p = Proyecto.findByCodigo(proyectoObtenido[0])
-        params.proyecto = p.id
+        def p = Programa.findByCodigo(programaObtenido[0])
+        params.programa = p.id
 
         def rendicion = new Rendicion(params)
 
@@ -62,20 +62,20 @@ class RendicionController {
 
     def edit(Rendicion rendicion) {
         def usuario = Usuario.findById(rendicion.usuarioId)
-        def proyecto = Proyecto.findById(rendicion.proyectoId)
+        def programa = Programa.findById(rendicion.programaId)
         def userList = Usuario.findAll()
-        def projectList = Proyecto.findAll()
-        respond rendicion, model:[usuarios:userList, proyectos:projectList, usuario:usuario, proyecto:proyecto]
+        def projectList = Programa.findAll()
+        respond rendicion, model:[usuarios:userList, programas:projectList, usuario:usuario, programa:programa]
     }
 
     @Transactional
     def update() {
         String[] rutObtenido = ((String) params.nombreUsuario).split(" ・ ");
-        String[] proyectoObtenido = ((String) params.nombreProyecto).split(" ・ ");
+        String[] programaObtenido = ((String) params.nombrePrograma).split(" ・ ");
         def u = Usuario.findByRut(rutObtenido[1])
         params.usuario = u.id
-        def p = Proyecto.findByCodigo(proyectoObtenido[0])
-        params.proyecto = p.id
+        def p = Programa.findByCodigo(programaObtenido[0])
+        params.programa = p.id
 
         def rendicion = Rendicion.get(params.id)
         rendicion.properties = params

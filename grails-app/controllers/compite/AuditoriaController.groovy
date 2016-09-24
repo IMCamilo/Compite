@@ -13,9 +13,9 @@ class AuditoriaController {
 
     def index(Integer max) {
         def userList = Usuario.findAll()
-        def projectList = Proyecto.findAll()
+        def projectList = Programa.findAll()
         params.max = Math.min(max ?: 10, 100)
-        respond Auditoria.list(params), model:[auditoriaCount: Auditoria.count(), usuarios:userList, proyectos:projectList]
+        respond Auditoria.list(params), model:[auditoriaCount: Auditoria.count(), usuarios:userList, programas:projectList]
     }
 
     def show(Auditoria auditoria) {
@@ -31,11 +31,11 @@ class AuditoriaController {
     @Transactional
     def save() {
         String[] rutObtenido = ((String) params.nombreUsuario).split(" ・ ");
-        String[] proyectoObtenido = ((String) params.nombreProyecto).split(" ・ ");
+        String[] programaObtenido = ((String) params.nombrePrograma).split(" ・ ");
         def u = Usuario.findByRut(rutObtenido[1])
         params.usuario = u.id
-        def p = Proyecto.findByCodigo(proyectoObtenido[0])
-        params.proyecto = p.id
+        def p = Programa.findByCodigo(programaObtenido[0])
+        params.programa = p.id
 
         def auditoria = new Auditoria(params)
 
@@ -74,20 +74,20 @@ class AuditoriaController {
 
     def edit(Auditoria auditoria) {
         def usuario = Usuario.findById(auditoria.usuarioId)
-        def proyecto = Proyecto.findById(auditoria.proyectoId)
+        def programa = Programa.findById(auditoria.programaId)
         def userList = Usuario.findAll()
-        def projectList = Proyecto.findAll()
-        respond auditoria, model:[usuarios:userList, proyectos:projectList, usuario:usuario, proyecto:proyecto]
+        def projectList = Programa.findAll()
+        respond auditoria, model:[usuarios:userList, programas:projectList, usuario:usuario, programa:programa]
     }
 
     @Transactional
     def update() {
         String[] rutObtenido = ((String) params.nombreUsuario).split(" ・ ");
-        String[] proyectoObtenido = ((String) params.nombreProyecto).split(" ・ ");
+        String[] programaObtenido = ((String) params.nombrePrograma).split(" ・ ");
         def u = Usuario.findByRut(rutObtenido[1])
         params.usuario = u.id
-        def p = Proyecto.findByCodigo(proyectoObtenido[0])
-        params.proyecto = p.id
+        def p = Programa.findByCodigo(programaObtenido[0])
+        params.programa = p.id
 
         def auditoria = Auditoria.get(params.id)
 

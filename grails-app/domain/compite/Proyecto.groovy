@@ -14,14 +14,10 @@ class Proyecto {
     String tipo
     String creadoPor
 
-    static hasMany = [asignacion:Asignacion, auditoria:Auditoria, egreso:Egreso, rendicion:Rendicion]
-    static belongsTo = [empresa:Empresa]
+    static belongsTo = [empresa:Empresa, programa:Programa]
 
     static constraints = {
-        codigo(nullable: false, unique: true, blank: false)
-        nombre(nullable: false, blank: false, size: 3..50)
-        presupuesto(nullable: true, size: 0..5)
-        creadoPor nullable: true, blank: true
+
     }
 
 }

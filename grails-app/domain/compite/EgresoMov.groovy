@@ -10,4 +10,5 @@ class EgresoMov {
     static constraints = {
         creadoPor nullable: true, blank: true
     }
+
 }

@@ -9,7 +9,7 @@ class Asignacion {
     Date fechaCreacion = new Date()
     String creadoPor
 
-    static belongsTo = [proyecto:Proyecto, usuario:Usuario]
+    static belongsTo = [programa:Programa, usuario:Usuario]
 
     static constraints = {
         creadoPor nullable: true, blank: true

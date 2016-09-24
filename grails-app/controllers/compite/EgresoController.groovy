@@ -12,9 +12,9 @@ class EgresoController {
         def userList = Usuario.findAll()
         def rendicionList = Rendicion.findAll()
         def itemsList = Item.findAll()
-        def proyectoList = Proyecto.findAll()
+        def programaList = Programa.findAll()
         params.max = Math.min(max ?: 10, 100)
-        respond Egreso.list(params), model:[egresoCount: Egreso.count(), usuarios:userList, proyectos:proyectoList, rendiciones:rendicionList, items:itemsList]
+        respond Egreso.list(params), model:[egresoCount: Egreso.count(), usuarios:userList, programas:programaList, rendiciones:rendicionList, items:itemsList]
     }
 
     def show(Egreso egreso) {
@@ -28,13 +28,13 @@ class EgresoController {
     @Transactional
     def save() {
         String[] rutObtenido = ((String) params.nombreUsuario).split(" ・ ");
-        String[] proyectoObtenido = ((String) params.nombreProyecto).split(" ・ ");
+        String[] programaObtenido = ((String) params.nombrePrograma).split(" ・ ");
         String[] itemObtenido = ((String) params.nombreItem).split(" ・ ");
         String[] rendicionObtenido = ((String) params.nombreRendicion).split(" ・ ");
         def u = Usuario.findByRut(rutObtenido[1])
         params.usuario = u.id
-        def p = Proyecto.findByCodigo(proyectoObtenido[1])
-        params.proyecto = p.id
+        def p = Programa.findByCodigo(programaObtenido[1])
+        params.programa = p.id
         def i = Item.findById(itemObtenido[1])
         params.item = i.id
         def r = Rendicion.findById(rendicionObtenido[1])
@@ -67,26 +67,26 @@ class EgresoController {
 
     def edit(Egreso egreso) {
         def usuario = Usuario.findById(egreso.usuarioId)
-        def item = Item.findById(egreso.proyectoId)
-        def rendicion = Rendicion.findById(egreso.proyectoId)
-        def proyecto = Proyecto.findById(egreso.proyectoId)
+        def item = Item.findById(egreso.programaId)
+        def rendicion = Rendicion.findById(egreso.programaId)
+        def programa = Programa.findById(egreso.programaId)
         def userList = Usuario.findAll()
         def rendicionList = Rendicion.findAll()
         def itemsList = Item.findAll()
-        def proyectoList = Proyecto.findAll()
-        respond egreso, model:[usuarios:userList, proyectos:proyectoList, rendiciones:rendicionList, items:itemsList, usuario:usuario, item:item, rendicion:rendicion, proyecto:proyecto]
+        def programaList = Programa.findAll()
+        respond egreso, model:[usuarios:userList, programas:programaList, rendiciones:rendicionList, items:itemsList, usuario:usuario, item:item, rendicion:rendicion, programa:programa]
     }
 
     @Transactional
     def update() {
         String[] rutObtenido = ((String) params.nombreUsuario).split(" ・ ");
-        String[] proyectoObtenido = ((String) params.nombreProyecto).split(" ・ ");
+        String[] programaObtenido = ((String) params.nombrePrograma).split(" ・ ");
         String[] itemObtenido = ((String) params.nombreItem).split(" ・ ");
         String[] rendicionObtenido = ((String) params.nombreRendicion).split(" ・ ");
         def u = Usuario.findByRut(rutObtenido[1])
         params.usuario = u.id
-        def p = Proyecto.findByCodigo(proyectoObtenido[1])
-        params.proyecto = p.id
+        def p = Programa.findByCodigo(programaObtenido[1])
+        params.programa = p.id
         def i = Item.findById(itemObtenido[1])
         params.item = i.id
         def r = Rendicion.findById(rendicionObtenido[1])

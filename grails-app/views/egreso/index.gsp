@@ -53,11 +53,11 @@
                             </div>
                         </div>
                         <div class="col-sm-6">
-                            <div class="fieldcontain required" id="proyectoinputdiv">
-                                <label for="nombreProyecto">Proyecto
+                            <div class="fieldcontain required" id="programainputdiv">
+                                <label for="nombrePrograma">Programa
                                     <span class="required-indicator">*</span>
                                 </label>
-                                <input id="nombreProyecto" class="typeahead" name="nombreProyecto" type="text" required="" placeholder="Busca un proyecto">
+                                <input id="nombrePrograma" class="typeahead" name="nombrePrograma" type="text" required="" placeholder="Busca un programa">
                             </div>
                         </div>
                     </div>
@@ -160,7 +160,7 @@
                 <thead>
                     <tr>
                         <th>Ver detalles</th>
-                        <g:sortableColumn property="proyecto" defaultOrder="desc" title="Proyecto"/>
+                        <g:sortableColumn property="programa" defaultOrder="desc" title="Programa"/>
                         <g:sortableColumn property="concepto" defaultOrder="desc" title="Concepto"/>
                         <g:sortableColumn property="aprobacion" defaultOrder="desc" title="Aprobación"/>
                         <g:sortableColumn property="tipoMoneda" defaultOrder="desc" title="Tipo Moneda"/>
@@ -172,8 +172,8 @@
                 <tbody>
                     <g:each var="egreso" status="i" in="${egresoList}">
                          <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
-                            <td><a href="show/${egreso.id}">ver</a></td>
-                             <td>${egreso.proyecto.nombre}</td>
+                            <td><a href="edit/${egreso.id}">ver</a></td>
+                             <td>${egreso.programa.nombre}</td>
                             <td>${egreso.concepto}</td>
                             <td>${egreso.aprobacion}</td>
                             <td>
@@ -221,8 +221,8 @@
                         '${it.nombres} ${it.paterno} ・ ${it.rut}',
                     </g:each>
                 ];
-                var proyectos = [
-                    <g:each in="${proyectos}">
+                var programas = [
+                    <g:each in="${programas}">
                         '${it.nombre} ・ ${it.codigo}',
                     </g:each>
                 ];
@@ -244,13 +244,13 @@
                     name: 'usuarios',
                     source: substringMatcher(usuarios)
                 });
-                $('#proyectoinputdiv .typeahead').typeahead({
+                $('#programainputdiv .typeahead').typeahead({
                     hint: true,
                     highlight: true,
                     minLength: 1
                 }, {
-                    name: 'proyectos',
-                    source: substringMatcher(proyectos)
+                    name: 'programas',
+                    source: substringMatcher(programas)
                 });
                 $('#rendicioninputdiv .typeahead').typeahead({
                     hint: true,

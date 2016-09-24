@@ -25,10 +25,10 @@
                     <div class="col-md-12">
                         <div class="col-sm-6">
                             <div class="fieldcontain required" id="proyectoinputdiv">
-                                <label for="nombreProyecto">Proyecto
+                                <label for="nombrePrograma">Programa
                                     <span class="required-indicator">*</span>
                                 </label>
-                                <input id="nombreProyecto" class="typeahead" name="nombreProyecto" type="text" required="" placeholder="Busca un proyecto">
+                                <input id="nombrePrograma" class="typeahead" name="nombrePrograma" type="text" required="" placeholder="Busca un proyecto">
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -81,7 +81,7 @@
                 <tbody>
                     <g:each var="asignacion" status="i" in="${asignacionList}">
                          <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
-                            <td><a href="show/${asignacion.id}">ver</a></td>
+                            <td><a href="edit/${asignacion.id}">ver</a></td>
                             <td>${asignacion.id}</td>
                             <td>${asignacion.creadoPor}</td>
                             <td>${asignacion.detalle}</td>
@@ -120,8 +120,8 @@
                         '${it.nombres} ${it.paterno} ・ ${it.rut}',
                     </g:each>
                 ];
-                var proyectos = [
-                    <g:each in="${proyectos}">
+                var programas = [
+                    <g:each in="${programas}">
                         '${it.codigo} ・ ${it.nombre}',
                     </g:each>
                 ];
@@ -138,8 +138,8 @@
                     highlight: true,
                     minLength: 1
                 }, {
-                    name: 'proyectos',
-                    source: substringMatcher(proyectos)
+                    name: 'programas',
+                    source: substringMatcher(programas)
                 });
             });
         </script>

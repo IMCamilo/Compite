@@ -11,7 +11,7 @@ class Movilizacion {
     Integer precio
     String creadoPor
 
-    static belongsTo = [usuario:Usuario, proyecto:Proyecto]
+    static belongsTo = [usuario:Usuario, programa:Programa]
 
     static hasMany = [egresomov:EgresoMov]
 

@@ -25,9 +25,9 @@
                             <span class='required-indicator'>*</span>
                         </label><input type="text" name="tipo" value="" required="" id="tipo"/>
                     </div>
-                    <div class="fieldcontain required" id="proyectoinputdiv">
-                        <label for="tipo">Proyecto<span class="required-indicator">*</span></label>
-                        <input class="typeahead" name="nombreProyecto" type="text" required="" placeholder="Busca un proyecto">
+                    <div class="fieldcontain required" id="programainputdiv">
+                        <label for="tipo">Programa<span class="required-indicator">*</span></label>
+                        <input class="typeahead" name="nombrePrograma" type="text" required="" placeholder="Busca un programa">
                     </div>
                     <div class="fieldcontain required" id="usuarioinputdiv">
                         <label for="tipo">Usuario<span class="required-indicator">*</span></label>
@@ -101,8 +101,8 @@
                         '${it.nombres} ${it.paterno} ・ ${it.rut}',
                     </g:each>
                 ];
-                var proyectos = [
-                    <g:each in="${proyectos}">
+                var programas = [
+                    <g:each in="${programas}">
                         '${it.codigo} ・ ${it.nombre}',
                     </g:each>
                 ];
@@ -114,13 +114,13 @@
                     name: 'usuarios',
                     source: substringMatcher(usuarios)
                 });
-                $('#proyectoinputdiv .typeahead').typeahead({
+                $('#programainputdiv .typeahead').typeahead({
                     hint: true,
                     highlight: true,
                     minLength: 1
                 }, {
-                    name: 'proyectos',
-                    source: substringMatcher(proyectos)
+                    name: 'programas',
+                    source: substringMatcher(programas)
                 });
             });
         </script>

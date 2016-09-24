@@ -37,8 +37,8 @@
                 </div>
                 <div class="col-md-12">
                     <div class="col-sm-6">
-                        <label>Proyecto :</label>
-                        <label style="color: dimgray">${datosProyecto}</label>
+                        <label>Programa :</label>
+                        <label style="color: dimgray">${datosPrograma}</label>
                     </div>
                 </div>
             </g:each>

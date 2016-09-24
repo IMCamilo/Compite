@@ -134,10 +134,21 @@ class EgresoMovController {
     //Seleccion de movilizaciones
     def egresos(Integer id, Integer max){
         idproyecto=id
+        def busqueda = EgresoMov.executeQuery("from Movilizacion m, EgresoMov e where m.id=e.movilizacion_id")
+        //def busqueda = EgresoMov.executeQuery("from EgresoMov where proyecto_id = $idproyecto and usuario_id = $usuarioId")
+        def movs
         def proyecto=Proyecto.findById(id)
-        def movs = Movilizacion.executeQuery("from Movilizacion where usuario_id="+usuarioId+"and proyecto_id="+id)
-        println ("IDmovilizacion:"+movs.id)
         params.max = Math.min(max ?: 10, 100)
-        [movsList:movs, proyecto: proyecto]
+        if (busqueda!=null){
+            movs = Movilizacion.executeQuery("from Movilizacion where usuario_id="+usuarioId+"and proyecto_id="+idproyecto)
+        }else{
+            movs = null
+        }
+
+        [movsList: movs, proyecto: proyecto]
+    }
+    def crearegreso(Integer id){
+        println ("Seleccion de parametros: "+params.in )
+        redirect(controller:"egresoMov", action: "egresos", id:idproyecto )
     }
 }

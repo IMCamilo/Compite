@@ -10,9 +10,9 @@ class AsignacionController {
 
     def index(Integer max) {
         def userList = Usuario.findAll()
-        def projectList = Proyecto.findAll()
+        def programList = Programa.findAll()
         params.max = Math.min(max ?: 10, 100)
-        respond Asignacion.list(params), model:[asignacionCount: Asignacion.count(), usuarios:userList, proyectos:projectList]
+        respond Asignacion.list(params), model:[asignacionCount: Asignacion.count(), usuarios:userList, programas:programList]
     }
 
     def show(Asignacion asignacion) {
@@ -22,11 +22,11 @@ class AsignacionController {
         def paterno = persona [1]
         def materno = persona [2]
 
-        def datosProyecto = Proyecto.executeQuery("select codigo, nombre from Proyecto p where p.id = ?", [asignacion.proyectoId])
-        def proyecto = datosProyecto[0]
-        def codigo = proyecto [0]
-        def nombreProyecto = proyecto [1]
-        respond asignacion, model: [nombreUsuario: nombres+" "+paterno+" "+materno, datosProyecto: codigo+" - "+nombreProyecto]
+        def datosPrograma = Programa.executeQuery("select codigo, nombre from Programa p where p.id = ?", [asignacion.programaId])
+        def programa = datosPrograma[0]
+        def codigo = programa [0]
+        def nombrePrograma = programa [1]
+        respond asignacion, model: [nombreUsuario: nombres+" "+paterno+" "+materno, datosPrograma: codigo+" - "+nombrePrograma]
     }
 
     def create() {
@@ -39,14 +39,14 @@ class AsignacionController {
         def p = null
         try {
             String[] rutObtenido = ((String) params.nombreUsuario).split(" ・ ");
-            String[] proyectoObtenido = ((String) params.nombreProyecto).split(" ・ ");
+            String[] programaObtenido = ((String) params.nombrePrograma).split(" ・ ");
             u = Usuario.findByRut(rutObtenido[1])
-            p = Proyecto.findByCodigo(proyectoObtenido[0])
+            p = Programa.findByCodigo(programaObtenido[0])
         } catch (Exception e) {
             println "validando asignación. "+e.getMessage()
         }
         if (!u && !p) {
-            flash.message = "Debes seleccionar un usuario y un proyecto para esta asignación"
+            flash.message = "Debes seleccionar un usuario y un programa para esta asignación"
             redirect(controller: "asignacion", action: "index")
             return
         } else if (!u){
@@ -54,12 +54,12 @@ class AsignacionController {
             redirect(controller: "asignacion", action: "index")
             return
         } else {
-            flash.message = "Debes seleccionar un proyecto para esta asignación"
+            flash.message = "Debes seleccionar un programa para esta asignación"
             redirect(controller: "asignacion", action: "index")
             return
         }
         params.usuario = u.id
-        params.proyecto = p.id
+        params.programa = p.id
 
         def asignacion = new Asignacion(params)
         if (asignacion == null) {
@@ -87,20 +87,20 @@ class AsignacionController {
 
     def edit(Asignacion asignacion) {
         def usuario = Usuario.findById(asignacion.usuarioId)
-        def proyecto = Proyecto.findById(asignacion.proyectoId)
+        def programa = Programa.findById(asignacion.programaId)
         def userList = Usuario.findAll()
-        def projectList = Proyecto.findAll()
-        respond asignacion, model:[usuarios:userList, proyectos:projectList, usuario:usuario, proyecto:proyecto]
+        def programList = Programa.findAll()
+        respond asignacion, model:[usuarios:userList, programas:programList, usuario:usuario, programa:programa]
     }
 
     @Transactional
     def update() {
         String[] rutObtenido = ((String) params.nombreUsuario).split(" ・ ");
-        String[] proyectoObtenido = ((String) params.nombreProyecto).split(" ・ ");
+        String[] programaObtenido = ((String) params.nombrePrograma).split(" ・ ");
         def u = Usuario.findByRut(rutObtenido[1])
         params.usuario = u.id
-        def p = Proyecto.findByCodigo(proyectoObtenido[0])
-        params.proyecto = p.id
+        def p = Programa.findByCodigo(programaObtenido[0])
+        params.programa = p.id
 
         def asignacion = Asignacion.get(params.id)
         asignacion.properties = params

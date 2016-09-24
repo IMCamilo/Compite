@@ -32,11 +32,11 @@
                             </div>
                         </div>
                         <div class="col-sm-6">
-                            <div class="fieldcontain required" id="proyectoinputdiv">
-                                <label for="nombreProyecto">Proyecto
+                            <div class="fieldcontain required" id="programainputdiv">
+                                <label for="nombrePrograma">Programa
                                     <span class="required-indicator">*</span>
                                 </label>
-                                <input id="nombreProyecto" class="typeahead" name="nombreProyecto" type="text" required="" placeholder="Busca un proyecto">
+                                <input id="nombrePrograma" class="typeahead" name="nombrePrograma" type="text" required="" placeholder="Busca un programa">
                             </div>
                         </div>
                     </div>
@@ -78,7 +78,7 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="fieldcontain required" id="motivo">
-                                <label for="nombreProyecto">Motivo
+                                <label for="nombrePrograma">Motivo
                                     <span class="required-indicator">*</span>
                                 </label>
                                 <input id="motivo" name="motivo" type="text" required="" placeholder="Motivo de la auditoria">
@@ -117,7 +117,7 @@
                 <tbody>
                     <g:each var="auditoria" status="i" in="${auditoriaList}">
                          <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
-                            <td><a href="show/${auditoria.id}">ver</a></td>
+                            <td><a href="edit/${auditoria.id}">ver</a></td>
                             <td>${auditoria.nombre}</td>
                             <td>${auditoria.motivo}</td>
                             <td>${auditoria.estado}</td>
@@ -157,8 +157,8 @@
                         '${it.nombres} ${it.paterno} ・ ${it.rut}',
                     </g:each>
                 ];
-                var proyectos = [
-                    <g:each in="${proyectos}">
+                var programas = [
+                    <g:each in="${programas}">
                         '${it.codigo} ・ ${it.nombre}',
                     </g:each>
                 ];
@@ -170,13 +170,13 @@
                     name: 'usuarios',
                     source: substringMatcher(usuarios)
                 });
-                $('#proyectoinputdiv .typeahead').typeahead({
+                $('#programainputdiv .typeahead').typeahead({
                     hint: true,
                     highlight: true,
                     minLength: 1
                 }, {
-                    name: 'proyectos',
-                    source: substringMatcher(proyectos)
+                    name: 'programas',
+                    source: substringMatcher(programas)
                 });
             });
         </script>

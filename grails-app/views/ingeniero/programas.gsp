@@ -8,6 +8,7 @@
 </head>
 <body>
 <a href="#list-rendicion" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
+<h1 align="center">Seleccionar una empresa para crear una rendición de movilización</h1>
 <div id="buscar-proyectos" class="content scaffold-list" role="main">
     <form action="busqueda">
         <div class="fieldcontain required" id="proyectoinputdiv">

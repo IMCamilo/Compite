@@ -13,7 +13,7 @@ class Rendicion {
 
     String creadoPor
 
-    static belongsTo = [proyecto:Proyecto, usuario:Usuario]
+    static belongsTo = [programa:Programa, usuario:Usuario]
 
     static hasMany = [detalleAudRen:DetalleAudRen, egreso:Egreso]
 

@@ -16,7 +16,7 @@ class Usuario {
     String creadoPor
     Date fechaCreacion = new Date()
 
-    static hasMany = [rendicion:Rendicion, transporte:Transporte, auditoria:Auditoria, egreso:Egreso, asignacion:Asignacion]
+    static hasMany = [rendicion:Rendicion, transporte:Transporte, auditoria:Auditoria, egreso:Egreso, asignacion:Asignacion, programa:Programa]
 
     static constraints = {
 

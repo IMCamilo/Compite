@@ -24,11 +24,11 @@
                 <fieldset class="form">
                     <div class="col-md-12">
                         <div class="col-sm-6">
-                            <div class="fieldcontain required" id="proyectoinputdiv">
-                                <label for="nombreProyecto">Proyecto
+                            <div class="fieldcontain required" id="programainputdiv">
+                                <label for="nombrePrograma">Programa
                                     <span class="required-indicator">*</span>
                                 </label>
-                                <input value="${proyecto.codigo} ・ ${proyecto.nombre}" id="nombreProyecto" class="typeahead" name="nombreProyecto" type="text" required="" placeholder="Busca un proyecto">
+                                <input value="${programa.codigo} ・ ${programa.nombre}" id="nombrePrograma" class="typeahead" name="nombrePrograma" type="text" required="" placeholder="Busca un programa">
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -95,8 +95,8 @@
                         '${it.nombres} ${it.paterno} ・ ${it.rut}',
                     </g:each>
                 ];
-                var proyectos = [
-                    <g:each in="${proyectos}">
+                var programas = [
+                    <g:each in="${programas}">
                         '${it.codigo} ・ ${it.nombre}',
                     </g:each>
                 ];
@@ -108,13 +108,13 @@
                     name: 'usuarios',
                     source: substringMatcher(usuarios)
                 });
-                $('#proyectoinputdiv .typeahead').typeahead({
+                $('#programainputdiv .typeahead').typeahead({
                     hint: true,
                     highlight: true,
                     minLength: 1
                 }, {
-                    name: 'proyectos',
-                    source: substringMatcher(proyectos)
+                    name: 'programas',
+                    source: substringMatcher(programas)
                 });
             });
         </script>
