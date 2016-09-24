@@ -12,9 +12,8 @@ class Programa {
     Integer centroCosto
     String estado
 
-    static belongsTo = [region:Region, usuario:Usuario]
+    static belongsTo = [region:Region]
     static hasMany = [ proyecto:Proyecto, asignacion:Asignacion, auditoria:Auditoria, egreso:Egreso, rendicion:Rendicion]
-
     static constraints = {
     }
 }
