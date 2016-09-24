@@ -33,12 +33,13 @@ class IngenieroController {
         //si nos pusieramos pulcros usariamos un join.
 
         def proyectos = []
-        listaProgramas.each { item ->
+        listaProgramas.each { proyecto ->
             def result = [:]
-            result.id = item.id
-            result.codigo = item.codigo
-            result.estado = item.estado
-            result.nombre = item.nombre
+            result.id = proyecto.id
+            result.codigo = proyecto.codigo
+            result.estado = proyecto.estado
+            result.nombre = proyecto.nombre
+            result.empresa = proyecto.empresa
             proyectos.add(result)
         }
 

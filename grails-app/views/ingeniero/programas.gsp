@@ -29,6 +29,7 @@
             <th>Seleccionar</th>
             <g:sortableColumn property="codigo" defaultOrder="desc" title="Codigo"/>
             <g:sortableColumn property="nombre" defaultOrder="desc" title="Nombre"/>
+            <th>Empresa</th>
             <g:sortableColumn property="estado" defaultOrder="desc" title="Estado"/>
         </tr>
         </thead>
@@ -38,6 +39,7 @@
                     <td><g:link controller="movilizacion" action="nuevamovilizacion" id="${proyecto.id}">Seleccionar Proyecto</g:link></td>
                     <td>${proyecto.codigo}</td>
                     <td>${proyecto.nombre}</td>
+                    <td>${proyecto.empresa.nombre}</td>
                     <td>${proyecto.estado}</td>
                 </tr>
             </g:each>
