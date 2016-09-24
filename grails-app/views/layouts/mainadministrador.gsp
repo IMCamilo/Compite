@@ -11,7 +11,7 @@
     <g:layoutHead/>
 </head>
 <body>
-
+    
     <div class="navbar navbar-default navbar-static-top" role="navigation">
         <div class="container" style="float: right; margin-right: 0%">
             <div class="navbar-header">
@@ -25,7 +25,7 @@
             <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0.8px;">
                 <ul class="nav navbar-nav navbar-left">
                     <li>
-                        <a href="${createLink(controller:'proyecto', action:'index')}">
+                        <a href="${createLink(controller:'proyecto')}">
                             <i class="fa grails-icon">
                                 <asset:image src="grails-cupsonly-logo-white.svg"/>
                             </i> COMPITE
@@ -34,17 +34,22 @@
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a class="navbar-brand" href="${createLink(controller:'proyecto', action:'index')}">Proyectos</a></li>
-                    <li><a class="navbar-brand" href="${createLink(controller:'transporte', action:'index')}">Transporte</a></li>
-                    <li><a class="navbar-brand" href="${createLink(controller:'empresa', action:'index')}">Empresa</a></li>
-                    <li><a class="navbar-brand" href="${createLink(controller:'asignacion', action:'index')}">Asignación</a></li>
-                    <li><a class="navbar-brand" href="${createLink(controller:'auditoria', action:'index')}">Auditoría</a></li>
-                    <li><a class="navbar-brand" href="${createLink(controller:'usuario', action:'index')}">Usuarios</a></li>
-                    <li><a class="navbar-brand" href="${createLink(controller:'item', action:'index')}">Item</a></li>
-                    <li><a class="navbar-brand" href="${createLink(controller:'rendicion', action:'index')}">Rendición</a></li>
-                    <li><a class="navbar-brand" href="${createLink(controller:'Egreso', action:'index')}">Egreso</a></li>
+                    <li><a class="navbar-brand" href="${createLink(controller:'proyecto')}">Proyectos</a></li>
+                    <li><a class="navbar-brand" href="${createLink(controller:'transporte')}">Transporte</a></li>
+                    <li><a class="navbar-brand" href="${createLink(controller:'empresa')}">Empresa</a></li>
+                    <li><a class="navbar-brand" href="${createLink(controller:'asignacion')}">Asignación</a></li>
+                    <li><a class="navbar-brand" href="${createLink(controller:'auditoria')}">Auditoría</a></li>
+                    <li><a class="navbar-brand" href="${createLink(controller:'usuario')}">Usuarios</a></li>
+                    <li><a class="navbar-brand" href="${createLink(controller:'item')}">Item</a></li>
+                    <li><a class="navbar-brand" href="${createLink(controller:'rendicion')}">Rendición</a></li>
+                    <li><a class="navbar-brand" href="${createLink(controller:'Egreso')}">Egreso</a></li>
                     <li><a class="navbar-brand" href="${createLink(controller:'administrador', action:'reportes')}">Reportes</a></li>
-                    <li><a class="navbar-brand" href="${createLink(controller:'login', action:'logout')}">Cerrar Sesión</a></li>
+                    <li><a class="navbar-brand" href="${createLink(controller:'estadistica')}">Estadísticas</a></li>
+                    <li>
+                        <a class="navbar-brand" href="${createLink(controller:'login', action:'logout')}">
+                            Cerrar sesión ${session.usuarioLogueado.nombres} ${session.usuarioLogueado.paterno}
+                        </a>
+                    </li>
                     <g:pageProperty name="page.nav" />
                 </ul>
             </div>
