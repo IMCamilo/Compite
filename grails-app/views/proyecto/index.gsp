@@ -320,7 +320,7 @@
                 </thead>
                 <tbody>
                     <g:each var="proyecto" status="i" in="${proyectoList}">
-                        <g:if test="${proyecto.rendicion.isEmpty()}">
+                        <g:if test="${!proyecto}">
                             <tr style="background-color: #DF6664">
                                 <td><a href="show/${proyecto.id}">ver</a></td>
                                 <td>${proyecto.codigo}</td>

@@ -27,18 +27,51 @@ class EgresoController {
 
     @Transactional
     def save() {
-        String[] rutObtenido = ((String) params.nombreUsuario).split(" ・ ");
-        String[] programaObtenido = ((String) params.nombrePrograma).split(" ・ ");
-        String[] itemObtenido = ((String) params.nombreItem).split(" ・ ");
-        String[] rendicionObtenido = ((String) params.nombreRendicion).split(" ・ ");
-        def u = Usuario.findByRut(rutObtenido[1])
+        def u = null
+        def p = null
+        def i = null
+        def r = null
+
+        try {
+            String[] rutObtenido = ((String) params.nombreUsuario).split(" ・ ");
+            String[] programaObtenido = ((String) params.nombrePrograma).split(" ・ ");
+            String[] itemObtenido = ((String) params.nombreItem).split(" ・ ");
+            String[] rendicionObtenido = ((String) params.nombreRendicion).split(" ・ ");
+
+            u = Usuario.findByRut(rutObtenido[1])
+            p = Programa.findByCodigo(programaObtenido[0])
+            i = Item.findById(itemObtenido[1])
+            r = Rendicion.findById(rendicionObtenido[1])
+
+        } catch (Exception e) {
+            println "validando asignación. "+e.getMessage()
+        }
+        if (!u && !p && !i && !r) {
+            flash.message = "Debes seleccionar un usuario, un programa, un item y una rendicion para esta rendición"
+            redirect(controller: "egreso", action: "index")
+            return
+        } else if (!u){
+            flash.message = "Debes seleccionar un usuario para esta asignación"
+            redirect(controller: "egreso", action: "index")
+            return
+        } else if (!p){
+            flash.message = "Debes seleccionar un proyecto para esta asignación"
+            redirect(controller: "egreso", action: "index")
+            return
+        } else if (!i){
+            flash.message = "Debes seleccionar un item para esta asignación"
+            redirect(controller: "egreso", action: "index")
+            return
+        } else {
+            flash.message = "Debes seleccionar una rendicion para esta asignación"
+            redirect(controller: "egreso", action: "index")
+            return
+        }
         params.usuario = u.id
-        def p = Programa.findByCodigo(programaObtenido[1])
         params.programa = p.id
-        def i = Item.findById(itemObtenido[1])
         params.item = i.id
-        def r = Rendicion.findById(rendicionObtenido[1])
         params.rendicion = i.id
+
 
         def egreso = new Egreso(params)
 
