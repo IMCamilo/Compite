@@ -8,16 +8,6 @@
 </head>
 <body>
     <a href="#list-rendicion" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-    <!--<h1 align="center">Seleccionar una empresa para crear una rendición de movilización</h1>
-    <div id="buscar-proyectos" class="content scaffold-list" role="main">
-        <form action="busqueda">
-            <div class="fieldcontain required" id="proyectoinputdiv">
-                <label for="tipo">Busqueda de Proyecto<span class="required-indicator">*</span></label>
-                <input class="typeahead" name="nombreProyecto" type="text" required="" placeholder="Busca un proyecto">
-                <input type="button" value="Crear Movilización">
-            </div>
-        </form>
-    </div>-->
 <div id="list-proyectos" class="content scaffold-list" role="main">
     <h1>Listado de Proyectos para Programa: ${nombrePrograma} </h1>
     <g:if test="${flash.message}">
@@ -26,21 +16,24 @@
     <table>
         <thead>
         <tr>
-            <th>Seleccionar</th>
             <g:sortableColumn property="codigo" defaultOrder="desc" title="Codigo"/>
             <g:sortableColumn property="nombre" defaultOrder="desc" title="Nombre"/>
             <th>Empresa</th>
             <g:sortableColumn property="estado" defaultOrder="desc" title="Estado"/>
+            <th>Crear Egreso</th>
         </tr>
         </thead>
         <tbody>
             <g:each var="proyecto" status="i" in="${proyectos}">
                 <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
-                    <td><g:link controller="movilizacion" action="nuevamovilizacion" id="${proyecto.id}">Seleccionar Proyecto</g:link></td>
                     <td>${proyecto.codigo}</td>
                     <td>${proyecto.nombre}</td>
                     <td>${proyecto.empresa.nombre}</td>
                     <td>${proyecto.estado}</td>
+                    <td>
+                        <g:link controller="egreso" action="index" id="${proyecto.id}">Colacion</g:link>
+                        <g:link controller="movilizacion" action="nuevamovilizacion" id="${proyecto.id}">Movilización</g:link>
+                    </td>
                 </tr>
             </g:each>
         </tbody>
