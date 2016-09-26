@@ -31,7 +31,7 @@
                     <td>${proyecto.empresa.nombre}</td>
                     <td>${proyecto.estado}</td>
                     <td>
-                        <g:link controller="egreso" action="index" id="${proyecto.id}">Colacion</g:link>
+                        <g:link controller="egresoIng" action="index" id="${proyecto.id}">Colacion</g:link>
                         <g:link controller="movilizacion" action="nuevamovilizacion" id="${proyecto.id}">Movilización</g:link>
                     </td>
                 </tr>
