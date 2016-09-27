@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta name="layout" content="mainaingeniero" />
+        <meta name="layout" content="mainingeniero" />
         <g:set var="entityName" value="${message(code: 'egreso.label', default: 'Egreso')}" />
         <title><g:message code="default.list.label" args="[entityName]" /></title>
         <asset:stylesheet src="compite/autocomplete.css"/>
@@ -21,13 +21,69 @@
             <g:form action="save">
                 <fieldset class="form">
                     <input type="hidden" name="creadoPor" value="${session.usuarioLogueado.rut}" id="creadoPor"/>
+                    <input type="hidden" name="usuario" value="${session.usuarioLogueado.id}" id="nombreUsuario">
+                    <input type="hidden" name="programa" value="${programaId}" id="idPrograma">
+                    <input type="hidden" name="proyecto" value="${params.id}" id="idProyecto">
+                    <input type="hidden" name="aprobacion" value="NO" id="aprobacion">
                     <div class="col-md-12">
                         <div class="col-sm-6">
                             <div class="fieldcontain required">
                                 <label for="fechaCreacion">Fecha Documento
                                     <span class="required-indicator">*</span>
                                 </label>
-                                <input id="fechaCreacion" type="date" name="fechaCreacion" required="" />
+                                <input name="fechaCreacion" value="date.struct" type="hidden" required="">
+                                <select name="fechaCreacion_day" id="fechaCreacion_day" aria-labelledby="fechaCreacion" required="">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9" selected="selected">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                    <option value="24">24</option>
+                                    <option value="25">25</option>
+                                    <option value="26">26</option>
+                                    <option value="27">27</option>
+                                    <option value="28">28</option>
+                                    <option value="29">29</option>
+                                    <option value="30">30</option>
+                                    <option value="31">31</option>
+                                </select>
+                                <select name="fechaCreacion_month" id="fechaCreacion_month" aria-labelledby="fechaCreacion" required="">
+                                    <option value="1">enero</option>
+                                    <option value="2">febrero</option>
+                                    <option value="3">marzo</option>
+                                    <option value="4">abril</option>
+                                    <option value="5">mayo</option>
+                                    <option value="6">junio</option>
+                                    <option value="7">julio</option>
+                                    <option value="8">agosto</option>
+                                    <option value="9" selected="selected">septiembre</option>
+                                    <option value="10">octubre</option>
+                                    <option value="11">noviembre</option>
+                                    <option value="12">diciembre</option>
+                                </select>
+                                <select name="fechaCreacion_year" id="fechaCreacion_year" aria-labelledby="fechaCreacion" required="">
+                                    <option value="2018">2018</option>
+                                    <option value="2017">2017</option>
+                                    <option value="2016" selected="selected">2016</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -37,7 +93,7 @@
                                 </label>
                                 <select name="tipoDocumento" value="" required="" id="tipoDocumento">
                                     <option value="" disabled selected>Seleccione Documento</option>
-                                    <option value="B0LETA">B0LETA</option>
+                                    <option value="BOLETA">BOLETA</option>
                                     <option value="FACTURA">FACTURA</option>
                                 </select>
                             </div>
@@ -45,70 +101,11 @@
                     </div>
                     <div class="col-md-12">
                         <div class="col-sm-6">
-                            <div class="fieldcontain required" id="usuarioinputdiv">
-                                <label for='nombreUsuario'>Usuario
-                                    <span class='required-indicator'>*</span>
-                                </label>
-                                <input id="nombreUsuario" class="typeahead" name="nombreUsuario" type="text" required="" placeholder="Busca un usuario">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="fieldcontain required" id="programainputdiv">
-                                <label for="nombrePrograma">Programa
-                                    <span class="required-indicator">*</span>
-                                </label>
-                                <input id="nombrePrograma" class="typeahead" name="nombrePrograma" type="text" required="" placeholder="Busca un programa">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="col-sm-6">
-                            <div class="fieldcontain required" id="rendicioninputdiv">
-                                <label for="nombreRendicion">Rendición
-                                    <span class="required-indicator">*</span>
-                                </label>
-                                <input id="nombreRendicion" class="typeahead" name="nombreRendicion" type="text" required="" placeholder="Busca una rendicion">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="fieldcontain required" id="iteminputdiv">
-                                <label for='nombreItem'>Item
-                                    <span class='required-indicator'>*</span>
-                                </label>
-                                <input id="nombreItem" class="typeahead" name="nombreItem" type="text" required="" placeholder="Busca un item">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="col-sm-6">
                             <div class="fieldcontain required">
-                                <label for="rutEmpresa">Rut Empresa
+                                <label for="rut">Rut a Pagar
                                     <span class="required-indicator">*</span>
                                 </label>
-                                <input type="text" id="rutEmpresa" name="rutEmpresa" required oninput="checkRut(this)" placeholder="Ingrese RUT">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="fieldcontain required">
-                                <label for='numeroDocumento'>N° documento
-                                    <span class='required-indicator'>*</span>
-                                </label>
-                                <input type="number" name="numeroDocumento" value="" required="" id="numeroDocumento"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="col-sm-6">
-                            <div class="fieldcontain required">
-                                <label for="tipoMoneda">Tipo Moneda
-                                    <span class="required-indicator">*</span>
-                                </label>
-                                <select name="tipoMoneda" required="" id="tipoMoneda">
-                                    <option value="" disabled selected>Seleccione Moneda</option>
-                                    <option value="clp">Peso Chileno</option>
-                                    <option value="usd">Dolar Americano</option>
-                                    <option value="eur">Euro</option>
-                                </select>
+                                <input name="rutEmpresa" type="text" id="rut" name="rut" required oninput="checkRut(this)" placeholder="Ingrese RUT Empresa" size="10">
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -122,13 +119,46 @@
                     </div>
                     <div class="col-md-12">
                         <div class="col-sm-6">
+                            <div class="fieldcontain required" id="iteminputdiv">
+                                <label for='nombreItem'>Item
+                                    <span class='required-indicator'>*</span>
+                                </label>
+                                <input id="nombreItem" class="typeahead" name="nombreItem" type="text" required="" placeholder="Busca un item">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for='numeroDocumento'>N° documento
+                                    <span class='required-indicator'>*</span>
+                                </label>
+                                <input type="text" name="nDocumento" value="" required="" id="numeroDocumento"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="tipoMoneda">Tipo Moneda
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <select name="tipoMoneda" required="" id="tipoMoneda">
+                                    <option value="" disabled selected>Seleccione Moneda</option>
+                                    <option value="CLP">Peso Chileno</option>
+                                    <option value="USD">Dolar Americano</option>
+                                    <option value="EUR">Euro</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
                             <div class="fieldcontain required">
                                 <label for="monto">Monto
                                     <span class="required-indicator">*</span>
                                 </label>
-                                <input type="number" name="monto" value="" required="" id="monto"/>
+                                <input type="text" name="monto" value="" required="" id="monto" onkeypress="return isNumber(event)"/>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-md-12">
                         <div class="col-sm-6">
                             <div class="fieldcontain required">
                                 <label for='concepto'>Concepto
@@ -216,16 +246,6 @@
                         cb(matches);
                     };
                 };
-                var usuarios = [
-                    <g:each in="${usuarios}">
-                        '${it.nombres} ${it.paterno} ・ ${it.rut}',
-                    </g:each>
-                ];
-                var programas = [
-                    <g:each in="${programas}">
-                        '${it.nombre} ・ ${it.codigo}',
-                    </g:each>
-                ];
                 var rendiciones = [
                     <g:each in="${rendiciones}">
                         '${it.tipoRendicion} - ${formatDate(format:"yyyy/MM/dd", date: it.fecha)} ・ ${it.id}',
@@ -233,25 +253,9 @@
                 ];
                 var items = [
                     <g:each in="${items}">
-                    '${it.nombre} ・ ${it.id}'
+                    '${it.nombre} - ${it.id}'
                     </g:each>
                 ];
-                $('#usuarioinputdiv .typeahead').typeahead({
-                    hint: true,
-                    highlight: true,
-                    minLength: 1
-                }, {
-                    name: 'usuarios',
-                    source: substringMatcher(usuarios)
-                });
-                $('#programainputdiv .typeahead').typeahead({
-                    hint: true,
-                    highlight: true,
-                    minLength: 1
-                }, {
-                    name: 'programas',
-                    source: substringMatcher(programas)
-                });
                 $('#rendicioninputdiv .typeahead').typeahead({
                     hint: true,
                     highlight: true,
