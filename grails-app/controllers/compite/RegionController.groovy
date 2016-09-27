@@ -9,12 +9,13 @@ class RegionController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
+        def region=Region.findAll()
         params.max = Math.min(max ?: 10, 100)
-        respond Region.list(params), model:[regionCount: Region.count()]
+        respond Region.list(params), model:[regionCount: Region.count(), regionList:region]
     }
 
     def show(Region region) {
-        respond region
+        redirect action:"index"
     }
 
     def create() {
@@ -69,9 +70,9 @@ class RegionController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'region.label', default: 'Region'), region.id])
-                redirect region
+                redirect action: "index"
             }
-            '*'{ respond region, [status: OK] }
+            '*'{ redirect(action: "index")}
         }
     }
 

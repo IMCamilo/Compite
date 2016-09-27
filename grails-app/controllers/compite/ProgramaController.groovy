@@ -9,19 +9,17 @@ class ProgramaController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
-        //def programa= Programa.findAll()
-        //def usuario= Usuario.executeQuery("p.id, p.fecha_inicio, p.fecha_fin, p.nombre, p.presupuesto, (select rut from usuario where id=a.usuario_id) from programa p, asignacion a where a.programa_id=p.id")
-        //println "DAtos usuario" +usuario
         params.max = Math.min(max ?: 10, 100)
         respond Programa.list(params), model:[programaCount: Programa.count()]
     }
 
     def show(Programa programa) {
-        respond programa
+        redirect action:"index"
     }
 
     def create() {
-        respond new Programa(params)
+        def region=Region.findAll()
+        respond new Programa(params), model:[region:region]
     }
 
     @Transactional
@@ -72,7 +70,7 @@ class ProgramaController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'programa.label', default: 'Programa'), programa.id])
-                redirect programa
+                redirect action: "index"
             }
             '*'{ respond programa, [status: OK] }
         }

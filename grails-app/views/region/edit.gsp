@@ -29,7 +29,24 @@
             <g:form resource="${this.region}" method="PUT">
                 <g:hiddenField name="version" value="${this.region?.version}" />
                 <fieldset class="form">
-                    <f:all bean="region"/>
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="codigo">Codigo
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input id="codigo" value="${region.codigo}" name="codigo" type="number" max="10" min="1" required="" placeholder="Ingrese un codigo">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required" id="proyectoinputdiv">
+                                <label for="nombre">Nombre
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input type="text"value="${region.nombre}" name="nombre" required="" id="nombre"/>
+                            </div>
+                        </div>
+                    </div>
                 </fieldset>
                 <fieldset class="buttons">
                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
