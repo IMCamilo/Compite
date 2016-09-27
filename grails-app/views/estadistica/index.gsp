@@ -229,7 +229,7 @@
                     }
                 },
                 title: {
-                    text: 'GRAFICO CON ROTACIÓN'
+                    text: 'EGRESOS GENERADOS'
                 },
                 subtitle: {
                     text: 'PRUEBA LAS OPCIONES DE MOVIMIENTOS'
@@ -425,6 +425,7 @@
             </div>
         </div>
     </div>
+
     <div class="row" style="padding-top:2em">
         <div class="col-md-6">
             <div id="proyectospublicosprivados" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
@@ -438,23 +439,7 @@
             <div id="tipoauditorias" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
         </div>
         <div class="col-md-6">
-            <div id="graficoconrotacion" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-            <div id="sliders">
-                <table>
-                    <tr>
-                    	<td>Angulo alfa</td>
-                    	<td><input id="alpha" type="range" min="0" max="45" value="15"/> <span id="alpha-value" class="value"></span></td>
-                    </tr>
-                    <tr>
-                    	<td>Angulo beta</td>
-                    	<td><input id="beta" type="range" min="-45" max="45" value="15"/> <span id="beta-value" class="value"></span></td>
-                    </tr>
-                    <tr>
-                    	<td>Base</td>
-                    	<td><input id="depth" type="range" min="20" max="100" value="50"/> <span id="depth-value" class="value"></span></td>
-                    </tr>
-                </table>
-            </div>
+            <div id="containeregresodoc" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
         </div>
     </div>
     <div class="row">
@@ -466,10 +451,24 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6">
-            <div id="containeregresodoc" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-        </div>
-        <div class="col-md-6">
+        <div class="col-md-12">
+            <div id="graficoconrotacion" style="min-width: 800px; height: 600px; margin: 0 auto"></div>
+            <div id="sliders">
+                <table>
+                    <tr>
+                        <td>Angulo alfa</td>
+                        <td><input id="alpha" type="range" min="0" max="45" value="15"/> <span id="alpha-value" class="value"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Angulo beta</td>
+                        <td><input id="beta" type="range" min="-45" max="45" value="15"/> <span id="beta-value" class="value"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Base</td>
+                        <td><input id="depth" type="range" min="20" max="100" value="50"/> <span id="depth-value" class="value"></span></td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
     <div class="footer" role="contentinfo"></div>
