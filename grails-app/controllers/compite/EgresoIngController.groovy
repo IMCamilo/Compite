@@ -10,6 +10,28 @@ class EgresoIngController {
     private BigInteger usuarioId = session.usuarioLogueado.id
 
     def index(Integer max) {
+        params.max = Math.min(max ?: 10, 100)
+
+        def listaEgresos = Egreso.findAll("from Egreso as e where e.usuario="+usuarioId)
+        def egresos = []
+        listaEgresos.each { egreso ->
+            def result = [:]
+            result.id = egreso.id
+            result.programa = egreso.programa
+            result.concepto = egreso.concepto
+            result.aprobacion = egreso.aprobacion
+            result.tipoMoneda = egreso.tipoMoneda
+            result.monto = egreso.monto
+            result.tipoDocumento = egreso.tipoDocumento
+            result.pagadoA = egreso.pagadoA
+            egresos.add(result)
+        }
+
+        println "egresos: "+egresos
+        [egresos: egresos, egresoCount: Egreso.count()]
+    }
+
+    def crear(Integer max) {
         //def proyectoId = params.id
 
         def buscaPrograma = Asignacion.executeQuery("select a.programa from Asignacion as a where a.usuario="+usuarioId)

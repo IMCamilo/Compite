@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta name="layout" content="mainaingeniero" />
+        <meta name="layout" content="mainingeniero" />
         <g:set var="entityName" value="${message(code: 'egreso.label', default: 'Egreso')}" />
         <title><g:message code="default.edit.label" args="[entityName]" /></title>
         <asset:stylesheet src="compite/autocomplete.css"/>
