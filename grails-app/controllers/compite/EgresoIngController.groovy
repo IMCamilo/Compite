@@ -44,7 +44,7 @@ class EgresoIngController {
     }
 
     def show(Egreso egreso) {
-        respond egreso
+        redirect action:"index"
     }
 
     def create() {
@@ -93,7 +93,7 @@ class EgresoIngController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'egreso.label', default: 'Egreso'), egreso.id])
-                redirect egreso
+                redirect action: "index"
             }
             '*' { respond egreso, [status: CREATED] }
         }
