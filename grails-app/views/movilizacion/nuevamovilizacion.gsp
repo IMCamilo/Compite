@@ -27,51 +27,83 @@
     </g:hasErrors>
     <g:form action="verificar">
         <fieldset class="form">
-            <div class='fieldcontain required'>
-                <label for='motivoEmpresa'>Fecha Documento
-                    <span class='required-indicator'>*</span>
-                </label><input type="date" name="fechain" value="" required="" id="fecha" />
-            </div>
-            <div class='fieldcontain required'>
-                <label for='motivoEmpresa'>Item de movilización
-                    <span class='required-indicator'>*</span>
-                </label>
-                <select name="tipo" class="fieldcontain required">
-                    <option value="combustible">Combustible</option>
-                    <option value="peaje">Peaje</option>
-                    <option value="tag">Tag</option>
-                    <option value="estacionamiento">Estacionamiento</option>
-                </select>
-            </div>
-            <div class='fieldcontain required'>
-                <label for='motivoEmpresa'>Motivo/Empresa
-                    <span class='required-indicator'>*</span>
-                </label><input type="text" name="motivoEmpresa" maxlength="40" value="" required="" id="motivoEmpresa" placeholder="Describa motivo de la movilización"/>
-            </div>
-            <div class='fieldcontain required'>
-                <label for='distancia'>Distancia(kmtrs)/Tiempo(hrs)
-                    <span class='required-indicator'>*</span>
-                </label><input type="number" name="distancia" value="" required="" id="distancia" max="100000" onkeypress="return isNumber(event)" placeholder="Ingrese la distancia total"/>
-            </div>
-            <div class='fieldcontain required'>
-                <label for='direccion'>Direccion
-                    <span class='required-indicator'>*</span>
-                </label><input type="text" name="direccion" value="" required="" id="direccion" maxlength="60" placeholder="Ingrese la dirección"/>
-            </div>
-            <div class='fieldcontain required'>
-                <label for='concepto'>Empresa
-                    <span class='required-indicator'>*</span>
-                </label><input type="text" name="concepto" value="" required="" id="concepto" maxlength="20" placeholder="Empresa a la que se cancela la boleta" />
-            </div>
-            <div class='fieldcontain required'>
-                <label for='concepto'>Total
-                    <span class='required-indicator'>*</span>
-                </label><input type="number" name="precio" value="" required="" id="precio" max="100000" onkeypress="return isNumber(event)" placeholder="Total de boleta"/>
-            </div>
             <input name="creadoPor" value="${session.usuarioLogueado.rut}" required="" type="hidden">
-        </fieldset>
-        <fieldset class="buttons">
-            <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+            <div class="col-md-12">
+                <div class="col-sm-6">
+                    <div class='fieldcontain required'>
+                        <label for='motivoEmpresa'>Fecha Documento
+                            <span class='required-indicator'>*</span>
+                        </label><input type="date" name="fechain" value="" required="" id="fecha" />
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class='fieldcontain required'>
+                        <label for='motivoEmpresa'>Item
+                            <span class='required-indicator'>*</span>
+                        </label>
+                        <select name="tipo" required="" class="fieldcontain required">
+                            <option value="" disabled selected>Seleccione Documento</option>
+                            <option value="combustible">Combustible</option>
+                            <option value="peaje">Peaje</option>
+                            <option value="tag">Tag</option>
+                            <option value="estacionamiento">Estacionamiento</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="col-sm-6">
+                    <div class='fieldcontain required'>
+                        <label for='motivoEmpresa'>Motivo/Empresa
+                            <span class='required-indicator'>*</span>
+                        </label><input type="text" name="motivoEmpresa" maxlength="40" value="" required="" id="motivoEmpresa" placeholder="Describa motivo de la movilización"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="col-sm-6">
+                    <div class='fieldcontain required'>
+                        <label for='direccion'>Direccion
+                            <span class='required-indicator'>*</span>
+                        </label><input type="text" name="direccion" value="" required="" id="direccion" maxlength="60" placeholder="Ingrese la dirección"/>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class='fieldcontain required'>
+                        <label for='concepto'>Empresa
+                            <span class='required-indicator'>*</span>
+                        </label><input type="text" name="concepto" value="" required="" id="concepto" maxlength="20" placeholder="Empresa a la que se cancela la boleta" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="col-sm-6">
+                    <div class='fieldcontain required'>
+                        <label for='concepto'>Total
+                            <span class='required-indicator'>*</span>
+                        </label><input type="text" name="precio" value="" required="" id="precio" max="100000" onkeypress="return isNumber(event)" placeholder="Total de boleta"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="col-sm-6">
+                    <div class='fieldcontain required'>
+                        <label for='distancia'>Distancia(kmtrs)/Tiempo(hrs)
+                            <span class='required-indicator'>*</span>
+                        </label><input type="text" name="distancia" value="" required="" id="distancia" max="100000" onkeypress="return isNumber(event)" placeholder="Ingrese la distancia total"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <br>
+            </div>
+            <div class="col-md-12">
+                <div class="col-sm-1">
+                </div>
+                <div class="col-sm-6">
+                    <g:submitButton name="create" class="save btn btn-success" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+                </div>
+            </div>
         </fieldset>
     </g:form>
 </div>

@@ -132,15 +132,14 @@ class MovilizacionController {
     }
 
     //Crear rendicion de movilizacion personalizada
-    def nuevamovilizacion(Integer id,Integer max){
-        idproyecto=id
-        def proyecto=Proyecto.findById(id)
+    def nuevamovilizacion (Integer id,Integer max) {
+        idproyecto = id
+        def proyecto = Proyecto.findById(id)
         def movs = Movilizacion.executeQuery("from Movilizacion where usuario_id="+usuarioId+"and programa_id="+id)
         println ("IDmovilizacion:"+movs.id)
         params.max = Math.min(max ?: 10, 100)
         [movsList:movs, proyecto: proyecto]
     }
-    //verificacion de boltas por el consumo de combustible
 
     def verificar(){
         if(params.tipo=="combustible"){
