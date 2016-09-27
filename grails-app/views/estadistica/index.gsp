@@ -15,20 +15,13 @@
     <asset:stylesheet src="main.css"/>
     <asset:stylesheet src="mobile.css"/>
     <style type="text/css">
-        #container, #sliders {
-            min-width: 310px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        #container {
-            height: 400px;
+        a:link {
+            text-decoration: none;
         }
     </style>
     <script type="text/javascript">
-        //CONTAINER 1
         $(function () {
             $(document).ready(function () {
-                // Build the chart
                 $('#container1').highcharts({
                     chart: {
                         plotBackgroundColor: null,
@@ -67,9 +60,7 @@
                 });
             });
         });
-        //CONTAINER 2
         $(function () {
-            // Set up the chart
             var chart = new Highcharts.Chart({
                 chart: {
                     renderTo: 'container2',
@@ -102,7 +93,6 @@
                 $('#beta-value').html(chart.options.chart.options3d.beta);
                 $('#depth-value').html(chart.options.chart.options3d.depth);
             }
-            // Activate the sliders
             $('#sliders input').on('input change', function () {
                 chart.options.chart.options3d[this.id] = this.value;
                 showValues();
@@ -110,7 +100,6 @@
             });
             showValues();
         });
-        //CONTAINER 3
         $(function() {
             $('#container3').highcharts({
                 title: {
@@ -159,7 +148,6 @@
                 }]
             });
         });
-        //CONTAINER 4
         $(function () {
             $('#container4').highcharts({
                 chart: {
@@ -282,28 +270,21 @@
             </div>
         </div>
     </div>
-
-    <div id="container1" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-    <div id="container2" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-    <div id="sliders">
-        <table>
-            <tr>
-            	<td>Alpha Angle</td>
-            	<td><input id="alpha" type="range" min="0" max="45" value="15"/> <span id="alpha-value" class="value"></span></td>
-            </tr>
-            <tr>
-            	<td>Beta Angle</td>
-            	<td><input id="beta" type="range" min="-45" max="45" value="15"/> <span id="beta-value" class="value"></span></td>
-            </tr>
-            <tr>
-            	<td>Depth</td>
-            	<td><input id="depth" type="range" min="20" max="100" value="50"/> <span id="depth-value" class="value"></span></td>
-            </tr>
-        </table>
+    <div class="row">
+        <div class="col-md-6">
+            <div id="container1" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+        </div>
+        <div class="col-md-6">
+            <div id="container2" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+        </div>
     </div>
-    <div id="container3" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-    <div id="container4" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-    
+    <div class="row">
+        <div class="col-md-6">
+            <div id="container3" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+        </div>
+        <div class="col-md-6">
+            <div id="container4" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+        </div>
+    </div>
     <div class="footer" role="contentinfo"></div>
-
 </body>
