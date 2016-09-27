@@ -7,14 +7,18 @@ import grails.transaction.Transactional
 class EgresoIngController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    private BigInteger usuarioId = session.usuarioLogueado.id
 
     def index(Integer max) {
-        def userList = Usuario.findAll()
+        //def proyectoId = params.id
+
+        def buscaPrograma = Asignacion.executeQuery("select a.programa from Asignacion as a where a.usuario="+usuarioId)
+        def programa = buscaPrograma[0]
+
         def rendicionList = Rendicion.findAll()
         def itemsList = Item.findAll()
-        def programaList = Programa.findAll()
         params.max = Math.min(max ?: 10, 100)
-        respond Egreso.list(params), model:[egresoCount: Egreso.count(), usuarios:userList, programas:programaList, rendiciones:rendicionList, items:itemsList]
+        respond Egreso.list(params), model:[egresoCount: Egreso.count(), rendiciones:rendicionList, items:itemsList, programaId: programa.id]
     }
 
     def show(Egreso egreso) {
@@ -27,52 +31,27 @@ class EgresoIngController {
 
     @Transactional
     def save() {
-        def u = null
-        def p = null
+        println "Estoy en el save de Egreso Ing"
         def i = null
-        def r = null
 
+        println "params.nombreItem "+params.nombreItem
         try {
-            String[] rutObtenido = ((String) params.nombreUsuario).split(" ・ ");
-            String[] programaObtenido = ((String) params.nombrePrograma).split(" ・ ");
-            String[] itemObtenido = ((String) params.nombreItem).split(" ・ ");
-            String[] rendicionObtenido = ((String) params.nombreRendicion).split(" ・ ");
-
-            u = Usuario.findByRut(rutObtenido[1])
-            p = Programa.findByCodigo(programaObtenido[0])
+            println "Estoy en try"
+            String[] itemObtenido = ((String) params.nombreItem).split("-");
+            println "**************itemObtenido*********** "+itemObtenido[1]
             i = Item.findById(itemObtenido[1])
-            r = Rendicion.findById(rendicionObtenido[1])
-
         } catch (Exception e) {
+            println "Estoy en catch"
             println "validando asignación. "+e.getMessage()
         }
-        if (!u && !p && !i && !r) {
-            flash.message = "Debes seleccionar un usuario, un programa, un item y una rendicion para esta rendición"
-            redirect(controller: "egreso", action: "index")
-            return
-        } else if (!u){
-            flash.message = "Debes seleccionar un usuario para esta asignación"
-            redirect(controller: "egreso", action: "index")
-            return
-        } else if (!p){
-            flash.message = "Debes seleccionar un proyecto para esta asignación"
-            redirect(controller: "egreso", action: "index")
-            return
-        } else if (!i){
+
+        if (!i){
             flash.message = "Debes seleccionar un item para esta asignación"
-            redirect(controller: "egreso", action: "index")
-            return
-        } else {
-            flash.message = "Debes seleccionar una rendicion para esta asignación"
-            redirect(controller: "egreso", action: "index")
+            redirect(controller: "egresoIng", action: "index", id: proyecto)
             return
         }
-        params.usuario = u.id
-        params.programa = p.id
+
         params.item = i.id
-        params.rendicion = i.id
-
-
         def egreso = new Egreso(params)
 
         if (egreso == null) {
