@@ -4,33 +4,36 @@ class EstadisticaController {
 
     def index() {
 
-        def ttlPub = Proyecto.countByTipo('PUBLICO')
-        def ttlPriv = Proyecto.countByTipo('PRIVADO')
-        def qtyProyectos = ttlPub + ttlPriv
-        def percentPub = (ttlPub/qtyProyectos)*100
-        def percentPri = (ttlPriv/qtyProyectos)*100
+        def ret = [:]
+
+        def proyectPub = Proyecto.countByTipo('PUBLICO')
+        def proyectPriv = Proyecto.countByTipo('PRIVADO')
+        def totalProyectos = proyectPub + proyectPriv
+        ret.percentPub = (proyectPub/totalProyectos)*100
+        ret.percentPri = (proyectPriv/totalProyectos)*100
 
         def audAprobada = Auditoria.countByEstado('APROBADA')
         def audRechazada = Auditoria.countByEstado('RECHAZADA')
         def qtyAuditorias = audRechazada + audAprobada
-        def auditoriasAprobadas = (audAprobada/qtyAuditorias)*100
-        def auditoriasRechazadas = (audRechazada/qtyAuditorias)*100
+        ret.auditoriasAprobadas = (audAprobada/qtyAuditorias)*100
+        ret.auditoriasRechazadas = (audRechazada/qtyAuditorias)*100
 
         def qtyEgreso = Egreso.count()
         def egresoBoleta = Egreso.countByTipoDocumento('BOLETA')
         def egresoFactura = Egreso.countByTipoDocumento('FACTURA')
+        ret.boletasEgreso = (egresoBoleta/qtyEgreso)*100
+        ret.facturasEgreso = (egresoFactura/qtyEgreso)*100
 
-        def boletasEgreso = (egresoBoleta/qtyEgreso)*100
-        def facturaEgreso = (egresoFactura/qtyEgreso)*100
+        def audiCompite = Auditoria.executeQuery("select count(*) from Auditoria where programa = 1")
+        def audiInnova = Auditoria.executeQuery("select count(*) from Auditoria where programa = 2")
+        def audiConsultoria = Auditoria.executeQuery("select count(*) from Auditoria where programa = 3")
+        ret.audiCompite = (audiCompite[0]/qtyAuditorias)*100
+        ret.audiInnova = (audiInnova[0]/qtyAuditorias)*100
+        ret.audiConsultoria = (audiConsultoria[0]/qtyAuditorias)*100
+        //Account
 
-        [
-            percentPub: percentPub,
-            percentPri: percentPri,
-            auditoriasAprobadas: auditoriasAprobadas,
-            auditoriasRechazadas: auditoriasRechazadas,
-            boletasEgreso: boletasEgreso,
-            facturasEgreso: facturaEgreso
-        ]
+        ret
+
     }
 
 }

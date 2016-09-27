@@ -29,20 +29,20 @@
     </style>
     <script type="text/javascript">
         $(function () {
-           Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
-               return {
-                   radialGradient: {
-                       cx: 0.5,
-                       cy: 0.3,
-                       r: 0.7
-                   },
-                   stops: [
-                       [0, color],
-                       [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
-                   ]
-               };
-           });
-            $('#container1').highcharts({
+            Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
+                return {
+                    radialGradient: {
+                        cx: 0.5,
+                        cy: 0.3,
+                        r: 0.7
+                    },
+                    stops: [
+                        [0, color],
+                        [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+                    ]
+                };
+            });
+            $('#proyectospublicosprivados').highcharts({
                  chart: {
                      plotBackgroundColor: null,
                      plotBorderWidth: null,
@@ -128,6 +128,52 @@
         });
         $(function () {
             $(document).ready(function () {
+                $('#tipoauditorias').highcharts({
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: 'Programas en Auditorias'
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                                style: {
+                                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                                }
+                            }
+                        }
+                    },
+                    series: [{
+                        name: 'Cantidad',
+                        colorByPoint: true,
+                        data: [{
+                            name: 'COMPITE +1000',
+                            y: ${audiCompite},
+                            sliced: true
+                        }, {
+                            name: 'COMPITE INNOVA',
+                            y: ${audiInnova}
+                        }, {
+                            name: 'CONSULTORÍA',
+                            y: ${audiConsultoria}
+                        }]
+                    }]
+                });
+            });
+        });
+        $(function () {
+            $(document).ready(function () {
                 $('#containeregresodoc').highcharts({
                     chart: {
                         plotBackgroundColor: null,
@@ -172,7 +218,7 @@
         $(function () {
             var chart = new Highcharts.Chart({
                 chart: {
-                    renderTo: 'container2',
+                    renderTo: 'graficoconrotacion',
                     type: 'column',
                     options3d: {
                         enabled: true,
@@ -381,7 +427,7 @@
     </div>
     <div class="row" style="padding-top:2em">
         <div class="col-md-6">
-            <div id="container1" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+            <div id="proyectospublicosprivados" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
         </div>
         <div class="col-md-6">
             <div id="containerauditoriasre" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
@@ -389,22 +435,22 @@
     </div>
     <div class="row" style="padding-top:2em">
         <div class="col-md-6">
-            <div id="container1" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+            <div id="tipoauditorias" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
         </div>
         <div class="col-md-6">
-            <div id="container2" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+            <div id="graficoconrotacion" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
             <div id="sliders">
                 <table>
                     <tr>
-                    	<td>Alpha Angle</td>
+                    	<td>Angulo alfa</td>
                     	<td><input id="alpha" type="range" min="0" max="45" value="15"/> <span id="alpha-value" class="value"></span></td>
                     </tr>
                     <tr>
-                    	<td>Beta Angle</td>
+                    	<td>Angulo beta</td>
                     	<td><input id="beta" type="range" min="-45" max="45" value="15"/> <span id="beta-value" class="value"></span></td>
                     </tr>
                     <tr>
-                    	<td>Depth</td>
+                    	<td>Base</td>
                     	<td><input id="depth" type="range" min="20" max="100" value="50"/> <span id="depth-value" class="value"></span></td>
                     </tr>
                 </table>
