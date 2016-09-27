@@ -58,11 +58,11 @@
                         colorByPoint: true,
                         data: [{
                             name: 'PROYECTOS PUBLICOS',
-                            y: 56,
+                            y: ${percentPub},
                             sliced: true
                         }, {
                             name: 'PROYECTOS PRIVAODS',
-                            y: 44
+                            y: ${percentPri}
                         }]
                     }]
                 });
@@ -278,7 +278,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row" style="padding-top:2em">
         <div class="col-md-6">
             <div id="container1" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
         </div>
