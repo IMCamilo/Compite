@@ -172,7 +172,7 @@
                 <tbody>
                     <g:each var="egreso" status="i" in="${egresoList}">
                          <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
-                            <td><a href="edit/${egreso.id}">ver</a></td>
+                            <td><a href="show/${egreso.id}">ver</a></td>
                              <td>${egreso.programa.nombre}</td>
                             <td>${egreso.concepto}</td>
                             <td>${egreso.aprobacion}</td>
