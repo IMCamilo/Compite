@@ -10,6 +10,11 @@ class EgresoIngController {
     private BigInteger usuarioId = session.usuarioLogueado.id
 
     def index(Integer max) {
+        params.max = Math.min(max ?: 10, 100)
+        respond Egreso.list(params), model:[egresoCount: Egreso.count()]
+    }
+
+    def crear(Integer max) {
         //def proyectoId = params.id
 
         def buscaPrograma = Asignacion.executeQuery("select a.programa from Asignacion as a where a.usuario="+usuarioId)

@@ -34,7 +34,8 @@
 
                 <ul class="nav navbar-nav navbar-right">
                     <li><a class="navbar-brand" href="${createLink(controller:'ingeniero')}">Proyectos</a></li>
-                    <li><a class="navbar-brand" href="${createLink(controller:'egresoMov')}">Egreso Movilizacion</a></li>
+                    <li><a class="navbar-brand" href="${createLink(controller:'egresoIng')}">Egresos</a></li>
+                    <li><a class="navbar-brand" href="${createLink(controller:'egresoMov')}">Movilización</a></li>
                     <li role="presentation" class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                             ${session.usuarioLogueado.nombres} ${session.usuarioLogueado.paterno} <span class="caret"></span>
