@@ -9,8 +9,36 @@ class ProgramaController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond Programa.list(params), model:[programaCount: Programa.count()]
+        def tipo = params.tipoBusqueda
+        def estado = params.estadoBusqueda
+        if (tipo || estado) {
+            println "Realizando busqueda"
+            println "tipo: "+tipo+" estado: "+estado
+            if (tipo && estado) {
+                println "Viene tipo y estado"
+                def listado = Proyecto.findAll("from Proyecto p where p.tipo = ? and p.estado = ?", [tipo, estado])
+                def listaEmpresas = Empresa.findAll()
+                params.max = Math.min(max ?: 10, 100)
+                [programaCount: Programa.count(), empresas:listaEmpresas, proyectoList: listado, tipoContext: tipo, estadoContext: estado]
+            } else if (tipo) {
+                println "Solo viene tipo"
+                def listaProyectos = Proyecto.findAllByTipo(tipo)
+                def listaEmpresas = Empresa.findAll()
+                params.max = Math.min(max ?: 10, 100)
+                [programaCount: Programa.count(), empresas:listaEmpresas, proyectoList: listaProyectos, tipoContext: tipo, estadoContext: null]
+            } else if (estado) {
+                println "Solo viene estado"
+                def listaProyectos = Proyecto.findAllByEstado(estado)
+                def listaEmpresas = Empresa.findAll()
+                params.max = Math.min(max ?: 10, 100)
+                [programaCount: Programa.count(), empresas:listaEmpresas, proyectoList: listaProyectos, tipoContext: null, estadoContext: estado]
+            }
+        } else {
+            println "No vienen parametros"
+            def listaEmpresas = Empresa.findAll()
+            params.max = Math.min(max ?: 10, 100)
+            respond Programa.list(params), model:[programaCount: Programa.count()]
+        }
     }
 
     def show(Programa programa) {
