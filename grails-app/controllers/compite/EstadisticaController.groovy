@@ -16,11 +16,20 @@ class EstadisticaController {
         def auditoriasAprobadas = (audAprobada/qtyAuditorias)*100
         def auditoriasRechazadas = (audRechazada/qtyAuditorias)*100
 
+        def qtyEgreso = Egreso.count()
+        def egresoBoleta = Egreso.countByTipoDocumento('BOLETA')
+        def egresoFactura = Egreso.countByTipoDocumento('FACTURA')
+
+        def boletasEgreso = (egresoBoleta/qtyEgreso)*100
+        def facturaEgreso = (egresoFactura/qtyEgreso)*100
+
         [
-            percentPub:percentPub,
-            percentPri:percentPri,
-            auditoriasAprobadas:auditoriasAprobadas,
-            auditoriasRechazadas:auditoriasRechazadas
+            percentPub: percentPub,
+            percentPri: percentPri,
+            auditoriasAprobadas: auditoriasAprobadas,
+            auditoriasRechazadas: auditoriasRechazadas,
+            boletasEgreso: boletasEgreso,
+            facturasEgreso: facturaEgreso
         ]
     }
 
