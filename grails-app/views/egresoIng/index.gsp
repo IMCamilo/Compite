@@ -8,7 +8,7 @@
     </head>
     <body>
         <div id="list-egreso" class="content scaffold-list" role="main">
-            <h1><g:message code="default.list.label" args="[entityName]" /></h1>
+            <h1>Listado de Egresos</h1>
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
@@ -26,7 +26,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <g:each var="egreso" status="i" in="${egresoList}">
+                    <g:each var="egreso" status="i" in="${egresos}">
                          <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
                             <td><a href="edit/${egreso.id}">ver</a></td>
                              <td>${egreso.programa.nombre}</td>
