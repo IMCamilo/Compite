@@ -18,6 +18,14 @@
         a:link {
             text-decoration: none;
         }
+        #container, #sliders {
+            min-width: 310px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        #container {
+            height: 400px;
+        }
     </style>
     <script type="text/javascript">
         $(function () {
@@ -276,6 +284,22 @@
         </div>
         <div class="col-md-6">
             <div id="container2" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+            <div id="sliders">
+                <table>
+                    <tr>
+                    	<td>Alpha Angle</td>
+                    	<td><input id="alpha" type="range" min="0" max="45" value="15"/> <span id="alpha-value" class="value"></span></td>
+                    </tr>
+                    <tr>
+                    	<td>Beta Angle</td>
+                    	<td><input id="beta" type="range" min="-45" max="45" value="15"/> <span id="beta-value" class="value"></span></td>
+                    </tr>
+                    <tr>
+                    	<td>Depth</td>
+                    	<td><input id="depth" type="range" min="20" max="100" value="50"/> <span id="depth-value" class="value"></span></td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
     <div class="row">

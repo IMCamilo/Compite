@@ -1,16 +1,16 @@
 rutaArchivos:
     carpeta:
         absoluta: ejemplo C:/Users/ElMisifu/Desktop/Grails/compite/archivos/
+
 grails:
     controllers:
         upload:
             maxFileSize: 20000000
             maxRequestSize: 20000000
+
 javamelody:
     disabled: true
-server:
-    port: 9001
---
+
 hibernate:
     cache:
         queries: false
