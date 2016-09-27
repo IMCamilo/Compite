@@ -121,30 +121,33 @@
             <g:sortableColumn property="fechaCreacion" defaultOrder="desc" title="Fecha Creacion"/>
             <g:sortableColumn property="fechaFin" defaultOrder="desc" title="Fecha Finalizacion"/>
             <g:sortableColumn property="tipo" defaultOrder="desc" title="Tipo"/>
+            <g:sortableColumn property="rut" defaultOrder="desc" title="Usuario"/>
         </tr>
         </thead>
         <tbody>
         <g:each var="programa" status="i" in="${programaList}">
             <g:if test="${programa.rendicion.isEmpty()}">
                 <tr style="background-color: #DF6664">
-                    <td><a href="show/${programa.id}">ver</a></td>
+                    <td><a href="edit/${programa.id}">ver/editar</a></td>
                     <td>${programa.codigo}</td>
                     <td>${programa.nombre}</td>
                     <td>${programa.estado}</td>
                     <td>${formatDate(format:"dd/MM/yyyy", date: programa.fechaInicio)}</td>
                     <td>${formatDate(format:"dd/MM/yyyy", date: programa.fechaFin)}</td>
                     <td>${programa.tipo}</td>
+                    <td>${programa.asignacion.usuario.rut}</td>
                 </tr>
             </g:if>
             <g:else>
                 <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
-                    <td><a href="show/${programa.id}">ver</a></td>
+                    <td><a href="edit/${programa.id}">ver/editar</a></td>
                     <td>${programa.codigo}</td>
                     <td>${programa.nombre}</td>
                     <td>${programa.estado}</td>
                     <td>${formatDate(format:"dd/MM/yyyy", date: programa.fechaInicio)}</td>
                     <td>${formatDate(format:"dd/MM/yyyy", date: programa.fechaFin)}</td>
                     <td>${programa.tipo}</td>
+                    <td>${programa.asignacion.usuario.rut}</td>
                 </tr>
             </g:else>
         </g:each>
@@ -154,6 +157,10 @@
         <g:paginate total="${programaCount ?: 0}" />
     </div>
 </div>
+    <div id="list-programa" class="content scaffold-list" role="main" style="border-top: 1px solid #009688">
+
+
+    </div>
 <asset:javascript src="compite/jquery-2.1.1.min.js"/>
 <asset:javascript src="compite/typeahead.bundle.js"/>
 <script>

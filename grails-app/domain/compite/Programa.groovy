@@ -5,8 +5,8 @@ class Programa {
     String nombre
     Integer presupuesto
     String tipo
-    Date fechaInicio
-    Date fechaFin
+    Date fechaInicio= new Date()
+    Date fechaFin= new Date()
     Integer duracion
     Integer version
     Integer centroCosto

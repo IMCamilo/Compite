@@ -180,4 +180,11 @@ class EgresoController {
             '*'{ render status: NOT_FOUND }
         }
     }
+    def adherir(){
+        respond Egreso.list(params)
+    }
+    def recepcion(){
+        println "Estos son los datos recibidos"+params.selec
+        redirect(action: "adherir")
+    }
 }

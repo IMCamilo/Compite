@@ -99,7 +99,7 @@
                 <tbody>
                     <g:each var="item" status="i" in="${itemList}">
                          <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
-                            <td><a href="item/show/${item.id}">ver</a></td>
+                            <td><a href="show/${item.id}">ver</a></td>
                             <td>${item.nombre}</td>
                             <td>$ ${item.valor}</td>
                             <td>${item.itemPresupuestario}</td>
