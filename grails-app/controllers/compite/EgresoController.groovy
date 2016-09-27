@@ -183,8 +183,32 @@ class EgresoController {
     def adherir(){
         respond Egreso.list(params)
     }
+
     def recepcion(){
         println "Estos son los datos recibidos"+params.selec
         redirect(action: "adherir")
+    }
+
+    @Transactional
+    def aprobar () {
+        params.aprobacion = "SI"
+        def egreso = Egreso.get(params.id)
+        egreso.properties = params
+
+        if (egreso == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        if (egreso.hasErrors()) {
+            transactionStatus.setRollbackOnly()
+            respond egreso.errors, view:'show', id: egreso.id
+            return
+        }
+
+        egreso.save flush:true, failOnError: true
+        flash.message = "Aprobado Correctamente"
+        redirect (controller: "egreso", action: "show", id: egreso.id)
     }
 }
