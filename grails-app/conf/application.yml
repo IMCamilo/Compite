@@ -8,8 +8,6 @@ grails:
             maxRequestSize: 200000000
 javamelody:
     disabled: true
-server:
-    port: 9001
 
 hibernate:
     cache:
