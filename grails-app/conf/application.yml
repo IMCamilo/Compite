@@ -9,9 +9,6 @@ grails:
 javamelody:
     disabled: true
 
-server:
-    port: 9001
-
 hibernate:
     cache:
         queries: false
