@@ -15,9 +15,9 @@ class EstadisticaController {
         def proyectCompite1000 = Proyecto.executeQuery("select count(*) from Proyecto where programa = 1")
         def proyectCompiteInnova = Proyecto.executeQuery("select count(*) from Proyecto where programa = 2")
         def proyectConsultoria = Proyecto.executeQuery("select count(*) from Proyecto where programa = 3")
-        ret.percentCompite1000 = (proyectCompite1000[0]/totalProyectos)*100
-        ret.percentCompiteInnova = (proyectCompiteInnova[0]/totalProyectos)*100
-        ret.percentConsultoria = (proyectConsultoria[0]/totalProyectos)*100
+        ret.percentCompite1000 = (((proyectCompite1000[0]/totalProyectos)*100) as double).round(2)
+        ret.percentCompiteInnova = (((proyectCompiteInnova[0]/totalProyectos)*100) as double).round(2)
+        ret.percentConsultoria = (((proyectConsultoria[0]/totalProyectos)*100) as double).round(2)
 
         def audAprobada = Auditoria.countByEstado('APROBADA')
         def audRechazada = Auditoria.countByEstado('RECHAZADA')
