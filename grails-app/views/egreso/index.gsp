@@ -30,6 +30,7 @@
                     <g:sortableColumn property="monto" defaultOrder="desc" title="Monto"/>
                     <g:sortableColumn property="tipoDocumento" defaultOrder="desc" title="Tipo Documento"/>
                     <g:sortableColumn property="pagadoA" defaultOrder="desc" title="Pagado a"/>
+                    <g:sortableColumn property="usuario" defaultOrder="desc" title="Rendido Por"/>
                     <th>Seleccionar</th>
                 </tr>
                 </thead>
@@ -54,6 +55,7 @@
                         <td>$ ${egreso.monto}</td>
                         <td>${egreso.tipoDocumento}</td>
                         <td>${egreso.pagadoA}</td>
+                        <td>${egreso.usuario.nombres} ${egreso.usuario.paterno} ${egreso.usuario.materno}</td>
                         <td>
                             <g:if test="${egreso.aprobacion == "SI"}">
                                 <input type="checkbox" id="egresoId" name="egresoIds[]" value="${egreso.id}"/>
