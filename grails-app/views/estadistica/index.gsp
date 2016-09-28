@@ -229,18 +229,46 @@
                     }
                 },
                 title: {
-                    text: 'GRAFICO CON ROTACIÓN'
+                    text: 'Programas en Proyectos'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.y}%</b>'
                 },
                 subtitle: {
-                    text: 'PRUEBA LAS OPCIONES DE MOVIMIENTOS'
+                    text: 'Compite +1000 - Compite Innova - Consultaria'
                 },
                 plotOptions: {
                     column: {
                         depth: 25
                     }
                 },
+                xAxis: {
+                    categories: ['COMPITE +1000', 'COMPITE INNOVA', 'CONSULTORIA']
+                },
+                yAxis: {
+                    title: {
+                        text: 'Total en proyectos'
+                    },
+                    plotLines: [{
+                        value: 0,
+                        width: 1,
+                        color: '#808080'
+                    }]
+                },
                 series: [{
-                    data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+                    name: 'Programas',
+                    colorByPoint: true,
+                    data: [{
+                        name: 'Compite +1000',
+                        y: ${percentCompite1000},
+                        sliced: true
+                    }, {
+                        name: 'Compite Innova',
+                        y: ${percentCompiteInnova}
+                    }, {
+                        name: 'Consultoria',
+                        y: ${percentConsultoria}
+                    }]
                 }]
             });
             function showValues() {
@@ -256,22 +284,22 @@
             showValues();
         });
         $(function() {
-            $('#container3').highcharts({
+            $('#propyectospormes').highcharts({
                 title: {
-                    text: 'Monthly Average Temperature',
+                    text: 'Proyectos Publicos y Privados',
                     x: -20 //center
                 },
                 subtitle: {
-                    text: 'Source: WorldClimate.com',
+                    text: 'Proyectos por mes',
                     x: -20
                 },
                 xAxis: {
-                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                    categories: ['ENERO', 'FEBRERO', 'MARZO', 'ABRIL', 'MAYO', 'JUNIO',
+                        'JULIO', 'AGOSTO', 'SEPTIEMBRE', 'OCTUBRE', 'NOVIEMBRE', 'DICIEMBRE']
                 },
                 yAxis: {
                     title: {
-                        text: 'Temperature (°C)'
+                        text: 'Cantidad por mes'
                     },
                     plotLines: [{
                         value: 0,
@@ -280,7 +308,7 @@
                     }]
                 },
                 tooltip: {
-                    valueSuffix: '°C'
+                    valueSuffix: ' Proyectos'
                 },
                 legend: {
                     layout: 'vertical',
@@ -289,17 +317,11 @@
                     borderWidth: 0
                 },
                 series: [{
-                    name: 'Tokyo',
-                    data: [10.0, 6.9, 9.5, 14.5, 11.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+                    name: 'Publicos',
+                    data: [10, 6, 9, 14, 11, 21, 25, 26, 23, 18, 13, 9]
                 }, {
-                    name: 'New York',
-                    data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
-                }, {
-                    name: 'Berlin',
-                    data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
-                }, {
-                    name: 'London',
-                    data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+                    name: 'Privados',
+                    data: [1, 2, 3, 11, 17, 22, 24, 24, 20, 14, 8, 2]
                 }]
             });
         });
@@ -425,6 +447,7 @@
             </div>
         </div>
     </div>
+
     <div class="row" style="padding-top:2em">
         <div class="col-md-6">
             <div id="proyectospublicosprivados" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
@@ -438,38 +461,36 @@
             <div id="tipoauditorias" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
         </div>
         <div class="col-md-6">
-            <div id="graficoconrotacion" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-            <div id="sliders">
-                <table>
-                    <tr>
-                    	<td>Angulo alfa</td>
-                    	<td><input id="alpha" type="range" min="0" max="45" value="15"/> <span id="alpha-value" class="value"></span></td>
-                    </tr>
-                    <tr>
-                    	<td>Angulo beta</td>
-                    	<td><input id="beta" type="range" min="-45" max="45" value="15"/> <span id="beta-value" class="value"></span></td>
-                    </tr>
-                    <tr>
-                    	<td>Base</td>
-                    	<td><input id="depth" type="range" min="20" max="100" value="50"/> <span id="depth-value" class="value"></span></td>
-                    </tr>
-                </table>
-            </div>
+            <div id="containeregresodoc" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6">
-            <div id="container3" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+            <div id="propyectospormes" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
         </div>
         <div class="col-md-6">
             <div id="container4" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6">
-            <div id="containeregresodoc" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-        </div>
-        <div class="col-md-6">
+        <div class="col-md-12">
+            <div id="graficoconrotacion" style="min-width: 800px; height: 600px; margin: 0 auto"></div>
+            <div id="sliders">
+                <table>
+                    <tr>
+                        <td>Angulo alfa</td>
+                        <td><input id="alpha" type="range" min="0" max="45" value="15"/> <span id="alpha-value" class="value"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Angulo beta</td>
+                        <td><input id="beta" type="range" min="-45" max="45" value="15"/> <span id="beta-value" class="value"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Base</td>
+                        <td><input id="depth" type="range" min="20" max="100" value="50"/> <span id="depth-value" class="value"></span></td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
     <div class="footer" role="contentinfo"></div>

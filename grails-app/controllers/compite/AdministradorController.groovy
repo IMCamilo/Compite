@@ -25,8 +25,18 @@ class AdministradorController {
 
     def reportes = {
         def projectList = Proyecto.findAll()
-        respond Asignacion.list(params), model:[proyectos:projectList]
+        def programaList = Programa.findAll()
+        def usuarioList = Usuario.findAll()
+        def egresoList = Egreso.findAll()
+        def itemList = Item.findAll()
+        def rendicionList = Rendicion.findAll()
 
+        respond Egreso.list(params), model:[proyectos:projectList, programas:programaList,
+                                            usuarios:usuarioList,egreso:egresoList,
+                                            item:itemList, rendicion:rendicionList]
+
+
+        String[] nombrePrograma
     }
     def cargarperfil(){
         redirect (controller: "administrador", action: "perfil", id: usuarioId)
