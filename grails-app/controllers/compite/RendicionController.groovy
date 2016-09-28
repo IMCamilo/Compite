@@ -25,29 +25,8 @@ class RendicionController {
 
     @Transactional
     def save() {
-        def u = null
-        def p = null
-        try {
-            String[] rutObtenido = ((String) params.nombreUsuario).split(" ・ ");
-            String[] programaObtenido = ((String) params.nombrePrograma).split(" ・ ");
-            u = Usuario.findByRut(rutObtenido[1])
-            p = Programa.findByCodigo(programaObtenido[0])
-        } catch (Exception e) {
-            println "validando asignación. "+e.getMessage()
-        }
-        if (!u && !p) {
-            flash.message = "Debes seleccionar un usuario y un programa para esta asignación"
-            redirect(controller: "asignacion", action: "index")
-            return
-        } else if (!u){
-            flash.message = "Debes seleccionar un usuario para esta asignación"
-            redirect(controller: "asignacion", action: "index")
-            return
-        } else {
-            flash.message = "Debes seleccionar un programa para esta asignación"
-            redirect(controller: "asignacion", action: "index")
-            return
-        }
+        println "Estoy en el save de Rendicion"
+        println "estos son los parametros "+params
         params.usuario = u.id
         params.programa = p.id
 
@@ -150,5 +129,64 @@ class RendicionController {
             }
             '*'{ render status: NOT_FOUND }
         }
+    }
+
+    def crearRendicion () {
+        println "Estoy en crearRendicion en Rendicion"
+        def egresos =  params.egresos
+
+        params.sedeEnvio = "Puerto Montt"
+        params.tipoRendicion = "Reembolso de gastos"
+        params.aprobacion = "NO"
+        params.creadoPor = "admin"
+        params.totalRendido = 1000
+        params.total = 1000
+        params.usuario = 1
+        params.programa = 1
+        def rendicion = new Rendicion(params)
+
+        if (rendicion == null) {
+            println "Rendicion es null, no se puede guardar"
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        if (rendicion.hasErrors()) {
+            println "Rendicion tiene errores, no se puede guardar"
+            println "Esto es rendicion: "+rendicion
+            transactionStatus.setRollbackOnly()
+            respond rendicion.errors, view:'index'
+            return
+        }
+
+        rendicion.save flush:true, failOnError:true
+        actualizaRendicionEnEgreso(rendicion.id, egresos)
+
+        //redirect (controller: "rendicion", action: "save", params: [egresos: egresos])
+    }
+
+    @Transactional
+    def actualizaRendicionEnEgreso (rendicionId, egresos) {
+        println "Estoy en actualizaRendicionEnEgreso"
+        println "este es el id de la rendicion: "+rendicionId
+
+        String [] arrayEgresos = egresos.split(",")
+        for (int i = 0; i < arrayEgresos.length; i++) {
+            println "Egreso "+i+" :"+arrayEgresos[i]
+
+            params.rendicion = rendicionId
+            params.aprobacion = "SI"
+            def egreso = Egreso.get(arrayEgresos[i])
+            println "Esto es el egreso: "+egreso
+            egreso.properties = params
+
+            egreso.save flush:true, failOnError: true
+            println "actualizado ok"
+        }
+
+        println "todo actualizado OK"
+        flash.message = "Rendicion creada correctamente"
+        redirect (controller: "rendicion", action: "show", id: rendicionId)
     }
 }

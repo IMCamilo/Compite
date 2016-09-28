@@ -191,8 +191,10 @@ class EgresoController {
 
     @Transactional
     def aprobar () {
+        println "Estoy aprobando el egreso"
         params.aprobacion = "SI"
         def egreso = Egreso.get(params.id)
+        println "Esto es el egreso: "+egreso
         egreso.properties = params
 
         if (egreso == null) {
@@ -210,5 +212,11 @@ class EgresoController {
         egreso.save flush:true, failOnError: true
         flash.message = "Aprobado Correctamente"
         redirect (controller: "egreso", action: "show", id: egreso.id)
+    }
+
+    def crearRendicion () {
+        println "Estoy en crearRendicion en Egreso"
+        def egresos =  params.egresos
+        redirect (controller: "rendicion", action: "crearRendicion", params: [egresos: egresos])
     }
 }

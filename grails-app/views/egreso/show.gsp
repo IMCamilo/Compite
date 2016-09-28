@@ -96,6 +96,7 @@
             </g:each>
             <g:form resource="${this.egreso}" method="DELETE">
                 <fieldset class="buttons">
+                    <g:link class="list" action="index">Volver al Listado</g:link>
                     <g:if test="${egreso.aprobacion == "NO"}">
                         <g:link action="aprobar" resource="${this.egreso}"><g:message code="default.button.aprobar.label" default="Aprobar" /></g:link>
                     </g:if>
