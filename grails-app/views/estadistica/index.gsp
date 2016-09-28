@@ -331,10 +331,10 @@
                     type: 'area'
                 },
                 title: {
-                    text: 'US and USSR nuclear stockpiles'
+                    text: 'Proyectos Publicos y Privados',
                 },
                 subtitle: {
-                    text: 'Source'
+                    text: 'Meses año 2016',
                 },
                 xAxis: {
                     allowDecimals: false,
@@ -346,7 +346,7 @@
                 },
                 yAxis: {
                     title: {
-                        text: 'Nuclear weapon states'
+                        text: 'Cantidad por mes'
                     },
                     labels: {
                         formatter: function () {
@@ -354,23 +354,12 @@
                         }
                     }
                 },
-                tooltip: {
-                    pointFormat: '{series.name} produced <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
+                xAxis: {
+                    categories: ['ENERO', 'FEBRERO', 'MARZO', 'ABRIL', 'MAYO', 'JUNIO',
+                        'JULIO', 'AGOSTO', 'SEPTIEMBRE', 'OCTUBRE', 'NOVIEMBRE', 'DICIEMBRE']
                 },
-                plotOptions: {
-                    area: {
-                        pointStart: 1940,
-                        marker: {
-                            enabled: false,
-                            symbol: 'circle',
-                            radius: 2,
-                            states: {
-                                hover: {
-                                    enabled: true
-                                }
-                            }
-                        }
-                    }
+                tooltip: {
+                    pointFormat: '{series.name} <b>{point.y:,.0f}</b><br/> {point.x}'
                 },
                 series: [{
                     name: 'Publicos',
