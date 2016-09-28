@@ -229,18 +229,46 @@
                     }
                 },
                 title: {
-                    text: 'EGRESOS GENERADOS'
+                    text: 'Programas en Proyectos'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.y}%</b>'
                 },
                 subtitle: {
-                    text: 'PRUEBA LAS OPCIONES DE MOVIMIENTOS'
+                    text: 'Compite +1000 - Compite Innova - Consultaria'
                 },
                 plotOptions: {
                     column: {
                         depth: 25
                     }
                 },
+                xAxis: {
+                    categories: ['COMPITE +1000', 'COMPITE INNOVA', 'CONSULTORIA']
+                },
+                yAxis: {
+                    title: {
+                        text: 'Total en proyectos'
+                    },
+                    plotLines: [{
+                        value: 0,
+                        width: 1,
+                        color: '#808080'
+                    }]
+                },
                 series: [{
-                    data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+                    name: 'Programas',
+                    colorByPoint: true,
+                    data: [{
+                        name: 'Compite +1000',
+                        y: ${percentCompite1000},
+                        sliced: true
+                    }, {
+                        name: 'Compite Innova',
+                        y: ${percentCompiteInnova}
+                    }, {
+                        name: 'Consultoria',
+                        y: ${percentConsultoria}
+                    }]
                 }]
             });
             function showValues() {
