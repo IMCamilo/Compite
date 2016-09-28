@@ -38,12 +38,12 @@
                     <li><a class="navbar-brand" href="${createLink(controller:'transporte')}">Transporte</a></li>
                     <li><a class="navbar-brand" href="${createLink(controller:'empresa')}">Empresa</a></li>
                     <li><a class="navbar-brand" href="${createLink(controller:'asignacion')}">Asignación</a></li>
-                    <li><a class="navbar-brand" href="${createLink(controller:'auditoria')}">Auditoría</a></li>
                     <li><a class="navbar-brand" href="${createLink(controller:'usuario')}">Usuarios</a></li>
                     <li><a class="navbar-brand" href="${createLink(controller:'item')}">Item</a></li>
-                    <li><a class="navbar-brand" href="${createLink(controller:'rendicion')}">Rendición</a></li>
-                    <li><a class="navbar-brand" href="${createLink(controller:'Egreso')}">Egreso</a></li>
+                    <li><a class="navbar-brand" href="${createLink(controller:'Egreso')}">Egresos</a></li>
+                    <li><a class="navbar-brand" href="${createLink(controller:'rendicion')}">Rendiciones</a></li>
                     <li><a class="navbar-brand" href="${createLink(controller:'administrador', action:'reportes')}">Reportes</a></li>
+                    <li><a class="navbar-brand" href="${createLink(controller:'auditoria')}">Auditoría</a></li>
                     <li><a class="navbar-brand" href="${createLink(controller:'estadistica')}">Estadísticas</a></li>
                     <li role="presentation" class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">

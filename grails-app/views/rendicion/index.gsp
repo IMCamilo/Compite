@@ -7,7 +7,7 @@
         <asset:stylesheet src="compite/autocomplete.css"/>
     </head>
     <body>
-        <div id="create-rendicion" class="content scaffold-create" role="main">
+        <%--<div id="create-rendicion" class="content scaffold-create" role="main">
             <h1><g:message code="default.create.label" args="[entityName]"/></h1>
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
@@ -39,7 +39,7 @@
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}"/>
                 </fieldset>
             </g:form>
-        </div>
+        </div>--%>
         <div id="list-rendicion" class="content scaffold-list" role="main">
             <h1><g:message code="default.list.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
