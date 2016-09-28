@@ -58,11 +58,11 @@
                         <td>${egreso.pagadoA}</td>
                         <td>${egreso.usuario.nombres} ${egreso.usuario.paterno} ${egreso.usuario.materno}</td>
                         <g:if test="${egreso.rendicion == null}">
-                            <td></td>
+                            <td><div align="center">-</div></td>
                         </g:if>
                         <g:else>
                             <td>
-                                <div align="center">Nº ${egreso.rendicion.id}</div>
+                                <div align="center"><g:link target="_blank" controller="rendicion" action="show" id="${egreso.rendicion.id}">Nº ${egreso.rendicion.id}</g:link></div>
                             </td>
                         </g:else>
                         <td>

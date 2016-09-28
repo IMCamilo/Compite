@@ -1,5 +1,7 @@
 package compite
 
+import java.math.RoundingMode
+
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
@@ -135,13 +137,27 @@ class RendicionController {
         println "Estoy en crearRendicion en Rendicion"
         def egresos =  params.egresos
 
+        /*Sumamos los montos de los egresos*/
+        def total = BigDecimal.ZERO
+        String [] arrayEgresos = egresos.split(",")
+        for (int i = 0; i < arrayEgresos.length; i++) {
+            println "Egreso "+i+" :"+arrayEgresos[i]
+            def queryMonto = Egreso.executeQuery("select e.monto from Egreso as e where e.id="+arrayEgresos[i])
+            def monto = queryMonto[0]
+            total = total + monto
+        }
+
+        //Traemos el usuario de los Egresos
+        def queryUsuario = Egreso.executeQuery("select e.usuario from Egreso as e where e.id="+arrayEgresos[0])
+        def usuario = queryUsuario[0]
+
         params.sedeEnvio = "Puerto Montt"
         params.tipoRendicion = "Reembolso de gastos"
         params.aprobacion = "NO"
         params.creadoPor = "admin"
-        params.totalRendido = 1000
-        params.total = 1000
-        params.usuario = 1
+        params.totalRendido = total
+        params.total = total
+        params.usuario = usuario.id
         params.programa = 1
         def rendicion = new Rendicion(params)
 

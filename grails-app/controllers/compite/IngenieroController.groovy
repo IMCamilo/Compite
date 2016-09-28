@@ -43,7 +43,7 @@ class IngenieroController {
             proyectos.add(result)
         }
 
-        println "proyectos: "+proyectos
+        //println "proyectos: "+proyectos
         [proyectos:proyectos, nombrePrograma: nombrePrograma]
     }
 
