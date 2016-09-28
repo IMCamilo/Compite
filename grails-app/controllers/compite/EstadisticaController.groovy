@@ -30,7 +30,6 @@ class EstadisticaController {
         ret.audiCompite = (audiCompite[0]/qtyAuditorias)*100
         ret.audiInnova = (audiInnova[0]/qtyAuditorias)*100
         ret.audiConsultoria = (audiConsultoria[0]/qtyAuditorias)*100
-        //Account
 
         ret
 
