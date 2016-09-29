@@ -32,7 +32,7 @@
                             <label for="nombre">Código
                                 <span class="required-indicator">*</span>
                             </label>
-                            <input name="codigo" required="" id="codigo" type="text" maxlength="1" placeholder="Código del Programa" onkeypress="return soloNumeros(event)">
+                            <input name="codigo" required="" id="codigo" type="number" min="1" max="9" maxlength="1" placeholder="Código del Programa">
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -194,7 +194,7 @@
                             <label for="version">Versión
                                 <span class="required-indicator">*</span>
                             </label>
-                            <input id="version" type="text" name="version" maxlength="1" required="" onkeypress="return soloNumeros(event)">
+                            <input id="version" name="version" type="number" min="1" max="9" maxlength="1" required="">
                         </div>
                     </div>
                     <div class="col-sm-6">

@@ -51,11 +51,14 @@ class ProgramaController {
     def save() {
         /*
         Centro de costo es:
-            1er número = región
+            1er código = región
             2do número = código del programa
             3er número = versión del programa
         */
-        def centroCosto = params.region + params.codigo + params.version
+        def buscaCodigoRegion = Region.executeQuery("select codigo from Region where id="+params.region)
+        def codigoRegion = buscaCodigoRegion[0]
+
+        def centroCosto = codigoRegion + params.codigo + params.version
         params.centroCosto = centroCosto
         def programa = new Programa(params)
 
