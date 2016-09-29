@@ -35,7 +35,27 @@
                                 <label for="tipo">Tipo
                                     <span class="required-indicator">*</span>
                                 </label>
-                                <input name="tipo" required="" placeholder="Nombre tipo empresa Ej: Software" maxlength="15" id="tipo" type="text">
+                                <select name="tipo" value="" required="" id="tipo">
+                                    <option value="" disabled selected>Seleccione Tipo</option>
+                                    <option value="Agricultura, Ganadería, Caza y Silvicultura">Agricultura, Ganadería, Caza y Silvicultura</option>
+                                    <option value="Pesca">Pesca</option>
+                                    <option value="Explotación de Minas y Canteras">Explotación de Minas y Canteras</option>
+                                    <option value="Industrias Manufactureras No Metálicas">Industrias Manufactureras No Metálicas</option>
+                                    <option value="Industrias Manufactureras Metálicas">Industrias Manufactureras Metálicas</option>
+                                    <option value="Suministro de Electricidad, Gas y Agua">Suministro de Electricidad, Gas y Agua</option>
+                                    <option value="Construcción">Construcción</option>
+                                    <option value="Comercio al por Mayor y Menor, Rep. Veh. Automotores">Comercio al por Mayor y Menor, Rep. Veh. Automotores</option>
+                                    <option value="Hoteles y Restaurantes">Hoteles y Restaurantes</option>
+                                    <option value="Transporte, Almacenamiento y Comunicaciones">Transporte, Almacenamiento y Comunicaciones</option>
+                                    <option value="Intermediación Financiera">Intermediación Financiera</option>
+                                    <option value="Actividades Inmobiliarias, Empresariales y de Alquiler">Actividades Inmobiliarias, Empresariales y de Alquiler</option>
+                                    <option value="Adm. Publica y Defensa, Planes de Seg. Social">Adm. Publica y Defensa, Planes de Seg. Social</option>
+                                    <option value="Enseñanza">Enseñanza</option>
+                                    <option value="Servicios Sociales y de Salud">Servicios Sociales y de Salud</option>
+                                    <option value="Otras Actividades de Servicios Comunitarias, Sociales y Personales">Otras Act. de Servicios Comunitarias, Sociales y Personales</option>
+                                    <option value="Consejo De Administración de Edificios y Condominios">Consejo De Administración de Edificios y Condominios</option>
+                                    <option value="Organizaciones Y Órganos Extraterritoriales">Organizaciones Y Órganos Extraterritoriales</option>
+                                </select>
                             </div>
                         </div>
                     </div>

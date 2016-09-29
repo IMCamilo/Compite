@@ -11,33 +11,31 @@ class ProyectoController {
     def index(Integer max) {
         def tipo = params.tipoBusqueda
         def estado = params.estadoBusqueda
+        def listaProgramas = Programa.findAllByEstado("ACTIVO")
+        def listaEmpresas = Empresa.findAll()
         if (tipo || estado) {
             println "Realizando busqueda"
             println "tipo: "+tipo+" estado: "+estado
             if (tipo && estado) {
                 println "Viene tipo y estado"
                 def listado = Proyecto.findAll("from Proyecto p where p.tipo = ? and p.estado = ?", [tipo, estado])
-                def listaEmpresas = Empresa.findAll()
                 params.max = Math.min(max ?: 10, 100)
-                [proyectoCount: Proyecto.count(), empresas:listaEmpresas, proyectoList: listado, tipoContext: tipo, estadoContext: estado]
+                [proyectoCount: Proyecto.count(), proyectoList: listado, tipoContext: tipo, estadoContext: estado, programas:listaProgramas, empresas:listaEmpresas]
             } else if (tipo) {
                 println "Solo viene tipo"
                 def listaProyectos = Proyecto.findAllByTipo(tipo)
-                def listaEmpresas = Empresa.findAll()
                 params.max = Math.min(max ?: 10, 100)
-                [proyectoCount: Proyecto.count(), empresas:listaEmpresas, proyectoList: listaProyectos, tipoContext: tipo, estadoContext: null]
+                [proyectoCount: Proyecto.count(), proyectoList: listaProyectos, tipoContext: tipo, estadoContext: null, programas:listaProgramas, empresas:listaEmpresas]
             } else if (estado) {
                 println "Solo viene estado"
                 def listaProyectos = Proyecto.findAllByEstado(estado)
-                def listaEmpresas = Empresa.findAll()
                 params.max = Math.min(max ?: 10, 100)
-                [proyectoCount: Proyecto.count(), empresas:listaEmpresas, proyectoList: listaProyectos, tipoContext: null, estadoContext: estado]
+                [proyectoCount: Proyecto.count(), proyectoList: listaProyectos, tipoContext: null, estadoContext: estado, programas:listaProgramas, empresas:listaEmpresas]
             }
         } else {
             println "No vienen parametros"
-            def listaEmpresas = Empresa.findAll()
             params.max = Math.min(max ?: 10, 100)
-            respond Proyecto.list(params), model:[proyectoCount: Proyecto.count(), empresas:listaEmpresas]
+            respond Proyecto.list(params), model:[proyectoCount: Proyecto.count(), programas:listaProgramas, empresas:listaEmpresas]
         }
     }
 
@@ -53,7 +51,7 @@ class ProyectoController {
 
     @Transactional
     def save() {
-        String[] empresaObtenida = ((String) params.nombreEmpresa).split(" ・ ");
+        String[] empresaObtenida = ((String) params.nombreEmpresa).split(" - ");
         params.empresa = empresaObtenida[1]
 
         def proyecto = new Proyecto(params)
