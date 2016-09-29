@@ -73,11 +73,11 @@
                      colorByPoint: true,
                      data: [{
                          name: 'PUBLICOS',
-                         y: ${percentPub},
+                         y: ${totalPublicos},
                          sliced: true
                      }, {
                          name: 'PRIVADOS',
-                         y: ${percentPri}
+                         y: ${totalPrivados}
                      }]
                  }]
              });
@@ -264,7 +264,7 @@
                         sliced: true
                     }, {
                         name: 'Compite Innova',
-                        y: ${percentCompiteInnova}
+                        y: ${percentCompiteInnova},
                     }, {
                         name: 'Consultoria',
                         y: ${percentConsultoria}
