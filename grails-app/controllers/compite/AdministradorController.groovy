@@ -24,19 +24,31 @@ class AdministradorController {
     }
 
     def reportes = {
-        def projectList = Proyecto.findAll()
-        def programaList = Programa.findAll()
-        def usuarioList = Usuario.findAll()
-        def egresoList = Egreso.findAll()
-        def itemList = Item.findAll()
-        def rendicionList = Rendicion.findAll()
 
-        respond Egreso.list(params), model:[proyectos:projectList, programas:programaList,
-                                            usuarios:usuarioList,egreso:egresoList,
-                                            item:itemList, rendicion:rendicionList]
+        def program = Programa.findAll()
+        respond Programa.list(params) , model:[programas:program]
+
+        try
+        {
+            String[] codigoPrograma = ((String) params.nombrePrograma).split(" ・ ")
+            def projectList = Proyecto.findAll()
+            def programaList = Programa.findAll()
+            def usuarioList = Usuario.findAll()
+            def egresoList = Egreso.executeQuery("from Egreso e, Programa p where p.nombre = :nombre ",[nombre:codigoPrograma[0]])
+            def itemList = Item.findAll()
+            def rendicionList = Rendicion.findAll()
+
+            respond Egreso.list(params), model:[proyectos:projectList, programas:programaList,
+                                                usuarios:usuarioList,egreso:egresoList,
+                                                item:itemList, rendicion:rendicionList]
+        }
+        catch (Exception e)
+        {
+            println (e)
+        }
 
 
-        String[] nombrePrograma
+
     }
     def cargarperfil(){
         redirect (controller: "administrador", action: "perfil", id: usuarioId)
