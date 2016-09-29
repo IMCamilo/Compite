@@ -441,7 +441,7 @@
             <div id="containeregresodoc" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
         </div>
     </div>
-    <div class="row">
+    <div class="row" style="padding-top:2em">
         <div class="col-md-6">
             <div id="propyectospormes" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
         </div>
@@ -449,7 +449,7 @@
             <div id="container4" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
         </div>
     </div>
-    <div class="row">
+    <div class="row" style="padding-top:2em">
         <div class="col-md-12">
             <div id="graficoconrotacion" style="min-width: 400px; height: 600px; margin: 0 auto"></div>
             <div id="sliders">
