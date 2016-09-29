@@ -43,8 +43,8 @@ class BootStrap {
         }
 
         if (!Region.list()) {
-            new Region(nombre:"Puerto Montt", codigo: 1).save(failOnError: true)
-            new Region(nombre:"Temuco", codigo: 2).save(failOnError: true)
+            new Region(nombre:"Puerto Montt", codigo: 3).save(failOnError: true)
+            new Region(nombre:"Temuco", codigo: 5).save(failOnError: true)
         }
         if (!Programa.list()) {
             new Programa(codigo: "2", nombre: "Compite +1000", region:1, presupuesto: 12000000, fechaInicio: "2016-09-01 11:49:00.0", fechaFin: "2017-07-01 11:49:00.0", estado: "ACTIVO", tipo: "PRIVADO", duracion:10, version:1, centroCosto: 321, creadoPor: "admin").save(failOnError: true)
