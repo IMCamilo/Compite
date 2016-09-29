@@ -22,10 +22,10 @@ class EgresoMovController {
             println "id programa :" + idprograma
             def movs = Movilizacion.executeQuery("from Movilizacion where usuario_id=" + usuarioId + "and programa_id=" + idprograma)
             def egre= EgresoMov.findByMovilizacion(movs);
+            def item= Item.findAll()
             println "egreso con movilizacion" +egre
-            def egresoList = Egreso.findAll()
             params.max = Math.min(max ?: 10, 100)
-            respond Egreso.list(params), model: [movsList: movs]
+            respond Egreso.list(params), model: [movsList: movs, items:item, programaId:idprograma]
 
         }
     }
@@ -166,24 +166,22 @@ class EgresoMovController {
         }
     }
     def admovs(){
-        guardaregreso(){
-            def i = null
+            def it = null
 
-            println "params.nombreItem "+params.nombreItem
             try {
                 String[] itemObtenido = ((String) params.nombreItem).split("-");
-                i = Item.findById(itemObtenido[1])
+                it = Item.findById(itemObtenido[1])
             } catch (Exception e) {
                 println "validando asignación. "+e.getMessage()
             }
 
-            if (!i){
+            if (!it){
                 flash.message = "Debes seleccionar un item para esta asignación"
                 redirect(controller: "EgresoMov", action: "index")
                 return
             }
 
-            params.item = i.id
+            params.item = it.id
             def egreso = new Egreso(params)
 
             if (egreso == null) {
@@ -203,26 +201,23 @@ class EgresoMovController {
             request.withFormat {
                 form multipartForm {
                     flash.message = message(code: 'default.created.message', args: [message(code: 'egreso.label', default: 'Egreso'), egreso.id])
-                    redirect action: "index"
                 }
                 '*' { respond egreso, [status: CREATED] }
             }
-        }
-        def egreso= Egreso.executeQuery("select e.id from egreso as e where e.id=max")
-        println "grabando egresoMov...."
+
+        def buscaEgreso= Egreso.executeQuery("select max(id) from Egreso")
+        def egre= buscaEgreso[0]
+        println "grabando egresoMov...."+egre
         Integer i=0
 
         while(i<params.in.size()) {
             def movilizacion=params.in[i]
             println("Seleccion de parametros : " + params.in[i])
-            Integer e=Integer.parseInt(eg)
+            Integer e= egre
             Integer m=Integer.parseInt(movilizacion)
             println "movilizacion numero del integer :"+movilizacion
-            println "eee" +e
-            println "mmm" +m
             params.egreso = e
             params.movilizacion = m
-
             def egresoMov = new EgresoMov(params)
 
             if (egresoMov == null) {
@@ -241,7 +236,7 @@ class EgresoMovController {
 
             i++
         }
-        redirect(controller:"egresoMov", action: "index")
+        redirect controller:"egresoMov", action: "index"
 
     }
 }

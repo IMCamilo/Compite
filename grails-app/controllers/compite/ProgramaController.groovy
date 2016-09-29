@@ -49,8 +49,13 @@ class ProgramaController {
 
     @Transactional
     def save() {
+        /*
+        Centro de costo es:
+            1er número = región
+            2do número = código del programa
+            3er número = versión del programa
+        */
         def centroCosto = params.region + params.codigo + params.version
-        println "este es el centro de costo: "+centroCosto
         params.centroCosto = centroCosto
         def programa = new Programa(params)
 
@@ -74,8 +79,6 @@ class ProgramaController {
             }
             '*' { respond programa, [status: CREATED] }
         }
-        //flash.message = "Programa creado correctamente"
-        //redirect (controller: "programa", action: "index")
     }
 
     def edit(Programa programa) {

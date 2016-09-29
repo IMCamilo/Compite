@@ -32,7 +32,7 @@
                     <td>${proyecto.estado}</td>
                     <td>
                         <g:link controller="egresoIng" action="crear" id="${proyecto.id}">Egreso</g:link>
-                        <g:link controller="movilizacion" action="nuevamovilizacion" id="${proyecto.id}">Movilización</g:link>
+                        <g:link controller="EgresoMov" action="index" id="${proyecto.id}">EgresoMov</g:link>
                     </td>
                 </tr>
             </g:each>
