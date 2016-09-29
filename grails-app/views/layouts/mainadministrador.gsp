@@ -34,6 +34,7 @@
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
+                    <li><a class="navbar-brand" href="${createLink(controller:'programa')}">Programas</a></li>
                     <li><a class="navbar-brand" href="${createLink(controller:'proyecto')}">Proyectos</a></li>
                     <li><a class="navbar-brand" href="${createLink(controller:'transporte')}">Transporte</a></li>
                     <li><a class="navbar-brand" href="${createLink(controller:'empresa')}">Empresa</a></li>
