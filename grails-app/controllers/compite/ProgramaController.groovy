@@ -11,33 +11,30 @@ class ProgramaController {
     def index(Integer max) {
         def tipo = params.tipoBusqueda
         def estado = params.estadoBusqueda
+        def listaRegiones = Region.findAll()
         if (tipo || estado) {
             println "Realizando busqueda"
             println "tipo: "+tipo+" estado: "+estado
             if (tipo && estado) {
                 println "Viene tipo y estado"
-                def listado = Proyecto.findAll("from Proyecto p where p.tipo = ? and p.estado = ?", [tipo, estado])
-                def listaEmpresas = Empresa.findAll()
+                def listado = Programa.findAll("from Programa p where p.tipo = ? and p.estado = ?", [tipo, estado])
                 params.max = Math.min(max ?: 10, 100)
-                [programaCount: Programa.count(), empresas:listaEmpresas, proyectoList: listado, tipoContext: tipo, estadoContext: estado]
+                [programaCount: Programa.count(), regiones:listaRegiones, programaList: listado, tipoContext: tipo, estadoContext: estado]
             } else if (tipo) {
                 println "Solo viene tipo"
-                def listaProyectos = Proyecto.findAllByTipo(tipo)
-                def listaEmpresas = Empresa.findAll()
+                def listaProgramas = Programa.findAllByTipo(tipo)
                 params.max = Math.min(max ?: 10, 100)
-                [programaCount: Programa.count(), empresas:listaEmpresas, proyectoList: listaProyectos, tipoContext: tipo, estadoContext: null]
+                [programaCount: Programa.count(), regiones:listaRegiones, programaList: listaProgramas, tipoContext: tipo, estadoContext: null]
             } else if (estado) {
                 println "Solo viene estado"
-                def listaProyectos = Proyecto.findAllByEstado(estado)
-                def listaEmpresas = Empresa.findAll()
+                def listaProgramas = Programa.findAllByEstado(estado)
                 params.max = Math.min(max ?: 10, 100)
-                [programaCount: Programa.count(), empresas:listaEmpresas, proyectoList: listaProyectos, tipoContext: null, estadoContext: estado]
+                [programaCount: Programa.count(), regiones:listaRegiones, programaList: listaProgramas, tipoContext: null, estadoContext: estado]
             }
         } else {
             println "No vienen parametros"
-            def listaEmpresas = Empresa.findAll()
             params.max = Math.min(max ?: 10, 100)
-            respond Programa.list(params), model:[programaCount: Programa.count()]
+            respond Programa.list(params), model:[programaCount: Programa.count(), regiones:listaRegiones, ]
         }
     }
 
@@ -46,12 +43,17 @@ class ProgramaController {
     }
 
     def create() {
-        def region=Region.findAll()
+        def region = Region.findAll()
         respond new Programa(params), model:[region:region]
     }
 
     @Transactional
-    def save(Programa programa) {
+    def save() {
+        def centroCosto = params.region + params.codigo + params.version
+        println "este es el centro de costo: "+centroCosto
+        params.centroCosto = centroCosto
+        def programa = new Programa(params)
+
         if (programa == null) {
             transactionStatus.setRollbackOnly()
             notFound()
@@ -64,8 +66,7 @@ class ProgramaController {
             return
         }
 
-        programa.save flush:true
-
+        programa.save flush:true, failOnError: true
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'programa.label', default: 'Programa'), programa.id])
@@ -73,6 +74,8 @@ class ProgramaController {
             }
             '*' { respond programa, [status: CREATED] }
         }
+        //flash.message = "Programa creado correctamente"
+        //redirect (controller: "programa", action: "index")
     }
 
     def edit(Programa programa) {

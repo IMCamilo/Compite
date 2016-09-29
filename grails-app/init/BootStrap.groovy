@@ -44,11 +44,12 @@ class BootStrap {
 
         if (!Region.list()) {
             new Region(nombre:"Puerto Montt", codigo: 1).save(failOnError: true)
+            new Region(nombre:"Temuco", codigo: 2).save(failOnError: true)
         }
         if (!Programa.list()) {
-            new Programa(codigo: "2",nombre: "Compite +1000", region:1, presupuesto: 12000000, fechaInicio: "2016-09-01 11:49:00.0", fechaFin: "2017-07-01 11:49:00.0", estado: "ACTIVO", tipo: "PRIVADO",duracion:10, version:1, centroCosto: 321, usuario: 1, creadoPor: "admin").save(failOnError: true)
-            new Programa(codigo: "4",nombre: "Compite Innova", region:1, presupuesto: 15000000, fechaInicio: "2016-09-01 11:49:00.0", fechaFin: "2017-07-01 11:49:00.0", estado: "ACTIVO", tipo: "PUBLICO",duracion:10, version:1, centroCosto: 341, usuario: 1, creadoPor: "admin").save(failOnError: true)
-            new Programa(codigo: "5",nombre: "Consultoría", region:1, presupuesto: 11500000, fechaInicio: "2016-08-01 11:49:00.0", fechaFin: "2017-06-01 11:49:00.0", estado: "ACTIVO", tipo: "PUBLICO",duracion:10, version:1, centroCosto: 351, usuario: 2, creadoPor: "admin").save(failOnError: true)
+            new Programa(codigo: "2", nombre: "Compite +1000", region:1, presupuesto: 12000000, fechaInicio: "2016-09-01 11:49:00.0", fechaFin: "2017-07-01 11:49:00.0", estado: "ACTIVO", tipo: "PRIVADO", duracion:10, version:1, centroCosto: 321, creadoPor: "admin").save(failOnError: true)
+            new Programa(codigo: "4", nombre: "Compite Innova", region:1, presupuesto: 15000000, fechaInicio: "2016-09-01 11:49:00.0", fechaFin: "2017-07-01 11:49:00.0", estado: "ACTIVO", tipo: "PUBLICO", duracion:10, version:1, centroCosto: 341, creadoPor: "admin").save(failOnError: true)
+            new Programa(codigo: "5", nombre: "Consultoría", region:1, presupuesto: 11500000, fechaInicio: "2016-08-01 11:49:00.0", fechaFin: "2017-06-01 11:49:00.0", estado: "ACTIVO", tipo: "PUBLICO", duracion:10, version:1, centroCosto: 351, creadoPor: "admin").save(failOnError: true)
         }
 
         if (!Proyecto.list()) {
