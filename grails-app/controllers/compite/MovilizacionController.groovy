@@ -6,7 +6,7 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class MovilizacionController {
     private BigInteger usuarioId = session.usuarioLogueado.id
-    static Integer idproyecto;
+    Integer idprograma;
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
@@ -132,13 +132,22 @@ class MovilizacionController {
     }
 
     //Crear rendicion de movilizacion personalizada
-    def nuevamovilizacion (Integer id,Integer max) {
-        idproyecto = id
-        def proyecto = Proyecto.findById(id)
-        def movs = Movilizacion.executeQuery("from Movilizacion where usuario_id="+usuarioId+"and programa_id="+id)
-        println ("IDmovilizacion:"+movs.id)
-        params.max = Math.min(max ?: 10, 100)
-        [movsList:movs, proyecto: proyecto]
+    def nuevamovilizacion (Integer max) {
+        def ide = Asignacion.executeQuery("from Asignacion as p where p.usuario="+usuarioId)
+        def programa = ide[0]
+        idprograma=programa.id
+        if(idprograma==null){
+            println "id programa nulo :"+idprograma
+            redirect controller: "ingeniero", action: "index"
+            flash.message="No tienes un programa, comuniquese con el administrador"
+        }else {
+            println "id programa :" + idprograma
+            def program = Programa.findById(idprograma)
+            def movs = Movilizacion.executeQuery("from Movilizacion where usuario_id=" + usuarioId + "and programa_id=" + idprograma)
+            println("IDmovilizacion:" + movs.id)
+            params.max = Math.min(max ?: 10, 100)
+            [movsList: movs, programa: program]
+        }
     }
 
     def verificar(){
@@ -146,7 +155,7 @@ class MovilizacionController {
             def kmsxlitro= Transporte.find("from Transporte where usuario_id="+usuarioId)
             if (kmsxlitro==null){
                 println ("no tiene vehiculo en el sistema")
-                redirect (controller:"movilizacion", action: "nuevamovilizacion", id:idproyecto)
+                redirect (controller:"movilizacion", action: "nuevamovilizacion", id:idprograma)
                 flash.message="No tiene vehiculo en el sistema"
             }else {
                 Integer combustible=700
@@ -163,7 +172,7 @@ class MovilizacionController {
                 if(preciocal*0.7<=precio&&precio<=preciocal*1.3){
                     return guardar()
                 }else{
-                    redirect (controller:"movilizacion", action: "nuevamovilizacion", id:idproyecto)
+                    redirect (controller:"movilizacion", action: "nuevamovilizacion", id:idprograma)
                     flash.message= "El precio de la boletaexcede el máximo o mínimo"
                 }
             }
@@ -175,7 +184,7 @@ class MovilizacionController {
     }
     def guardar(){
         params.usuario=usuarioId
-        params.proyecto=idproyecto
+        params.programa=idprograma
 
         def movilizacion = new Movilizacion(params)
 
@@ -196,7 +205,7 @@ class MovilizacionController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'movilizacion.label', default: 'Movilizacion'), movilizacion.id])
-                redirect (controller:"movilizacion", action: "nuevamovilizacion", id:idproyecto)
+                redirect (controller:"movilizacion", action: "nuevamovilizacion", id:idprograma)
             }
             '*' { respond movilizacion, [status: CREATED] }
         }
@@ -208,7 +217,7 @@ class MovilizacionController {
     }
     def editguardar(){
         params.usuario=usuarioId
-        params.proyecto=idproyecto
+        params.proyecto=idprograma
         def movilizacion = Movilizacion.get(params.id)
         movilizacion.properties = params
 
@@ -229,7 +238,7 @@ class MovilizacionController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'movilizacion.label', default: 'Movilizacion'), movilizacion.id])
-                redirect (controller:"movilizacion", action: "nuevamovilizacion", id:idproyecto)
+                redirect (controller:"movilizacion", action: "nuevamovilizacion", id:idprograma)
             }
             '*'{ respond movilizacion, [status: OK] }
         }

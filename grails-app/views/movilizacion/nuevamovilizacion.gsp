@@ -108,7 +108,7 @@
     </g:form>
 </div>
 <div id="list-movilizacion" class="content scaffold-list" role="main">
-    <h1>Lista de movilizacion para proyecto: ${proyecto.nombre}</h1>
+    <h1>Lista de movilizacion para proyecto: </h1>
     <table>
         <thead>
         <tr>
