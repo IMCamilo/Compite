@@ -52,7 +52,16 @@ class ProyectoController {
     @Transactional
     def save() {
         String[] empresaObtenida = ((String) params.nombreEmpresa).split(" - ");
-        params.empresa = empresaObtenida[1]
+        def buscaEmpresa = Empresa.findAllByNombre(empresaObtenida[0])
+        if (!buscaEmpresa) {
+            "Empresa mala"
+            transactionStatus.setRollbackOnly()
+            flash.message = "Empresa no corresponde"
+            redirect (controller: "proyecto", action: "index")
+            return
+        } else {
+            params.empresa = empresaObtenida[1]
+        }
 
         def proyecto = new Proyecto(params)
         if (proyecto == null) {

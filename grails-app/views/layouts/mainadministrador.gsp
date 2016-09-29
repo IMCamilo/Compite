@@ -11,7 +11,6 @@
     <g:layoutHead/>
 </head>
 <body>
-    
     <div class="navbar navbar-default navbar-static-top" role="navigation">
         <div class="container" style="float: right; margin-right: 0%">
             <div class="navbar-header">
