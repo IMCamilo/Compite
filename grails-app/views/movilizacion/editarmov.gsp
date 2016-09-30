@@ -137,7 +137,7 @@
                             <label for='concepto'>Concepto
                                 <span class='required-indicator'>*</span>
                             </label>
-                            <input value="${movilizacion.concepto}" type="text" name="concepto" required="" id="concepto" maxlength="20" placeholder="Empresa a la que se cancela la boleta" />
+                            <input value="${movilizacion.concepto}" type="text" name="concepto" required="" id="concepto" maxlength="20" placeholder="Ingrese el Concepto" />
                         </div>
                     </div>
                     <div class="col-sm-6">
