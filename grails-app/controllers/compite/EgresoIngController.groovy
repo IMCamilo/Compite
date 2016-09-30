@@ -9,6 +9,7 @@ class EgresoIngController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
     private BigInteger usuarioId = session.usuarioLogueado.id
     Integer idprograma
+
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
 
@@ -27,8 +28,12 @@ class EgresoIngController {
             egresos.add(result)
         }
 
-        println "egresos: "+egresos
+        //println "egresos: "+egresos
         [egresos: egresos, egresoCount: Egreso.count()]
+    }
+
+    def show(Egreso egreso) {
+        respond egreso
     }
 
     def crear(Integer max) {
@@ -40,10 +45,6 @@ class EgresoIngController {
         def itemsList = Item.findAll()
         params.max = Math.min(max ?: 10, 100)
         respond Egreso.list(params), model:[egresoCount: Egreso.count(), rendiciones:rendicionList, items:itemsList, programaId: programa.id]
-    }
-
-    def show(Egreso egreso) {
-        redirect action:"index"
     }
 
     def create() {
@@ -100,30 +101,19 @@ class EgresoIngController {
 
     def edit(Egreso egreso) {
         def usuario = Usuario.findById(egreso.usuarioId)
-        def item = Item.findById(egreso.programaId)
-        def rendicion = Rendicion.findById(egreso.programaId)
+        def item = Item.findById(egreso.itemId)
         def programa = Programa.findById(egreso.programaId)
-        def userList = Usuario.findAll()
-        def rendicionList = Rendicion.findAll()
         def itemsList = Item.findAll()
-        def programaList = Programa.findAll()
-        respond egreso, model:[usuarios:userList, programas:programaList, rendiciones:rendicionList, items:itemsList, usuario:usuario, item:item, rendicion:rendicion, programa:programa]
+        respond egreso, model:[items:itemsList, usuario:usuario, item:item, programa:programa]
     }
 
     @Transactional
     def update() {
-        String[] rutObtenido = ((String) params.nombreUsuario).split(" ・ ");
-        String[] programaObtenido = ((String) params.nombrePrograma).split(" ・ ");
-        String[] itemObtenido = ((String) params.nombreItem).split(" ・ ");
-        String[] rendicionObtenido = ((String) params.nombreRendicion).split(" ・ ");
-        def u = Usuario.findByRut(rutObtenido[1])
-        params.usuario = u.id
-        def p = Programa.findByCodigo(programaObtenido[1])
-        params.programa = p.id
+        println "Estoy en el update de Egreso Ing"
+        println "Esto es params: "params
+        String[] itemObtenido = ((String) params.nombreItem).split(" - ");
         def i = Item.findById(itemObtenido[1])
         params.item = i.id
-        def r = Rendicion.findById(rendicionObtenido[1])
-        params.rendicion = i.id
 
         def egreso = Egreso.get(params.id)
         egreso.properties = params

@@ -7,17 +7,10 @@
         <asset:stylesheet src="compite/autocomplete.css"/>
     </head>
     <body>
-        <a href="#edit-egreso" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-        <div class="nav" role="navigation">
-            <ul>
-                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-            </ul>
-        </div>
         <div id="edit-egreso" class="content scaffold-edit" role="main">
             <h1><g:message code="default.edit.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
-            <div class="message" role="status">${flash.message}</div>
+                <div class="message" role="status">${flash.message}</div>
             </g:if>
             <g:hasErrors bean="${this.egreso}">
             <ul class="errors" role="alert">
@@ -27,72 +20,112 @@
             </ul>
             </g:hasErrors>
             <g:form resource="${this.egreso}" method="PUT">
-                <g:hiddenField name="version" value="${this.egreso?.version}" />
                 <fieldset class="form">
-                    <div class="fieldcontain required">
-                        <label for="tipoDocumento">Tipo Documento<span class="required-indicator">*</span></label>
-                        <select name="tipoDocumento" value="" required="" id="tipoDocumento">
-                            <option value="" disabled selected>Seleccione Documento</option>
-                            <option value="B0LETA">B0LETA</option>
-                            <option value="FACTURA">FACTURA</option>
-                        </select>
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="fechaCreacion">Fecha Documento
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <g:datePicker id="fechaCreacion" name="fechaCreacion" value="${egreso.fechaCreacion}" precision="day" years="${2016..2018}"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="tipoDocumento">Tipo Documento
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <select name="tipoDocumento" value="" required="" id="tipoDocumento">
+                                    <g:if test="${egreso.tipoDocumento == "BOLETA"}">
+                                        <option value="BOLETA" selected>BOLETA</option>
+                                    </g:if>
+                                    <g:else>
+                                        <option value="FACTURA" selected>FACTURA</option>
+                                    </g:else>
+                                    <option value="${egreso.tipoDocumento}">---</option>
+                                    <option value="BOLETA">BOLETA</option>
+                                    <option value="FACTURA">FACTURA</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                    <div class="fieldcontain required" id="usuarioinputdiv">
-                        <label for="usuario">Usuario<span class="required-indicator">*</span></label>
-                        <input class="typeahead" name="nombreUsuario" value="${usuario.nombres} ${usuario.paterno} ・ ${usuario.rut}" type="text" required="" placeholder="Busca un usuario">
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="rutEmpresa">Rut a Pagar
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input value="${egreso.rutEmpresa}" name="rutEmpresa" type="text" id="rutEmpresa" required oninput="checkRut(this)" placeholder="Ingrese RUT Empresa" size="10">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for='pagadoA'>Pagado a
+                                    <span class='required-indicator'>*</span>
+                                </label>
+                                <input value="${egreso.pagadoA}" type="text" name="pagadoA" required="" id="pagadoA"/>
+                            </div>
+                        </div>
                     </div>
-                    <div class="fieldcontain required" id="programainputdiv">
-                        <label for="tipo">Programa<span class="required-indicator">*</span></label>
-                        <input class="typeahead" name="nombrePrograma" value="${programa.nombre} ・ ${programa.codigo}" type="text" required="" placeholder="Busca un programa">
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required" id="iteminputdiv">
+                                <label for='nombreItem'>Item
+                                    <span class='required-indicator'>*</span>
+                                </label>
+                                <input value="${item.nombre} - ${item.id}" id="nombreItem" class="typeahead" name="nombreItem" type="text" required="" placeholder="Busca un item">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for='numeroDocumento'>N° documento
+                                    <span class='required-indicator'>*</span>
+                                </label>
+                                <input value="${egreso.nDocumento}" type="text" name="nDocumento" value="" required="" id="numeroDocumento"/>
+                            </div>
+                        </div>
                     </div>
-                    <div class="fieldcontain required" id="rendicioninputdiv">
-                        <label for="rendicion">Rendicion<span class="required-indicator">*</span></label>
-                        <input class="typeahead" name="nombreRendicion" value="${rendicion.tipoRendicion} - ${formatDate(format:"yyyy/MM/dd", date: rendicion.fecha)} ・ ${rendicion.id}" type="text" required="" placeholder="Busca una rendicion">
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="tipoMoneda">Tipo Moneda
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <select name="tipoMoneda" required="" id="tipoMoneda">
+                                    <g:if test="${egreso.tipoMoneda == "CLP"}">
+                                        <option value="CLP" selected>Peso Chileno</option>
+                                    </g:if>
+                                    <g:elseif test="${egreso.tipoMoneda == "USD"}">
+                                        <option value="USD" selected>Dolar Americano</option>
+                                    </g:elseif>
+                                    <g:else>
+                                        <option value="EUR" selected>Euro</option>
+                                    </g:else>
+                                    <option value="${egreso.tipoMoneda}">---</option>
+                                    <option value="CLP">Peso Chileno</option>
+                                    <option value="USD">Dolar Americano</option>
+                                    <option value="EUR">Euro</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="monto">Monto
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input value="${egreso.monto}" type="text" name="monto" required="" id="monto" onkeypress="return isNumber(event)"/>
+                            </div>
+                        </div>
                     </div>
-                    <div class="fieldcontain required" id="iteminputdiv">
-                        <label for="item">Item<span class="required-indicator">*</span></label>
-                        <input class="typeahead" name="nombreItem" value="${item.nombre} ・ ${item.id}" type="text" required="" placeholder="Busca un item">
-                    </div>
-                    <div class='fieldcontain required'>
-                        <label for='rutEmpresa'>Rut Empresa
-                            <span class='required-indicator'>*</span>
-                        </label>
-                        <input type="text" id="rutEmpresa" value="${egreso.rutEmpresa}" name="rutEmpresa" required oninput="checkRut(this)" placeholder="Ingrese RUT">
-
-                    </div>
-                    <div class='fieldcontain required'>
-                        <label for='numeroDocumento'>Numero documento
-                            <span class='required-indicator'>*</span>
-                        </label><input type="number" name="nDocumento" value="${egreso.nDocumento}" required="" id="numeroDocumento"/>
-                    </div>
-                    <div class='fieldcontain required'>
-                        <label for='aprobacion'>Aprobacion
-                            <span class='required-indicator'>*</span>
-                        </label><input type="text" name="aprobacion" value="${egreso.aprobacion}" required="" id="aprobacion"/>
-                    </div>
-                    <div class="fieldcontain required">
-                        <label for="tipoDocumento">Tipo Moneda<span class="required-indicator">*</span></label>
-                        <select name="tipoMoneda" value="" required="" id="tipoMoneda">
-                            <option value="" disabled selected>Seleccione Moneda</option>
-                            <option value="clp">Peso Chileno</option>
-                            <option value="usd">Dolar Americano</option>
-                            <option value="eur">Euro</option>
-                        </select>
-                    </div>
-                    <div class='fieldcontain required'>
-                        <label for='pagadoA'>Pagado a
-                            <span class='required-indicator'>*</span>
-                        </label><input type="text" name="pagadoA" value="${egreso.pagadoA}" required="" id="pagadoA"/>
-                    </div>
-                    <div class='fieldcontain required'>
-                        <label for='monto'>Monto
-                            <span class='required-indicator'>*</span>
-                        </label><input type="number" name="monto" value="${egreso.monto}" required="" id="monto"/>
-                    </div>
-                    <div class='fieldcontain required'>
-                        <label for='concepto'>Concepto
-                            <span class='required-indicator'>*</span>
-                        </label><input type="text" name="concepto" value="${egreso.concepto}" required="" id="concepto"/>
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for='concepto'>Concepto
+                                    <span class='required-indicator'>*</span>
+                                </label>
+                                <input value="${egreso.concepto}" type="text" name="concepto" required="" id="concepto"/>
+                            </div>
+                        </div>
                     </div>
                 </fieldset>
                 <fieldset class="buttons">
@@ -118,50 +151,11 @@
                         cb(matches);
                     };
                 };
-                var usuarios = [
-                    <g:each in="${usuarios}">
-                        '${it.nombres} ${it.paterno} ・ ${it.rut}',
-                    </g:each>
-                ];
-                var programas = [
-                    <g:each in="${programas}">
-                        '${it.nombre} ・ ${it.codigo}',
-                    </g:each>
-                ];
-                var rendiciones = [
-                    <g:each in="${rendiciones}">
-                        '${it.tipoRendicion} - ${formatDate(format:"yyyy/MM/dd", date: it.fecha)} ・ ${it.id}',
-                    </g:each>
-                ];
                 var items = [
                     <g:each in="${items}">
-                        '${it.nombre} ・ ${it.id}'
+                    '${it.codigo} ${it.nombre} - ${it.id}',
                     </g:each>
                 ];
-                $('#usuarioinputdiv .typeahead').typeahead({
-                    hint: true,
-                    highlight: true,
-                    minLength: 1
-                }, {
-                    name: 'usuarios',
-                    source: substringMatcher(usuarios)
-                });
-                $('#programainputdiv .typeahead').typeahead({
-                    hint: true,
-                    highlight: true,
-                    minLength: 1
-                }, {
-                    name: 'programas',
-                    source: substringMatcher(programas)
-                });
-                $('#rendicioninputdiv .typeahead').typeahead({
-                    hint: true,
-                    highlight: true,
-                    minLength: 1
-                }, {
-                    name: 'rendiciones',
-                    source: substringMatcher(rendiciones)
-                });
                 $('#iteminputdiv .typeahead').typeahead({
                     hint: true,
                     highlight: true,

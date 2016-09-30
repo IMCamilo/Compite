@@ -105,7 +105,7 @@
                         <label for="rut">Rut a Pagar
                             <span class="required-indicator">*</span>
                         </label>
-                        <input name="rutEmpresa" type="text" id="rut" name="rut" required oninput="checkRut(this)" placeholder="Ingrese RUT Empresa" size="10">
+                        <input name="rutEmpresa" type="text" id="rut" required oninput="checkRut(this)" placeholder="Ingrese RUT Empresa" size="10">
                     </div>
                 </div>
                 <div class="col-sm-6">

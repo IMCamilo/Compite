@@ -134,16 +134,6 @@
                 <div class="col-md-12">
                     <div class="col-sm-6">
                         <div class='fieldcontain required'>
-                            <label for='concepto'>Total
-                                <span class='required-indicator'>*</span>
-                            </label>
-                            <input value="${movilizacion.precio}" type="text" name="precio" required="" id="precio" max="100000" onkeypress="return isNumber(event)" placeholder="Total de boleta"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="col-sm-6">
-                        <div class='fieldcontain required'>
                             <label for='distancia'>Distancia(kmtrs)/Tiempo(hrs)
                                 <span class='required-indicator'>*</span>
                             </label>
