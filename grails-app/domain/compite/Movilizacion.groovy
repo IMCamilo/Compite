@@ -2,18 +2,12 @@ package compite
 
 class Movilizacion {
 
-    Date fechaCreacion = new Date()
-    String motivoEmpresa
-    String direccion
-    Integer distancia
-    String concepto
-    String tipo
-    Integer precio
-    String creadoPor
+    Date fechaCreacion
+    String motivoEmpresa, direccion, concepto, tipo, creadoPor
+    Integer distancia, precio
 
     static belongsTo = [usuario:Usuario, programa:Programa, egreso:Egreso]
-
     static constraints = {
-    egreso nullable: true
+        egreso nullable: true
     }
 }

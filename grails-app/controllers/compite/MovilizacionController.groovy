@@ -142,7 +142,6 @@ class MovilizacionController {
         } else {
             def programa = buscaPrograma[0]
             println "Programa del Usuario :" + programa.id
-            def program = Programa.findById(programa.id)
             def listaTransportes = Transporte.executeQuery("from Transporte where usuario_id=" + session.usuarioLogueado.id)
             def listaMovilizaciones = Movilizacion.executeQuery("from Movilizacion where usuario_id=" + session.usuarioLogueado.id + "and programa_id=" + programa.id)
             println "***listaTransportes*** "+listaTransportes
@@ -208,12 +207,11 @@ class MovilizacionController {
     }
 
     def editarmov(Movilizacion movilizacion) {
-        respond movilizacion
+        def listaTransportes = Transporte.executeQuery("from Transporte where usuario_id=" + session.usuarioLogueado.id)
+        respond movilizacion, model: [listaTransportes: listaTransportes]
     }
 
-    def editguardar() {
-        params.usuario=usuarioId
-        params.proyecto=idprograma
+    def editMov() {
         def movilizacion = Movilizacion.get(params.id)
         movilizacion.properties = params
 
@@ -234,7 +232,7 @@ class MovilizacionController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'movilizacion.label', default: 'Movilizacion'), movilizacion.id])
-                redirect (controller:"movilizacion", action: "nuevamovilizacion", id:idprograma)
+                redirect (controller:"movilizacion", action: "nuevamovilizacion")
             }
             '*'{ respond movilizacion, [status: OK] }
         }
