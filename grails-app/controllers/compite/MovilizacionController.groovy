@@ -136,16 +136,18 @@ class MovilizacionController {
         println "Usuario conectado: "+usuarioId
         def buscaPrograma = Asignacion.executeQuery("from Asignacion as p where p.usuario="+session.usuarioLogueado.id)
         if(!buscaPrograma){
-            println "id programa nulo"
+            println "No viene programa"
+            flash.message = "No tienes un programa asignado, comuniquese con el administrador"
             redirect controller: "ingeniero", action: "index"
-            flash.message = "No tienes un programa, comuniquese con el administrador"
         } else {
             def programa = buscaPrograma[0]
             println "Programa del Usuario :" + programa.id
             def program = Programa.findById(programa.id)
+            def listaTransportes = Transporte.executeQuery("from Transporte where usuario_id=" + session.usuarioLogueado.id)
             def listaMovilizaciones = Movilizacion.executeQuery("from Movilizacion where usuario_id=" + session.usuarioLogueado.id + "and programa_id=" + programa.id)
+            println "***listaTransportes*** "+listaTransportes
             params.max = Math.min(max ?: 10, 100)
-            [movsList: listaMovilizaciones, programa: program]
+            [movsList: listaMovilizaciones, programa: program, listaTransportes: listaTransportes]
         }
     }
 

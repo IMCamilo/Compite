@@ -19,6 +19,37 @@
                 </g:eachError>
             </ul>
         </g:hasErrors>
+        <g:if test="${listaTransportes.isEmpty()}">
+            <div class="col-md-12">
+                <div class="col-sm-6">
+                    Usuario no tiene Transportes creados
+                </div>
+            </div>
+        </g:if>
+        <g:else>
+            <g:each in="${listaTransportes}">
+                <div class="col-md-12">
+                    <div class="col-sm-6">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Patente</th>
+                                    <th>Combustible</th>
+                                    <th>KMs. por Litro</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>${it.patente}</td>
+                                    <td>${it.combustible}</td>
+                                    <td>${it.kmPorLitro}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </g:each>
+        </g:else>
         <g:form action="verificar">
             <fieldset class="form">
                 <input name="creadoPor" value="${session.usuarioLogueado.rut}" required="" type="hidden">
@@ -36,11 +67,18 @@
                                 <span class='required-indicator'>*</span>
                             </label>
                             <select name="tipo" required="" class="fieldcontain required">
-                                <option value="" disabled selected>Seleccione Documento</option>
-                                <option value="combustible">Combustible</option>
-                                <option value="peaje">Peaje</option>
-                                <option value="tag">Tag</option>
-                                <option value="estacionamiento">Estacionamiento</option>
+                                <g:if test="${listaTransportes.isEmpty()}">
+                                    <option value="" disabled selected>Seleccione Documento</option>
+                                    <option value="PASAJE">Pasaje</option>
+                                </g:if>
+                                <g:else>
+                                    <option value="" disabled selected>Seleccione</option>
+                                    <option value="COMBUSTIBLE">Combustible</option>
+                                    <option value="PEAJE">Peaje</option>
+                                    <option value="TAG">Tag</option>
+                                    <option value="ESTACIONAMIENTO">Estacionamiento</option>
+                                    <option value="PASAJE">Pasaje</option>
+                                </g:else>
                             </select>
                         </div>
                     </div>
@@ -53,8 +91,6 @@
                             </label><input type="text" name="motivoEmpresa" maxlength="40" value="" required="" id="motivoEmpresa" placeholder="Describa motivo de la movilización"/>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-12">
                     <div class="col-sm-6">
                         <div class='fieldcontain required'>
                             <label for='direccion'>Direccion
@@ -62,6 +98,8 @@
                             </label><input type="text" name="direccion" value="" required="" id="direccion" maxlength="60" placeholder="Ingrese la dirección"/>
                         </div>
                     </div>
+                </div>
+                <div class="col-md-12">
                     <div class="col-sm-6">
                         <div class='fieldcontain required'>
                             <label for='concepto'>Empresa
@@ -69,8 +107,6 @@
                             </label><input type="text" name="concepto" value="" required="" id="concepto" maxlength="20" placeholder="Empresa a la que se cancela la boleta" />
                         </div>
                     </div>
-                </div>
-                <div class="col-md-12">
                     <div class="col-sm-6">
                         <div class='fieldcontain required'>
                             <label for='concepto'>Total
@@ -105,15 +141,15 @@
         <h1>Lista de movilizacion para proyecto: </h1>
         <table>
             <thead>
-            <tr>
-                <th>ver</th>
-                <g:sortableColumn property="fecha" defaultOrder="desc" title="Fecha"/>
-                <g:sortableColumn property="motivoEmpresa" defaultOrder="desc" title="Motivo/Empresa"/>
-                <g:sortableColumn property="direccion" defaultOrder="desc" title="Dirección"/>
-                <g:sortableColumn property="distancia" defaultOrder="desc" title="Distancia"/>
-                <g:sortableColumn property="tipo" defaultOrder="desc" title="Tipo"/>
-                <g:sortableColumn property="precio" defaultOrder="desc" title="Precio"/>
-            </tr>
+                <tr>
+                    <th>ver</th>
+                    <g:sortableColumn property="fecha" defaultOrder="desc" title="Fecha"/>
+                    <g:sortableColumn property="motivoEmpresa" defaultOrder="desc" title="Motivo/Empresa"/>
+                    <g:sortableColumn property="direccion" defaultOrder="desc" title="Dirección"/>
+                    <g:sortableColumn property="distancia" defaultOrder="desc" title="Distancia"/>
+                    <g:sortableColumn property="tipo" defaultOrder="desc" title="Tipo"/>
+                    <g:sortableColumn property="precio" defaultOrder="desc" title="Precio"/>
+                </tr>
             </thead>
             <tbody>
             <g:each var="movilizacion" status="i" in="${movsList}">
