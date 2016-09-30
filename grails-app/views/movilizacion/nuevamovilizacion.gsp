@@ -41,7 +41,21 @@
                             <tbody>
                                 <tr>
                                     <td>${it.patente}</td>
-                                    <td>${it.combustible}</td>
+                                    <g:if test="${it.combustible == 'BENCINA93'}">
+                                        <td>GAS. 93</td>
+                                    </g:if>
+                                    <g:elseif test="${it.combustible == 'BENCINA95'}">
+                                        <td>GAS. 95</td>
+                                    </g:elseif>
+                                    <g:elseif test="${it.combustible == 'BENCINA97'}">
+                                        <td>GAS. 97</td>
+                                    </g:elseif>
+                                    <g:elseif test="${it.combustible == 'DIESEL'}">
+                                        <td>Petróleo</td>
+                                    </g:elseif>
+                                    <g:else>
+                                        <td>Gas Licuado</td>
+                                    </g:else>
                                     <td>${it.kmPorLitro}</td>
                                 </tr>
                             </tbody>
