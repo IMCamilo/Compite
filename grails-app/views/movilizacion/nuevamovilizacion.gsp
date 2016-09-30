@@ -117,15 +117,7 @@
                 <div class="col-md-12">
                     <div class="col-sm-6">
                         <div class='fieldcontain required'>
-                            <label for='concepto'>Concepto
-                                <span class='required-indicator'>*</span>
-                            </label>
-                            <input type="text" name="concepto" required="" id="concepto" maxlength="20" placeholder="Ingrese el Concepto" />
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class='fieldcontain required'>
-                            <label for='concepto'>Total
+                            <label for="precio">Total
                                 <span class='required-indicator'>*</span>
                             </label>
                             <input type="text" name="precio" required="" id="precio" max="100000" onkeypress="return isNumber(event)" placeholder="Total de boleta"/>
@@ -163,7 +155,6 @@
                     <th>ver</th>
                     <g:sortableColumn property="fecha" defaultOrder="desc" title="Fecha"/>
                     <g:sortableColumn property="motivoEmpresa" defaultOrder="desc" title="Motivo/Empresa"/>
-                    <g:sortableColumn property="concepto" defaultOrder="desc" title="Concepto"/>
                     <g:sortableColumn property="direccion" defaultOrder="desc" title="Dirección"/>
                     <g:sortableColumn property="distancia" defaultOrder="desc" title="Distancia"/>
                     <g:sortableColumn property="tipo" defaultOrder="desc" title="Tipo"/>
@@ -176,7 +167,6 @@
                     <td><a href="editarmov/${movilizacion.id}">Editar</a></td>
                     <td>${formatDate(format:"dd/MM/yyyy", date: movilizacion.fechaCreacion)}</td>
                     <td>${movilizacion.motivoEmpresa}</td>
-                    <td>${movilizacion.concepto}</td>
                     <td>${movilizacion.direccion}</td>
                     <td>${movilizacion.distancia}</td>
                     <td>${movilizacion.tipo}</td>

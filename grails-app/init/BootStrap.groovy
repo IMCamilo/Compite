@@ -146,9 +146,9 @@ class BootStrap {
         }
 
         if (!Movilizacion.list()) {
-            new Movilizacion(fechaCreacion: "2016-08-19 11:49:00.0", motivoEmpresa: "Viaje", direccion: "avenida", distancia: 0, concepto: "Movilizacion regional", tipo: "PEAJE", precio:790, creadoPor:"admin", programa: 1, usuario: 1).save(failOnError: true)
-            new Movilizacion(fechaCreacion: "2016-08-19 11:49:00.0", motivoEmpresa: "Peaje", direccion: "Pto Varas", distancia: 0, concepto: "Movilizacion regional", tipo: "PEAJE", precio:1900, creadoPor:"admin", programa: 1, usuario: 2).save(failOnError: true)
-            new Movilizacion(fechaCreacion: "2016-08-19 11:49:00.0", motivoEmpresa: "Viaje", direccion: "avenida", distancia: 0, concepto: "Movilizacion regional", tipo: "PEAJE", precio:2450, creadoPor:"admin", programa: 1, usuario: 2).save(failOnError: true)        }
+            new Movilizacion(fechaCreacion: "2016-08-19 11:49:00.0", motivoEmpresa: "Viaje", direccion: "avenida", distancia: 0, tipo: "PEAJE", precio:790, creadoPor:"admin", programa: 1, usuario: 1).save(failOnError: true)
+            new Movilizacion(fechaCreacion: "2016-08-19 11:49:00.0", motivoEmpresa: "Peaje", direccion: "Pto Varas", distancia: 0, tipo: "PEAJE", precio:1900, creadoPor:"admin", programa: 1, usuario: 2).save(failOnError: true)
+            new Movilizacion(fechaCreacion: "2016-08-19 11:49:00.0", motivoEmpresa: "Viaje", direccion: "avenida", distancia: 0, tipo: "PEAJE", precio:2450, creadoPor:"admin", programa: 1, usuario: 2).save(failOnError: true)        }
 
         if (!Auditoria.list()) {
             new Auditoria(fecha: "2016-08-19 11:49:00.0", nombre:"Auditoria numeor 1", motivo:"estandar", descripcion: "Auditoria cargada automaticamente", estado: "APROBADA", usuario: 1, programa: 1, creadoPor:"admin").save(failOnError: true)

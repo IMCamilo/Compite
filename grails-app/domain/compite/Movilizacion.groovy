@@ -3,7 +3,7 @@ package compite
 class Movilizacion {
 
     Date fechaCreacion
-    String motivoEmpresa, direccion, concepto, tipo, creadoPor
+    String motivoEmpresa, direccion, tipo, creadoPor
     Integer distancia, precio
 
     static belongsTo = [usuario:Usuario, programa:Programa, egreso:Egreso]

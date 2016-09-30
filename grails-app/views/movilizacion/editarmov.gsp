@@ -134,14 +134,6 @@
                 <div class="col-md-12">
                     <div class="col-sm-6">
                         <div class='fieldcontain required'>
-                            <label for='concepto'>Concepto
-                                <span class='required-indicator'>*</span>
-                            </label>
-                            <input value="${movilizacion.concepto}" type="text" name="concepto" required="" id="concepto" maxlength="20" placeholder="Ingrese el Concepto" />
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class='fieldcontain required'>
                             <label for='concepto'>Total
                                 <span class='required-indicator'>*</span>
                             </label>
