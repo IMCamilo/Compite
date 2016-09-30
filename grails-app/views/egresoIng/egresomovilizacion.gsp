@@ -25,7 +25,6 @@
                         <table>
                             <thead>
                             <tr>
-                                <g:sortableColumn property="egreso" defaultOrder="desc" title="Egreso"/>
                                 <g:sortableColumn property="fecha" defaultOrder="desc" title="Fecha"/>
                                 <g:sortableColumn property="motivoEmpresa" defaultOrder="desc" title="Motivo/Empresa"/>
                                 <g:sortableColumn property="direccion" defaultOrder="desc" title="Dirección"/>
@@ -39,7 +38,6 @@
                             <g:each var="movilizacion" status="i" in="${movsList}">
                                 <g:if test="${movilizacion.egreso==null}">
                                 <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
-                                    <td>${movilizacion.egreso}</td>
                                     <td>${formatDate(format:"dd/MM/yyyy", date: movilizacion.fechaCreacion)}</td>
                                     <td>${movilizacion.motivoEmpresa}</td>
                                     <td>${movilizacion.direccion}</td>

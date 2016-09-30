@@ -57,9 +57,10 @@
                 </thead>
                 <tbody>
                 <g:each var="egreso" status="i" in="${egresoList}">
+                    <g:if test="${egreso.movilizacion.isEmpty()}">
                     <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
                         <td><a href="show/${egreso.id}">ver</a></td>
-                        <td><a href="show/${egreso.id}">ver movilizaciones</a></td>
+                        <td>No tiene movilizacion</td>
                         <td>${egreso.programa.nombre}</td>
                         <td>${egreso.concepto}</td>
                         <td>${egreso.aprobacion}</td>
@@ -95,6 +96,52 @@
                             </g:else>
                         </td>
                     </tr>
+                    </g:if>
+                    <g:else>
+                        <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
+                            <td><a href="show/${egreso.id}">ver</a></td>
+                            <g:if test="${params.id==null}">
+                                <td><a href="index/${egreso.id}">ver movilizacion</a></td>
+                            </g:if>
+                            <g:else>
+                                <td><a href="../index/${egreso.id}" >ver movilizacion</a></td>
+                            </g:else>
+                            <td>${egreso.programa.nombre}</td>
+                            <td>${egreso.concepto}</td>
+                            <td>${egreso.aprobacion}</td>
+                            <%--<td>
+                                <g:if test="${egreso.tipoMoneda == 'CLP'}">
+                                    Pesos Chilenos
+                                </g:if>
+                                <g:elseif test="${egreso.tipoMoneda == 'USD'}">
+                                    Dolar Américano
+                                </g:elseif>
+                                <g:else>
+                                    Euro
+                                </g:else>
+                            </td>--%>
+                            <td>$ ${egreso.monto}</td>
+                            <td>${egreso.tipoDocumento}</td>
+                            <td>${egreso.pagadoA}</td>
+                            <td>${egreso.usuario.nombres} ${egreso.usuario.paterno} ${egreso.usuario.materno}</td>
+                            <g:if test="${egreso.rendicion == null}">
+                                <td><div align="center">-</div></td>
+                            </g:if>
+                            <g:else>
+                                <td>
+                                    <div align="center"><g:link target="_blank" controller="rendicion" action="show" id="${egreso.rendicion.id}">Nº ${egreso.rendicion.id}</g:link></div>
+                                </td>
+                            </g:else>
+                            <td>
+                                <g:if test="${egreso.aprobacion == "SI" && egreso.rendicion == null}">
+                                    <input type="checkbox" id="egresoId" name="egresoIds[]" value="${egreso.id}"/>
+                                </g:if>
+                                <g:else>
+                                    <input type="checkbox" disabled/>
+                                </g:else>
+                            </td>
+                        </tr>
+                    </g:else>
                 </g:each>
         </tbody>
     </table>
@@ -106,6 +153,40 @@
             </div>
 </div>
 </form>
+    <a id="clickButton" data-toggle="modal" data-target=".bs-example-modal-lg"></a>
+    <g:if test="${params.id!=null}">
+    <div id="myModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <table>
+                    <thead>
+                    <tr>
+                        <td>Fecha</td>
+                        <td>Motivo/empresa</td>
+                        <td>Direción</td>
+                        <td>Distancia</td>
+                        <td>Tipo</td>
+                        <td>Precio</td>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <g:each var="movilizacion" status="i" in="${movsList}">
+                        <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
+                            <td>${formatDate(format:"dd/MM/yyyy", date: movilizacion.fechaCreacion)}</td>
+                            <td>${movilizacion.motivoEmpresa}</td>
+                            <td>${movilizacion.direccion}</td>
+                            <td>${movilizacion.distancia}</td>
+                            <td>${movilizacion.tipo}</td>
+                            <td>${movilizacion.precio}</td>
+                        </tr>
+                    </g:each>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </g:if>
 <asset:javascript src="compite/jquery-2.1.1.min.js"/>
 <asset:javascript src="compite/validarut.js"/>
 <asset:javascript src="compite/typeahead.bundle.js"/>
@@ -136,6 +217,10 @@ $(document).ready(function() {
         }
         return false;
     });
+    window.onload = function() {
+        document.getElementById('clickButton').click();
+    }
+
 });
 </script>
 </body>
