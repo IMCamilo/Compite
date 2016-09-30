@@ -31,6 +31,7 @@ class EgresoController {
 
         }
     }
+
     def show(Egreso egreso) {
         respond egreso
     }
@@ -126,18 +127,9 @@ class EgresoController {
 
     @Transactional
     def update() {
-        String[] rutObtenido = ((String) params.nombreUsuario).split(" ・ ");
-        String[] programaObtenido = ((String) params.nombrePrograma).split(" ・ ");
-        String[] itemObtenido = ((String) params.nombreItem).split(" ・ ");
-        String[] rendicionObtenido = ((String) params.nombreRendicion).split(" ・ ");
-        def u = Usuario.findByRut(rutObtenido[1])
-        params.usuario = u.id
-        def p = Programa.findByCodigo(programaObtenido[1])
-        params.programa = p.id
+        String[] itemObtenido = ((String) params.nombreItem).split(" - ");
         def i = Item.findById(itemObtenido[1])
         params.item = i.id
-        def r = Rendicion.findById(rendicionObtenido[1])
-        params.rendicion = i.id
 
         def egreso = Egreso.get(params.id)
         egreso.properties = params
@@ -155,14 +147,8 @@ class EgresoController {
         }
 
         egreso.save flush:true, failOnError: true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'egreso.label', default: 'Egreso'), egreso.id])
-                redirect egreso
-            }
-            '*'{ respond egreso, [status: OK] }
-        }
+        flash.message = "Egreso actualizado correctamente"
+        redirect (controller: "egresoIng", action: "show", id: egreso.id)
     }
 
     @Transactional
