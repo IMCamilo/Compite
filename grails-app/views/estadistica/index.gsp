@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en" class="no-js">
 <head>
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <title>Información de la aplicación - Resumida</title>
@@ -395,26 +396,17 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a class="navbar-brand" href="/proyecto/index">Proyectos</a></li>
-                    <li><a class="navbar-brand" href="/transporte/index">Transporte</a></li>
-                    <li><a class="navbar-brand" href="/empresa/index">Empresa</a></li>
-                    <li><a class="navbar-brand" href="/asignacion/index">Asignación</a></li>
-                    <li><a class="navbar-brand" href="/auditoria/index">Auditoría</a></li>
-                    <li><a class="navbar-brand" href="/usuario/index">Usuarios</a></li>
-                    <li><a class="navbar-brand" href="/item/index">Item</a></li>
-                    <li><a class="navbar-brand" href="/rendicion/index">Rendición</a></li>
-                    <li><a class="navbar-brand" href="/egreso/index">Egreso</a></li>
-                    <li><a class="navbar-brand" href="/administrador/reportes">Reportes</a></li>
-                    <li><a class="navbar-brand" href="/estadistica/index">Estadísticas</a></li>
+                    <li><a class="navbar-brand" href="${createLink(controller:'programa')}">Programas</a></li>
+                    <li><a class="navbar-brand" href="${createLink(controller:'proyecto')}">Proyectos</a></li>
+                    <li><a class="navbar-brand" href="${createLink(controller:'usuario')}">Usuarios</a></li>
                     <li role="presentation" class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                            ${session.usuarioLogueado.nombres} ${session.usuarioLogueado.paterno}
-                            <span class="caret"></span>
+                            ${session.usuarioLogueado.nombres} ${session.usuarioLogueado.paterno} <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="navbar-brand" href="/administrador/cargarperfil">Perfil</a></li>
+                            <li><a class="navbar-brand" href="${createLink(controller:'administrador', action:'cargarperfil',)}">Perfil</a></li>
                             <li>
-                                <a class="navbar-brand" href="/login/logout">
+                                <a class="navbar-brand" href="${createLink(controller:'login', action:'logout')}">
                                     Cerrar sesión
                                 </a>
                             </li>
