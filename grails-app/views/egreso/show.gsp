@@ -83,12 +83,14 @@
                         <label style="color: dimgray">${it.nDocumento}</label>
                     </div>
                 </div>
-                <div class="col-md-12">
-                    <div class="col-sm-6">
-                        <label>Rendición :</label>
-                        <label style="color: dimgray">Nº ${it.rendicion.id}</label>
+                <g:if test="${it.rendicion != null}">
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <label>Rendición :</label>
+                            <label style="color: dimgray">Nº ${it.rendicion.id}</label>
+                        </div>
                     </div>
-                </div>
+                </g:if>
             </g:each>
             <g:form resource="${this.egreso}" method="DELETE">
                 <fieldset class="buttons">
