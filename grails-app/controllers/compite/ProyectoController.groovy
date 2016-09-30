@@ -56,7 +56,7 @@ class ProyectoController {
         if (!buscaEmpresa) {
             "Empresa mala"
             transactionStatus.setRollbackOnly()
-            flash.message = "Empresa no corresponde"
+            flash.error = "Empresa no corresponde"
             redirect (controller: "proyecto", action: "index")
             return
         } else {
