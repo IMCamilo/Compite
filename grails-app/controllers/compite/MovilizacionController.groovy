@@ -133,20 +133,19 @@ class MovilizacionController {
 
     //Crear rendicion de movilizacion personalizada
     def nuevamovilizacion (Integer max) {
-        def ide = Asignacion.executeQuery("from Asignacion as p where p.usuario="+usuarioId)
-        def programa = ide[0]
-        idprograma=programa.id
-        if(idprograma==null){
-            println "id programa nulo :"+idprograma
+        println "Usuario conectado: "+usuarioId
+        def buscaPrograma = Asignacion.executeQuery("from Asignacion as p where p.usuario="+session.usuarioLogueado.id)
+        if(!buscaPrograma){
+            println "id programa nulo"
             redirect controller: "ingeniero", action: "index"
-            flash.message="No tienes un programa, comuniquese con el administrador"
-        }else {
-            println "id programa :" + idprograma
-            def program = Programa.findById(idprograma)
-            def movs = Movilizacion.executeQuery("from Movilizacion where usuario_id=" + usuarioId + "and programa_id=" + idprograma)
-            println("IDmovilizacion:" + movs.id)
+            flash.message = "No tienes un programa, comuniquese con el administrador"
+        } else {
+            def programa = buscaPrograma[0]
+            println "Programa del Usuario :" + programa.id
+            def program = Programa.findById(programa.id)
+            def listaMovilizaciones = Movilizacion.executeQuery("from Movilizacion where usuario_id=" + session.usuarioLogueado.id + "and programa_id=" + programa.id)
             params.max = Math.min(max ?: 10, 100)
-            [movsList: movs, programa: program]
+            [movsList: listaMovilizaciones, programa: program]
         }
     }
 
