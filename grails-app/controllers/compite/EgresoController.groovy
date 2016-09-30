@@ -9,14 +9,19 @@ class EgresoController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
-        def userList = Usuario.findAll()
-        def rendicionList = Rendicion.findAll()
-        def itemsList = Item.findAll()
-        def programaList = Programa.findAll()
-        params.max = Math.min(max ?: 10, 100)
-        respond Egreso.list(params), model:[egresoCount: Egreso.count(), usuarios:userList, programas:programaList, rendiciones:rendicionList, items:itemsList]
-    }
+        if (params.programa != null) {
+            def programaList = Programa.findAll("from Programa where estado='ACTIVO'")
+            params.max = Math.min(max ?: 10, 100)
+            respond Egreso.findAll("from Egreso where programa="+params.programa), model: [egresoCount: Egreso.count(), programas: programaList]
 
+        } else {
+            def rendicionList = Rendicion.findAll()
+            def programaList = Programa.findAll("from Programa where estado='ACTIVO'")
+            params.max = Math.min(max ?: 10, 100)
+            respond Egreso.list(params), model: [egresoCount: Egreso.count(), programas: programaList]
+
+        }
+    }
     def show(Egreso egreso) {
         respond egreso
     }
@@ -243,5 +248,12 @@ class EgresoController {
         egreso.save flush:true, failOnError: true
         flash.message = "Egreso Desaprobado Correctamente"
         redirect (controller: "egreso", action: "show", id: egreso.id)
+    }
+    def buscar(){
+        def userList = Usuario.findAll()
+        def rendicionList = Rendicion.findAll()
+        def programaList = Programa.findAll("from Programa where estado='ACTIVO'")
+        params.max = Math.min(max ?: 10, 100)
+        respond Egreso.list(params), model:[egresoCount: Egreso.count(), usuarios:userList, programas:programaList]
     }
 }
