@@ -22,54 +22,24 @@
             <g:form resource="${this.item}" method="PUT">
                 <g:hiddenField name="version" value="${this.item?.version}" />
                 <fieldset class="form">
+                    <input type="hidden" name="creadoPor" value="${session.usuarioLogueado.rut}" id="creadoPor"/>
                     <div class="col-md-12">
                         <div class="col-sm-6">
                             <div class="fieldcontain required" id="itempreinputdiv">
-                                <label for="itemPresupuestario">Item
+                                <label for="codigo">Código
                                     <span class="required-indicator">*</span>
                                 </label>
-                                <input value="${item.itemPresupuestario}" id="itemPresupuestario" class="typeahead" name="itemPresupuestario" type="text" required="" placeholder="Busca un item">
+                                <input value="${item.codigo}" id="codigo" name="codigo" type="number" min="1" max="10000" required="" placeholder="ingresa el código del item">
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="fieldcontain required" id="proyectoinputdiv">
-                                <label for="centroCosto">Centro Costo
-                                    <span class="required-indicator">*</span>
-                                </label>
-                                <input value="${item.centroCosto}" type="text" name="centroCosto" required="" id="centroCosto" onkeypress="return isNumber(event)"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="col-sm-6">
-                            <div class="fieldcontain required">
                                 <label for="nombre">Nombre
                                     <span class="required-indicator">*</span>
                                 </label>
-                                <input value="${item.nombre}" type="text" name="nombre" required="" id="nombre" maxlength="100"/>
+                                <input value="${item.nombre}" type="text" name="nombre" required="" id="nombre" minlength="3" maxlength="30" placeholder="Ingresa el nombre del item"/>
                             </div>
                         </div>
-                        <div class="col-sm-6">
-                            <div class="fieldcontain required">
-                                <label for="valor">Valor
-                                    <span class="required-indicator">*</span>
-                                </label>
-                                <input value="${item.valor}" type="text" name="valor" required="" id="valor" onkeypress="return isNumber(event)"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="col-sm-6">
-                            <div class="fieldcontain required">
-                                <label for="descripcion">Descripción
-                                    <span class="required-indicator">*</span>
-                                </label>
-                                <textarea id="descripcion" name="descripcion" required="" maxlength="255" rows="4" cols="50">${item.descripcion}</textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <br>
                     </div>
                     <div class="col-md-10">
                         <div class="col-sm-3">

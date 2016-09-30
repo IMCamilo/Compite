@@ -117,7 +117,26 @@ class BootStrap {
         }
 
         if (!Item.list()) {
-            new Item(nombre:"mouse como item uno", centroCosto: 341, itemPresupuestario: "ALIMENTACION PROGRAMAS", descripcion: "Servicios básicos", valor: 25000, fechaCreacion: "2016-08-19 11:49:00.0", creadoPor:"admin").save(failOnError: true)
+            new Item(codigo: 4101, nombre: "PASAJES PROGRAMAS ACADEMICOS  ", fechaCreacion: "2016-08-19 11:49:00.0", creadoPor:"admin").save(failOnError: true)
+            new Item(codigo: 4105, nombre: "ALOJAMIENTO PROGRAMAS ACADEMICOS VIATICOS ", fechaCreacion: "2016-08-19 11:49:00.0", creadoPor:"admin").save(failOnError: true)
+            new Item(codigo: 4106, nombre: "ALIMENTACION PROGRAMAS ", fechaCreacion: "2016-08-19 11:49:00.0", creadoPor:"admin").save(failOnError: true)
+            new Item(codigo: 4107, nombre: "LIBROS Y TABLES", fechaCreacion: "2016-08-19 11:49:00.0", creadoPor:"admin").save(failOnError: true)
+            new Item(codigo: 4108, nombre: "ARRIENDO EQUIPOS ", fechaCreacion: "2016-08-19 11:49:00.0", creadoPor:"admin").save(failOnError: true)
+            new Item(codigo: 4110, nombre: "ARRIENDO BUSES Y TRASLADOS", fechaCreacion: "2016-08-19 11:49:00.0", creadoPor:"admin").save(failOnError: true)
+            new Item(codigo: 4112, nombre: "HONORARIOS PROYECTOS", fechaCreacion: "2016-08-19 11:49:00.0", creadoPor:"admin").save(failOnError: true)
+            new Item(codigo: 4113, nombre: "SERVICIOS DE ASESORIAS DE ESTUDIOS ", fechaCreacion: "2016-08-19 11:49:00.0", creadoPor:"admin").save(failOnError: true)
+            new Item(codigo: 4114, nombre: "PUBLICACIONES DE INVESTIGACION  ", fechaCreacion: "2016-08-19 11:49:00.0", creadoPor:"admin").save(failOnError: true)
+            new Item(codigo: 4115, nombre: "FOTOCOPIAS E IMPRESIONES ", fechaCreacion: "2016-08-19 11:49:00.0", creadoPor:"admin").save(failOnError: true)
+            new Item(codigo: 8101, nombre: "PASAJES", fechaCreacion: "2016-08-19 11:49:00.0", creadoPor:"admin").save(failOnError: true)
+            new Item(codigo: 8105, nombre: "ALOJAMIENTO", fechaCreacion: "2016-08-19 11:49:00.0", creadoPor:"admin").save(failOnError: true)
+            new Item(codigo: 8106, nombre: "ALIMENTACION", fechaCreacion: "2016-08-19 11:49:00.0", creadoPor:"admin").save(failOnError: true)
+            new Item(codigo: 8111, nombre: "VALIJA Y CORREO", fechaCreacion: "2016-08-19 11:49:00.0", creadoPor:"admin").save(failOnError: true)
+            new Item(codigo: 8112, nombre: "MATERIALES DE OFICINA", fechaCreacion: "2016-08-19 11:49:00.0", creadoPor:"admin").save(failOnError: true)
+            new Item(codigo: 8113, nombre: "MOVILIZACION", fechaCreacion: "2016-08-19 11:49:00.0", creadoPor:"admin").save(failOnError: true)
+            new Item(codigo: 9111, nombre: "AGUA", fechaCreacion: "2016-08-19 11:49:00.0", creadoPor:"admin").save(failOnError: true)
+            new Item(codigo: 9112, nombre: "ELECTRICIDAD", fechaCreacion: "2016-08-19 11:49:00.0", creadoPor:"admin").save(failOnError: true)
+            new Item(codigo: 9113, nombre: "GAS", fechaCreacion: "2016-08-19 11:49:00.0", creadoPor:"admin").save(failOnError: true)
+            new Item(codigo: 9114, nombre: "COMBUSTIBLES", fechaCreacion: "2016-08-19 11:49:00.0", creadoPor:"admin").save(failOnError: true)
 
         }
         if (!Egreso.list()) {

@@ -13,8 +13,8 @@ class ItemController {
         respond Item.list(params), model:[itemCount: Item.count()]
     }
 
-    def show(Item item) {
-        respond item
+    def show() {
+        redirect action: "index"
     }
 
     def create() {

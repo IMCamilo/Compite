@@ -257,7 +257,7 @@
         ];
         var items = [
             <g:each in="${items}">
-            '${it.nombre} - ${it.id}'
+            '${it.codigo} ${it.nombre} - ${it.id}'
             </g:each>
         ];
         $('#rendicioninputdiv .typeahead').typeahead({

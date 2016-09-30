@@ -24,46 +24,18 @@
                     <div class="col-md-12">
                         <div class="col-sm-6">
                             <div class="fieldcontain required" id="itempreinputdiv">
-                                <label for="itemPresupuestario">Item
+                                <label for="codigo">Código
                                     <span class="required-indicator">*</span>
                                 </label>
-                                <input id="itemPresupuestario" class="typeahead" name="itemPresupuestario" type="text" required="" placeholder="Busca un item">
+                                <input id="codigo" name="codigo" type="number" min="1" max="10000" required="" placeholder="ingresa el código del item">
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="fieldcontain required" id="proyectoinputdiv">
-                                <label for="centroCosto">Centro Costo
-                                    <span class="required-indicator">*</span>
-                                </label>
-                                <input type="text" name="centroCosto" required="" id="centroCosto" onkeypress="return isNumber(event)"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="col-sm-6">
-                            <div class="fieldcontain required">
                                 <label for="nombre">Nombre
                                     <span class="required-indicator">*</span>
                                 </label>
-                                <input type="text" name="nombre" required="" id="nombre" maxlength="100"/>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="fieldcontain required">
-                                <label for="valor">Valor
-                                    <span class="required-indicator">*</span>
-                                </label>
-                                <input type="text" name="valor" required="" id="valor" onkeypress="return isNumber(event)"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="col-sm-6">
-                            <div class="fieldcontain required">
-                                <label for="descripcion">Descripción
-                                    <span class="required-indicator">*</span>
-                                </label>
-                                <textarea id="descripcion" name="descripcion" required="" rows="4" cols="50" maxlength="255"></textarea>
+                                <input type="text" name="nombre" required="" id="nombre" minlength="3" maxlength="30" placeholder="Ingresa el nombre del item"/>
                             </div>
                         </div>
                     </div>
@@ -88,23 +60,17 @@
             <table>
                 <thead>
                     <tr>
-                        <th>ver</th>
-                        <g:sortableColumn property="nombre" defaultOrder="desc" title="Nombre"/>
-                        <g:sortableColumn property="valor" defaultOrder="desc" title="Valor"/>
-                        <g:sortableColumn property="itemPresupuestario" defaultOrder="desc" title="Item Presupuestario"/>
-                        <g:sortableColumn property="centroCosto" defaultOrder="desc" title="Centro de Costo"/>
-                        <g:sortableColumn property="descripcion" defaultOrder="desc" title="Descripción"/>
+                        <th>Editar/Ver</th>
+                        <g:sortableColumn property="codigo" defaultOrder="desc" title="Codigo"/>
+                        <g:sortableColumn property="nombre" defaultOrder="desc" title="nombre"/>
                     </tr>
                 </thead>
                 <tbody>
                     <g:each var="item" status="i" in="${itemList}">
                          <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
-                            <td><a href="show/${item.id}">ver</a></td>
+                            <td><a href="edit/${item.id}">Editar/Ver</a></td>
+                            <td>${item.codigo}</td>
                             <td>${item.nombre}</td>
-                            <td>$ ${item.valor}</td>
-                            <td>${item.itemPresupuestario}</td>
-                            <td>${item.centroCosto}</td>
-                            <td>${item.descripcion}</td>
                         </tr>
                     </g:each>
                 </tbody>
