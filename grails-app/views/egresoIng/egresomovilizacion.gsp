@@ -250,24 +250,11 @@
                 cb(matches);
             };
         };
-        var rendiciones = [
-            <g:each in="${rendiciones}">
-            '${it.tipoRendicion} - ${formatDate(format:"yyyy/MM/dd", date: it.fecha)} ・ ${it.id}',
-            </g:each>
-        ];
         var items = [
             <g:each in="${items}">
-            '${it.codigo} ${it.nombre} - ${it.id}'
+            '${it.nombre} ${it.id} - ${it.id}',
             </g:each>
         ];
-        $('#rendicioninputdiv .typeahead').typeahead({
-            hint: true,
-            highlight: true,
-            minLength: 1
-        }, {
-            name: 'rendiciones',
-            source: substringMatcher(rendiciones)
-        });
         $('#iteminputdiv .typeahead').typeahead({
             hint: true,
             highlight: true,

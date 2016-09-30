@@ -31,7 +31,7 @@
                         <label for="fechaCreacion">Fecha Documento
                             <span class="required-indicator">*</span>
                         </label>
-                        <input name="fechaCreacion" value="date.struct" type="hidden" required="">
+                        <input id="fechaCreacion" name="fechaCreacion" value="date.struct" type="hidden" required="">
                         <select name="fechaCreacion_day" id="fechaCreacion_day" aria-labelledby="fechaCreacion" required="">
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -199,24 +199,11 @@
                 cb(matches);
             };
         };
-        var rendiciones = [
-            <g:each in="${rendiciones}">
-            '${it.tipoRendicion} - ${formatDate(format:"yyyy/MM/dd", date: it.fecha)} ・ ${it.id}',
-            </g:each>
-        ];
         var items = [
             <g:each in="${items}">
-            '${it.nombre} - ${it.id}'
+            '${it.nombre} ${it.id} - ${it.id}',
             </g:each>
         ];
-        $('#rendicioninputdiv .typeahead').typeahead({
-            hint: true,
-            highlight: true,
-            minLength: 1
-        }, {
-            name: 'rendiciones',
-            source: substringMatcher(rendiciones)
-        });
         $('#iteminputdiv .typeahead').typeahead({
             hint: true,
             highlight: true,

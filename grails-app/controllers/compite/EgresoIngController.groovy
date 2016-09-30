@@ -33,7 +33,6 @@ class EgresoIngController {
 
     def crear(Integer max) {
         //def proyectoId = params.id
-
         def buscaPrograma = Asignacion.executeQuery("select a.programa from Asignacion as a where a.usuario="+usuarioId)
         def programa = buscaPrograma[0]
 
