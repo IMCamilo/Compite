@@ -7,10 +7,29 @@
         <asset:stylesheet src="compite/autocomplete.css"/>
     </head>
     <body>
-    <form action="" id="formid">
-        <div>
-            <a id="enviar" href="#">Crear Rendición</a>
+    <g:form controller="egreso" action="index">
+        <div class="col-sm-6">
+            <div class="fieldcontain required">
+                <label for="region">Región
+                    <span class="required-indicator">*</span>
+                </label>
+                <select name="programa" value="" required="" id="programa">
+                    <option value="" disabled selected>Seleccione un programa</option>
+                    <g:each var="program" in="${programas}">
+                        <option value="${program.id}">${program.nombre}</option>
+                    </g:each>
+                </select>
+            </div>
         </div>
+        <div class="col-sm-6">
+            <div class="fieldcontain required">
+                <g:submitButton name="create" class="btn btn-primary" value="Buscar"></g:submitButton>
+            </div>
+        </div>
+
+    </g:form>
+    <form action="" id="formid">
+
         <div id="dialog" style="display: none;">
             <p><br>Debe Seleccionar al menos un Egreso</p>
         </div>
@@ -23,6 +42,7 @@
                 <thead>
                 <tr>
                     <th>Ver detalles</th>
+                    <th>Movilizaciones</th>
                     <g:sortableColumn property="programa" defaultOrder="desc" title="Programa"/>
                     <g:sortableColumn property="concepto" defaultOrder="desc" title="Concepto"/>
                     <g:sortableColumn property="aprobacion" defaultOrder="desc" title="Aprobación"/>
@@ -39,6 +59,7 @@
                 <g:each var="egreso" status="i" in="${egresoList}">
                     <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
                         <td><a href="show/${egreso.id}">ver</a></td>
+                        <td><a href="show/${egreso.id}">ver movilizaciones</a></td>
                         <td>${egreso.programa.nombre}</td>
                         <td>${egreso.concepto}</td>
                         <td>${egreso.aprobacion}</td>
@@ -80,80 +101,15 @@
     <div class="pagination">
         <g:paginate total="${egresoCount ?: 0}" />
     </div>
+            <div class="col-sm-6">
+                <a id="enviar" href="#"class="button">Crear Rendición</a>
+            </div>
 </div>
 </form>
 <asset:javascript src="compite/jquery-2.1.1.min.js"/>
 <asset:javascript src="compite/validarut.js"/>
 <asset:javascript src="compite/typeahead.bundle.js"/>
-<script>
-$(document).ready(function() {
-    var substringMatcher = function(strs) {
-        return function findMatches(q, cb) {
-            var matches, substringRegex;
-            matches = [];
-            substrRegex = new RegExp(q, 'i');
-            $.each(strs, function(i, str) {
-                if (substrRegex.test(str)) {
-                    matches.push(str);
-                }
-            });
-            cb(matches);
-        };
-    };
-    var usuarios = [
-        <g:each in="${usuarios}">
-            '${it.nombres} ${it.paterno} ・ ${it.rut}',
-        </g:each>
-    ];
-    var programas = [
-        <g:each in="${programas}">
-            '${it.nombre} ・ ${it.codigo}',
-        </g:each>
-    ];
-    var rendiciones = [
-        <g:each in="${rendiciones}">
-            '${it.tipoRendicion} - ${formatDate(format:"yyyy/MM/dd", date: it.fecha)} ・ ${it.id}',
-        </g:each>
-    ];
-    var items = [
-        <g:each in="${items}">
-        '${it.nombre} ・ ${it.id}'
-        </g:each>
-    ];
-    $('#usuarioinputdiv .typeahead').typeahead({
-        hint: true,
-        highlight: true,
-        minLength: 1
-    }, {
-        name: 'usuarios',
-        source: substringMatcher(usuarios)
-    });
-    $('#programainputdiv .typeahead').typeahead({
-        hint: true,
-        highlight: true,
-        minLength: 1
-    }, {
-        name: 'programas',
-        source: substringMatcher(programas)
-    });
-    $('#rendicioninputdiv .typeahead').typeahead({
-        hint: true,
-        highlight: true,
-        minLength: 1
-    }, {
-        name: 'rendiciones',
-        source: substringMatcher(rendiciones)
-    });
-    $('#iteminputdiv .typeahead').typeahead({
-        hint: true,
-        highlight: true,
-        minLength: 1
-    }, {
-        name: 'items',
-        source: substringMatcher(items)
-    });
-});
-</script>
+
 <script type="application/javascript">
 $(document).ready(function() {
     $('#enviar').click(function(){
