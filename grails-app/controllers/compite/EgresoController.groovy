@@ -219,4 +219,29 @@ class EgresoController {
         def egresos =  params.egresos
         redirect (controller: "rendicion", action: "crearRendicion", params: [egresos: egresos])
     }
+
+    @Transactional
+    def desaprobar () {
+        println "Estoy desaprobando el egreso"
+        params.aprobacion = "NO"
+        def egreso = Egreso.get(params.id)
+        println "Esto es el egreso: "+egreso
+        egreso.properties = params
+
+        if (egreso == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        if (egreso.hasErrors()) {
+            transactionStatus.setRollbackOnly()
+            respond egreso.errors, view:'show', id: egreso.id
+            return
+        }
+
+        egreso.save flush:true, failOnError: true
+        flash.message = "Egreso Desaprobado Correctamente"
+        redirect (controller: "egreso", action: "show", id: egreso.id)
+    }
 }

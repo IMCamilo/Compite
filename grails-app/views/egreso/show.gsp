@@ -23,16 +23,6 @@
                     </div>
 
                 </div>
-                <!--<div class="col-md-12">
-                    <div class="col-sm-6">
-                        <label>Rendición :</label>
-                        <label style="color: dimgray">${it.rendicion}</label>
-                    </div>
-                    <div class="col-sm-6">
-                        <label>Egreso Mov :</label>
-                        <label style="color: dimgray">${it.egresomov}</label>
-                    </div>
-                </div>-->
                 <div class="col-md-12">
                     <div class="col-sm-6">
                         <label>Rut Empresa :</label>
@@ -93,12 +83,21 @@
                         <label style="color: dimgray">${it.nDocumento}</label>
                     </div>
                 </div>
+                <div class="col-md-12">
+                    <div class="col-sm-6">
+                        <label>Rendición :</label>
+                        <label style="color: dimgray">Nº ${it.rendicion.id}</label>
+                    </div>
+                </div>
             </g:each>
             <g:form resource="${this.egreso}" method="DELETE">
                 <fieldset class="buttons">
                     <g:link class="list" action="index">Volver al Listado</g:link>
                     <g:if test="${egreso.aprobacion == "NO"}">
                         <g:link action="aprobar" resource="${this.egreso}"><g:message code="default.button.aprobar.label" default="Aprobar" /></g:link>
+                    </g:if>
+                    <g:if test="${egreso.aprobacion == "SI" && egreso.rendicion == null}">
+                        <g:link action="desaprobar" resource="${this.egreso}"><g:message code="default.button.desaprobar.label" default="Desaprobar" /></g:link>
                     </g:if>
                     <g:link class="edit" action="edit" resource="${this.egreso}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
                     <input class="delete" type="submit" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
