@@ -1,7 +1,6 @@
 import compite.Asignacion
 import compite.Auditoria
 import compite.Egreso
-import compite.EgresoMov
 import compite.Empresa
 import compite.Item
 import compite.Movilizacion
@@ -131,10 +130,6 @@ class BootStrap {
             new Movilizacion(fechaCreacion: "2016-08-19 11:49:00.0", motivoEmpresa: "Viaje", direccion: "avenida", distancia: 8, concepto: "Movilizacion regional", tipo: "peaje", precio:10000, creadoPor:"admin", programa: 1, usuario: 1).save(failOnError: true)
             new Movilizacion(fechaCreacion: "2016-08-19 11:49:00.0", motivoEmpresa: "Peaje", direccion: "Pto Varas", distancia: 8, concepto: "Movilizacion regional", tipo: "peaje", precio:10000, creadoPor:"admin", programa: 1, usuario: 2).save(failOnError: true)
             new Movilizacion(fechaCreacion: "2016-08-19 11:49:00.0", motivoEmpresa: "Viaje", direccion: "avenida", distancia: 8, concepto: "Movilizacion regional", tipo: "peaje", precio:10000, creadoPor:"admin", programa: 1, usuario: 2).save(failOnError: true)
-        }
-
-        if (!EgresoMov.list()) {
-            new EgresoMov(creadoPor:"admin", fecha:"2016-08-19 11:49:00.0", egreso: 1, movilizacion: 1).save(failOnError: true)
         }
 
         if (!Auditoria.list()) {

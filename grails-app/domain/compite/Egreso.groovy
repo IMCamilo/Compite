@@ -7,7 +7,7 @@ class Egreso {
     Integer monto
 
     static belongsTo = [programa:Programa, usuario:Usuario, item:Item, rendicion:Rendicion, proyecto: Proyecto]
-    static hasMany = [egresomov:EgresoMov]
+    static hasMany = [movilizacion:Movilizacion]
     static constraints = {
         creadoPor nullable: true, blank: true
         rendicion nullable: true, blank: true

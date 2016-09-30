@@ -8,7 +8,7 @@ class EgresoIngController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
     private BigInteger usuarioId = session.usuarioLogueado.id
-
+    Integer idprograma
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
 
@@ -181,4 +181,97 @@ class EgresoIngController {
             '*'{ render status: NOT_FOUND }
         }
     }
+    //egreso de movilizacion crear
+    def egresomovilizacion(Integer max, Integer id) {
+        def ide = Asignacion.executeQuery("from Asignacion as p where p.usuario=" + usuarioId)
+        def programa = ide[0]
+        idprograma= programa.id
+        if (idprograma == null) {
+            println "id programa nulo :" + programa.id
+            redirect controller: "ingeniero", action: "index"
+            flash.message = "No tienes un programa, comuniquese con el administrador"
+        } else {
+            println "id programa :" + idprograma
+            def movs = Movilizacion.executeQuery("from Movilizacion where usuario_id=" + usuarioId + "and programa_id=" + idprograma)
+            def item= Item.findAll()
+            params.max = Math.min(max ?: 10, 100)
+            respond Egreso.list(params), model: [movsList: movs, items:item, programaId:idprograma]
+
+        }
+    }
+    def admovs(){
+        def it = null
+
+        try {
+            String[] itemObtenido = ((String) params.nombreItem).split("-");
+            it = Item.findById(itemObtenido[1])
+        } catch (Exception e) {
+            println "validando item... "+e.getMessage()
+        }
+
+        if (!it){
+            flash.message = "Debes seleccionar un item para esta asignación"
+            redirect(controller: "EgresoMov", action: "index")
+            return
+        }
+
+        params.item = it.id
+        def egreso = new Egreso(params)
+
+        if (egreso == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        if (egreso.hasErrors()) {
+            transactionStatus.setRollbackOnly()
+            respond egreso.errors, view:'index'
+            return
+        }
+
+        egreso.save flush:true, failOnError: true
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.created.message', args: [message(code: 'egreso.label', default: 'Egreso'), egreso.id])
+            }
+            '*' { respond egreso, [status: CREATED] }
+        }
+
+        def buscaEgreso= Egreso.executeQuery("select max(id) from Egreso")
+        def egre= buscaEgreso[0]
+        println "adjuntando movilizaciones...."+egre
+        Integer i=0
+
+        while(i<params.in.size()) {
+            def movil=params.in[i]
+            println("Seleccion de parametro : " + params.in[i])
+            Integer e= egre
+            Integer m=Integer.parseInt(movil)
+            println "movilizacion numero del integer :"+movil
+            params.egreso = e
+            def movilizacion = Movilizacion.get(m)
+            movilizacion.properties = params
+
+            if (movilizacion == null) {
+                transactionStatus.setRollbackOnly()
+                notFound()
+                return
+            }
+
+            if (egreso.hasErrors()) {
+                transactionStatus.setRollbackOnly()
+                respond egreso.errors, view:'create'
+                return
+            }
+
+            movilizacion.save flush:true, failOnError:true
+
+            i++
+        }
+        redirect controller:"egresoIng", action: "egresomovilizacion"
+
+    }
+
 }
