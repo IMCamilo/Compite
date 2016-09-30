@@ -147,46 +147,41 @@ class MovilizacionController {
             def listaMovilizaciones = Movilizacion.executeQuery("from Movilizacion where usuario_id=" + session.usuarioLogueado.id + "and programa_id=" + programa.id)
             println "***listaTransportes*** "+listaTransportes
             params.max = Math.min(max ?: 10, 100)
-            [movsList: listaMovilizaciones, programa: program, listaTransportes: listaTransportes]
+            [movsList: listaMovilizaciones, programa: programa.id, listaTransportes: listaTransportes]
         }
     }
 
     def verificar(){
-        if(params.tipo=="combustible"){
-            def kmsxlitro= Transporte.find("from Transporte where usuario_id="+usuarioId)
-            if (kmsxlitro==null){
-                println ("no tiene vehiculo en el sistema")
-                redirect (controller:"movilizacion", action: "nuevamovilizacion", id:idprograma)
+        if(params.tipo=="combustible") {
+            def kmsPorLitro = Transporte.find("from Transporte where usuario_id="+session.usuarioLogueado.id)
+            if (kmsPorLitro == null){
+                println ("Usuario no tiene Transporte")
+                redirect (controller:"movilizacion", action: "nuevamovilizacion")
                 flash.message="No tiene vehiculo en el sistema"
-            }else {
-                Integer combustible=700
-                Integer dis=Integer.parseInt(params.distancia)
-                Integer precio=Integer.parseInt(params.precio)
-                Integer kmlitro=kmsxlitro.kmPorLitro
+            } else {
+                Integer combustible = 700
+                Integer distancia = Integer.parseInt(params.distancia)
+                Integer precio = Integer.parseInt(params.precio)
+                Integer kmLitro = kmsPorLitro.kmPorLitro
 
-                double conlitro=dis/kmlitro
-                Integer preciocal=conlitro*combustible
+                double conlitro = distancia/kmLitro
+                Integer preciocal = conlitro * combustible
 
-
-                println ("precio de aproximado que debio ocupar= "+preciocal.toString()+" ,precio que pago por la boleta = "+precio.toString())
-
-                if(preciocal*0.7<=precio&&precio<=preciocal*1.3){
+                println ("Precio aproximado que debio ocupar= "+preciocal.toString()+" ,precio que pago por la boleta = "+precio.toString())
+                if(preciocal*0.7 <= precio && precio <= preciocal*1.3){
                     return guardar()
-                }else{
-                    redirect (controller:"movilizacion", action: "nuevamovilizacion", id:idprograma)
-                    flash.message= "El precio de la boletaexcede el máximo o mínimo"
+                } else{
+                    redirect (controller:"movilizacion", action: "nuevamovilizacion")
+                    flash.message= "El precio de la boleta Excede el máximo o mínimo"
                 }
             }
-
-
-        }else{
-            return guardar();
+        } else {
+            return guardar()
         }
     }
-    def guardar(){
-        params.usuario=usuarioId
-        params.programa=idprograma
 
+    def guardar() {
+        params.usuario = session.usuarioLogueado.id
         def movilizacion = new Movilizacion(params)
 
         if (movilizacion == null) {
@@ -210,13 +205,13 @@ class MovilizacionController {
             }
             '*' { respond movilizacion, [status: CREATED] }
         }
-
-
     }
-    def editarmov(Movilizacion movilizacion){
+
+    def editarmov(Movilizacion movilizacion) {
         respond movilizacion
     }
-    def editguardar(){
+
+    def editguardar() {
         params.usuario=usuarioId
         params.proyecto=idprograma
         def movilizacion = Movilizacion.get(params.id)

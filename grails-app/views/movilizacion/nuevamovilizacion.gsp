@@ -67,6 +67,7 @@
         <g:form action="verificar">
             <fieldset class="form">
                 <input name="creadoPor" value="${session.usuarioLogueado.rut}" required="" type="hidden">
+                <input name="programa" value="${programa}" required="" type="hidden">
                 <div class="col-md-12">
                     <div class="col-sm-6">
                         <div class='fieldcontain required'>
