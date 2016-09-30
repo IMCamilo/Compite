@@ -11,14 +11,10 @@
     <asset:javascript src="/compite/highchartjs/highcharts-3d.js"/>
     <asset:javascript src="/compite/highchartjs/modules/exporting.js"/>
     <asset:stylesheet src="bootstrap.css"/>
-    <asset:stylesheet src="grails.css"/>
     <asset:stylesheet src="application.css"/>
     <asset:stylesheet src="main.css"/>
     <asset:stylesheet src="mobile.css"/>
     <style type="text/css">
-        a:link {
-            text-decoration: none;
-        }
         #container, #sliders {
             min-width: 310px;
             max-width: 800px;
