@@ -385,32 +385,46 @@
                     <span class="icon-bar"></span>
                 </button>
             </div>
+
             <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0.8px;">
                 <ul class="nav navbar-nav navbar-left">
                     <li>
-                        <a href="/programa/index">
+                        <a href="${createLink(controller:'programa')}">
                             <i class="fa grails-icon">
-                                <img src="/assets/grails-cupsonly-logo-white.svg" />
+                                <asset:image src="grails-cupsonly-logo-white.svg"/>
                             </i> COMPITE
                         </a>
                     </li>
                 </ul>
+
                 <ul class="nav navbar-nav navbar-right">
                     <li><a class="navbar-brand" href="${createLink(controller:'programa')}">Programas</a></li>
                     <li><a class="navbar-brand" href="${createLink(controller:'proyecto')}">Proyectos</a></li>
                     <li><a class="navbar-brand" href="${createLink(controller:'usuario')}">Usuarios</a></li>
-                    <li role="presentation" class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                            ${session.usuarioLogueado.nombres} ${session.usuarioLogueado.paterno} <span class="caret"></span>
+
+                    <li><a class="navbar-brand" href="${createLink(controller:'transporte')}">Transporte</a></li>
+                    <li><a class="navbar-brand" href="${createLink(controller:'empresa')}">Empresa</a></li>
+                    <li><a class="navbar-brand" href="${createLink(controller:'asignacion')}">Asignación</a></li>
+                    <li><a class="navbar-brand" href="${createLink(controller:'item')}">Item</a></li>
+
+                    <li><a class="navbar-brand" href="${createLink(controller:'Egreso')}">Egresos</a></li>
+                    <li><a class="navbar-brand" href="${createLink(controller:'rendicion')}">Rendiciones</a></li>
+                    <li><a class="navbar-brand" href="${createLink(controller:'auditoria')}">Auditoría</a></li>
+
+                    <li><a class="navbar-brand" href="${createLink(controller:'administrador', action:'reportes')}">Reportes</a></li>
+                    <li><a class="navbar-brand" href="${createLink(controller:'estadistica')}">Estadísticas</a></li>
+
+                    <li><a class="navbar-brand" href="${createLink(controller:'administrador', action:'cargarperfil',)}"
+                        data-toggle="tooltip"
+                            title="Modifica los datos de tu perfil">
+                            Perfil
                         </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="navbar-brand" href="${createLink(controller:'administrador', action:'cargarperfil',)}">Perfil</a></li>
-                            <li>
-                                <a class="navbar-brand" href="${createLink(controller:'login', action:'logout')}">
-                                    Cerrar sesión
-                                </a>
-                            </li>
-                        </ul>
+                    </li>
+                    <li>
+                        <a class="navbar-brand" href="${createLink(controller:'login', action:'logout')}" data-toggle="tooltip"
+                            title="Cerrar sesión ${session.usuarioLogueado.nombres} ${session.usuarioLogueado.paterno}">
+                            Salir
+                        </a>
                     </li>
                 </ul>
             </div>
