@@ -29,7 +29,7 @@
                         <label for="nombre">Codigo
                             <span class="required-indicator">*</span>
                         </label>
-                        <input name="codigo" required=""value="${programa.codigo}" id="codigo" type="number" min="1" max="10" placeholder="Código del Programa">
+                        <input name="codigo" required=""value="${programa.codigo}" id="codigo" type="number" min="1" max="10" maxlength="1" placeholder="Código del Programa" onkeypress="return soloNumeros(event)">
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -54,7 +54,7 @@
                             <span class="required-indicator">*</span>
                         </label>
                         <select name="estado" value="" required="" id="estado">
-                            <option value="" disabled selected>Seleccione Estado</option>
+                            <option value="" disabled>Seleccione Estado</option>
                             <option value="ACTIVO">Activo</option>
                             <option value="INACTIVO">Inactivo</option>
                         </select>
@@ -68,7 +68,7 @@
                             <span class="required-indicator">*</span>
                         </label>
                         <select name="tipo" value="" required="" id="tipo">
-                            <option value="" disabled selected>Seleccione Tipo</option>
+                            <option value="" disabled>Seleccione Tipo</option>
                             <option value="PUBLICO">Publico</option>
                             <option value="PRIVADO">Privado</option>
                         </select>
@@ -137,7 +137,7 @@
                             <span class="required-indicator">*</span>
                         </label>
                         <select name="region" value="" required="" id="region">
-                            <option value="" disabled selected>Seleccione Región</option>
+                            <option value="" disabled>Seleccione Región</option>
                             <g:each var="reg" in="${programa.region}">
                                 <option value="${reg.id}">${reg.nombre}</option>
                             </g:each>

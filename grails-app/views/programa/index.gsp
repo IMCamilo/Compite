@@ -32,7 +32,7 @@
                             <label for="nombre">Código
                                 <span class="required-indicator">*</span>
                             </label>
-                            <input name="codigo" required="" id="codigo" type="number" min="1" max="9" maxlength="1" placeholder="Código del Programa">
+                            <input name="codigo" required="" id="codigo" type="number" min="1" max="9" maxlength="1" placeholder="Código del Programa" onkeypress="return soloNumeros(event)">
                         </div>
                     </div>
                     <div class="col-sm-6">
