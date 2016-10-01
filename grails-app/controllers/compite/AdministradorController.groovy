@@ -9,14 +9,17 @@ import static org.springframework.http.HttpStatus.OK
 class AdministradorController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
     private BigInteger usuarioId = session.usuarioLogueado.id
-    def index = {
+
+    def index() {
         redirect(action: "programa")
     }
-    def proyectos = {
+
+    def proyectos() {
         println "Listando todos los Proyectos"
         redirect(controller: "proyecto", action: "index")
     }
-    def programa = {
+
+    def programa() {
         redirect(controller: "programa", action: "index")
     }
 
@@ -26,48 +29,36 @@ class AdministradorController {
 
     def reportes() {
 
-        def mapa = [:]
+        def datos = [:]
         def listaRendiciones
-        mapa.rendiciones = Rendicion.findAll()
-        mapa.programas = Programa.findAll()
+        datos.rendiciones = Rendicion.findAll()
+        datos.programas = Programa.findAll()
+
         if (params.nombreRendicion) {
             try {
                 String[] rendicionObtenida = ((String) params.nombreRendicion).split(" ・ ");
                 def buscaRendicion = Rendicion.findById(rendicionObtenida[1])
-                if (buscaRendicion) {
-                    listaRendiciones = Rendicion.findAllById(buscaRendicion.id)
-                    //
-                    String[] programaObtenido = ((String) params.nombrePrograma).split(" ・ ");
-                    def buscaPrograma = Programa.findById(programaObtenido[1])
-                    if (buscaPrograma) {
-                        //buscar por programa
-                    }
-                } else {
-                    return
-                }
+                if (buscaRendicion) listaRendiciones = Rendicion.findAllById(buscaRendicion.id)
             } catch (Exception e) {
                 println e.getMessage()
             }
         } else {
             listaRendiciones = Rendicion.list()
+        }
+
+        if (params.nombrePrograma) {
             try {
                 String[] programaObtenido = ((String) params.nombrePrograma).split(" ・ ");
                 def buscaPrograma = Programa.findById(programaObtenido[1])
-                if (buscaPrograma) {
-                    //buscar por programa
-                }
+                datos.listaReportes = listaRendiciones.findAll { it.programaId == buscaPrograma.id }
             } catch (Exception e) {
                 println e.getMessage()
             }
+        } else {
+            datos.listaReportes = listaRendiciones
         }
-        mapa.listaReportes = listaRendiciones
-        //Compite +1000     1
-        //Compite Innova    2
-        //Consultoría       3
-        //buscar por programa
-
-        mapa
-
+        datos
+        
     }
 
     def cargarperfil(){
