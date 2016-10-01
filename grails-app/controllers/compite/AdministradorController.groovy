@@ -4,6 +4,7 @@ import grails.transaction.Transactional
 
 import static org.springframework.http.HttpStatus.OK
 
+
 @Transactional(readOnly = true)
 class AdministradorController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
@@ -25,29 +26,26 @@ class AdministradorController {
 
     def reportes = {
 
-        def program = Programa.findAll()
-        respond Programa.list(params) , model:[programas:program]
+        def r = Rendicion.findAll()
+        def p = Programa.findAll()
+        respond Programa.list(params), model: [programas: p, rendiciones: r]
 
-        try
-        {
-            String[] codigoPrograma = ((String) params.nombrePrograma).split(" ・ ")
-            def projectList = Proyecto.findAll()
-            def programaList = Programa.findAll()
-            def usuarioList = Usuario.findAll()
-            def egresoList = Egreso.executeQuery("from Egreso e, Programa p where p.nombre = :nombre ",[nombre:codigoPrograma[0]])
-            def itemList = Item.findAll()
-            def rendicionList = Rendicion.findAll()
+        try {
+            String[] codigoPrograma = ((String) params.nombrePrograma).split(" ・ ");
+            String[] rendicionNombre = ((String) params.codrendicion).split(" ・ ");
 
-            respond Egreso.list(params), model:[proyectos:projectList, programas:programaList,
-                                                usuarios:usuarioList,egreso:egresoList,
-                                                item:itemList, rendicion:rendicionList]
+                def egresoList  = Egreso.executeQuery("from Egreso e, Programa p, Rendicion r " +
+                        "where e.rendicion = r.id and r.id = :idrendicion and e.programa in (SELECT id from Programa where nombre = :nombreprog)"
+                        ,[idrendicion:rendicionNombre[1].toLong(), nombreprog:codigoPrograma[0].toString()])
+            def egreso = []
+
+            egresoList.each {}
+
         }
-        catch (Exception e)
+        catch (Exception ex)
         {
-            println (e)
+            println ex
         }
-
-
 
     }
     def cargarperfil(){
