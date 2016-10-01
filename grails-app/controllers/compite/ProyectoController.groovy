@@ -18,19 +18,19 @@ class ProyectoController {
             println "tipo: "+tipo+" estado: "+estado
             if (tipo && estado) {
                 println "Viene tipo y estado"
-                def listado = Proyecto.findAll("from Proyecto p where p.tipo = ? and p.estado = ?", [tipo, estado])
+                def listado = Proyecto.findAll("from Proyecto as p where p.programa = "+tipo+" and p.estado = '"+estado+"'")
                 params.max = Math.min(max ?: 10, 100)
                 [proyectoCount: Proyecto.count(), proyectoList: listado, tipoContext: tipo, estadoContext: estado, programas:listaProgramas, empresas:listaEmpresas]
             } else if (tipo) {
                 println "Solo viene tipo"
-                def listaProyectos = Proyecto.findAllByTipo(tipo)
+                def listado = Proyecto.findAll("from Proyecto as p where p.programa = "+tipo)
                 params.max = Math.min(max ?: 10, 100)
-                [proyectoCount: Proyecto.count(), proyectoList: listaProyectos, tipoContext: tipo, estadoContext: null, programas:listaProgramas, empresas:listaEmpresas]
+                [proyectoCount: Proyecto.count(), proyectoList: listado, tipoContext: tipo, estadoContext: null, programas:listaProgramas, empresas:listaEmpresas]
             } else if (estado) {
                 println "Solo viene estado"
-                def listaProyectos = Proyecto.findAllByEstado(estado)
+                def listado =Proyecto.findAll("from Proyecto as p where p.estado = '"+estado+"'")
                 params.max = Math.min(max ?: 10, 100)
-                [proyectoCount: Proyecto.count(), proyectoList: listaProyectos, tipoContext: null, estadoContext: estado, programas:listaProgramas, empresas:listaEmpresas]
+                [proyectoCount: Proyecto.count(), proyectoList: listado, tipoContext: null, estadoContext: estado, programas:listaProgramas, empresas:listaEmpresas]
             }
         } else {
             println "No vienen parametros"

@@ -403,7 +403,7 @@
             patron =/[0-9]/;
             tecla_final = String.fromCharCode(tecla);
             return patron.test(tecla_final);
-    }
+        }
     </script>
 </body>
 </html>

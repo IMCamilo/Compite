@@ -88,30 +88,12 @@
                         <div class="col-sm-6">
                             <div class="fieldcontain">
                                 <label for="tipoBusqueda">Tipo de Programa</label>
-                                <g:if test="${tipoContext != null}">
-                                    <g:if test="${tipoContext == "PUBLICO"}">
-                                        <select name="tipoBusqueda" id="tipoBusqueda">
-                                            <option value="" disabled>Seleccione Programa</option>
-                                            <option value="PUBLICO" selected>Publico</option>
-                                            <option value="PRIVADO">Privado</option>
-                                        </select>
-                                    </g:if>
-                                    <g:else>
-                                        <select name="tipoBusqueda" id="tipoBusqueda">
-                                            <option value="" disabled>Seleccione Tipo</option>
-                                            <option value="PUBLICO">Publico</option>
-                                            <option value="PRIVADO" selected>Privado</option>
-                                        </select>
-                                    </g:else>
-                                </g:if>
-                                <g:else>
-                                    <select name="tipoBusqueda" id="tipoBusqueda">
-                                        <option value="" disabled selected>Seleccione Programa</option>
-                                        <g:each  var="programa" status="i" in="${programas}">
-                                            <option value="${programa.id}" >${programa.nombre}</option>
-                                        </g:each>
-                                    </select>
-                                </g:else>
+                                <select name="tipoBusqueda" id="tipoBusqueda">
+                                    <option value="" disabled selected>Seleccione Programa</option>
+                                    <g:each  var="programa" status="i" in="${programas}">
+                                        <option value="${programa.id}" >${programa.nombre}</option>
+                                    </g:each>
+                                </select>
                             </div>
                         </div>
                         <div class="col-sm-6">
