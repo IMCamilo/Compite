@@ -15,12 +15,7 @@ class TransporteController {
     }
 
     def show(Transporte transporte) {
-        def lista = Usuario.executeQuery("select nombres, paterno, materno from Usuario u where u.id = ?", [transporte.usuarioId])
-        def persona = lista[0]
-        def nombres = persona [0]
-        def paterno = persona [1]
-        def materno = persona [2]
-        respond transporte, model: [nombreUsuario: nombres+" "+paterno+" "+materno]
+        redirect controller:"transporte", action: "index"
     }
 
     def create() {
@@ -66,7 +61,6 @@ class TransporteController {
     @Transactional
     def update() {
         String[] rutObtenido = ((String) params.nombreUsuario).split(" ・ ");
-        println "rutObtenido: "+rutObtenido[1]
         def u = Usuario.findByRut(rutObtenido[1])
         params.usuario = u.id
         def transporte = Transporte.get(params.id)

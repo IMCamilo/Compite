@@ -9,9 +9,6 @@
     <body>
         <div id="create-asignacion" class="content scaffold-create" role="main">
             <h1><g:message code="default.create.label" args="[entityName]" /></h1>
-            <g:if test="${flash.message}">
-                <div class="message" role="status">${flash.message}</div>
-            </g:if>
             <g:hasErrors bean="${this.asignacion}">
             <ul class="errors" role="alert">
                 <g:eachError bean="${this.asignacion}" var="error">
@@ -117,12 +114,12 @@
                 };
                 var usuarios = [
                     <g:each in="${usuarios}">
-                        '${it.nombres} ${it.paterno} ・ ${it.rut}',
+                        '${it.nombres} ${it.paterno} - ${it.rut}',
                     </g:each>
                 ];
                 var programas = [
                     <g:each in="${programas}">
-                        '${it.codigo} ・ ${it.nombre}',
+                        '${it.nombre} ${it.codigo} - ${it.id}',
                     </g:each>
                 ];
                 $('#usuarioinputdiv .typeahead').typeahead({

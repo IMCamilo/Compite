@@ -129,6 +129,14 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="modelo">Patente
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input name="patente" value="${transporte.patente}" required="" placeholder="Ej: xx-xx-12" minlength="8" maxlength="8" id="patente" type="text">
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-12">
                         <br>
