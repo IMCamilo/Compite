@@ -53,18 +53,23 @@
                 </thead>
                 <tbody>
                     <g:each var="egreso" status="i" in="${egresoList}">
-
                         <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
-                            <td><a href="show/${egreso.id}">Ver</a></td>
-                            <g:if test="${egreso.movilizacion.isEmpty()}">
-                                <td>No tiene movilizaciones</td>
-                            </g:if>
-                            <g:else>
-                                <g:if test="${params.id==null}">
-                                    <td><a href="index/${egreso.id}">Ver Movilizaciones</a></td>
+                            <g:if test="${params.id==null}">
+                                <td><a href="show/${egreso.id}">Ver</a></td>
+                                <g:if test="${egreso.movilizacion.isEmpty()}">
+                                    <td>No tiene movilizaciones</td>
                                 </g:if>
                                 <g:else>
-                                    <td><a href="../index/${egreso.id}" >Ver Movilizaciones</a></td>
+                                    <td><a href="index/${egreso.id}">Ver movilizaciones</a></td>
+                                </g:else>
+                            </g:if>
+                            <g:else>
+                                <td><a href="../show/${egreso.id}">Ver</a></td>
+                                <g:if test="${egreso.movilizacion.isEmpty()}">
+                                    <td>No tiene movilizaciones</td>
+                                </g:if>
+                                <g:else>
+                                    <td><a href="../index/${egreso.id}">Ver movilizaciones</a></td>
                                 </g:else>
                             </g:else>
                             <td>${egreso.programa.nombre}</td>

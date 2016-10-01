@@ -10,7 +10,7 @@ class EgresoController {
 
     def index(Integer max) {
         if (params.programa != null) {
-            def movs=Movilizacion.findAll()
+            def movs=null
             def programaList = Programa.findAll("from Programa where estado='ACTIVO'")
             params.max = Math.min(max ?: 10, 100)
             respond Egreso.findAll("from Egreso where programa="+params.programa), model: [egresoCount: Egreso.count(), programas: programaList, movsList:movs]
@@ -23,8 +23,7 @@ class EgresoController {
             params.max = Math.min(max ?: 10, 100)
             respond Egreso.findAll(), model: [egresoCount: Egreso.count(), programas: programaList, movsList:movs]
         }else {
-            def movs=Movilizacion.findAll()
-            def rendicionList = Rendicion.findAll()
+            def movs=null
             def programaList = Programa.findAll("from Programa where estado='ACTIVO'")
             params.max = Math.min(max ?: 10, 100)
             respond Egreso.list(params), model: [egresoCount: Egreso.count(), programas: programaList,movsList: movs]
