@@ -41,7 +41,7 @@ class AsignacionController {
             String[] rutObtenido = ((String) params.nombreUsuario).split(" - ");
             String[] programaObtenido = ((String) params.nombrePrograma).split(" - ");
             u = Usuario.findByRut(rutObtenido[1])
-            p = Programa.findById(programaObtenido[1])
+            p = Programa.findById(programaObtenido[3])
         } catch (Exception e) {
             println "validando asignación. "+e.getMessage()
         }

@@ -60,8 +60,13 @@ class TransporteController {
 
     @Transactional
     def update() {
-        String[] rutObtenido = ((String) params.nombreUsuario).split(" ・ ");
-        def u = Usuario.findByRut(rutObtenido[1])
+        String[] rutObtenido = ((String) params.nombreUsuario).split(" ? ");
+        println "obtencion de rut: "+rutObtenido[3]
+        def u = Usuario.findByRut(rutObtenido[3])
+        if(!u){
+            flash.message="No ha seleccionado un usuario valido"
+            redirect(controller: "transporte", action: "edit")
+        }
         params.usuario = u.id
         def transporte = Transporte.get(params.id)
         transporte.properties = params

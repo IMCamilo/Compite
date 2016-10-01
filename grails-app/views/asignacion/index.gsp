@@ -119,7 +119,7 @@
                 ];
                 var programas = [
                     <g:each in="${programas}">
-                        '${it.nombre} ${it.codigo} - ${it.id}',
+                        '${it.nombre} - ${it.id}',
                     </g:each>
                 ];
                 $('#usuarioinputdiv .typeahead').typeahead({
