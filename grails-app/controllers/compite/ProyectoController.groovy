@@ -23,14 +23,14 @@ class ProyectoController {
                 [proyectoCount: Proyecto.count(), proyectoList: listado, tipoContext: tipo, estadoContext: estado, programas:listaProgramas, empresas:listaEmpresas]
             } else if (tipo) {
                 println "Solo viene tipo"
-                def listado = Proyecto.findAll("from Proyecto as p where p.programa = "+tipo)
+                def listaProyecto = Proyecto.findAll("from Proyecto as p where p.programa = "+tipo)
                 params.max = Math.min(max ?: 10, 100)
-                [proyectoCount: Proyecto.count(), proyectoList: listado, tipoContext: tipo, estadoContext: null, programas:listaProgramas, empresas:listaEmpresas]
+                [proyectoCount: Proyecto.count(), proyectoList: listaProyecto, tipoContext: tipo, estadoContext: null, programas:listaProgramas, empresas:listaEmpresas]
             } else if (estado) {
                 println "Solo viene estado"
-                def listado =Proyecto.findAll("from Proyecto as p where p.estado = '"+estado+"'")
+                def listaProyecto =Proyecto.findAll("from Proyecto as p where p.estado = '"+estado+"'")
                 params.max = Math.min(max ?: 10, 100)
-                [proyectoCount: Proyecto.count(), proyectoList: listado, tipoContext: null, estadoContext: estado, programas:listaProgramas, empresas:listaEmpresas]
+                [proyectoCount: Proyecto.count(), proyectoList: listaProyecto, tipoContext: null, estadoContext: estado, programas:listaProgramas, empresas:listaEmpresas]
             }
         } else {
             println "No vienen parametros"

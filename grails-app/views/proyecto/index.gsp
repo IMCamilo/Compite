@@ -90,7 +90,7 @@
                                 <label for="tipoBusqueda">Tipo de Programa</label>
                                 <g:if test="${tipoContext != null}">
                                     <select name="tipoBusqueda" id="tipoBusqueda">
-                                        <option value="${tipoContext}" disabled>Seleccione Programa</option>
+                                        <option value="" disabled selected>Seleccione Programa</option>
                                         <g:each  var="programa" status="i" in="${programas}">
                                             <option value="${programa.id}" >${programa.nombre}</option>
                                         </g:each>
