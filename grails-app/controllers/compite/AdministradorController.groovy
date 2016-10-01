@@ -26,28 +26,13 @@ class AdministradorController {
 
     def reportes = {
 
-        def r = Rendicion.findAll()
-        def p = Programa.findAll()
-        respond Programa.list(params), model: [programas: p, rendiciones: r]
-
-        try {
-            String[] codigoPrograma = ((String) params.nombrePrograma).split(" ・ ");
-            String[] rendicionNombre = ((String) params.codrendicion).split(" ・ ");
-
-                def egresoList  = Egreso.executeQuery("from Egreso e, Programa p, Rendicion r " +
-                        "where e.rendicion = r.id and r.id = :idrendicion and e.programa in (SELECT id from Programa where nombre = :nombreprog)"
-                        ,[idrendicion:rendicionNombre[1].toLong(), nombreprog:codigoPrograma[0].toString()])
-            def egreso = []
-
-            egresoList.each {}
-
-        }
-        catch (Exception ex)
-        {
-            println ex
-        }
+        def mapa = [:]
+        mapa.rendiciones = Rendicion.findAll()
+        mapa.programas = Programa.findAll()
+        mapa
 
     }
+
     def cargarperfil(){
         redirect (controller: "administrador", action: "perfil", id: usuarioId)
     }

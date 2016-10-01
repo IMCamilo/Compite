@@ -44,7 +44,7 @@
             </tr>
         </thead>
         <tbody>
-            <g:each var="reporte" in="${egresoList}" >
+            <g:each var="reporte" in="${rendicionesEnEgreso}" >
                 <tr>
                     <td><g:link controller="egreso" action="show" id="${reporte.id}">${reporte.id}</g:link></td>
                     <td>${reporte.tipoDocumento}</td>
@@ -79,11 +79,6 @@
                     cb(matches);
                 };
             };
-            var usuarios = [
-                <g:each in="${usuarios}">
-                '${it.nombres} ${it.paterno} ・ ${it.rut}',
-                </g:each>
-            ];
             var programas = [
                 <g:each in="${programas}">
                 '${it.nombre} ・ ${it.codigo}',
@@ -94,19 +89,6 @@
                 '${it.tipoRendicion} - ${formatDate(format:"yyyy/MM/dd", date: it.fecha)} ・ ${it.id}',
                 </g:each>
             ];
-            var items = [
-                <g:each in="${items}">
-                '${it.nombre} ・ ${it.id}'
-                </g:each>
-            ];
-            $('#usuarioinputdiv .typeahead').typeahead({
-                hint: true,
-                highlight: true,
-                minLength: 1
-            }, {
-                name: 'usuarios',
-                source: substringMatcher(usuarios)
-            });
             $('#programainputdiv .typeahead').typeahead({
                 hint: true,
                 highlight: true,
@@ -122,14 +104,6 @@
             }, {
                 name: 'rendiciones',
                 source: substringMatcher(rendiciones)
-            });
-            $('#iteminputdiv .typeahead').typeahead({
-                hint: true,
-                highlight: true,
-                minLength: 1
-            }, {
-                name: 'items',
-                source: substringMatcher(items)
             });
         });
     </script>
