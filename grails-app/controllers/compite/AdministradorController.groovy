@@ -24,11 +24,48 @@ class AdministradorController {
         //si no tiene nada, simplemente carga la vista index.gsp
     }
 
-    def reportes = {
+    def reportes() {
 
         def mapa = [:]
+        def listaRendiciones
         mapa.rendiciones = Rendicion.findAll()
         mapa.programas = Programa.findAll()
+        if (params.nombreRendicion) {
+            try {
+                String[] rendicionObtenida = ((String) params.nombreRendicion).split(" ・ ");
+                def buscaRendicion = Rendicion.findById(rendicionObtenida[1])
+                if (buscaRendicion) {
+                    listaRendiciones = Rendicion.findAllById(buscaRendicion.id)
+                    //
+                    String[] programaObtenido = ((String) params.nombrePrograma).split(" ・ ");
+                    def buscaPrograma = Programa.findById(programaObtenido[1])
+                    if (buscaPrograma) {
+                        //buscar por programa
+                    }
+                } else {
+                    return
+                }
+            } catch (Exception e) {
+                println e.getMessage()
+            }
+        } else {
+            listaRendiciones = Rendicion.list()
+            try {
+                String[] programaObtenido = ((String) params.nombrePrograma).split(" ・ ");
+                def buscaPrograma = Programa.findById(programaObtenido[1])
+                if (buscaPrograma) {
+                    //buscar por programa
+                }
+            } catch (Exception e) {
+                println e.getMessage()
+            }
+        }
+        mapa.listaReportes = listaRendiciones
+        //Compite +1000     1
+        //Compite Innova    2
+        //Consultoría       3
+        //buscar por programa
+
         mapa
 
     }

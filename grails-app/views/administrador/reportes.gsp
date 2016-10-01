@@ -1,112 +1,142 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta name="layout" content="mainadministrador" />
-    <title>Reportes de Rendicion de Gastos</title>
-    <asset:stylesheet src="compite/autocomplete.css"/>
-</head>
-<body>
+    <head>
+        <meta name="layout" content="mainadministrador" />
+        <g:set var="entityName" value="${message(code: 'reportes.label', default: 'Reportes')}" />
+        <title><g:message code="default.list.label" args="[entityName]" /></title>
+        <asset:stylesheet src="compite/autocomplete.css"/>
+    </head>
+    <body>
+        <div id="create-reportes" class="content scaffold-create" role="main">
+            <h1>Reportes - Mostrar egresos de las rendiciones por programas</h1>
+            <g:if test="${flash.message}">
+                <div class="message" role="status">${flash.message}</div>
+            </g:if>
+            <g:if test="${flash.error}">
+                <div class="errors" role="status">${flash.error}</div>
+            </g:if>
+            <g:hasErrors bean="${this.reportes}">
+                <ul class="errors" role="alert">
+                    <g:eachError bean="${this.reportes}" var="error">
+                        <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>>
+                            <g:message error="${error}" />
+                        </li>
+                    </g:eachError>
+                </ul>
+            </g:hasErrors>
+            <g:form action="reportes">
+                <fieldset class="form">
+                    <div class="col-md-12">
+                        <div class="col-sm-4">
+                            <div class="fieldcontain" id="rendicionesinput">
+                                <input style="width:500px" class="typeahead form-control" name="nombreRendicion"
+                                type="text" placeholder="Busca una rendición" value="${params.nombreRendicion?:""}">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="fieldcontain" id="programasinput">
+                                <input style="width:500px" class="typeahead form-control" name="nombrePrograma"
+                                type="text" placeholder="Busca un programa" value="${params.nombrePrograma?:""}">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="fieldcontain">
+                                <g:submitButton style="width:500px" name="create" class="save btn btn-info" value="Buscar" />
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </g:form>
 
-<g:form action="reportes" method="POST" >
-    <div class="fieldcontain required" id="programainputdiv">
-        <label for="nombrePrograma">Programa
-            <span class="required-indicator">*</span>
-        </label>
-        <input id="nombrePrograma" class="typeahead" name="nombrePrograma" type="text" required="" placeholder="Busca un programa">
-    </div>
-    <div class="fieldcontain required" id="rendicioninputdiv">
-        <label for="codRendicion">Rendicion
-            <span class="required-indicator">*</span>
-        </label>
-        <input id="codRendicion" class="typeahead" name="codrendicion" type="text" required="" placeholder="Busca una Rendicion">
-    </div>
-    <div class="button col-md-offset-3 fieldcontain">
-        <button>Buscar</button>
-    </div>
-</g:form >
-
-
-
-    <table>
-        <thead>
-            <tr>
-                <th>Referencia</th>
-                <th>Tipo</th>
-                <th>Numero Documento</th>
-                <th>Fecha Creacion</th>
-                <th>Rut Empresa</th>
-                <th>Pagado A</th>
-                <th>Centro de Costos</th>
-                <th>Item Presupuestario</th>
-                <th>Descripcion del Gasto</th>
-                <th>$ Valor</th>
-
-            </tr>
-        </thead>
-        <tbody>
-            <g:each var="reporte" in="${rendicionesEnEgreso}" >
-                <tr>
-                    <td><g:link controller="egreso" action="show" id="${reporte.id}">${reporte.id}</g:link></td>
-                    <td>${reporte.tipoDocumento}</td>
-                    <td>${reporte.nDocumento}</td>
-                    <td>${reporte.fechaCreacion}</td>
-                    <td>${reporte.rutEmpresa}</td>
-                    <td>${reporte.pagadoA}</td>
-                    <td>${reporte.item.codigo}</td>
-                    <td>${reporte.item.nombre}</td>
-                    <td>${reporte.concepto}</td>
-                    <td>${reporte.monto}</td>
-                </tr>
-            </g:each>
-        </tbody>
-    </table>
-
-<div>
-    <asset:javascript src="compite/jquery-2.1.1.min.js"/>
-    <asset:javascript src="compite/typeahead.bundle.js"/>
-    <script>
-        $(document).ready(function() {
-            var substringMatcher = function(strs) {
-                return function findMatches(q, cb) {
-                    var matches, substringRegex;
-                    matches = [];
-                    substrRegex = new RegExp(q, 'i');
-                    $.each(strs, function(i, str) {
-                        if (substrRegex.test(str)) {
-                            matches.push(str);
-                        }
-                    });
-                    cb(matches);
+            <div id="list-reportes" class="content scaffold-list" role="main" style="width:100%; padding-top: 50px; padding: 0px 0px 0px 0px;">
+                <h1><g:message code="default.list.label" args="[entityName]" /></h1>
+                <g:if test="${flash.message}">
+                    <div class="message" role="status">${flash.message}</div>
+                </g:if>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>APROBACION</th>
+                            <th>CREADO_POR</th>
+                            <th>FECHA</th>
+                            <th>SEDE_ENVIO</th>
+                            <th>TIPO_RENDICION</th>
+                            <th>PROGRAMA_ID</th>
+                            <th>TOTAL</th>
+                            <th>TOTAL_ANTICIPADO</th>
+                            <th>TOTAL_RENDIDO</th>
+                            <th>USUARIO_ID</th>
+                            <!--<g:sortableColumn property="rut" defaultOrder="desc" title="Rut"/>-->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <g:each var="reporte" status="i" in="${listaReportes}">
+                             <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
+                                <td>${reporte.id}</td>
+                                <td>${reporte.aprobacion}</td>
+                                <td>${reporte.creadoPor}</td>
+                                <td>${reporte.fecha}</td>
+                                <td>${reporte.sedeEnvio}</td>
+                                <td>${reporte.tipoRendicion}</td>
+                                <td>${reporte.programaId}</td>
+                                <td>${reporte.total}</td>
+                                <td>${reporte.totalAnticipado}</td>
+                                <td>${reporte.totalRendido}</td>
+                                <td>${reporte.usuarioId}</td>
+                            </tr>
+                        </g:each>
+                    </tbody>
+                </table>
+                <div class="pagination">
+                    <g:paginate total="${reporteCount ?: 0}" />
+                </div>
+            </div>
+        </div>
+        <asset:javascript src="compite/jquery-2.1.1.min.js"/>
+        <asset:javascript src="compite/typeahead.bundle.js"/>
+        <script>
+            $(document).ready(function() {
+                var substringMatcher = function(strs) {
+                    return function findMatches(q, cb) {
+                        var matches, substringRegex;
+                        matches = [];
+                        substrRegex = new RegExp(q, 'i');
+                        $.each(strs, function(i, str) {
+                            if (substrRegex.test(str)) {
+                                matches.push(str);
+                            }
+                        });
+                        cb(matches);
+                    };
                 };
-            };
-            var programas = [
-                <g:each in="${programas}">
-                '${it.nombre} ・ ${it.codigo}',
-                </g:each>
-            ];
-            var rendiciones = [
-                <g:each in="${rendiciones}">
-                '${it.tipoRendicion} - ${formatDate(format:"yyyy/MM/dd", date: it.fecha)} ・ ${it.id}',
-                </g:each>
-            ];
-            $('#programainputdiv .typeahead').typeahead({
-                hint: true,
-                highlight: true,
-                minLength: 1
-            }, {
-                name: 'programas',
-                source: substringMatcher(programas)
+                var rendiciones = [
+                    <g:each in="${rendiciones}">
+                        '${it.tipoRendicion} ・ ${it.id}',
+                    </g:each>
+                ];
+                var programas = [
+                    <g:each in="${programas}">
+                        '${it.nombre} ・ ${it.id}',
+                    </g:each>
+                ];
+                $('#rendicionesinput .typeahead').typeahead({
+                    hint: true,
+                    highlight: true,
+                    minLength: 1
+                }, {
+                    name: 'rendiciones',
+                    source: substringMatcher(rendiciones)
+                });
+                $('#programasinput .typeahead').typeahead({
+                    hint: true,
+                    highlight: true,
+                    minLength: 1
+                }, {
+                    name: 'programas',
+                    source: substringMatcher(programas)
+                });
             });
-            $('#rendicioninputdiv .typeahead').typeahead({
-                hint: true,
-                highlight: true,
-                minLength: 1
-            }, {
-                name: 'rendiciones',
-                source: substringMatcher(rendiciones)
-            });
-        });
-    </script>
-</div>
-</body>
+        </script>
+    </body>
 </html>

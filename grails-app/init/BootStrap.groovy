@@ -113,7 +113,16 @@ class BootStrap {
         }
 
         if (!Rendicion.list()) {
-            new Rendicion(fecha: "2016-08-19 11:49:00.0", tipoRendicion: "Reembolso de gastos", sedeEnvio: "Puerto Montt",aprobacion: "Si", total:340000, totalAnticipado: 0, totalRendido: 340000, usuario: 1, programa: 1, creadoPor:"admin").save(failOnError: true)
+            new Rendicion(fecha: "2016-08-19 11:49:00.0", tipoRendicion: "Reembolso de gastos", sedeEnvio: "Puerto Montt",aprobacion: "Si", total:340000, totalAnticipado: 0, totalRendido: 340000, usuario: 1, programa: 3, creadoPor:"admin").save(failOnError: true)
+            new Rendicion(fecha: "2016-08-19 11:49:00.0", tipoRendicion: "Reembolso de gastos", sedeEnvio: "Puerto Montt",aprobacion: "Si", total:310670, totalAnticipado: 0, totalRendido: 340000, usuario: 2, programa: 2, creadoPor:"admin").save(failOnError: true)
+            new Rendicion(fecha: "2016-08-19 11:49:00.0", tipoRendicion: "Reembolso de gastos", sedeEnvio: "Puerto Montt",aprobacion: "Si", total:340000, totalAnticipado: 0, totalRendido: 340000, usuario: 3, programa: 1, creadoPor:"admin").save(failOnError: true)
+            new Rendicion(fecha: "2016-08-19 11:49:00.0", tipoRendicion: "Reembolso de gastos", sedeEnvio: "Puerto Montt",aprobacion: "No", total:310670, totalAnticipado: 0, totalRendido: 340000, usuario: 4, programa: 3, creadoPor:"admin").save(failOnError: true)
+            new Rendicion(fecha: "2016-08-19 11:49:00.0", tipoRendicion: "Reembolso de gastos", sedeEnvio: "Puerto Montt",aprobacion: "Si", total:340000, totalAnticipado: 0, totalRendido: 340000, usuario: 5, programa: 2, creadoPor:"admin").save(failOnError: true)
+            new Rendicion(fecha: "2016-08-19 11:49:00.0", tipoRendicion: "Reembolso de gastos", sedeEnvio: "Puerto Montt",aprobacion: "Si", total:310670, totalAnticipado: 0, totalRendido: 340000, usuario: 1, programa: 1, creadoPor:"admin").save(failOnError: true)
+            new Rendicion(fecha: "2016-08-19 11:49:00.0", tipoRendicion: "Reembolso de gastos", sedeEnvio: "Puerto Montt",aprobacion: "No", total:340000, totalAnticipado: 0, totalRendido: 340000, usuario: 2, programa: 3, creadoPor:"admin").save(failOnError: true)
+            new Rendicion(fecha: "2016-08-19 11:49:00.0", tipoRendicion: "Reembolso de gastos", sedeEnvio: "Puerto Montt",aprobacion: "No", total:310670, totalAnticipado: 0, totalRendido: 340000, usuario: 3, programa: 2, creadoPor:"admin").save(failOnError: true)
+            new Rendicion(fecha: "2016-08-19 11:49:00.0", tipoRendicion: "Reembolso de gastos", sedeEnvio: "Puerto Montt",aprobacion: "No", total:310670, totalAnticipado: 0, totalRendido: 340000, usuario: 4, programa: 1, creadoPor:"admin").save(failOnError: true)
+            new Rendicion(fecha: "2016-08-19 11:49:00.0", tipoRendicion: "Reembolso de gastos", sedeEnvio: "Puerto Montt",aprobacion: "No", total:310670, totalAnticipado: 0, totalRendido: 340000, usuario: 5, programa: 1, creadoPor:"admin").save(failOnError: true)
         }
 
         if (!Item.list()) {
