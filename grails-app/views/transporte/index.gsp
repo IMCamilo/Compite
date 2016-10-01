@@ -99,6 +99,14 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="modelo">Patente
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input name="patente" required="" placeholder="Ej: xx-xx-12" minlength="8" maxlength="8" id="patente" type="text">
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-12">
                         <br>
@@ -136,7 +144,7 @@
                 <tbody>
                     <g:each var="transporte" status="i" in="${transporteList}">
                          <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
-                            <td><a href="show/${transporte.id}">ver</a></td>
+                            <td><a href="edit/${transporte.id}">ver</a></td>
                             <td>${transporte.patente}</td>
                             <td>${transporte.tipo}</td>
                             <td>${transporte.marca}</td>

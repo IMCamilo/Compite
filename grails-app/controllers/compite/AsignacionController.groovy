@@ -38,10 +38,10 @@ class AsignacionController {
         def u = null
         def p = null
         try {
-            String[] rutObtenido = ((String) params.nombreUsuario).split(" ・ ");
-            String[] programaObtenido = ((String) params.nombrePrograma).split(" ・ ");
+            String[] rutObtenido = ((String) params.nombreUsuario).split(" - ");
+            String[] programaObtenido = ((String) params.nombrePrograma).split(" - ");
             u = Usuario.findByRut(rutObtenido[1])
-            p = Programa.findByCodigo(programaObtenido[0])
+            p = Programa.findById(programaObtenido[3])
         } catch (Exception e) {
             println "validando asignación. "+e.getMessage()
         }

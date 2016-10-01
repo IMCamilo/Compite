@@ -161,7 +161,7 @@
                 <tbody>
                     <g:each var="usuario" status="i" in="${usuarioList}">
                          <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
-                            <td><a href="usuario/show/${usuario.id}">ver</a></td>
+                            <td><a href="edit/${usuario.id}">ver</a></td>
                             <td>${usuario.rut}</td>
                             <td>${usuario.nombres}</td>
                             <td>${usuario.paterno}</td>
