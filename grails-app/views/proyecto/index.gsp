@@ -88,12 +88,22 @@
                         <div class="col-sm-6">
                             <div class="fieldcontain">
                                 <label for="tipoBusqueda">Tipo de Programa</label>
-                                <select name="tipoBusqueda" id="tipoBusqueda">
-                                    <option value="" disabled selected>Seleccione Programa</option>
-                                    <g:each  var="programa" status="i" in="${programas}">
-                                        <option value="${programa.id}" >${programa.nombre}</option>
-                                    </g:each>
-                                </select>
+                                <g:if test="${tipoContext != null}">
+                                    <select name="tipoBusqueda" id="tipoBusqueda">
+                                        <option value="${tipoContext}" disabled>Seleccione Programa</option>
+                                        <g:each  var="programa" status="i" in="${programas}">
+                                            <option value="${programa.id}" >${programa.nombre}</option>
+                                        </g:each>
+                                    </select>
+                                </g:if>
+                                <g:else>
+                                    <select name="tipoBusqueda" id="tipoBusqueda">
+                                        <option value="" disabled selected>Seleccione Programa</option>
+                                        <g:each  var="programa" status="i" in="${programas}">
+                                            <option value="${programa.id}" >${programa.nombre}</option>
+                                        </g:each>
+                                    </select>
+                                </g:else>
                             </div>
                         </div>
                         <div class="col-sm-6">
