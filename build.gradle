@@ -54,6 +54,7 @@ dependencies {
     compile "org.hibernate:hibernate-ehcache"
 
     //compile 'org.grails.plugins:spring-security-core:3.1.1'
+    compile 'org.grails.plugins:wkhtmltopdf:1.0.0.RC7'
     compile 'org.grails.plugins:grails-melody-plugin:1.60.1'
     compile 'org.grails.plugins:grails-pretty-time:4.0.0'
 

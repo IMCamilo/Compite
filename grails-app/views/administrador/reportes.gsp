@@ -69,6 +69,7 @@
                                 <td>${reporte.aprobacion}</td>
                                 <td>${reporte.creadoPor}</td>
                                 <td>${reporte.fecha}</td>
+                                <!--<td><prettytime:display date="${reporte.fecha}"/></td>-->
                                 <td>${reporte.sedeEnvio}</td>
                                 <td>${reporte.tipoRendicion}</td>
                                 <td>
