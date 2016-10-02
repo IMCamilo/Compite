@@ -164,7 +164,8 @@
                         width: 280,
                     });
                 });*/
-                alert("Debe seleccionar al menos un Egreso");
+                sweetAlert("Selecciona un Egreso...", "Debes seleccionar al menos un Egreso", "error");
+
             }
             return false;
         });
