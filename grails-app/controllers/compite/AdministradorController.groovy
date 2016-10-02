@@ -58,7 +58,7 @@ class AdministradorController {
             datos.listaReportes = listaRendiciones
         }
         datos
-        
+
     }
 
     def cargarperfil(){
