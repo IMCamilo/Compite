@@ -92,12 +92,13 @@ class ProyectoController {
     def edit(Proyecto proyecto) {
         def empresa = Empresa.findById(proyecto.empresaId)
         def listaEmpresas = Empresa.findAll()
-        respond proyecto, model: [empresas: listaEmpresas, empresa: empresa]
+        def listaProgramas = Programa.findAllByEstado("ACTIVO")
+        respond proyecto, model: [empresas: listaEmpresas, empresa: empresa, programas:listaProgramas]
     }
 
     @Transactional
     def update() {
-        String[] empresaObtenida = ((String) params.nombreEmpresa).split(" ・ ");
+        String[] empresaObtenida = ((String) params.nombreEmpresa).split(" - ");
         params.empresa = empresaObtenida[1]
 
         def proyecto = Proyecto.get(params.id)
@@ -109,7 +110,6 @@ class ProyectoController {
             notFound()
             return
         }
-
 
         if (proyecto.hasErrors()) {
             println "Proyecto tiene errores"
@@ -131,6 +131,15 @@ class ProyectoController {
 
     @Transactional
     def delete(Proyecto proyecto) {
+        println "esto es proyecto: "+proyecto.id
+        def buscaEgresos = Egreso.executeQuery("from Egreso e where e.proyecto="+proyecto.id)
+
+        if (buscaEgresos) {
+            transactionStatus.setRollbackOnly()
+            redirect (controller: "proyecto", action: "show", id: proyecto.id)
+            flash.error = "Proyecto tiene Egresos asignados, no se puede eliminar"
+            return
+        }
 
         if (proyecto == null) {
             transactionStatus.setRollbackOnly()
