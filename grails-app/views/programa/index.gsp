@@ -32,7 +32,7 @@
                             <label for="nombre">Código
                                 <span class="required-indicator">*</span>
                             </label>
-                            <input name="codigo" required="" id="codigo" type="number" min="1" max="9" maxlength="1" placeholder="Código del Programa" onkeypress="return soloNumeros(event)">
+                            <input name="codigo" id="codigo" type="number" placeholder="Código del Programa" required="" min="1" max="9" onkeypress="if(this.value.length==1) return false; return soloNumeros(event)">
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -40,7 +40,7 @@
                             <label for="nombre">Nombre
                                 <span class="required-indicator">*</span>
                             </label>
-                            <input name="nombre" required="" id="nombre" type="text" minlength="5" maxlength="50" placeholder="Nombre del Programa">
+                            <input name="nombre" id="nombre" type="text" placeholder="Nombre del Programa" required="" minlength="5" maxlength="35">
                         </div>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                     <div class="col-sm-6">
                         <div class="fieldcontain">
                             <label class="" for="presupuesto">Presupuesto</label>
-                            <input name="presupuesto" minlength="5" maxlength="15" required="" id="presupuesto" type="text" placeholder="Valor monetario asignado al programa" onkeypress="return soloNumeros(event)">
+                            <input name="presupuesto" minlength="3" maxlength="12" required="" id="presupuesto" type="text" placeholder="Valor monetario asignado al programa" onkeypress="return soloNumeros(event)">
                         </div>
                     </div>
                 </div>
@@ -194,7 +194,7 @@
                             <label for="version">Versión
                                 <span class="required-indicator">*</span>
                             </label>
-                            <input id="version" name="version" type="number" min="1" max="9" maxlength="1" required="">
+                            <input id="version" name="version" type="number" min="1" max="9" required="" onkeypress="if(this.value.length==1) return false; return soloNumeros(event)">
                         </div>
                     </div>
                     <div class="col-sm-6">

@@ -29,7 +29,7 @@
                         <label for="nombre">Codigo
                             <span class="required-indicator">*</span>
                         </label>
-                        <input name="codigo" required=""value="${programa.codigo}" id="codigo" type="number" min="1" max="10" maxlength="1" placeholder="Código del Programa" onkeypress="return soloNumeros(event)">
+                        <input name="codigo" id="codigo" value="${programa.codigo}" type="number" placeholder="Código del Programa" required="" min="1" max="9" onkeypress="if(this.value.length==1) return false; return soloNumeros(event)">
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -37,7 +37,7 @@
                         <label for="nombre">Nombre
                             <span class="required-indicator">*</span>
                         </label>
-                        <input name="nombre" required="" value="${programa.nombre}" id="nombre" type="text" minlength="5" maxlength="50" placeholder="Nombre del Programa">
+                        <input name="nombre" id="nombre" value="${programa.nombre}" type="text" placeholder="Nombre del Programa" required="" minlength="5" maxlength="35">
                     </div>
                 </div>
             </div>
@@ -79,7 +79,7 @@
                         <label for="fechaIncio">Centro de costo
                             <span class="required-indicator">*</span>
                         </label>
-                        <input type="number" name="centroCosto" value="${programa.centroCosto}" max="1000" required="">
+                        <input type="number" name="centroCosto" value="${programa.centroCosto}" max="1000" required="" disabled>
                     </div>
                 </div>
             </div>
@@ -118,17 +118,6 @@
                         <input type="number" name="version" value="${programa.version}" max="10" required="">
                     </div>
                 </div>
-            </div>
-            <div class="col-md-12">
-                <div class="col-sm-6">
-                    <div class="fieldcontain required">
-                        <label for="fechaIncio">Centro de costo
-                            <span class="required-indicator">*</span>
-                        </label>
-                        <input type="number"name="centroCosto" value="${programa.centroCosto}" max="1000" required="">
-                    </div>
-                </div>
-
             </div>
             <div class="col-md-12">
                 <div class="col-sm-6">
