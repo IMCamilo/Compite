@@ -5,7 +5,7 @@
         <g:set var="entityName" value="${message(code: 'rendicion.label', default: 'Rendicion')}" />
         <title><g:message code="default.show.label" args="[entityName]" /></title>
         <style>
-            #mdialTamanio{
+            #mdialTamanio, #mdialTamanio2 {
                 width: 95%;
             }
         </style>
@@ -17,6 +17,53 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="myModalLabel">Egresos de la Rendición</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table>
+                            <thead>
+                            <tr>
+                                <g:sortableColumn property="fechaCreacion" defaultOrder="desc" title="Fecha Creación"/>
+                                <g:sortableColumn property="item" defaultOrder="desc" title="Item"/>
+                                <g:sortableColumn property="monto" defaultOrder="desc" title="Monto"/>
+                                <g:sortableColumn property="nDocumento" defaultOrder="desc" title="N° Documento"/>
+                                <g:sortableColumn property="tipoDocumento" defaultOrder="desc" title="Tipo de Documento"/>
+                                <g:sortableColumn property="rutEmpresa" defaultOrder="desc" title="Rut Empresa"/>
+                                <g:sortableColumn property="pagadoA" defaultOrder="desc" title="Pagado A"/>
+                                <g:sortableColumn property="programa" defaultOrder="desc" title="Programa"/>
+                                <g:sortableColumn property="proyecto" defaultOrder="desc" title="Proyecto"/>
+                                <g:sortableColumn property="concepto" defaultOrder="desc" title="Concepto"/>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <g:each var="egreso" status="i" in="${listaEgresos}">
+                                <tr>
+                                    <td>${formatDate(format:"dd/MM/yyyy", date: egreso.fechaCreacion)}</td>
+                                    <td>${egreso.item.nombre}</td>
+                                    <td>${egreso.monto}</td>
+                                    <td>${egreso.nDocumento}</td>
+                                    <td>${egreso.tipoDocumento}</td>
+                                    <td>${egreso.rutEmpresa}</td>
+                                    <td>${egreso.pagadoA}</td>
+                                    <td>${egreso.programa.nombre}</td>
+                                    <td>${egreso.proyecto.nombre}</td>
+                                    <td>${egreso.concepto}</td>
+                                </tr>
+                            </g:each>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="elIDdelModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" id="mdialTamanio2">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel2">Egresos de la Rendición</h4>
                     </div>
                     <div class="modal-body">
                         <table>
@@ -164,7 +211,7 @@
                     </g:elseif>
                     <g:elseif test="${rendicion.estado == "RECEPCIONADA_SANTIAGO"}">
                         <g:link action="aprobadaFirmada" resource="${this.rendicion}">Estado a: Aprobada y firmada en Santiago</g:link>
-                        <g:link action="rechazar" resource="${this.rendicion}">Rechazar Rendición</g:link>
+                        <g:link action="rechazar" resource="${this.rendicion}" data-toggle="modal" data-target="#elIDdelModal2">Rechazar Rendición</g:link>
                     </g:elseif>
                     <g:elseif test="${rendicion.estado == "APROBADA_FIRMADA_SANTIAGO"}">
                         <g:link action="transferencia" resource="${this.rendicion}">Estado a: Transferencia de fondos Realizada</g:link>
