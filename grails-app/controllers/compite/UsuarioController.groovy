@@ -91,6 +91,15 @@ class UsuarioController {
     @Transactional
     def delete(Usuario usuario) {
 
+        def buscaEgresos = Egreso.executeQuery("from Egreso e where e.usuario="+usuario.id)
+        if (buscaEgresos) {
+            println "Tiene egresos"
+            transactionStatus.setRollbackOnly()
+            redirect (controller: "usuario", action: "show", id: usuario.id)
+            flash.error = "Usuario tiene Egresos asignados, no se puede eliminar"
+            return
+        }
+
         if (usuario == null) {
             transactionStatus.setRollbackOnly()
             notFound()

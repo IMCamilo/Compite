@@ -7,9 +7,12 @@
     </head>
     <body>
         <div id="show-usuario" class="content scaffold-show" role="main">
-            <h1><g:message code="default.show.label" args="[entityName]" /></h1>
+            <h1>Datos del Usuario</h1>
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
+            </g:if>
+            <g:if test="${flash.error}">
+                <div class="errors" role="status">${flash.error}</div>
             </g:if>
             <g:each in="${usuario}">
                 <div class="col-md-12">
@@ -72,9 +75,20 @@
                         </label>
                     </div>
                 </div>
+                <g:if test="${!it.asignacion.isEmpty()}">
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <label>Asignación :</label>
+                            <label style="color: dimgray">
+                                <g:link target="_blank" controller="asignacion" action="show" id="${it.asignacion.id}">${it.asignacion.id}</g:link>
+                            </label>
+                        </div>
+                    </div>
+                </g:if>
             </g:each>
             <g:form resource="${this.usuario}" method="DELETE">
                 <fieldset class="buttons">
+                    <g:link class="list" action="index">Volver al Listado</g:link>
                     <g:link class="edit" action="edit" resource="${this.usuario}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
                     <input class="delete" type="submit" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
                 </fieldset>

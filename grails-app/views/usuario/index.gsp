@@ -147,7 +147,7 @@
             <table>
                 <thead>
                     <tr>
-                        <th>ver</th>
+                        <th>Detalles</th>
                         <g:sortableColumn property="rut" defaultOrder="desc" title="Rut"/>
                         <g:sortableColumn property="nombres" defaultOrder="desc" title="Nombres"/>
                         <g:sortableColumn property="paterno" defaultOrder="desc" title="Apellido Paterno"/>
@@ -161,7 +161,7 @@
                 <tbody>
                     <g:each var="usuario" status="i" in="${usuarioList}">
                          <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
-                            <td><a href="edit/${usuario.id}">ver</a></td>
+                            <td><a href="show/${usuario.id}">Ver</a></td>
                             <td>${usuario.rut}</td>
                             <td>${usuario.nombres}</td>
                             <td>${usuario.paterno}</td>
