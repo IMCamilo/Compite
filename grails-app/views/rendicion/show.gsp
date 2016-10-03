@@ -57,7 +57,9 @@
                 <div class="col-md-12">
                     <div class="col-sm-6">
                         <label>Egreso/s :</label>
-                        <label style="color: dimgray">${it.egreso.id}</label>
+                        <label style="color: dimgray">
+                            ${it.egreso.id}
+                        </label>
                     </div>
                     <div class="col-sm-6">
                         <label>Sede Envío :</label>
@@ -74,20 +76,53 @@
                         <label style="color: dimgray">${it.aprobacion}</label>
                     </div>
                 </div>
-                <div class="col-md-12">
-
+                <%--<div class="col-md-12">
                     <div class="col-sm-6">
                         <label>Detalle Aud Ren :</label>
                         <label style="color: dimgray">${it.detalleAudRen}</label>
                     </div>
-                </div>
+                </div>--%>
             </g:each>
             <g:form resource="${this.rendicion}" method="DELETE">
                 <fieldset class="buttons">
+                    <g:link class="list" action="index">Volver al Listado</g:link>
                     <g:link class="edit" action="edit" resource="${this.rendicion}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
                     <input class="delete" type="submit" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
                 </fieldset>
             </g:form>
         </div>
+        <a id="clickButton" data-toggle="modal" data-target=".bs-example-modal-lg"></a>
+        <g:if test="${params.id!=null}">
+            <div id="myModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <table>
+                            <thead>
+                            <tr>
+                                <td>Fecha</td>
+                                <td>Motivo/empresa</td>
+                                <td>Direción</td>
+                                <td>Distancia</td>
+                                <td>Tipo</td>
+                                <td>Precio</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <g:each var="movilizacion" status="i" in="${movsList}">
+                                <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
+                                    <td>${formatDate(format:"dd/MM/yyyy", date: movilizacion.fechaCreacion)}</td>
+                                    <td>${movilizacion.motivoEmpresa}</td>
+                                    <td>${movilizacion.direccion}</td>
+                                    <td>${movilizacion.distancia}</td>
+                                    <td>${movilizacion.tipo}</td>
+                                    <td>${movilizacion.precio}</td>
+                                </tr>
+                            </g:each>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </g:if>
     </body>
 </html>

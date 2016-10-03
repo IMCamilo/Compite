@@ -153,7 +153,7 @@ class RendicionController {
 
         params.sedeEnvio = "Puerto Montt"
         params.tipoRendicion = "Reembolso de gastos"
-        params.aprobacion = "NO"
+        params.estado = "NO_APROBADA"
         params.creadoPor = "admin"
         params.totalRendido = total
         params.total = total

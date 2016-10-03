@@ -38,7 +38,7 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Ver detalles</th>
+                        <th>Detalles</th>
                         <th>Movilizaciones</th>
                         <g:sortableColumn property="programa" defaultOrder="desc" title="Programa"/>
                         <g:sortableColumn property="concepto" defaultOrder="desc" title="Concepto"/>
@@ -121,7 +121,6 @@
                                 <td>Distancia</td>
                                 <td>Tipo</td>
                                 <td>Precio</td>
-
                             </tr>
                         </thead>
                         <tbody>
@@ -158,17 +157,12 @@
                 window.location = "crearRendicion?egresos="+egresos;
             } else {
                 console.log("Nada seleccionado")
-                /*$(function () {
-                    $("#dialog").dialog({
-                        title: "Compite - Rendición",
-                        width: 280,
-                    });
-                });*/
                 sweetAlert("Selecciona un Egreso...", "Debes seleccionar al menos un Egreso", "error");
 
             }
             return false;
         });
+
         window.onload = function() {
             document.getElementById('clickButton').click();
         }

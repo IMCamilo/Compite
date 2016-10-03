@@ -3,7 +3,7 @@ package compite
 class Rendicion {
 
     Date fecha = new Date()
-    String sedeEnvio, tipoRendicion, aprobacion, creadoPor
+    String sedeEnvio, tipoRendicion, estado, creadoPor
     Integer total, totalRendido, totalAnticipado
 
     static belongsTo = [programa:Programa, usuario:Usuario]
@@ -11,6 +11,7 @@ class Rendicion {
 
     static constraints = {
         totalAnticipado nullable: true, blank: true
+        totalRendido nullable: true, blank: true
         total nullable: true, blank: true
         creadoPor nullable: true, blank: true
     }
