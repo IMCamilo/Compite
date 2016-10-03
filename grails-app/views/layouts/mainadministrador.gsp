@@ -46,6 +46,7 @@
                            <li><a class="navbar-brand" href="${createLink(controller:'empresa')}">Empresa</a></li>
                            <li><a class="navbar-brand" href="${createLink(controller:'asignacion')}">Asignación</a></li>
                            <li><a class="navbar-brand" href="${createLink(controller:'item')}">Item</a></li>
+                           <li><a class="navbar-brand" href="${createLink(controller:'region')}">Regiones</a></li>
                        </ul>
                    </li>
                    <li role="presentation" class="dropdown">
