@@ -45,7 +45,7 @@
                 <div class="col-sm-6">
                     <div class="fieldcontain">
                         <label class="" for="presupuesto">Presupuesto</label>
-                        <input name="presupuesto" minlength="5" maxlength="15" required="" value="${programa.presupuesto}" id="presupuesto" type="text" placeholder="Valor monetario asignado al programa" onkeypress="return soloNumeros(event)">
+                        <input name="presupuesto" minlength="5" maxlength="15" required="" value="${programa.presupuesto}" id="presupuesto" type="text" placeholder="Valor monetario asignado al programa" onkeypress="return isNumber(event)">
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -76,7 +76,7 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="fieldcontain required">
-                        <label for="fechaIncio">Centro de costo
+                        <label>Centro de costo
                             <span class="required-indicator">*</span>
                         </label>
                         <input type="number" name="centroCosto" value="${programa.centroCosto}" max="1000" required="" disabled>
@@ -86,25 +86,25 @@
             <div class="col-md-12">
                 <div class="col-sm-6">
                     <div class="fieldcontain required">
-                        <label for="fechaIncio">Fecha Inicio
+                        <label>Fecha Inicio
                             <span class="required-indicator">*</span>
                         </label>
-                        <input type="date"name="fechaInicio" value="${programa.fechaInicio}" required="">
+                        <input type="text"name="fechaInicio" value="${programa.fechaInicio}" required="" disabled>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="fieldcontain required">
-                        <label for="fechaFin">Fecha Fin
+                        <label>Fecha Fin
                             <span class="required-indicator">*</span>
                         </label>
-                        <input type="date" name="fechaFin" value="${programa.fechaFin}" required="">
+                        <input type="text" name="fechaFin" value="${programa.fechaFin}" required="">
                     </div>
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="col-sm-6">
                     <div class="fieldcontain required">
-                        <label for="fechaIncio">Duración
+                        <label>Duración
                             <span class="required-indicator">*</span>
                         </label>
                         <input type="number" name="duracion" value="${programa.duracion}" max="100" required="">
@@ -112,7 +112,7 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="fieldcontain required">
-                        <label for="fechaFin">Versión
+                        <label>Versión
                             <span class="required-indicator">*</span>
                         </label>
                         <input type="number" name="version" value="${programa.version}" max="10" required="">

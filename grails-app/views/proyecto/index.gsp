@@ -222,7 +222,7 @@
                 };
                 var empresas = [
                     <g:each in="${empresas}">
-                        '${it.nombre} ${it.rut} - ${it.id}',
+                        '${it.id} · ${it.nombre} · ${it.rut}',
                     </g:each>
                 ];
                 $('#empresainputdiv .typeahead').typeahead({

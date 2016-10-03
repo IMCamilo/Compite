@@ -51,8 +51,8 @@ class ProyectoController {
 
     @Transactional
     def save() {
-        String[] empresaObtenida = ((String) params.nombreEmpresa).split(" - ");
-        def buscaEmpresa = Empresa.findAllByNombre(empresaObtenida[0])
+        String[] empresaObtenida = ((String) params.nombreEmpresa).split(" · ");
+        def buscaEmpresa = Empresa.findAllByNombre(empresaObtenida[1])
         if (!buscaEmpresa) {
             "Empresa mala"
             transactionStatus.setRollbackOnly()
@@ -60,7 +60,7 @@ class ProyectoController {
             redirect (controller: "proyecto", action: "index")
             return
         } else {
-            params.empresa = empresaObtenida[1]
+            params.empresa = empresaObtenida[0]
         }
 
         def proyecto = new Proyecto(params)
@@ -98,7 +98,7 @@ class ProyectoController {
 
     @Transactional
     def update() {
-        String[] empresaObtenida = ((String) params.nombreEmpresa).split(" - ");
+        String[] empresaObtenida = ((String) params.nombreEmpresa).split(" | ");
         params.empresa = empresaObtenida[1]
 
         def proyecto = Proyecto.get(params.id)
