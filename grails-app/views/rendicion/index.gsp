@@ -17,6 +17,7 @@
                         <th>
                             <div align="center">Detalles</div>
                         </th>
+                        <g:sortableColumn property="id" defaultOrder="desc" title="Número"/>
                         <g:sortableColumn property="tipoRendicion" defaultOrder="desc" title="Tipo Rendicion"/>
                         <g:sortableColumn property="sedeEnvio" defaultOrder="desc" title="Sede de Envío"/>
                         <g:sortableColumn property="total" defaultOrder="desc" title="Total"/>
@@ -31,6 +32,7 @@
                              <td>
                                  <div align="center"><a href="show/${rendicion.id}">Ver</a></div>
                              </td>
+                             <td>Nº ${rendicion.id}</td>
                              <td>${rendicion.tipoRendicion}</td>
                              <td>${rendicion.sedeEnvio}</td>
                              <td>$ ${rendicion.total}</td>

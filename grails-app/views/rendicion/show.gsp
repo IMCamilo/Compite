@@ -72,8 +72,16 @@
                         <label style="color: dimgray">${it.tipoRendicion}</label>
                     </div>
                     <div class="col-sm-6">
-                        <label>Aprobación :</label>
-                        <label style="color: dimgray">${it.aprobacion}</label>
+                        <label>Estado :</label>
+                        <label style="color: dimgray">
+                            <g:if test="${it.estado == "APROBADA"}">Aprobada</g:if>
+                            <g:elseif test="${it.estado == "ENVIADA_POR_VALIJA"}">Enviada por Valija</g:elseif>
+                            <g:elseif test="${it.estado == "RECEPCIONADA_SANTIAGO"}">Recepcionada en Santiago (valija)</g:elseif>
+                            <g:elseif test="${it.estado == "APROBADA_FIRMADA_SANTIAGO"}">Aprobada y firmada</g:elseif>
+                            <g:elseif test="${it.estado == "TRANSFERENCIA_OK"}">Transferencia de fondos realizada</g:elseif>
+                            <g:elseif test="${it.estado == "FINALIZADA"}">Finalizada</g:elseif>
+                            <g:elseif test="${it.estado == "NO_APROBADA"}">No aprobada</g:elseif>
+                        </label>
                     </div>
                 </div>
                 <%--<div class="col-md-12">
@@ -86,43 +94,28 @@
             <g:form resource="${this.rendicion}" method="DELETE">
                 <fieldset class="buttons">
                     <g:link class="list" action="index">Volver al Listado</g:link>
+                    <g:if test="${rendicion.estado == "NO_APROBADA"}">
+                        <g:link action="aprobar" resource="${this.rendicion}"><g:message code="default.button.aprobar.label" default="Aprobar" /></g:link>
+                    </g:if>
+                    <g:elseif test="${rendicion.estado == "APROBADA"}">
+                        <g:link action="enviadaPorValija" resource="${this.rendicion}">Estado a: Enviada por Valija</g:link>
+                    </g:elseif>
+                    <g:elseif test="${rendicion.estado == "ENVIADA_POR_VALIJA"}">
+                        <g:link action="recepcionadaSantiago" resource="${this.rendicion}">Estado a: Recepcionada en Santiago</g:link>
+                    </g:elseif>
+                    <g:elseif test="${rendicion.estado == "RECEPCIONADA_SANTIAGO"}">
+                        <g:link action="aprobadaFirmada" resource="${this.rendicion}">Estado a: Aprobada y firmada en Santiago</g:link>
+                    </g:elseif>
+                    <g:elseif test="${rendicion.estado == "APROBADA_FIRMADA_SANTIAGO"}">
+                        <g:link action="transferencia" resource="${this.rendicion}">Estado a: Transferencia de fondos Realizada</g:link>
+                    </g:elseif>
+                    <g:elseif test="${rendicion.estado == "TRANSFERENCIA_OK"}">
+                        <g:link action="finalizada" resource="${this.rendicion}">Estado a: Rendición finalizada</g:link>
+                    </g:elseif>
                     <g:link class="edit" action="edit" resource="${this.rendicion}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
                     <input class="delete" type="submit" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
                 </fieldset>
             </g:form>
         </div>
-        <a id="clickButton" data-toggle="modal" data-target=".bs-example-modal-lg"></a>
-        <g:if test="${params.id!=null}">
-            <div id="myModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <table>
-                            <thead>
-                            <tr>
-                                <td>Fecha</td>
-                                <td>Motivo/empresa</td>
-                                <td>Direción</td>
-                                <td>Distancia</td>
-                                <td>Tipo</td>
-                                <td>Precio</td>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <g:each var="movilizacion" status="i" in="${movsList}">
-                                <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
-                                    <td>${formatDate(format:"dd/MM/yyyy", date: movilizacion.fechaCreacion)}</td>
-                                    <td>${movilizacion.motivoEmpresa}</td>
-                                    <td>${movilizacion.direccion}</td>
-                                    <td>${movilizacion.distancia}</td>
-                                    <td>${movilizacion.tipo}</td>
-                                    <td>${movilizacion.precio}</td>
-                                </tr>
-                            </g:each>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </g:if>
     </body>
 </html>

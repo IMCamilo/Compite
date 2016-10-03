@@ -205,4 +205,143 @@ class RendicionController {
         flash.message = "Rendicion creada correctamente"
         redirect (controller: "rendicion", action: "show", id: rendicionId)
     }
+
+    @Transactional
+    def aprobar () {
+        println "Estoy aprobando la rendicion"
+        params.estado = "APROBADA"
+        def rendicion = Rendicion.get(params.id)
+        rendicion.properties = params
+
+        if (rendicion == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        if (rendicion.hasErrors()) {
+            transactionStatus.setRollbackOnly()
+            respond egreso.errors, view:'show', id: rendicion.id
+            return
+        }
+
+        rendicion.save flush:true, failOnError: true
+        flash.message = "Rendicion aprobada Correctamente"
+        redirect (controller: "rendicion", action: "show", id: rendicion.id)
+    }
+
+    @Transactional
+    def enviadaPorValija () {
+        params.estado = "ENVIADA_POR_VALIJA"
+        def rendicion = Rendicion.get(params.id)
+        rendicion.properties = params
+
+        if (rendicion == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        if (rendicion.hasErrors()) {
+            transactionStatus.setRollbackOnly()
+            respond egreso.errors, view:'show', id: rendicion.id
+            return
+        }
+
+        rendicion.save flush:true, failOnError: true
+        flash.message = "Rendicion enviada por valija Correctamente"
+        redirect (controller: "rendicion", action: "show", id: rendicion.id)
+    }
+
+    @Transactional
+    def recepcionadaSantiago () {
+        params.estado = "RECEPCIONADA_SANTIAGO"
+        def rendicion = Rendicion.get(params.id)
+        rendicion.properties = params
+
+        if (rendicion == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        if (rendicion.hasErrors()) {
+            transactionStatus.setRollbackOnly()
+            respond egreso.errors, view:'show', id: rendicion.id
+            return
+        }
+
+        rendicion.save flush:true, failOnError: true
+        flash.message = "Rendicion recepcionada Correctamente"
+        redirect (controller: "rendicion", action: "show", id: rendicion.id)
+    }
+
+    @Transactional
+    def aprobadaFirmada () {
+        params.estado = "APROBADA_FIRMADA_SANTIAGO"
+        def rendicion = Rendicion.get(params.id)
+        rendicion.properties = params
+
+        if (rendicion == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        if (rendicion.hasErrors()) {
+            transactionStatus.setRollbackOnly()
+            respond egreso.errors, view:'show', id: rendicion.id
+            return
+        }
+
+        rendicion.save flush:true, failOnError: true
+        flash.message = "Rendicion aprobada y firmada Correctamente"
+        redirect (controller: "rendicion", action: "show", id: rendicion.id)
+    }
+
+    @Transactional
+    def transferencia () {
+        params.estado = "TRANSFERENCIA_OK"
+        def rendicion = Rendicion.get(params.id)
+        rendicion.properties = params
+
+        if (rendicion == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        if (rendicion.hasErrors()) {
+            transactionStatus.setRollbackOnly()
+            respond egreso.errors, view:'show', id: rendicion.id
+            return
+        }
+
+        rendicion.save flush:true, failOnError: true
+        flash.message = "Transferencia ok"
+        redirect (controller: "rendicion", action: "show", id: rendicion.id)
+    }
+
+    @Transactional
+    def finalizada () {
+        params.estado = "FINALIZADA"
+        def rendicion = Rendicion.get(params.id)
+        rendicion.properties = params
+
+        if (rendicion == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        if (rendicion.hasErrors()) {
+            transactionStatus.setRollbackOnly()
+            respond egreso.errors, view:'show', id: rendicion.id
+            return
+        }
+
+        rendicion.save flush:true, failOnError: true
+        flash.message = "Rendicion finalizada correctamente"
+        redirect (controller: "rendicion", action: "show", id: rendicion.id)
+    }
 }
