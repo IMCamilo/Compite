@@ -4,49 +4,58 @@
         <meta name="layout" content="mainadministrador" />
         <g:set var="entityName" value="${message(code: 'rendicion.label', default: 'Rendicion')}" />
         <title><g:message code="default.show.label" args="[entityName]" /></title>
+        <style>
+            #mdialTamanio{
+                width: 95%;
+            }
+        </style>
     </head>
     <body>
-        <div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog modal-lg" role="document">
+        <div class="modal fade" id="elIDdelModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" id="mdialTamanio">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Egresos de Rendición</h4>
+                        <h4 class="modal-title" id="myModalLabel">Desarrollo Hidrocálido</h4>
                     </div>
                     <div class="modal-body">
                         <table>
                             <thead>
                             <tr>
-                                <g:sortableColumn property="fecha" defaultOrder="desc" title="Fecha"/>
-                                <g:sortableColumn property="motivoEmpresa" defaultOrder="desc" title="Motivo/Empresa"/>
-                                <g:sortableColumn property="direccion" defaultOrder="desc" title="Dirección"/>
-                                <g:sortableColumn property="distancia" defaultOrder="desc" title="Distancia"/>
-                                <g:sortableColumn property="tipo" defaultOrder="desc" title="Tipo"/>
-                                <g:sortableColumn property="precio" defaultOrder="desc" title="Precio"/>
-                                <g:sortableColumn property="aprobar" defaultOrder="desc" title="Aprobar"/>
+                                <g:sortableColumn property="fechaCreacion" defaultOrder="desc" title="Fecha Creación"/>
+                                <g:sortableColumn property="item" defaultOrder="desc" title="Item"/>
+                                <g:sortableColumn property="monto" defaultOrder="desc" title="Monto"/>
+                                <g:sortableColumn property="nDocumento" defaultOrder="desc" title="N° Documento"/>
+                                <g:sortableColumn property="tipoDocumento" defaultOrder="desc" title="Tipo de Documento"/>
+                                <g:sortableColumn property="rutEmpresa" defaultOrder="desc" title="Rut Empresa"/>
+                                <g:sortableColumn property="pagadoA" defaultOrder="desc" title="Pagado A"/>
+                                <g:sortableColumn property="programa" defaultOrder="desc" title="Programa"/>
+                                <g:sortableColumn property="proyecto" defaultOrder="desc" title="Proyecto"/>
+                                <g:sortableColumn property="concepto" defaultOrder="desc" title="Concepto"/>
+                                <th>Rechazar</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <g:each var="movilizacion" status="i" in="${movsList}">
-                                <g:if test="${movilizacion.egreso==null}">
-                                    <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
-                                        <td>${formatDate(format:"dd/MM/yyyy", date: movilizacion.fechaCreacion)}</td>
-                                        <td>${movilizacion.motivoEmpresa}</td>
-                                        <td>${movilizacion.direccion}</td>
-                                        <td>${movilizacion.distancia}</td>
-                                        <td>${movilizacion.tipo}</td>
-                                        <td>${movilizacion.precio}</td>
-                                        <td><g:checkBox name="in" value="${movilizacion.id}" /></td>
-                                    </tr>
-                                </g:if>
+                            <g:each var="egreso" status="i" in="${listaEgresos}">
+                                <tr>
+                                    <td>${formatDate(format:"dd/MM/yyyy", date: egreso.fechaCreacion)}</td>
+                                    <td>${egreso.item.nombre}</td>
+                                    <td>${egreso.monto}</td>
+                                    <td>${egreso.nDocumento}</td>
+                                    <td>${egreso.tipoDocumento}</td>
+                                    <td>${egreso.rutEmpresa}</td>
+                                    <td>${egreso.pagadoA}</td>
+                                    <td>${egreso.programa.nombre}</td>
+                                    <td>${egreso.proyecto.nombre}</td>
+                                    <td>${egreso.concepto}</td>
+                                    <td><g:checkBox name="in" value="${egreso.id}" /></td>
+                                </tr>
                             </g:each>
                             </tbody>
                         </table>
                     </div>
                     <div class="modal-footer">
-                        <fieldset class="buttons">
-                            <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
-                        </fieldset>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
             </div>
@@ -108,7 +117,7 @@
                             </label>
                         </g:if>
                         <g:else>
-                            <a type="button" class="save" data-toggle="modal" data-target="#myModal">Ver Egresos</a>
+                            <a type="button" class="save" data-toggle="modal" data-target="#elIDdelModal">Ver Egresos</a>
                         </g:else>
                     </div>
                     <div class="col-sm-6">

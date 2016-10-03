@@ -1,7 +1,5 @@
 package compite
 
-import java.math.RoundingMode
-
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
@@ -18,7 +16,8 @@ class RendicionController {
     }
 
     def show(Rendicion rendicion) {
-        respond rendicion
+        def buscaEgresos = Egreso.executeQuery("from Egreso as e where e.rendicion="+rendicion.id)
+        respond rendicion, model: [listaEgresos: buscaEgresos]
     }
 
     def create() {
