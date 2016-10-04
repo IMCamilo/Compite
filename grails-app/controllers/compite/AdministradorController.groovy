@@ -39,6 +39,7 @@ class AdministradorController {
                 String[] rendicionObtenida = ((String) params.nombreRendicion).split(" ・ ");
                 def buscaRendicion = Rendicion.findById(rendicionObtenida[1])
                 if (buscaRendicion) listaRendiciones = Rendicion.findAllById(buscaRendicion.id)
+                listaRendiciones.add("xx","ss")
             } catch (Exception e) {
                 println e.getMessage()
             }

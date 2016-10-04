@@ -66,7 +66,7 @@
                         <g:each var="reporte" status="i" in="${listaReportes}">
                              <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
                                 <td>${reporte.id}</td>
-                                <td></td>
+                                <td>${reporte.estado}</td>
                                 <td>${reporte.creadoPor}</td>
                                 <td>${reporte.fecha}</td>
                                 <!--<td><prettytime:display date="${reporte.fecha}"/></td>-->
