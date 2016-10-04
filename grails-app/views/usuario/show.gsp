@@ -70,7 +70,7 @@
                                 Sin transporte
                             </g:if>
                             <g:else>
-                                ${it.transporte.patente}
+                                <a data-toggle="modal" data-target="#myModal">Ver Vehículo</a>
                             </g:else>
                         </label>
                     </div>
@@ -80,7 +80,7 @@
                         <div class="col-sm-6">
                             <label>Asignación :</label>
                             <label style="color: dimgray">
-                                <g:link target="_blank" controller="asignacion" action="show" id="${it.asignacion.id}">${it.asignacion.id}</g:link>
+                                <g:link controller="asignacion" action="show" id="${it.asignacion.id}">Asignación</g:link>
                             </label>
                         </div>
                     </div>
@@ -93,6 +93,100 @@
                     <input class="delete" type="submit" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
                 </fieldset>
             </g:form>
+        </div>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Vehículo asignado para : ${usuario.nombres} ${usuario.paterno} ${usuario.materno}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <g:each in="${transporte}">
+                            <div class="col-md-12">
+                                <div class="col-sm-6">
+                                    <label>Tipo :</label>
+                                    <label style="color: dimgray">${it.tipo}</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label>Descripción :</label>
+                                    <label style="color: dimgray">${it.descripcion}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-sm-6">
+                                    <label>Marca :</label>
+                                    <label style="color: dimgray">${it.marca}</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label>Kms Por Litro :</label>
+                                    <label style="color: dimgray">${it.kmPorLitro}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-sm-6">
+                                    <label>Modelo :</label>
+                                    <label style="color: dimgray">${it.modelo}</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label>Combustible :</label>
+                                    <label style="color: dimgray">${it.combustible}</label>
+                                </div>
+                            </div>
+                        </g:each>
+                        <g:form resource="${this.transporte}" method="DELETE">
+                            <fieldset class="">
+
+                            </fieldset>
+                        </g:form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="modalLabel">Vehículo asignado para : ${usuario.nombres} ${usuario.paterno} ${usuario.materno}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <g:each in="${asignacion}">
+                            <div class="col-md-12">
+                                <div class="col-sm-6">
+                                    <label>Fecha Creación :</label>
+                                    <label style="color: dimgray">${formatDate(format:"dd/MM/yyyy", date: it.fechaCreacion)}</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label>Detalle :</label>
+                                    <label style="color: dimgray">${it.detalle}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-sm-6">
+                                    <label>Usuario :</label>
+                                    <label style="color: dimgray">${nombreUsuario}</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label>Programa :</label>
+                                    <label style="color: dimgray">${datosPrograma}</label>
+                                </div>
+                            </div>
+                        </g:each>
+                        <g:form resource="${this.transporte}" method="DELETE">
+                            <fieldset class="">
+
+                            </fieldset>
+                        </g:form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
 </html>

@@ -10,12 +10,18 @@ class UsuarioController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond Usuario.list(params), model:[usuarioCount: Usuario.count()]
+            params.max = Math.min(max ?: 10, 100)
+            respond Usuario.list(params), model: [usuarioCount: Usuario.count()]
     }
 
     def show(Usuario usuario) {
-        respond usuario
+        def trans= Transporte.findByUsuario(usuario)
+        if(trans==null){
+            trans=null
+            respond usuario, model: [transporte:trans]
+        }else {
+            respond usuario, model: [transporte: trans]
+        }
     }
 
     def create() {

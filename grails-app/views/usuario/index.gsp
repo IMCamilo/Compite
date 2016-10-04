@@ -187,6 +187,11 @@
                 <g:paginate total="${usuarioCount ?: 0}" />
             </div>
         </div>
+    <g:if test="${params.id!=null}">
+
+
+    </g:if>
+
     <asset:javascript src="compite/validarut.js"/>
 
     </body>
