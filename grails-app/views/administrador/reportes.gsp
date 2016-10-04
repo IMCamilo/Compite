@@ -8,39 +8,41 @@
     </head>
     <body>
         <div id="create-reportes" class="content scaffold-create" role="main">
-            <h1>Reportes</h1>
-            <g:hasErrors bean="${this.reportes}">
-                <ul class="errors" role="alert">
-                    <g:eachError bean="${this.reportes}" var="error">
-                        <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>>
-                            <g:message error="${error}" />
-                        </li>
-                    </g:eachError>
-                </ul>
-            </g:hasErrors>
-            <g:form action="reportes">
-                <fieldset class="form">
-                    <div class="col-md-12">
-                        <div class="col-sm-4">
-                            <div class="fieldcontain" id="rendicionesinput">
-                                <input style="width:500px" class="typeahead form-control" name="nombreRendicion"
-                                type="text" placeholder="Busca una rendición" value="${params.nombreRendicion?:""}">
+            <div class="noprint">
+                <h1>Reportes</h1>
+                <g:hasErrors bean="${this.reportes}">
+                    <ul class="errors" role="alert">
+                        <g:eachError bean="${this.reportes}" var="error">
+                            <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>>
+                                <g:message error="${error}" />
+                            </li>
+                        </g:eachError>
+                    </ul>
+                </g:hasErrors>
+                <g:form action="reportes">
+                    <fieldset class="form">
+                        <div class="col-md-12">
+                            <div class="col-sm-4">
+                                <div class="fieldcontain" id="rendicionesinput">
+                                    <input style="width:500px" class="typeahead form-control" name="nombreRendicion"
+                                    type="text" placeholder="Busca una rendición" value="${params.nombreRendicion?:""}">
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="fieldcontain" id="programasinput">
+                                    <input style="width:500px" class="typeahead form-control" name="nombrePrograma"
+                                    type="text" placeholder="Busca un programa" value="${params.nombrePrograma?:""}">
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="fieldcontain">
+                                    <g:submitButton style="width:500px" name="create" class="save btn btn-info" value="Buscar" />
+                                </div>
                             </div>
                         </div>
-                        <div class="col-sm-4">
-                            <div class="fieldcontain" id="programasinput">
-                                <input style="width:500px" class="typeahead form-control" name="nombrePrograma"
-                                type="text" placeholder="Busca un programa" value="${params.nombrePrograma?:""}">
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="fieldcontain">
-                                <g:submitButton style="width:500px" name="create" class="save btn btn-info" value="Buscar" />
-                            </div>
-                        </div>
-                    </div>
-                </fieldset>
-            </g:form>
+                    </fieldset>
+                </g:form>
+            </div>
             <div id="list-reportes" class="content scaffold-list" role="main" style="width:100%; padding-top: 50px; padding: 0px 0px 0px 0px;">
                 <h1><g:message code="default.list.label" args="[entityName]" /></h1>
                 <g:if test="${flash.message}">
@@ -92,6 +94,10 @@
                     </tbody>
                 </table>
             </div>
+            <div class="noprint">
+                <input type="button" value="Imprimir" onclick="javascript:window.print()" />
+            </div>
+
         </div>
         <asset:javascript src="compite/jquery-2.1.1.min.js"/>
         <asset:javascript src="compite/typeahead.bundle.js"/>
