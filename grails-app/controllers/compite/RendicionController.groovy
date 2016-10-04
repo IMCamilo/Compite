@@ -345,18 +345,17 @@ class RendicionController {
     }
     @Transactional
     def noaprobar(){
-
-        println "recepcion de parametros : " +params.rendicion
+        println "recepcion de parametros : " +params.in
         if(!params.in){
             flash.message="No se ha seleccionado un egreso"
+            redirect (controller: "rendicion", action: "show", id: params.rendicion)
         }else{
             Integer i = 0
-            while(i>params.in.size()){
-                Integer e = params.in[0]
-                params.estado= "NO"
-                def egreso = Egreso.get(e)
+            while(i<params.in.size()){
+                println "*****parametro de egreso n°" +params.in[i]
+                def egreso = Egreso.get(params.in[i])
                 egreso.properties = params
-
+                egreso.aprobacion = "NO"
                 if (egreso == null) {
                     transactionStatus.setRollbackOnly()
                     notFound()
@@ -370,7 +369,34 @@ class RendicionController {
                 }
 
                 egreso.save flush:true, failOnError: true
+                i++
+            }
+            String obs=params.observacionin
+            println "parametro de observacion : " +obs
 
+            def rendicion = Rendicion.get(params.rendicion)
+            rendicion.properties = params
+            rendicion.estado = "RECHAZADA"
+            rendicion.observacion = obs
+            if (rendicion == null) {
+                transactionStatus.setRollbackOnly()
+                notFound()
+                return
+            }
+
+            if (rendicion.hasErrors()) {
+                transactionStatus.setRollbackOnly()
+                respond rendicion.errors, view:'edit'
+                return
+            }
+
+            rendicion.save flush:true, failOnError:true
+
+            request.withFormat {
+                form multipartForm {
+                    flash.message = message(code: 'default.updated.message', args: [message(code: 'rendicion.label', default: 'Rendicion'), rendicion.id])
+                }
+                '*'{ respond rendicion, [status: OK] }
             }
             flash.message = "Los egresos han sido actualizados correctamente"
             redirect (controller: "rendicion", action: "show", id: params.rendicion)

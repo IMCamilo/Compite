@@ -59,6 +59,9 @@
                              <g:elseif test="${rendicion.estado == "NO_APROBADA"}">
                                  <td>No aprobada</td>
                              </g:elseif>
+                             <g:elseif test="${rendicion.estado == "RECHAZADA"}">
+                                 <td>Rechazada (por Santiago)</td>
+                             </g:elseif>
                         </tr>
                     </g:each>
                 </tbody>

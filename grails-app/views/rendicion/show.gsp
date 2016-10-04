@@ -68,6 +68,16 @@
                     <g:form controller="rendicion" action="noaprobar">
                     <div class="modal-body">
                         <input type="hidden" name="rendicion" value="${params.id}" id="idRendicion">
+                        <div class="row">
+                            <div class="fieldcontain required">
+                                <label for="observacion">Motivo de rechazo
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input type="textarea" name="observacionin" id="observacion" required="" maxlength="200" placeholder="Escriba motivo del rechazo (maximo 200 caracteres)">
+                            </div>
+                        </div>
+                        <div style="margin: 1em"></div>
+
                         <table>
                             <thead>
                             <tr>
@@ -103,9 +113,10 @@
                             </tbody>
                         </table>
                     </div>
-                        <g:submitButton name="enviar" event="noaprobada" class="save">Enviar</g:submitButton>
+                        <g:submitButton name="Rechazar" event="noaprobada" class="update">Rechazar</g:submitButton>
                     </div>
                     </g:form>
+                <div style="margin: 1em"></div>
                 </div>
             </div>
         </div>
@@ -186,6 +197,7 @@
                             <g:elseif test="${it.estado == "ENVIADA_POR_VALIJA"}">Enviada por Valija</g:elseif>
                             <g:elseif test="${it.estado == "RECEPCIONADA_SANTIAGO"}">Recepcionada en Santiago (valija)</g:elseif>
                             <g:elseif test="${it.estado == "APROBADA_FIRMADA_SANTIAGO"}">Aprobada y firmada</g:elseif>
+                            <g:elseif test="${it.estado == "RECHAZADA"}">Rechazada (por Santiago)</g:elseif>
                             <g:elseif test="${it.estado == "TRANSFERENCIA_OK"}">Transferencia de fondos realizada</g:elseif>
                             <g:elseif test="${it.estado == "FINALIZADA"}">Finalizada</g:elseif>
                             <g:elseif test="${it.estado == "NO_APROBADA"}">No aprobada</g:elseif>
