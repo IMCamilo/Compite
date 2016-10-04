@@ -7,6 +7,27 @@
     </head>
     <body>
         <div id="list-rendicion" class="content scaffold-list" role="main">
+            <g:form controller="rendicion" action="index">
+                <div class="col-sm-6">
+                    <div class="fieldcontain required">
+                        <label for="programa">Programa
+                            <span class="required-indicator">*</span>
+                        </label>
+                        <select name="programa" id="programa">
+                            <option value="" disabled selected>Seleccione un programa</option>
+                            <g:each var="program" in="${programas}">
+                                <option value="${program.id}">${program.nombre}</option>
+                            </g:each>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="fieldcontain required">
+                        <g:submitButton name="create" class="btn btn-primary" value="Buscar"></g:submitButton>
+                    </div>
+                </div>
+            </g:form>
+
             <h1><g:message code="default.list.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>

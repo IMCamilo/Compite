@@ -308,6 +308,7 @@
             <thead>
             <tr>
                 <th>ver</th>
+                <th>Ver rendiciones</th>
                 <g:sortableColumn property="codigo" defaultOrder="desc" title="Codigo"/>
                 <g:sortableColumn property="nombre" defaultOrder="desc" title="Nombre"/>
                 <g:sortableColumn property="estado" defaultOrder="desc" title="Estado"/>
@@ -322,6 +323,7 @@
                 <g:if test="${programa.rendicion.isEmpty()}">
                     <tr style="background-color: #DF6664">
                         <td><a href="edit/${programa.id}">ver/editar</a></td>
+                        <td><g:link controller="rendicion" action="carga" params="${programa.id}">Rendiciones</g:link></td>
                         <td>${programa.codigo}</td>
                         <td>${programa.nombre}</td>
                         <td>${programa.estado}</td>
@@ -334,6 +336,7 @@
                 <g:else>
                     <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
                         <td><a href="edit/${programa.id}">ver/editar</a></td>
+                        <td>Sin rendiciones</td>
                         <td>${programa.codigo}</td>
                         <td>${programa.nombre}</td>
                         <td>${programa.estado}</td>
