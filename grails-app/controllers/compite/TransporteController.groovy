@@ -24,31 +24,38 @@ class TransporteController {
 
     @Transactional
     def save() {
-        String[] rutObtenido = ((String) params.nombreUsuario).split(" ・ ");
-        def u = Usuario.findByRut(rutObtenido[1])
+        String[] rutObtenido = ((String) params.nombreUsuario).split(" ? ");
+        println "busqueda de usuario : " +rutObtenido[3]
+        def u = Usuario.findByRut(rutObtenido[3])
         params.usuario = u.id
-        def transporte = new Transporte(params)
+        def trans=Transporte.findByUsuario(u)
+        if(!trans) {
+            def transporte = new Transporte(params)
 
-        if (transporte == null) {
-            transactionStatus.setRollbackOnly()
-            notFound()
-            return
-        }
-
-        if (transporte.hasErrors()) {
-            transactionStatus.setRollbackOnly()
-            respond transporte.errors, view:'index'
-            return
-        }
-
-        transporte.save flush:true, failOnError:true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'transporte.label', default: 'Transporte'), transporte.id])
-                redirect transporte
+            if (transporte == null) {
+                transactionStatus.setRollbackOnly()
+                notFound()
+                return
             }
-            '*' { respond transporte, [status: CREATED] }
+
+            if (transporte.hasErrors()) {
+                transactionStatus.setRollbackOnly()
+                respond transporte.errors, view: 'index'
+                return
+            }
+
+            transporte.save flush: true, failOnError: true
+
+            request.withFormat {
+                form multipartForm {
+                    flash.message = message(code: 'default.created.message', args: [message(code: 'transporte.label', default: 'Transporte'), transporte.id])
+                    redirect transporte
+                }
+                '*' { respond transporte, [status: CREATED] }
+            }
+        }else{
+            flash.message= "Este usuario ya tiene un vehículo, edite el vehículo del usuario"
+            redirect controller: "transporte", action:"edit", id:+trans.id
         }
     }
 

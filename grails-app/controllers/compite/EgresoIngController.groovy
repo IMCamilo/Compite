@@ -267,5 +267,31 @@ class EgresoIngController {
             redirect controller: "egresoIng", action: "egresomovilizacion"
         }
     }
+    def sumarmovs(Integer e){
+        params.egreso = e
+        def egreso = new Egreso(params)
+
+        if (egreso == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        if (egreso.hasErrors()) {
+            transactionStatus.setRollbackOnly()
+            respond egreso.errors, view:'index'
+            return
+        }
+
+        egreso.save flush:true, failOnError: true
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.created.message', args: [message(code: 'egreso.label', default: 'Egreso'), egreso.id])
+                redirect action: "index"
+            }
+            '*' { respond egreso, [status: CREATED] }
+        }
+    }
 
 }
