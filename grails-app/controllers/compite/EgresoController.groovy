@@ -132,7 +132,9 @@ class EgresoController {
 
         def egreso = Egreso.get(params.id)
         egreso.properties = params
-
+        if(egreso.rendicion!=null){
+            egreso.aprobacion="AUDITADA"
+        }
         if (egreso == null) {
             transactionStatus.setRollbackOnly()
             notFound()
@@ -179,10 +181,6 @@ class EgresoController {
             '*'{ render status: NOT_FOUND }
         }
     }
-    def adherir(){
-        respond Egreso.list(params)
-    }
-
     def recepcion(){
         println "Estos son los datos recibidos"+params.selec
         redirect(action: "adherir")
@@ -209,8 +207,39 @@ class EgresoController {
         }
 
         egreso.save flush:true, failOnError: true
-        flash.message = "Aprobado Correctamente"
-        redirect (controller: "egreso", action: "show", id: egreso.id)
+
+        if(!egreso.rendicion){
+            flash.message = "Aprobado Correctamente"
+            redirect (controller: "egreso", action: "show", id: egreso.id)
+        }else{
+            def rendicion = Rendicion.get(egreso.rendicionId)
+            rendicion.properties = params
+            rendicion.estado = "NO_APROBADA"
+            if (rendicion == null) {
+                transactionStatus.setRollbackOnly()
+                notFound()
+                return
+            }
+
+            if (rendicion.hasErrors()) {
+                transactionStatus.setRollbackOnly()
+                respond rendicion.errors, view:'edit'
+                return
+            }
+
+            rendicion.save flush:true, failOnError:true
+
+            request.withFormat {
+                form multipartForm {
+                    flash.message = message(code: 'default.updated.message', args: [message(code: 'rendicion.label', default: 'Rendicion'), rendicion.id])
+                }
+                '*'{ respond rendicion, [status: OK] }
+            }
+            flash.message = "Los egresos han sido actualizados correctamente"
+            redirect (controller: "rendicion", action: "show", id: params.rendicion)
+
+        }
+
     }
 
     def crearRendicion () {

@@ -19,7 +19,8 @@
                 </g:eachError>
             </ul>
             </g:hasErrors>
-            <g:form resource="${this.egreso}" method="PUT">
+            <g:form controller="egresoIng" action="update" resource="${this.egreso}" method="PUT">
+                <input type="hidden" name="egreso" value="${params.id}" id="egreso">
                 <fieldset class="form">
                     <div class="col-md-12">
                         <div class="col-sm-6">

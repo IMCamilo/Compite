@@ -110,14 +110,36 @@ class EgresoIngController {
     @Transactional
     def update() {
         println "Estoy en el update de Egreso Ing"
-        println "Esto es params: "params
+        println "Esto es params: "+params.id
         String[] itemObtenido = ((String) params.nombreItem).split(" - ");
         def i = Item.findById(itemObtenido[1])
         params.item = i.id
-
         def egreso = Egreso.get(params.id)
         egreso.properties = params
+        if(egreso.rendicion!=null){
+            egreso.aprobacion="AUDITADA"
+            if (egreso == null) {
+                transactionStatus.setRollbackOnly()
+                notFound()
+                return
+            }
 
+            if (egreso.hasErrors()) {
+                transactionStatus.setRollbackOnly()
+                respond egreso.errors, view:'edit'
+                return
+            }
+
+            egreso.save flush:true, failOnError: true
+
+            request.withFormat {
+                form multipartForm {
+                    flash.message = message(code: 'default.updated.message', args: [message(code: 'egreso.label', default: 'Egreso'), egreso.id])
+                    redirect egreso
+                }
+                '*'{ respond egreso, [status: OK] }
+            }
+        }
         if (egreso == null) {
             transactionStatus.setRollbackOnly()
             notFound()
@@ -297,5 +319,13 @@ class EgresoIngController {
             '*' { respond egreso, [status: CREATED] }
         }
     }
+ // Auditorias de egresos
+    def auditorias(){
+        def ren=null
+        def buscar= Egreso.executeQuery("from Egreso as e where e.usuario="+usuarioId+" and e.rendicion!="+ren)
+        [egresos: buscar]
+    }
+    def editarauditoria(){
 
+    }
 }

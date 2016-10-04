@@ -34,6 +34,7 @@
 
                 <ul class="nav navbar-nav navbar-right">
                     <li><a class="navbar-brand" href="${createLink(controller:'ingeniero')}">Proyectos</a></li>
+                    <li><a class="navbar-brand" href="${createLink(controller:'egresoIng', action: "auditorias")}">Auditorias</a></li>
                     <li><a class="navbar-brand" href="${createLink(controller:'egresoIng')}">Egresos</a></li>
                     <li><a class="navbar-brand" href="${createLink(controller:'movilizacion', action: 'nuevamovilizacion')}">Movilización</a></li>
                     <li role="presentation" class="dropdown">
