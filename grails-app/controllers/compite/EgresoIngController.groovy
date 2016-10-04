@@ -264,13 +264,17 @@ class EgresoIngController {
 
                 i++
             }
-            redirect controller: "egresoIng", action: "egresomovilizacion"
+            sumarmovs()
         }
     }
-    def sumarmovs(Integer e){
-        params.egreso = e
-        def egreso = new Egreso(params)
-
+    def sumarmovs(){
+        def buscaEgreso = Egreso.executeQuery("select max(id) from Egreso")
+        def egre = buscaEgreso[0]
+        def suma = Movilizacion.executeQuery("select sum(m.precio) as suma from Movilizacion as m where m.egreso="+egre)
+        println "la suma es " +suma
+        params.monto = suma
+        def egreso = Egreso.get(egre)
+        egreso.properties = params
         if (egreso == null) {
             transactionStatus.setRollbackOnly()
             notFound()
@@ -288,7 +292,7 @@ class EgresoIngController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'egreso.label', default: 'Egreso'), egreso.id])
-                redirect action: "index"
+                redirect controller: "egresoIng", action: "index"
             }
             '*' { respond egreso, [status: CREATED] }
         }

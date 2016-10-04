@@ -116,12 +116,13 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="fieldcontain required">
-                        <label for='numeroDocumento'>N° documento
+                        <label for='concepto'>Concepto
                             <span class='required-indicator'>*</span>
                         </label>
-                        <input type="text" name="nDocumento" value="" required="" id="numeroDocumento"/>
+                        <input type="text" name="concepto" value="" required="" id="concepto"/>
                     </div>
                 </div>
+
             </div>
             <div class="col-md-12">
                 <div class="col-sm-6">
@@ -135,24 +136,6 @@
                             <option value="USD">Dolar Americano</option>
                             <option value="EUR">Euro</option>
                         </select>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="fieldcontain required">
-                        <label for="monto">Monto
-                            <span class="required-indicator">*</span>
-                        </label>
-                        <input type="text" name="monto" value="" required="" id="monto" onkeypress="return isNumber(event)"/>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="col-sm-6">
-                    <div class="fieldcontain required">
-                        <label for='concepto'>Concepto
-                            <span class='required-indicator'>*</span>
-                        </label>
-                        <input type="text" name="concepto" value="" required="" id="concepto"/>
                     </div>
                 </div>
             </div>

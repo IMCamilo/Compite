@@ -11,6 +11,8 @@ class Egreso {
     static constraints = {
         creadoPor nullable: true, blank: true
         rendicion nullable: true, blank: true
+        monto nullable: true, blank:true
+        nDocumento nullable: true, blank: true
     }
 
 }

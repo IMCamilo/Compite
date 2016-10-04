@@ -163,6 +163,7 @@
             </thead>
             <tbody>
             <g:each var="movilizacion" status="i" in="${movsList}">
+                <g:if test="${movilizacion.egreso==null}">
                 <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
                     <td><a href="editarmov/${movilizacion.id}">Editar</a></td>
                     <td>${formatDate(format:"dd/MM/yyyy", date: movilizacion.fechaCreacion)}</td>
@@ -172,6 +173,7 @@
                     <td>${movilizacion.tipo}</td>
                     <td>$ ${movilizacion.precio}</td>
                 </tr>
+                </g:if>
             </g:each>
             </tbody>
         </table>
