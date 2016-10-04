@@ -65,7 +65,9 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="myModalLabel2">Egresos de la Rendición</h4>
                     </div>
+                    <g:form controller="rendicion" action="noaprobar">
                     <div class="modal-body">
+                        <input type="hidden" name="rendicion" value="${params.id}" id="idRendicion">
                         <table>
                             <thead>
                             <tr>
@@ -101,9 +103,9 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <g:submitButton name="enviar" event="noaprobada" class="save">Enviar</g:submitButton>
                     </div>
+                    </g:form>
                 </div>
             </div>
         </div>

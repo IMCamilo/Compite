@@ -343,4 +343,37 @@ class RendicionController {
         flash.message = "Rendicion finalizada correctamente"
         redirect (controller: "rendicion", action: "show", id: rendicion.id)
     }
+    @Transactional
+    def noaprobar(){
+
+        println "recepcion de parametros : " +params.rendicion
+        if(!params.in){
+            flash.message="No se ha seleccionado un egreso"
+        }else{
+            Integer i = 0
+            while(i>params.in.size()){
+                Integer e = params.in[0]
+                params.estado= "NO"
+                def egreso = Egreso.get(e)
+                egreso.properties = params
+
+                if (egreso == null) {
+                    transactionStatus.setRollbackOnly()
+                    notFound()
+                    return
+                }
+
+                if (egreso.hasErrors()) {
+                    transactionStatus.setRollbackOnly()
+                    respond egreso.errors, view:'edit'
+                    return
+                }
+
+                egreso.save flush:true, failOnError: true
+
+            }
+            flash.message = "Los egresos han sido actualizados correctamente"
+            redirect (controller: "rendicion", action: "show", id: params.rendicion)
+        }
+    }
 }
