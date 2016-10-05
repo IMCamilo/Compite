@@ -218,13 +218,13 @@ class EgresoController {
             if (rendicion == null) {
                 transactionStatus.setRollbackOnly()
                 notFound()
-                return
+
             }
 
             if (rendicion.hasErrors()) {
                 transactionStatus.setRollbackOnly()
                 respond rendicion.errors, view:'edit'
-                return
+
             }
 
             rendicion.save flush:true, failOnError:true
@@ -232,11 +232,11 @@ class EgresoController {
             request.withFormat {
                 form multipartForm {
                     flash.message = message(code: 'default.updated.message', args: [message(code: 'rendicion.label', default: 'Rendicion'), rendicion.id])
+                    redirect controller: "egreso", action: "show", id: egreso.id
                 }
-                '*'{ respond rendicion, [status: OK] }
             }
             flash.message = "Los egresos han sido actualizados correctamente"
-            redirect (controller: "rendicion", action: "show", id: params.rendicion)
+
 
         }
 
