@@ -131,6 +131,10 @@
                         <label>Nº Rendición :</label>
                         <label style="color: dimgray">${it.id}</label>
                     </div>
+                    <div class="col-sm-6">
+                        <g:link controller="rendicion" action="reporte" id="${params.id}"> Generar Reporte</g:link>
+                    </div>
+
                 </div>
                 <div class="col-md-12">
                     <div class="col-sm-6">

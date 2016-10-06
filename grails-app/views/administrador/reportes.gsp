@@ -74,17 +74,7 @@
                                 <!--<td><prettytime:display date="${reporte.fecha}"/></td>-->
                                 <td>${reporte.sedeEnvio}</td>
                                 <td>${reporte.tipoRendicion}</td>
-                                <td>
-                                    <g:if test="${reporte.programaId == 1}">
-                                         Compite +1000
-                                    </g:if>
-                                    <g:elseif test="${reporte.programaId == 2}">
-                                        Compite Innova
-                                    </g:elseif>
-                                    <g:else>
-                                        Consultoría
-                                    </g:else>
-                                </td>
+                                <td>${reporte.programa.nombre}</td>
                                 <td>${reporte.total}</td>
                                 <td>${reporte.totalAnticipado}</td>
                                 <td>${reporte.totalRendido}</td>

@@ -410,4 +410,8 @@ class RendicionController {
             redirect (controller: "rendicion", action: "show", id: params.rendicion)
         }
     }
+    def reporte(Rendicion rendicion){
+        def buscaEgresos = Egreso.executeQuery("from Egreso as e where e.rendicion="+rendicion.id)
+        respond rendicion, model: [listaEgresos: buscaEgresos]
+    }
 }

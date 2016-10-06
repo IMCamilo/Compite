@@ -1,7 +1,7 @@
 package compite
 
 import grails.transaction.Transactional
-
+import compite.Rendicion
 import static org.springframework.http.HttpStatus.OK
 
 
