@@ -159,11 +159,11 @@
                     <g:sortableColumn property="distancia" defaultOrder="desc" title="Distancia"/>
                     <g:sortableColumn property="tipo" defaultOrder="desc" title="Tipo"/>
                     <g:sortableColumn property="precio" defaultOrder="desc" title="Total"/>
+                    <g:sortableColumn property="egreso" defaultOrder="desc" title="Egreso"/>
                 </tr>
             </thead>
             <tbody>
             <g:each var="movilizacion" status="i" in="${movsList}">
-                <g:if test="${movilizacion.egreso==null}">
                 <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
                     <td><a href="editarmov/${movilizacion.id}">Editar</a></td>
                     <td>${formatDate(format:"dd/MM/yyyy", date: movilizacion.fechaCreacion)}</td>
@@ -172,8 +172,13 @@
                     <td>${movilizacion.distancia}</td>
                     <td>${movilizacion.tipo}</td>
                     <td>$ ${movilizacion.precio}</td>
+                    <g:if test="${movilizacion.egreso != null}">
+                        <td><a href="../egresoIng/show/${movilizacion.egreso.id}">Nº ${movilizacion.egreso.id }</a></td>
+                    </g:if>
+                    <g:else>
+                        <td>Sin Egreso</td>
+                    </g:else>
                 </tr>
-                </g:if>
             </g:each>
             </tbody>
         </table>

@@ -195,30 +195,28 @@ class EgresoIngController {
     }
     //egreso de movilizacion crear
     def egresomovilizacion(Integer max, Integer id) {
-        def ide = Asignacion.executeQuery("from Asignacion as p where p.usuario=" + usuarioId)
-        def programa = ide[0]
-        idprograma= programa.id
-        if (idprograma == null) {
-            println "id programa nulo :" + programa.id
+        def buscaPrograma = Asignacion.executeQuery("select a.programa from Asignacion as a where a.usuario="+session.usuarioLogueado.id)
+        def programa = buscaPrograma[0]
+        if (programa.id == null) {
+            println "No tiene Programa"
             redirect controller: "ingeniero", action: "index"
             flash.message = "No tienes un programa, comuniquese con el administrador"
         } else {
-            println "id programa :" + idprograma
-            def movs = Movilizacion.executeQuery("from Movilizacion where usuario_id=" + usuarioId + "and programa_id=" + idprograma)
+            println "Id Programa:" + programa.id
+            def listaMovilizaciones = Movilizacion.executeQuery("from Movilizacion where usuario=" + session.usuarioLogueado.id + "and programa=" + programa.id+" and egreso="+null)
             def item= Item.findAll()
             params.max = Math.min(max ?: 10, 100)
-            respond Egreso.list(params), model: [movsList: movs, items:item, programaId:idprograma]
-
+            respond Egreso.list(params), model: [movsList: listaMovilizaciones, items:item, programaId: programa.id]
         }
     }
-    def admovs(){
-        def com=params.in
-        if (com==null){
-            flash.message ="Debe seleccionar a lo menos una movilización"
-            redirect(action: "egresomovilizacion")
-        }else {
-            def it = null
 
+    def admovs(){
+        def movilizacionSeleccionada = params.in
+        if (movilizacionSeleccionada == null){
+            flash.message ="Debe seleccionar a lo menos una movilizacion"
+            redirect(action: "egresomovilizacion")
+        } else {
+            def it = null
             try {
                 String[] itemObtenido = ((String) params.nombreItem).split("-");
                 it = Item.findById(itemObtenido[1])
@@ -227,13 +225,14 @@ class EgresoIngController {
             }
 
             if (!it) {
-                flash.message = "Debes seleccionar un item para esta asignación"
-                redirect(controller: "EgresoMov", action: "index")
+                flash.message = "Debes Indicar un Item para el Egreso"
+                redirect(controller: "egresoIng", action: "egresomovilizacion")
                 return
             }
 
             params.item = it.id
             def egreso = new Egreso(params)
+            println "esto es el egreso********* "+egreso
 
             if (egreso == null) {
                 transactionStatus.setRollbackOnly()
