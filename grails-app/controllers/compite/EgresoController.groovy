@@ -213,14 +213,14 @@ class EgresoController {
         if(!egreso.rendicion){
             flash.message = "Aprobado Correctamente"
             redirect (controller: "egreso", action: "show", id: egreso.id)
-        }else{
+        } else {
+            println "Egreso es de Auditoria"
             def rendicion = Rendicion.get(egreso.rendicionId)
             rendicion.properties = params
             rendicion.estado = "NO_APROBADA"
             if (rendicion == null) {
                 transactionStatus.setRollbackOnly()
                 notFound()
-
             }
 
             if (rendicion.hasErrors()) {
@@ -238,10 +238,7 @@ class EgresoController {
                 }
             }
             flash.message = "Los egresos han sido actualizados correctamente"
-
-
         }
-
     }
 
     def crearRendicion () {
