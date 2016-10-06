@@ -14,6 +14,13 @@
             <g:each in="${egreso}">
                 <div class="col-md-12">
                     <div class="col-sm-6">
+                    </div>
+                    <div class="col-sm-6">
+                        <g:link action="reporte" id="${it.id}">Generar Reporte</g:link>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-sm-6">
                         <label>Item :</label>
                         <label style="color: dimgray">${it.item.nombre}</label>
                     </div>

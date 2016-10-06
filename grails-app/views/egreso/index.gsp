@@ -7,20 +7,33 @@
     </head>
     <body>
     <g:form controller="egreso" action="index">
-        <div class="col-sm-6">
+        <div class="col-sm-4">
             <div class="fieldcontain required">
-                <label for="programa">Programa
+            <label for="programa">Programa
+                <span class="required-indicator">*</span>
+            </label>
+            <select name="programa" id="programa">
+                <option value="" disabled selected>Seleccione un programa</option>
+                <g:each var="program" in="${programas}">
+                    <option value="${program.id}">${program.nombre}</option>
+                </g:each>
+            </select>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="fieldcontain required">
+                <label for="aprobacion">Cuscar Por:
                     <span class="required-indicator">*</span>
                 </label>
-                <select name="programa" id="programa">
-                    <option value="" disabled selected>Seleccione un programa</option>
-                    <g:each var="program" in="${programas}">
-                        <option value="${program.id}">${program.nombre}</option>
-                    </g:each>
+                <select name="aprobacion" id="aprobacion">
+                    <option value="" disabled selected>---Aprobación---</option>
+                    <option value="SI">Si</option>
+                    <option value="NO">No</option>
+                    <option value="AUDITADA">Auditada</option>
                 </select>
             </div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-4">
             <div class="fieldcontain required">
                 <g:submitButton name="create" class="btn btn-primary" value="Buscar"></g:submitButton>
             </div>

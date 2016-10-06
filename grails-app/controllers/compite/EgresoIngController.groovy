@@ -358,4 +358,12 @@ class EgresoIngController {
             IOUtils.closeQuietly(contentStream)
         }
     }
+    def reporte(Egreso egreso){
+        def movs=Movilizacion.findAll("from Movilizacion where usuario="+usuarioId+" and egreso="+egreso.id)
+        if(movs==null){
+            movs=null
+        }
+        def listaArchivos = Archivo.findAllByEntidadAndEntidadId("egreso",egreso.id)
+        respond egreso, model:[archivos:listaArchivos, movilizacion:movs]
+    }
 }
