@@ -23,6 +23,7 @@
             <g:sortableColumn property="monto" defaultOrder="desc" title="Monto"/>
             <g:sortableColumn property="tipoDocumento" defaultOrder="desc" title="Tipo Documento"/>
             <g:sortableColumn property="pagadoA" defaultOrder="desc" title="Pagado a"/>
+            <g:sortableColumn property="observacion" defaultOrder="desc" title="Motivo"/>
         </tr>
         </thead>
         <tbody>
@@ -47,6 +48,7 @@
                 <td>$ ${egreso.monto}</td>
                 <td>${egreso.tipoDocumento}</td>
                 <td>${egreso.pagadoA}</td>
+                <td>${egreso.observacion}</td>
             </tr>
             </g:if>
         </g:each>

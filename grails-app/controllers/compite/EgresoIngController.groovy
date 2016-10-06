@@ -321,9 +321,24 @@ class EgresoIngController {
     }
  // Auditorias de egresos
     def auditorias(){
-        def ren=null
-        def buscar= Egreso.executeQuery("from Egreso as e where e.usuario="+usuarioId+" and e.rendicion!="+ren)
-        [egresos: buscar]
+        def buscar= Egreso.executeQuery("from Egreso as e where e.usuario="+usuarioId+" and e.aprobacion='NO' and e.rendicion!="+null)
+        def auditoriaList = []
+        buscar.each { egreso ->
+            def buscaObservacion = Rendicion.executeQuery("select observacion from Rendicion as r where r.id="+egreso.rendicion.id)
+            def observacion = buscaObservacion[0]
+            def result = [:]
+            result.id = egreso.id
+            result.programa = egreso.programa
+            result.concepto = egreso.concepto
+            result.aprobacion = egreso.aprobacion
+            result.tipoMoneda = egreso.tipoMoneda
+            result.monto = egreso.monto
+            result.tipoDocumento = egreso.tipoDocumento
+            result.pagadoA = egreso.pagadoA
+            result.observacion = observacion
+            auditoriaList.add(result)
+        }
+        [egresos: auditoriaList]
     }
     def editarauditoria(){
 
