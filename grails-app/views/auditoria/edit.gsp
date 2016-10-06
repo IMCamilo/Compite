@@ -7,17 +7,10 @@
         <asset:stylesheet src="compite/autocomplete.css"/>
     </head>
     <body>
-        <a href="#edit-auditoria" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-        <div class="nav" role="navigation">
-            <ul>
-                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-            </ul>
-        </div>
         <div id="edit-auditoria" class="content scaffold-edit" role="main">
             <h1><g:message code="default.edit.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
-            <div class="message" role="status"><p>${flash.message}</p></div>
+                <div class="message" role="status"><p>${flash.message}</p></div>
             </g:if>
             <g:hasErrors bean="${this.auditoria}">
             <ul class="errors" role="alert">
@@ -27,42 +20,80 @@
             </ul>
             </g:hasErrors>
             <g:form resource="${this.auditoria}" method="PUT">
-                <g:hiddenField name="version" value="${this.auditoria?.version}" />
                 <fieldset class="form">
-                    <div class="fieldcontain required">
-                        <label for="tipo">Nombre<span class="required-indicator">*</span></label>
-                        <input name="nombre" value="${auditoria.nombre}" required="" type="text">
-                    </div>
-                    <div class="fieldcontain required" id="programainputdiv">
-                        <label for="tipo">Programa<span class="required-indicator">*</span></label>
-                        <input class="typeahead" name="nombrePrograma" value="${programa.codigo} ・ ${programa.nombre}" type="text" required="" placeholder="Busca un programa">
-                    </div>
-                    <div class="fieldcontain required" id="usuarioinputdiv">
-                        <label for="tipo">Usuario<span class="required-indicator">*</span></label>
-                        <input class="typeahead" name="nombreUsuario"  value="${usuario.nombres} ${usuario.paterno} ・ ${usuario.rut}" type="text" required="" placeholder="Busca un usuario">
-                    </div>
-                    <div class="fieldcontain required">
-                        <label for="tipo">Motivo<span class="required-indicator">*</span></label>
-                        <input name="motivo" value="${auditoria.motivo}" required="" type="text">
-                    </div>
-                    <div class="fieldcontain required">
-                        <label for="tipo">Descripción<span class="required-indicator">*</span></label>
-                        <textarea  name="descripcion" required="" rows="4" cols="50">${auditoria.descripcion}</textarea>
-                    </div>
-                    <div class="fieldcontain required">
-                        <label for="estado">Estado
-                            <span class="required-indicator">*</span>
-                        </label>
-                        <select name="estado" value="" required="" id="estado">
-                            <option value="" disabled selected>Seleccione Estado</option>
-                            <option value="APROBADA">Aprobada</option>
-                            <option value="RECHAZADA">Rechazada</option>
-                        </select>
-                    </div>
                     <input name="creadoPor" value="${session.usuarioLogueado.rut}" required="" type="hidden">
-                </fieldset>
-                <fieldset class="buttons">
-                    <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="nombre">Nombre
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input value="${auditoria.nombre}" id="nombre" name="nombre" value="" required="" type="text">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required" id="programainputdiv">
+                                <label for="nombrePrograma">Programa
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input value="${programa.codigo} - ${programa.nombre}" id="nombrePrograma" class="typeahead" name="nombrePrograma" type="text" required="" placeholder="Busca un programa">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="estado">Estado
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <select name="estado" value="" required="" id="estado">
+                                    <g:if test="${auditoria.estado == "APROBADA"}">
+                                        <option value="APROBADA" selected>Aprobada</option>
+                                    </g:if>
+                                    <g:else>
+                                        <option value="RECHAZADA" selected>Rechazada</option>
+                                    </g:else>
+                                    <option value="${auditoria.estado}">---</option>
+                                    <option value="APROBADA">Aprobada</option>
+                                    <option value="RECHAZADA">Rechazada</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="motivo">Motivo
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <input value="${auditoria.motivo}" id="motivo" name="motivo" type="text" required="" placeholder="Motivo de la auditoria">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <div class="fieldcontain required">
+                                <label for="descripcion">Descripción
+                                    <span class="required-indicator">*</span>
+                                </label>
+                                <textarea id="descripcion" name="descripcion" required="" rows="4" cols="50" placeholder="Ingrese el resumen de la auditoría realizada">${auditoria.descripcion}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <br>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="col-sm-3">
+                            <input class="save btn btn-info" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <br>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="col-sm-3">
+                            <g:link class="list" action="index">Volver al Listado</g:link>
+                        </div>
+                    </div>
                 </fieldset>
             </g:form>
         </div>
@@ -99,24 +130,11 @@
                         cb(matches);
                     };
                 };
-                var usuarios = [
-                    <g:each in="${usuarios}">
-                        '${it.nombres} ${it.paterno} ・ ${it.rut}',
-                    </g:each>
-                ];
                 var programas = [
                     <g:each in="${programas}">
-                        '${it.codigo} ・ ${it.nombre}',
+                        '${it.codigo} - ${it.nombre}',
                     </g:each>
                 ];
-                $('#usuarioinputdiv .typeahead').typeahead({
-                    hint: true,
-                    highlight: true,
-                    minLength: 1
-                }, {
-                    name: 'usuarios',
-                    source: substringMatcher(usuarios)
-                });
                 $('#programainputdiv .typeahead').typeahead({
                     hint: true,
                     highlight: true,

@@ -21,7 +21,6 @@
                         <label>Item :</label>
                         <label style="color: dimgray">${it.item.nombre}</label>
                     </div>
-
                 </div>
                 <div class="col-md-12">
                     <div class="col-sm-6">

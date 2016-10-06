@@ -25,7 +25,7 @@
                                 <label for="nombrePrograma">Programa
                                     <span class="required-indicator">*</span>
                                 </label>
-                                <input id="nombrePrograma" class="typeahead" name="nombrePrograma" type="text" required="" placeholder="Busca un proyecto">
+                                <input id="nombrePrograma" class="typeahead" name="nombrePrograma" type="text" required="" placeholder="Busca un Programa">
                             </div>
                         </div>
                         <div class="col-sm-6">

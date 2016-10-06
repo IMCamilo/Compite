@@ -1,6 +1,6 @@
 rutaArchivos:
     carpeta:
-        absoluta: /home/cjorquera/Documentos/Grails/compite/archivos/
+        absoluta: C:/Users/JCARDENAS/Documents/GrailsProjects/compite/archivos/
 grails:
     controllers:
         upload:

@@ -30,30 +30,22 @@ class AuditoriaController {
 
     @Transactional
     def save() {
-        def u = null
         def p = null
         try {
-            String[] rutObtenido = ((String) params.nombreUsuario).split(" ・ ");
-            String[] programaObtenido = ((String) params.nombrePrograma).split(" ・ ");
-            u = Usuario.findByRut(rutObtenido[1])
+            String[] programaObtenido = ((String) params.nombrePrograma).split(" - ");
             p = Programa.findByCodigo(programaObtenido[0])
         } catch (Exception e) {
             println "validando asignación. "+e.getMessage()
         }
-        if (!u && !p) {
-            flash.message = "Debes seleccionar un usuario y un programa para esta auditoria"
-            redirect(controller: "auditoria", action: "index")
-            return
-        } else if (!u){
-            flash.message = "Debes seleccionar un usuario para esta auditoria"
-            redirect(controller: "auditoria", action: "index")
-            return
-        } else {
+        if (!p) {
             flash.message = "Debes seleccionar un programa para esta auditoria"
             redirect(controller: "auditoria", action: "index")
             return
         }
-        params.usuario = u.id
+
+        def buscaUsuarioPrograma = Asignacion.executeQuery("select a.usuario from Asignacion as a where a.programa="+p.id)
+        def usuario = buscaUsuarioPrograma[0]
+        params.usuario = usuario.id
         params.programa = p.id
 
         def auditoria = new Auditoria(params)
@@ -73,13 +65,13 @@ class AuditoriaController {
         auditoria.save flush:true, failOnError: true
 
         //carga archivos
-        def f = request.getFile('archivo')
+        /*def f = request.getFile('archivo')
         if (!f.empty) {
             String filePath = grailsApplication.config.getProperty('rutaArchivos.carpeta.absoluta') + f?.filename
             f.transferTo(new File(filePath))
             Archivo archivo = new Archivo(nombre: f?.filename, ruta: filePath, entidad: 'auditoria', entidadId: auditoria.id, creadoPor:session.usuarioLogueado.rut).save(flush: true)
             assert archivo.id
-        }
+        }*/
         //
 
         request.withFormat {
@@ -101,10 +93,7 @@ class AuditoriaController {
 
     @Transactional
     def update() {
-        String[] rutObtenido = ((String) params.nombreUsuario).split(" ・ ");
-        String[] programaObtenido = ((String) params.nombrePrograma).split(" ・ ");
-        def u = Usuario.findByRut(rutObtenido[1])
-        params.usuario = u.id
+        String[] programaObtenido = ((String) params.nombrePrograma).split(" - ");
         def p = Programa.findByCodigo(programaObtenido[0])
         params.programa = p.id
 

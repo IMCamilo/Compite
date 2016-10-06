@@ -22,6 +22,7 @@
             <g:uploadForm action="save">
                 <fieldset class="form">
                     <input name="creadoPor" value="${session.usuarioLogueado.rut}" required="" type="hidden">
+                    <input name="estado" value="RECHAZADA" required="" type="hidden">
                     <div class="col-md-12">
                         <div class="col-sm-6">
                             <div class="fieldcontain required">
@@ -41,24 +42,20 @@
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <div class="col-sm-6">
+                        <%--<div class="col-sm-6">
                             <div class="fieldcontain required" id="usuarioinputdiv">
                                 <label for="nombreUsuario">Usuario
                                     <span class="required-indicator">*</span>
                                 </label>
                                 <input id="nombreUsuario" class="typeahead" name="nombreUsuario" type="text" required="" placeholder="Busca un usuario">
                             </div>
-                        </div>
+                        </div>--%>
                         <div class="col-sm-6">
                             <div class="fieldcontain required">
-                                <label for="estado">Estado
+                                <label for="motivo">Motivo
                                     <span class="required-indicator">*</span>
                                 </label>
-                                <select name="estado" value="" required="" id="estado">
-                                    <option value="" disabled selected>Seleccione Estado</option>
-                                    <option value="APROBADA">Aprobada</option>
-                                    <option value="RECHAZADA">Rechazada</option>
-                                </select>
+                                <input id="motivo" name="motivo" type="text" required="" placeholder="Motivo de la auditoria">
                             </div>
                         </div>
                     </div>
@@ -71,19 +68,6 @@
                                 <textarea id="descripcion" name="descripcion" required="" rows="4" cols="50" placeholder="Ingrese el resumen de la auditoría realizada"></textarea>
                             </div>
                         </div>
-                        <div class="col-sm-6">
-                            <div class="fieldcontain required">
-                                <input type="file" name="archivo"/>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="fieldcontain required" id="motivo">
-                                <label for="nombrePrograma">Motivo
-                                    <span class="required-indicator">*</span>
-                                </label>
-                                <input id="motivo" name="motivo" type="text" required="" placeholder="Motivo de la auditoria">
-                            </div>
-                        </div>
                     </div>
                     <div class="col-md-12">
                         <br>
@@ -92,7 +76,7 @@
                         <div class="col-sm-1">
                         </div>
                         <div class="col-sm-6">
-                            <g:submitButton name="create" class="save btn btn-success" onClick="comprobarClave()" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+                            <g:submitButton name="create" class="save btn btn-success" value="${message(code: 'default.button.create.label', default: 'Create')}" />
                         </div>
                     </div>
                 </fieldset>
@@ -106,7 +90,7 @@
             <table>
                 <thead>
                     <tr>
-                        <th>ver</th>
+                        <th>Detalles</th>
                         <g:sortableColumn property="nombre" defaultOrder="desc" title="Nombre"/>
                         <g:sortableColumn property="motivo" defaultOrder="desc" title="Motivo"/>
                         <g:sortableColumn property="estado" defaultOrder="desc" title="Estado"/>
@@ -117,7 +101,7 @@
                 <tbody>
                     <g:each var="auditoria" status="i" in="${auditoriaList}">
                          <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
-                            <td><a href="edit/${auditoria.id}">ver</a></td>
+                            <td><a href="show/${auditoria.id}">Ver</a></td>
                             <td>${auditoria.nombre}</td>
                             <td>${auditoria.motivo}</td>
                             <td>${auditoria.estado}</td>
@@ -152,24 +136,11 @@
                         cb(matches);
                     };
                 };
-                var usuarios = [
-                    <g:each in="${usuarios}">
-                        '${it.nombres} ${it.paterno} ・ ${it.rut}',
-                    </g:each>
-                ];
                 var programas = [
                     <g:each in="${programas}">
-                        '${it.codigo} ・ ${it.nombre}',
+                        '${it.codigo} - ${it.nombre}',
                     </g:each>
                 ];
-                $('#usuarioinputdiv .typeahead').typeahead({
-                    hint: true,
-                    highlight: true,
-                    minLength: 1
-                }, {
-                    name: 'usuarios',
-                    source: substringMatcher(usuarios)
-                });
                 $('#programainputdiv .typeahead').typeahead({
                     hint: true,
                     highlight: true,
