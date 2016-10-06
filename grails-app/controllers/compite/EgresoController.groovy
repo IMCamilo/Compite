@@ -132,9 +132,11 @@ class EgresoController {
 
         def egreso = Egreso.get(params.id)
         egreso.properties = params
-        if(egreso.rendicion!=null){
-            egreso.aprobacion="AUDITADA"
+
+        if(egreso.rendicion != null && egreso.aprobacion == "NO") {
+            egreso.aprobacion = "AUDITADA"
         }
+
         if (egreso == null) {
             transactionStatus.setRollbackOnly()
             notFound()

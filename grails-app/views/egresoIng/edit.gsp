@@ -21,6 +21,7 @@
             </g:hasErrors>
             <g:form controller="egresoIng" action="update" resource="${this.egreso}" method="PUT">
                 <input type="hidden" name="egreso" value="${params.id}" id="egreso">
+                <input type="hidden" name="aprobacion" value="${egreso.aprobacion}">
                 <fieldset class="form">
                     <div class="col-md-12">
                         <div class="col-sm-6">
