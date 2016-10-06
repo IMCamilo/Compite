@@ -82,6 +82,35 @@
                     </g:if>
                 </div>
             </g:each>
+            <div style="width:50%">
+                <p>Archivos</p>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Creado Por</th>
+                        <th>Nombre Archivo</th>
+                        <th>Subido</th>
+                        <th>Acción</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <g:each var="archivo" status="i" in="${archivos}">
+                        <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
+                            <td>${archivo.creadoPor}</td>
+                            <td>${archivo.nombre}</td>
+                            <td><prettytime:display date="${archivo.date}"/></td>
+                            <td>
+                                <g:form action="download">
+                                    <g:hiddenField name="rutaAbsoluta" value="${archivo.ruta}"/>
+                                    <g:hiddenField name="nombreArchivo" value="${archivo.nombre}"/>
+                                    <g:submitButton name="name" style="width:100%" value="Ver/Descargar"/>
+                                </g:form>
+                            </td>
+                        </tr>
+                    </g:each>
+                    </tbody>
+                </table>
+            </div>
             <g:form resource="${this.egresoIng}" method="DELETE">
                 <fieldset class="buttons">
                     <g:link class="list" action="index">Volver al Listado</g:link>

@@ -32,7 +32,8 @@ class EgresoController {
     }
 
     def show(Egreso egreso) {
-        respond egreso
+        def listaArchivos = Archivo.findAllByEntidadAndEntidadId("egreso",egreso.id)
+        respond egreso, model:[archivos:listaArchivos]
     }
 
     def create() {
@@ -271,11 +272,48 @@ class EgresoController {
         flash.message = "Egreso Desaprobado Correctamente"
         redirect (controller: "egreso", action: "show", id: egreso.id)
     }
+
     def buscar(){
         def userList = Usuario.findAll()
         def rendicionList = Rendicion.findAll()
         def programaList = Programa.findAll("from Programa where estado='ACTIVO'")
         params.max = Math.min(max ?: 10, 100)
         respond Egreso.list(params), model:[egresoCount: Egreso.count(), usuarios:userList, programas:programaList]
+    }
+
+    //carga archivos en accion separada.
+    @Transactional
+    def upload() {
+        println "egreso id > "+params.idEgreso
+        def f = request.getFile('archivo')
+        if (f.empty) {
+            flash.message = "Debes seleccionar un archivo para cargarlo a un Egreso."
+            redirect(controller: "egresoIng", action: "edit", id: params.idEgreso)
+            return
+        }
+        String filePath = grailsApplication.config.getProperty('rutaArchivos.carpeta.absoluta') + f?.filename
+        f.transferTo(new File(filePath))
+        Archivo archivo = new Archivo(nombre: f?.filename, ruta: filePath, entidad: 'egreso', entidadId: params.idEgreso, creadoPor:session.usuarioLogueado.rut).save(flush:true, failOnError: true)
+        assert archivo.id
+            flash.message = "Archivo Cargado Correctamente en Egreso $params.idEgreso"
+        redirect(controller: "egresoIng", action: "show", id: params.idEgreso)
+    }
+
+    @Transactional
+    def download() {
+        InputStream contentStream
+        try {
+            def file = new File(params.rutaAbsoluta)
+            response.setHeader "Content-disposition", "attachment; filename=${params.nombreArchivo}"
+            response.setHeader("Content-Length", "file-size")
+            response.setContentType("file-mime-type")
+            contentStream = file.newInputStream()
+            response.outputStream << contentStream
+            webRequest.renderView = false
+        } catch (Exception e) {
+            println "error en : ${e.getMessage()}"
+        } finally {
+            IOUtils.closeQuietly(contentStream)
+        }
     }
 }

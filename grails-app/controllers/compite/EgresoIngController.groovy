@@ -33,7 +33,8 @@ class EgresoIngController {
     }
 
     def show(Egreso egreso) {
-        respond egreso
+        def listaArchivos = Archivo.findAllByEntidadAndEntidadId("egreso",egreso.id)
+        respond egreso, model:[archivos:listaArchivos]
     }
 
     def crear(Integer max) {
@@ -340,7 +341,22 @@ class EgresoIngController {
         }
         [egresos: auditoriaList]
     }
-    def editarauditoria(){
 
+    @Transactional
+    def download() {
+        InputStream contentStream
+        try {
+            def file = new File(params.rutaAbsoluta)
+            response.setHeader "Content-disposition", "attachment; filename=${params.nombreArchivo}"
+            response.setHeader("Content-Length", "file-size")
+            response.setContentType("file-mime-type")
+            contentStream = file.newInputStream()
+            response.outputStream << contentStream
+            webRequest.renderView = false
+        } catch (Exception e) {
+            println "error en : ${e.getMessage()}"
+        } finally {
+            IOUtils.closeQuietly(contentStream)
+        }
     }
 }

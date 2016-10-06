@@ -129,11 +129,28 @@
                             </div>
                         </div>
                     </div>
-                </fieldset>
-                <fieldset class="buttons">
-                    <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+                    <div class="col-md-12">
+                        <br>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="col-sm-3">
+                            <input class="save btn btn-info" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+                        </div>
+                    </div>
                 </fieldset>
             </g:form>
+        </div>
+        <div class="content scaffold-edit">
+            <h1>Cargar archivos para Egreso nº ${egreso.id}</h1>
+            <g:uploadForm controller="egreso" action="upload">
+                <fieldset class="form">
+                    <input type="file" name="archivo" />
+                </fieldset>
+                <input type="hidden" name="idEgreso" value="${egreso.id}">
+                <fieldset class="buttons">
+                    <input class="save" type="submit" value="Cargar" />
+                </fieldset>
+            </g:uploadForm>
         </div>
         <asset:javascript src="compite/jquery-2.1.1.min.js"/>
         <asset:javascript src="compite/validarut.js"/>
