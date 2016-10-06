@@ -13,7 +13,7 @@
 <body>
 
 <div id="show-rendicion" class="content scaffold-show" role="main">
-|   <h1>Ver Rendición</h1>
+|   <h1>Rendición</h1>
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
@@ -71,9 +71,8 @@
                 </label>
             </div>
         </div>
-
-
-
+        <div style="padding: 10px;"></div>
+        <h1>Lista de egresos </h1>
             <table>
                 <thead>
                 <tr>
