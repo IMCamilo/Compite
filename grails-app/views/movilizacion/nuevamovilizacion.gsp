@@ -148,11 +148,11 @@
         </g:form>
     </div>
     <div id="list-movilizacion" class="content scaffold-list" role="main">
-        <h1>Lista de movilizacion para proyecto: </h1>
+        <h1>Listado de Movilizaciones creadas:</h1>
         <table>
             <thead>
                 <tr>
-                    <th>ver</th>
+                    <th>Ver</th>
                     <g:sortableColumn property="fecha" defaultOrder="desc" title="Fecha"/>
                     <g:sortableColumn property="motivoEmpresa" defaultOrder="desc" title="Motivo/Empresa"/>
                     <g:sortableColumn property="direccion" defaultOrder="desc" title="Dirección"/>

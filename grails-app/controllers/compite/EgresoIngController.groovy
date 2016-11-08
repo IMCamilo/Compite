@@ -7,13 +7,13 @@ import grails.transaction.Transactional
 class EgresoIngController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-    private BigInteger usuarioId = session.usuarioLogueado.id
+    //private BigInteger usuarioId = session.usuarioLogueado.id
     Integer idprograma
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
 
-        def listaEgresos = Egreso.findAll("from Egreso as e where e.usuario="+usuarioId)
+        def listaEgresos = Egreso.findAll("from Egreso as e where e.usuario="+session.usuarioLogueado.id)
         def egresos = []
         listaEgresos.each { egreso ->
             def result = [:]
@@ -39,7 +39,7 @@ class EgresoIngController {
 
     def crear(Integer max) {
         //def proyectoId = params.id
-        def buscaPrograma = Asignacion.executeQuery("select a.programa from Asignacion as a where a.usuario="+usuarioId)
+        def buscaPrograma = Asignacion.executeQuery("select a.programa from Asignacion as a where a.usuario="+session.usuarioLogueado.id)
         def programa = buscaPrograma[0]
 
         def rendicionList = Rendicion.findAll()
@@ -101,7 +101,7 @@ class EgresoIngController {
     }
 
     def edit(Egreso egreso) {
-        def usuario = Usuario.findById(egreso.usuarioId)
+        def usuario = Usuario.findById(egreso.session.usuarioLogueado.id)
         def item = Item.findById(egreso.itemId)
         def programa = Programa.findById(egreso.programaId)
         def itemsList = Item.findAll()
@@ -213,7 +213,7 @@ class EgresoIngController {
     def admovs(){
         def movilizacionSeleccionada = params.in
         if (movilizacionSeleccionada == null){
-            flash.message ="Debe seleccionar a lo menos una movilizacion"
+            flash.error ="Debe seleccionar a lo menos una movilizacion para crear el Egreso, intente nuevamente."
             redirect(action: "egresomovilizacion")
         } else {
             def it = null
@@ -321,7 +321,7 @@ class EgresoIngController {
     }
  // Auditorias de egresos
     def auditorias(){
-        def buscar= Egreso.executeQuery("from Egreso as e where e.usuario="+usuarioId+" and e.aprobacion='NO' and e.rendicion!="+null)
+        def buscar= Egreso.executeQuery("from Egreso as e where e.usuario="+session.usuarioLogueado.id+" and e.aprobacion='NO' and e.rendicion!="+null)
         def auditoriaList = []
         buscar.each { egreso ->
             def buscaObservacion = Rendicion.executeQuery("select observacion from Rendicion as r where r.id="+egreso.rendicion.id)
@@ -359,7 +359,7 @@ class EgresoIngController {
         }
     }
     def reporte(Egreso egreso){
-        def movs=Movilizacion.findAll("from Movilizacion where usuario="+usuarioId+" and egreso="+egreso.id)
+        def movs=Movilizacion.findAll("from Movilizacion where usuario="+session.usuarioLogueado.id+" and egreso="+egreso.id)
         if(movs==null){
             movs=null
         }

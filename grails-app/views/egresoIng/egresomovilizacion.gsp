@@ -12,6 +12,9 @@
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
+    <g:if test="${flash.error}">
+        <div class="errors" role="status">${flash.error}</div>
+    </g:if>
     <g:form controller="egresoIng" action="admovs">
         <!-- Modal -->
         <div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -19,7 +22,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                        <h4 class="modal-title" id="myModalLabel">Cargar Movilizacion/es a Egreso</h4>
                     </div>
                     <div class="modal-body">
                         <table>
@@ -65,6 +68,7 @@
             <input type="hidden" name="programa" value="${programaId}" id="idPrograma">
             <input type="hidden" name="proyecto" value="${params.id}" id="idProyecto">
             <input type="hidden" name="aprobacion" value="NO" id="aprobacion">
+            <input type="hidden" name="tipoMoneda" value="CLP" id="tipoMoneda">
             <div class="col-md-12">
                 <div class="col-sm-6">
                     <div class="fieldcontain required">
@@ -123,21 +127,6 @@
                     </div>
                 </div>
 
-            </div>
-            <div class="col-md-12">
-                <div class="col-sm-6">
-                    <div class="fieldcontain required">
-                        <label for="tipoMoneda">Tipo Moneda
-                            <span class="required-indicator">*</span>
-                        </label>
-                        <select name="tipoMoneda" required="" id="tipoMoneda">
-                            <option value="" disabled selected>Seleccione Moneda</option>
-                            <option value="CLP">Peso Chileno</option>
-                            <option value="USD">Dolar Americano</option>
-                            <option value="EUR">Euro</option>
-                        </select>
-                    </div>
-                </div>
             </div>
             <div class="col-md-12">
                 <br>
