@@ -7,18 +7,11 @@
     </head>
     <body>
         <div id="show-egresoIng" class="content scaffold-show" role="main">
-            <h1>Ver Egreso</h1>
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
             <g:each in="${egreso}">
-                <div class="col-md-12">
-                    <div class="col-sm-6">
-                    </div>
-                    <div class="col-sm-6">
-                        <g:link action="reporte" id="${it.id}">Generar Reporte</g:link>
-                    </div>
-                </div>
+                <h1>Detalle de Egreso nº ${it.id}</h1>
                 <div class="col-md-12">
                     <div class="col-sm-6">
                         <label>Item :</label>
@@ -60,7 +53,6 @@
                     </div>
                 </div>
                 <div class="col-md-12">
-
                     <div class="col-sm-6">
                         <label>Monto :</label>
                         <label style="color: dimgray">$ ${it.monto}</label>
@@ -88,33 +80,43 @@
                         </div>
                     </g:if>
                 </div>
+                <div class="col-md-12">
+                    <div class="col-sm-6">
+                        <g:link action="reporte" id="${it.id}">Generar Reporte</g:link>
+                    </div>
+                </div>
             </g:each>
             <div style="width:50%">
                 <p>Archivos</p>
                 <table>
                     <thead>
-                    <tr>
-                        <th>Creado Por</th>
-                        <th>Nombre Archivo</th>
-                        <th>Subido</th>
-                        <th>Acción</th>
-                    </tr>
+                        <tr>
+                            <th>Creado Por</th>
+                            <th>Nombre Archivo</th>
+                            <th>Subido</th>
+                            <th>Acción</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <g:each var="archivo" status="i" in="${archivos}">
-                        <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
-                            <td>${archivo.creadoPor}</td>
-                            <td>${archivo.nombre}</td>
-                            <td><prettytime:display date="${archivo.date}"/></td>
-                            <td>
-                                <g:form action="download">
-                                    <g:hiddenField name="rutaAbsoluta" value="${archivo.ruta}"/>
-                                    <g:hiddenField name="nombreArchivo" value="${archivo.nombre}"/>
-                                    <g:submitButton name="name" style="width:100%" value="Ver/Descargar"/>
-                                </g:form>
-                            </td>
-                        </tr>
-                    </g:each>
+                        <g:if test="${archivos.isEmpty()}">
+                            <tr><td>Egresos no tiene archivos cargados.</td></tr>
+                        </g:if>
+                        <g:else>
+                            <g:each var="archivo" status="i" in="${archivos}">
+                                <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
+                                    <td>${archivo.creadoPor}</td>
+                                    <td>${archivo.nombre}</td>
+                                    <td><prettytime:display date="${archivo.date}"/></td>
+                                    <td>
+                                        <g:form action="download">
+                                            <g:hiddenField name="rutaAbsoluta" value="${archivo.ruta}"/>
+                                            <g:hiddenField name="nombreArchivo" value="${archivo.nombre}"/>
+                                            <g:submitButton name="name" style="width:100%" value="Ver/Descargar"/>
+                                        </g:form>
+                                    </td>
+                                </tr>
+                            </g:each>
+                        </g:else>
                     </tbody>
                 </table>
             </div>
@@ -123,6 +125,7 @@
                     <g:link class="list" action="index">Volver al Listado</g:link>
                     <g:if test="${egreso.aprobacion == "NO"}">
                         <a class="edit" href="../edit/${egreso.id}"><g:message code="default.button.edit.label" default="Edit" /></a>
+                        <a class="cargaArchivo" href="../cargarArchivo/${egreso.id}">Cargar Archivo</a>
                         <input class="delete" type="submit" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
                     </g:if>
                 </fieldset>

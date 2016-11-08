@@ -7,7 +7,7 @@ import grails.transaction.Transactional
 class EgresoIngController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-    //private BigInteger usuarioId = session.usuarioLogueado.id
+    private BigInteger usuarioId = session.usuarioLogueado.id
     Integer idprograma
 
     def index(Integer max) {
@@ -94,14 +94,14 @@ class EgresoIngController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'egreso.label', default: 'Egreso'), egreso.id])
-                redirect action: "index"
+                redirect action: "show", id: egreso.id
             }
             '*' { respond egreso, [status: CREATED] }
         }
     }
 
     def edit(Egreso egreso) {
-        def usuario = Usuario.findById(egreso.session.usuarioLogueado.id)
+        def usuario = Usuario.findById(usuarioId)
         def item = Item.findById(egreso.itemId)
         def programa = Programa.findById(egreso.programaId)
         def itemsList = Item.findAll()
