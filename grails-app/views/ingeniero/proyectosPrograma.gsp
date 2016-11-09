@@ -63,8 +63,8 @@
                         <td>${proyecto.empresa.nombre}</td>
                         <td>${proyecto.estado}</td>
                         <td>
-                            <g:link controller="egresoIng" action="crear" id="${proyecto.id}">Egreso</g:link>
-                            <g:link controller="egresoIng" action="egresomovilizacion" id="${proyecto.id}">Egreso de Movilizacion</g:link>
+                            <g:link class="btn btn-primary btn-xs" controller="egresoIng" action="crear" id="${proyecto.id}">Egreso</g:link>
+                            <g:link class="btn btn-success btn-xs" controller="egresoIng" action="egresomovilizacion" id="${proyecto.id}">Egreso de Movilizacion</g:link>
                         </td>
                     </tr>
                 </g:each>
