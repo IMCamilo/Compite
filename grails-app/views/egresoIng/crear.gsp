@@ -113,6 +113,14 @@
                 <div class="col-sm-6">
                     <g:submitButton name="create" class="save btn btn-info" value="${message(code: 'default.button.create.label', default: 'Create')}" />
                 </div>
+                <div class="col-md-12">
+                    <br>
+                </div>
+                <div class="col-md-10">
+                    <div class="col-sm-3">
+                        <g:link controller="ingeniero" action="proyectosPrograma">Volver Al Listado</g:link>
+                    </div>
+                </div>
             </div>
         </fieldset>
     </g:form>

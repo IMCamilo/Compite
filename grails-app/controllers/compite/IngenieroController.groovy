@@ -35,7 +35,6 @@ class IngenieroController {
                 }
 
                 if (!p) {
-                    transactionStatus.setRollbackOnly()
                     flash.error = "Indique un proyecto correcto"
                     redirect (controller: "ingeniero", action: "proyectosPrograma")
                 } else {

@@ -150,8 +150,15 @@
                     </button>
                 </div>
             </div>
+            <div class="col-md-12">
+                <br>
+            </div>
+            <div class="col-md-10">
+                <div class="col-sm-3">
+                    <g:link controller="ingeniero" action="proyectosPrograma">Volver Al Listado</g:link>
+                </div>
+            </div>
         </fieldset>
-
     </g:form>
     <div class="pagination">
         <g:paginate total="${egresoMovCount ?: 0}" />

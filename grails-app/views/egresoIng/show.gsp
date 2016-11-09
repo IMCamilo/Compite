@@ -6,6 +6,45 @@
         <title><g:message code="default.show.label" args="[entityName]" /></title>
     </head>
     <body>
+        <div class="modal fade" id="elIDdelModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Movilizaciones del Egreso</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td>Fecha</td>
+                                    <td>Motivo/empresa</td>
+                                    <td>Direción</td>
+                                    <td>Distancia</td>
+                                    <td>Tipo</td>
+                                    <td>Precio</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <g:each var="movilizacion" status="i" in="${listaMovilizaciones}">
+                                    <tr>
+                                        <td>${formatDate(format:"dd/MM/yyyy", date: movilizacion.fechaCreacion)}</td>
+                                        <td>${movilizacion.motivoEmpresa}</td>
+                                        <td>${movilizacion.direccion}</td>
+                                        <td>${movilizacion.distancia}</td>
+                                        <td>${movilizacion.tipo}</td>
+                                        <td>${movilizacion.precio}</td>
+                                    </tr>
+                                </g:each>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div id="show-egresoIng" class="content scaffold-show" role="main">
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
@@ -57,6 +96,12 @@
                         <label>Monto :</label>
                         <label style="color: dimgray">$ ${it.monto}</label>
                     </div>
+                    <g:if test="${!it.movilizacion.isEmpty()}">
+                        <div class="col-sm-6">
+                            <label>Movilizaciones :</label>
+                            <a type="button" class="save" data-toggle="modal" data-target="#elIDdelModal">Ver Movilizaciones</a>
+                        </div>
+                    </g:if>
                 </div>
                 <div class="col-md-12">
                     <div class="col-sm-6">

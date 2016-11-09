@@ -29,13 +29,15 @@ class EgresoIngController {
             egresos.add(result)
         }
 
-        //println "egresos: "+egresos
         [egresos: egresos, egresoCount: Egreso.count()]
     }
 
     def show(Egreso egreso) {
         def listaArchivos = Archivo.findAllByEntidadAndEntidadId("egreso",egreso.id)
-        respond egreso, model:[archivos:listaArchivos]
+        def buscaMovilizaciones = Movilizacion.executeQuery("from Movilizacion as m where m.egreso="+egreso.id)
+        println "buscaMovilizaciones: "+buscaMovilizaciones
+        println "listaArchivos: "+listaArchivos
+        respond egreso, model:[archivos:listaArchivos, listaMovilizaciones: buscaMovilizaciones]
     }
 
     def crear(Integer max) {
@@ -368,12 +370,12 @@ class EgresoIngController {
             IOUtils.closeQuietly(contentStream)
         }
     }
-    def reporte(Egreso egreso){
+    def reporte(Egreso egreso) {
         def movs=Movilizacion.findAll("from Movilizacion where usuario="+session.usuarioLogueado.id+" and egreso="+egreso.id)
-        if(movs==null){
-            movs=null
+        if (movs == null) {
+            movs = null
         }
-        def listaArchivos = Archivo.findAllByEntidadAndEntidadId("egreso",egreso.id)
+        def listaArchivos = Archivo.findAllByEntidadAndEntidadId("egreso", egreso.id)
         respond egreso, model:[archivos:listaArchivos, movilizacion:movs]
     }
 }

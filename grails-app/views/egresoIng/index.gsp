@@ -15,8 +15,7 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Ver detalles</th>
-                        <th>Movilizaciones</th>
+                        <th>Ver Detalles</th>
                         <g:sortableColumn property="programa" defaultOrder="desc" title="Programa"/>
                         <g:sortableColumn property="concepto" defaultOrder="desc" title="Concepto"/>
                         <g:sortableColumn property="aprobacion" defaultOrder="desc" title="Aprobación"/>
@@ -31,13 +30,6 @@
                     <g:each var="egreso" status="i" in="${egresos}">
                          <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
                             <td><a href="show/${egreso.id}">Ver</a></td>
-                             <g:if test="${egreso.movilizacion.isEmpty()}">
-                                 <td>No tiene movilizaciones</td>
-                             </g:if>
-                             <g:else>
-                                 <%--<td><a href="verMovilizacion/${egreso.id}">Ver movilizaciones</a></td>--%>
-                                 <td><a href="">Ver movilizaciones</a></td>
-                             </g:else>
                             <td>${egreso.programa.nombre}</td>
                             <td>${egreso.concepto}</td>
                             <td>${egreso.aprobacion}</td>
