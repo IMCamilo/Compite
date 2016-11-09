@@ -551,7 +551,7 @@ th:hover, tr:hover {
     text-decoration: underline;
 }
 
-.buttons .delete, .buttons .edit, .buttons .save, .buttons .cargaArchivo, .buttons .volver {
+.buttons .delete, .buttons .edit, .buttons .save, .buttons .cargaArchivo, .buttons .volver, .buttons .aprobar, .buttons .desaprobar {
     background-position: 0.7em center;
     background-repeat: no-repeat;
     text-indent: 25px;
@@ -575,6 +575,14 @@ th:hover, tr:hover {
 
 .buttons .volver {
     background-image: url(../images/skin/volver.png);
+}
+
+.buttons .aprobar {
+    background-image: url(../images/skin/accept.png);
+}
+
+.buttons .desaprobar {
+    background-image: url(../images/skin/cancel.png);
 }
 
 a.skip {

@@ -65,7 +65,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="myModalLabel2">Egresos de la Rendición</h4>
                     </div>
-                    <g:form controller="rendicion" action="noaprobar">
+                    <g:form controller="rendicion" action="rechazarEgresosRendicion">
                     <div class="modal-body">
                         <input type="hidden" name="rendicion" value="${params.id}" id="idRendicion">
                         <div class="row">
