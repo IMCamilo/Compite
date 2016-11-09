@@ -7,78 +7,90 @@
         <asset:stylesheet src="compite/autocomplete.css"/>
     </head>
     <body>
+        <g:if test="${flash.message}">
+            <div class="message" role="status">${flash.message}</div>
+        </g:if>
+        <g:if test="${flash.error}">
+            <div class="errors" role="status">${flash.error}</div>
+        </g:if>
         <div id="create-proyecto" class="content scaffold-create" role="main">
-            <h1><g:message code="default.create.label" args="[entityName]" /></h1>
-            <g:if test="${flash.message}">
-                <div class="message" role="status">${flash.message}</div>
-            </g:if>
-            <g:if test="${flash.error}">
-                <div class="errors" role="status">${flash.error}</div>
-            </g:if>
-            <g:hasErrors bean="${this.proyecto}">
-                <ul class="errors" role="alert">
-                    <g:eachError bean="${this.proyecto}" var="error">
-                        <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>>
-                            <g:message error="${error}" />
-                        </li>
-                    </g:eachError>
-                </ul>
-            </g:hasErrors>
-            <g:form action="save">
-                <fieldset class="form">
-                    <input name="creadoPor" value="${session.usuarioLogueado.rut}" type="hidden">
-                    <input name="estado" value="ACTIVO" type="hidden">
-                    <div class="col-md-12">
-                        <div class="col-sm-6">
-                            <div class="fieldcontain required">
-                                <label for="nombre">Nombre
-                                    <span class="required-indicator">*</span>
-                                </label>
-                                <input name="nombre" required="" id="nombre" type="text" minlength="5" maxlength="50" placeholder="Nombre del Proyecto">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="fieldcontain required">
-                                <label for="codigo">Código
-                                    <span class="required-indicator">*</span>
-                                </label>
-                                <input name="codigo" required="" id="codigo" type="text" minlength="5" maxlength="15" placeholder="Ej: PR-00">
-                            </div>
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Crear Proyecto</a>
+                        </h4>
+                    </div>
+                    <div id="collapse1" class="panel-collapse collapse on">
+                        <div class="panel-body">
+                            <g:hasErrors bean="${this.proyecto}">
+                                <ul class="errors" role="alert">
+                                    <g:eachError bean="${this.proyecto}" var="error">
+                                        <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>>
+                                            <g:message error="${error}" />
+                                        </li>
+                                    </g:eachError>
+                                </ul>
+                            </g:hasErrors>
+                            <g:form action="save">
+                                <fieldset class="form">
+                                    <input name="creadoPor" value="${session.usuarioLogueado.rut}" type="hidden">
+                                    <input name="estado" value="ACTIVO" type="hidden">
+                                    <div class="col-md-12">
+                                        <div class="col-sm-6">
+                                            <div class="fieldcontain required">
+                                                <label for="nombre">Nombre
+                                                    <span class="required-indicator">*</span>
+                                                </label>
+                                                <input name="nombre" required="" id="nombre" type="text" minlength="5" maxlength="50" placeholder="Nombre del Proyecto">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="fieldcontain required">
+                                                <label for="codigo">Código
+                                                    <span class="required-indicator">*</span>
+                                                </label>
+                                                <input name="codigo" required="" id="codigo" type="text" minlength="5" maxlength="15" placeholder="Ej: PR-00">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="col-sm-6">
+                                            <div class="fieldcontain required">
+                                                <label for="tipo">Programa
+                                                    <span class="required-indicator">*</span>
+                                                </label>
+                                                <select name="programa" required="" id="tipo">
+                                                    <option value="" disabled selected>Seleccione Programa</option>
+                                                    <g:each var="programa" status="i" in="${programas}">
+                                                        <option value="${programa.id}">${programa.nombre}</option>
+                                                    </g:each>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="fieldcontain required" id="empresainputdiv">
+                                                <label for="tipo">Empresa<span class="required-indicator">*</span></label>
+                                                <input class="typeahead" name="nombreEmpresa" type="text" required="" placeholder="Busca una empresa">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <br>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="col-sm-1">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <g:submitButton name="create" class="save btn btn-info" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </g:form>
                         </div>
                     </div>
-                    <div class="col-md-12">
-                        <div class="col-sm-6">
-                            <div class="fieldcontain required">
-                                <label for="tipo">Programa
-                                    <span class="required-indicator">*</span>
-                                </label>
-                                <select name="programa" required="" id="tipo">
-                                    <option value="" disabled selected>Seleccione Programa</option>
-                                    <g:each var="programa" status="i" in="${programas}">
-                                        <option value="${programa.id}">${programa.nombre}</option>
-                                    </g:each>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="fieldcontain required" id="empresainputdiv">
-                                <label for="tipo">Empresa<span class="required-indicator">*</span></label>
-                                <input class="typeahead" name="nombreEmpresa" type="text" required="" placeholder="Busca una empresa">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <br>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="col-sm-1">
-                        </div>
-                        <div class="col-sm-6">
-                            <g:submitButton name="create" class="save btn btn-info" value="${message(code: 'default.button.create.label', default: 'Create')}" />
-                        </div>
-                    </div>
-                </fieldset>
-            </g:form>
+                </div>
+            </div>
         </div>
         <div id="find-proyecto" class="content" role="main">
             <h1>Buscar</h1>

@@ -8,57 +8,69 @@
     </head>
     <body>
         <div id="create-asignacion" class="content scaffold-create" role="main">
-            <h1><g:message code="default.create.label" args="[entityName]" /></h1>
-            <g:hasErrors bean="${this.asignacion}">
-            <ul class="errors" role="alert">
-                <g:eachError bean="${this.asignacion}" var="error">
-                <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-                </g:eachError>
-            </ul>
-            </g:hasErrors>
-            <g:form action="save">
-                <fieldset class="form">
-                    <input name="creadoPor" value="${session.usuarioLogueado.rut}" required="" type="hidden">
-                    <div class="col-md-12">
-                        <div class="col-sm-6">
-                            <div class="fieldcontain required" id="proyectoinputdiv">
-                                <label for="nombrePrograma">Programa
-                                    <span class="required-indicator">*</span>
-                                </label>
-                                <input id="nombrePrograma" class="typeahead" name="nombrePrograma" type="text" required="" placeholder="Busca un Programa">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="fieldcontain required" id="usuarioinputdiv">
-                                <label for="nombreUsuario">Usuario
-                                    <span class="required-indicator">*</span>
-                                </label>
-                                <input id="nombreUsuario" class="typeahead" name="nombreUsuario" type="text" required="" placeholder="Busca un usuario">
-                            </div>
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Crear Asignación</a>
+                        </h4>
+                    </div>
+                    <div id="collapse1" class="panel-collapse collapse on">
+                        <div class="panel-body">
+                            <g:hasErrors bean="${this.asignacion}">
+                                <ul class="errors" role="alert">
+                                    <g:eachError bean="${this.asignacion}" var="error">
+                                        <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
+                                    </g:eachError>
+                                </ul>
+                            </g:hasErrors>
+                            <g:form action="save">
+                                <fieldset class="form">
+                                    <input name="creadoPor" value="${session.usuarioLogueado.rut}" required="" type="hidden">
+                                    <div class="col-md-12">
+                                        <div class="col-sm-6">
+                                            <div class="fieldcontain required" id="proyectoinputdiv">
+                                                <label for="nombrePrograma">Programa
+                                                    <span class="required-indicator">*</span>
+                                                </label>
+                                                <input id="nombrePrograma" class="typeahead" name="nombrePrograma" type="text" required="" placeholder="Busca un Programa">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="fieldcontain required" id="usuarioinputdiv">
+                                                <label for="nombreUsuario">Usuario
+                                                    <span class="required-indicator">*</span>
+                                                </label>
+                                                <input id="nombreUsuario" class="typeahead" name="nombreUsuario" type="text" required="" placeholder="Busca un usuario">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="col-sm-6">
+                                            <div class="fieldcontain required">
+                                                <label for="detalle">Detalle
+                                                    <span class="required-indicator">*</span>
+                                                </label>
+                                                <textarea id="detalle" name="detalle" required="" rows="4" cols="50" placeholder="Ingrese motivo de asignacion"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <br>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="col-sm-1">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <g:submitButton name="create" class="save btn btn-success" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </g:form>
                         </div>
                     </div>
-                    <div class="col-md-12">
-                        <div class="col-sm-6">
-                            <div class="fieldcontain required">
-                                <label for="detalle">Detalle
-                                    <span class="required-indicator">*</span>
-                                </label>
-                                <textarea id="detalle" name="detalle" required="" rows="4" cols="50" placeholder="Ingrese motivo de asignacion"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <br>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="col-sm-1">
-                        </div>
-                        <div class="col-sm-6">
-                            <g:submitButton name="create" class="save btn btn-success" value="${message(code: 'default.button.create.label', default: 'Create')}" />
-                        </div>
-                    </div>
-                </fieldset>
-            </g:form>
+                </div>
+            </div>
         </div>
         <div id="list-asignacion" class="content scaffold-list" role="main">
             <h1><g:message code="default.list.label" args="[entityName]" /></h1>

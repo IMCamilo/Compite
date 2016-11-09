@@ -7,50 +7,62 @@
         <asset:stylesheet src="compite/autocomplete.css"/>
     </head>
     <body>
+        <g:if test="${flash.message}">
+            <div class="message" role="status">${flash.message}</div>
+        </g:if>
         <div id="create-item" class="content scaffold-create" role="main">
-            <h1><g:message code="default.create.label" args="[entityName]"/></h1>
-            <g:if test="${flash.message}">
-                <div class="message" role="status">${flash.message}</div>
-            </g:if>
-            <g:hasErrors bean="${this.item}">
-                <ul class="errors" role="alert">
-                    <g:eachError bean="${this.item}" var="error"><li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-                    </g:eachError>
-                </ul>
-            </g:hasErrors>
-            <g:form action="save">
-                <fieldset class="form">
-                    <input type="hidden" name="creadoPor" value="${session.usuarioLogueado.rut}" id="creadoPor"/>
-                    <div class="col-md-12">
-                        <div class="col-sm-6">
-                            <div class="fieldcontain required" id="itempreinputdiv">
-                                <label for="codigo">Código
-                                    <span class="required-indicator">*</span>
-                                </label>
-                                <input id="codigo" name="codigo" type="number" min="1" max="10000" required="" placeholder="ingresa el código del item">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="fieldcontain required" id="proyectoinputdiv">
-                                <label for="nombre">Nombre
-                                    <span class="required-indicator">*</span>
-                                </label>
-                                <input type="text" name="nombre" required="" id="nombre" minlength="3" maxlength="30" placeholder="Ingresa el nombre del item"/>
-                            </div>
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Crear Item</a>
+                        </h4>
+                    </div>
+                    <div id="collapse1" class="panel-collapse collapse on">
+                        <div class="panel-body">
+                            <g:hasErrors bean="${this.item}">
+                                <ul class="errors" role="alert">
+                                    <g:eachError bean="${this.item}" var="error"><li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
+                                    </g:eachError>
+                                </ul>
+                            </g:hasErrors>
+                            <g:form action="save">
+                                <fieldset class="form">
+                                    <input type="hidden" name="creadoPor" value="${session.usuarioLogueado.rut}" id="creadoPor"/>
+                                    <div class="col-md-12">
+                                        <div class="col-sm-6">
+                                            <div class="fieldcontain required" id="itempreinputdiv">
+                                                <label for="codigo">Código
+                                                    <span class="required-indicator">*</span>
+                                                </label>
+                                                <input id="codigo" name="codigo" type="number" min="1" max="10000" required="" placeholder="ingresa el código del item">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="fieldcontain required" id="proyectoinputdiv">
+                                                <label for="nombre">Nombre
+                                                    <span class="required-indicator">*</span>
+                                                </label>
+                                                <input type="text" name="nombre" required="" id="nombre" minlength="3" maxlength="30" placeholder="Ingresa el nombre del item"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <br>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="col-sm-1">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <g:submitButton name="create" class="save btn btn-success" onClick="comprobarClave()" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </g:form>
                         </div>
                     </div>
-                    <div class="col-md-12">
-                        <br>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="col-sm-1">
-                        </div>
-                        <div class="col-sm-6">
-                            <g:submitButton name="create" class="save btn btn-success" onClick="comprobarClave()" value="${message(code: 'default.button.create.label', default: 'Create')}" />
-                        </div>
-                    </div>
-                </fieldset>
-            </g:form>
+                </div>
+            </div>
         </div>
         <div id="list-item" class="content scaffold-list" role="main">
             <h1><g:message code="default.list.label" args="[entityName]" /></h1>
