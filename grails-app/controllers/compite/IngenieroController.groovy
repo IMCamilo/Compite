@@ -1,55 +1,74 @@
 package compite
 
 import grails.transaction.Transactional
-import grails.web.servlet.mvc.GrailsParameterMap
-
-import static org.springframework.http.HttpStatus.CREATED
 import static org.springframework.http.HttpStatus.NOT_FOUND
 import static org.springframework.http.HttpStatus.OK
 
 @Transactional(readOnly = true)
 class IngenieroController {
 
-    //private BigInteger usuarioId = session.usuarioLogueado.id
-
     def index = {
-        redirect(action: "programas")
+        redirect(action: "proyectosPrograma")
     }
 
-    def programas = {
-        println "Id usuario logeado: "+session.usuarioLogueado.id
-        def buscaAsignacion = Asignacion.executeQuery("select a.programa from Asignacion as a where a.usuario="+session.usuarioLogueado.id)
-        if (!buscaAsignacion) {
-            println "Sin Asignacion"
-        } else {
+    def proyectosPrograma = {
+        println "Usuario logueado RUT: "+session.usuarioLogueado.rut+" con ID: "+session.usuarioLogueado.id
+        BigInteger usuarioId = session.usuarioLogueado.id
+        def proyectoBusqueda = params.nombreProyecto
+        def p = null
+        def buscaAsignacion = Asignacion.executeQuery("select a.programa from Asignacion as a where a.usuario="+usuarioId)
+        if (buscaAsignacion) {
             def programa = buscaAsignacion[0]
-
             def buscaNombrePrograma = Programa.executeQuery("select pr.nombre from Programa as pr where pr.id="+programa.id)
-
-
             def nombrePrograma = buscaNombrePrograma[0]
 
             //viene nada, uno o mas en una lista de asignaciones
-            println "programa:"+programa.id+" con nombre: "+nombrePrograma
+            println "Programa: "+programa.id+" con nombre: "+nombrePrograma
 
-            def listaProgramas = Proyecto.findAll("from Proyecto as p where p.programa="+programa.id)
-            //recorrer la lista de programas, en gsp tal como esta abajo, en para separar publicos de privados, hacer esto 2 veces
-            //no demora nada, así que cumple con el objetivo.
-            //si nos pusieramos pulcros usariamos un join.
+            if (proyectoBusqueda) {
+                println "Estoy buscando un Proyecto especifico"
+                try {
+                    String[] proyectoObtenido = proyectoBusqueda.split(" - ");
+                    p = Proyecto.findById(proyectoObtenido[3])
+                } catch (Exception e) {
+                    println "Proyecto busqueda: "+e.getMessage()
+                }
 
-            def proyectos = []
-            listaProgramas.each { proyecto ->
-                def result = [:]
-                result.id = proyecto.id
-                result.codigo = proyecto.codigo
-                result.estado = proyecto.estado
-                result.nombre = proyecto.nombre
-                result.empresa = proyecto.empresa
-                proyectos.add(result)
+                if (!p) {
+                    transactionStatus.setRollbackOnly()
+                    flash.error = "Indique un proyecto correcto"
+                    redirect (controller: "ingeniero", action: "proyectosPrograma")
+                } else {
+                    def listaProyectos = Proyecto.findById(p.id)
+                    def proyectos = []
+                    listaProyectos.each { proyecto ->
+                        def result = [:]
+                        result.id = proyecto.id
+                        result.codigo = proyecto.codigo
+                        result.estado = proyecto.estado
+                        result.nombre = proyecto.nombre
+                        result.empresa = proyecto.empresa
+                        proyectos.add(result)
+                    }
+                    [proyectos:proyectos, nombrePrograma: nombrePrograma, proyectoBusqueda: proyectoBusqueda]
+                }
+            } else {
+                def listaProyectos = Proyecto.findAll("from Proyecto as p where p.programa="+programa.id)
+                //recorrer la lista de programas, en gsp tal como esta abajo, en para separar publicos de privados, hacer esto 2 veces
+                //no demora nada, así que cumple con el objetivo.
+
+                def proyectos = []
+                listaProyectos.each { proyecto ->
+                    def result = [:]
+                    result.id = proyecto.id
+                    result.codigo = proyecto.codigo
+                    result.estado = proyecto.estado
+                    result.nombre = proyecto.nombre
+                    result.empresa = proyecto.empresa
+                    proyectos.add(result)
+                }
+                [proyectos:proyectos, nombrePrograma: nombrePrograma, proyectoBusqueda: proyectoBusqueda]
             }
-
-            //println "proyectos: "+proyectos
-            [proyectos:proyectos, nombrePrograma: nombrePrograma]
         }
     }
 
@@ -58,7 +77,7 @@ class IngenieroController {
     }
 
     //perfil del ingniero
-    def perfil(Usuario usuario){
+    def perfil (Usuario usuario) {
         respond usuario
     }
 
@@ -89,6 +108,7 @@ class IngenieroController {
             }
 
     }
+
     protected void notFound() {
         request.withFormat {
             form multipartForm {
