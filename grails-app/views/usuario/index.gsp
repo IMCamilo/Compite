@@ -6,8 +6,8 @@
         <title><g:message code="default.list.label" args="[entityName]" /></title>
         <script>
             function comprobarClave(){
-                clave1 = document.f1.clave.value
-                clave2 = document.f1.clave2.value
+                clave1 = document.f1.clave.value;
+                clave2 = document.f1.clave2.value;
                 if (clave1 == clave2) {
                     console.log("las claves son iguales")
                 } else {
