@@ -35,6 +35,8 @@
                         <g:datePicker id="fechaCreacion" name="fechaCreacion" value="${new Date()}" precision="day" years="${2016..2018}"/>
                     </div>
                 </div>
+            </div>
+            <div class="col-md-12">
                 <div class="col-sm-6">
                     <div class="fieldcontain required">
                         <label for="tipoDocumento">Tipo Documento
@@ -45,6 +47,14 @@
                             <option value="BOLETA">BOLETA</option>
                             <option value="FACTURA">FACTURA</option>
                         </select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="fieldcontain required">
+                        <label for='numeroDocumento'>N° documento
+                            <span class='required-indicator'>*</span>
+                        </label>
+                        <input type="text" name="nDocumento" value="" required="" id="numeroDocumento"/>
                     </div>
                 </div>
             </div>
@@ -77,10 +87,10 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="fieldcontain required">
-                        <label for='numeroDocumento'>N° documento
+                        <label for='concepto'>Concepto
                             <span class='required-indicator'>*</span>
                         </label>
-                        <input type="text" name="nDocumento" value="" required="" id="numeroDocumento"/>
+                        <input type="text" name="concepto" value="" required="" id="concepto"/>
                     </div>
                 </div>
             </div>
@@ -91,14 +101,6 @@
                             <span class="required-indicator">*</span>
                         </label>
                         <input type="text" name="monto" value="" required="" id="monto" onkeypress="return isNumber(event)"/>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="fieldcontain required">
-                        <label for='concepto'>Concepto
-                            <span class='required-indicator'>*</span>
-                        </label>
-                        <input type="text" name="concepto" value="" required="" id="concepto"/>
                     </div>
                 </div>
             </div>

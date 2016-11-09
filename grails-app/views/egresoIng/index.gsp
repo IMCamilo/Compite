@@ -16,6 +16,7 @@
                 <thead>
                     <tr>
                         <th>Ver detalles</th>
+                        <th>Movilizaciones</th>
                         <g:sortableColumn property="programa" defaultOrder="desc" title="Programa"/>
                         <g:sortableColumn property="concepto" defaultOrder="desc" title="Concepto"/>
                         <g:sortableColumn property="aprobacion" defaultOrder="desc" title="Aprobación"/>
@@ -30,7 +31,14 @@
                     <g:each var="egreso" status="i" in="${egresos}">
                          <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
                             <td><a href="show/${egreso.id}">Ver</a></td>
-                             <td>${egreso.programa.nombre}</td>
+                             <g:if test="${egreso.movilizacion.isEmpty()}">
+                                 <td>No tiene movilizaciones</td>
+                             </g:if>
+                             <g:else>
+                                 <%--<td><a href="verMovilizacion/${egreso.id}">Ver movilizaciones</a></td>--%>
+                                 <td><a href="">Ver movilizaciones</a></td>
+                             </g:else>
+                            <td>${egreso.programa.nombre}</td>
                             <td>${egreso.concepto}</td>
                             <td>${egreso.aprobacion}</td>
                             <td>
@@ -56,5 +64,13 @@
                 <g:paginate total="${egresoCount ?: 0}" />
             </div>
         </div>
+        <asset:javascript src="compite/jquery-2.1.1.min.js"/>
+        <script type="application/javascript">
+            $(document).ready(function() {
+                window.onload = function() {
+                    document.getElementById('clickButton').click();
+                }
+            });
+        </script>
     </body>
 </html>

@@ -25,6 +25,7 @@ class EgresoIngController {
             result.monto = egreso.monto
             result.tipoDocumento = egreso.tipoDocumento
             result.pagadoA = egreso.pagadoA
+            result.movilizacion = egreso.movilizacion
             egresos.add(result)
         }
 
@@ -109,7 +110,11 @@ class EgresoIngController {
     }
 
     def cargarArchivo(Egreso egreso) {
-        respond egreso
+        def usuario = Usuario.findById(usuarioId)
+        def item = Item.findById(egreso.itemId)
+        def programa = Programa.findById(egreso.programaId)
+        def itemsList = Item.findAll()
+        respond egreso, model:[items:itemsList, usuario:usuario, item:item, programa:programa]
     }
 
     @Transactional

@@ -9,7 +9,7 @@ class EgresoController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
-        if (params.programa != null||params.aprobacion!=null) {
+        if (params.programa != null || params.aprobacion!=null) {
             if(params.programa != null) {
                 def movs = null
                 def programaList = Programa.findAll("from Programa where estado='ACTIVO'")
@@ -26,19 +26,18 @@ class EgresoController {
             params.max = Math.min(max ?: 10, 100)
             respond Egreso.findAll("from Egreso where programa="+params.programa+" and aprobacion=:aprobacion",[aprobacion:params.aprobacion]), model: [egresoCount: Egreso.count(), programas: programaList, movsList: movs]
 
-        }else if (params.id!=null){
+        } else if (params.id!=null){
             Integer id = Integer.parseInt(params.id)
             println "Id de index" +id
-            def movs=Movilizacion.findAll("from Movilizacion where egreso="+id)
+            def movs = Movilizacion.findAll("from Movilizacion where egreso="+id)
             def programaList = Programa.findAll("from Programa where estado='ACTIVO'")
             params.max = Math.min(max ?: 10, 100)
             respond Egreso.findAll(), model: [egresoCount: Egreso.count(), programas: programaList, movsList:movs]
-        }else {
-            def movs=null
+        } else {
+            def movs = null
             def programaList = Programa.findAll("from Programa where estado='ACTIVO'")
             params.max = Math.min(max ?: 10, 100)
-            respond Egreso.list(params), model: [egresoCount: Egreso.count(), programas: programaList,movsList: movs]
-
+            respond Egreso.list(params), model: [egresoCount: Egreso.count(), programas: programaList, movsList: movs]
         }
     }
 
