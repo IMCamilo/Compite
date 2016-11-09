@@ -201,9 +201,9 @@
                             <g:elseif test="${it.estado == "ENVIADA_POR_VALIJA"}">Enviada por Valija</g:elseif>
                             <g:elseif test="${it.estado == "RECEPCIONADA_SANTIAGO"}">Recepcionada en Santiago (valija)</g:elseif>
                             <g:elseif test="${it.estado == "APROBADA_FIRMADA_SANTIAGO"}">Aprobada y firmada</g:elseif>
-                            <g:elseif test="${it.estado == "RECHAZADA"}">Rechazada (por Santiago)</g:elseif>
+                            <g:elseif test="${it.estado == "RECHAZADA"}"><div style="color:red">Rechazada (por Santiago)</div></g:elseif>
                             <g:elseif test="${it.estado == "TRANSFERENCIA_OK"}">Transferencia de fondos realizada</g:elseif>
-                            <g:elseif test="${it.estado == "FINALIZADA"}">Finalizada</g:elseif>
+                            <g:elseif test="${it.estado == "FINALIZADA"}"><div style="color:green">Finalizada</div></g:elseif>
                             <g:elseif test="${it.estado == "NO_APROBADA"}">No aprobada</g:elseif>
                         </label>
                     </div>
@@ -217,7 +217,7 @@
             </g:each>
             <g:form resource="${this.rendicion}" method="DELETE">
                 <fieldset class="buttons">
-                    <g:link class="list" action="index">Volver al Listado</g:link>
+                    <g:link class="volver" action="index">Volver al Listado</g:link>
                     <g:if test="${rendicion.estado == "NO_APROBADA"}">
                         <g:link action="aprobar" resource="${this.rendicion}"><g:message code="default.button.aprobar.label" default="Aprobar" /></g:link>
                     </g:if>
