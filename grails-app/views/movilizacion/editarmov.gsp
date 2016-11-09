@@ -153,7 +153,7 @@
                 </div>
             </fieldset>
             <fieldset class="buttons">
-                <g:link class="list" action="nuevamovilizacion">Volver al Listado</g:link>
+                <g:link class="volver" action="nuevamovilizacion">Volver al Listado</g:link>
                 <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'editguardar')}" />
             </fieldset>
         </g:form>

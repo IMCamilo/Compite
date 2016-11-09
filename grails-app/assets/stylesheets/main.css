@@ -551,7 +551,7 @@ th:hover, tr:hover {
     text-decoration: underline;
 }
 
-.buttons .delete, .buttons .edit, .buttons .save, .buttons .cargaArchivo {
+.buttons .delete, .buttons .edit, .buttons .save, .buttons .cargaArchivo, .buttons .volver {
     background-position: 0.7em center;
     background-repeat: no-repeat;
     text-indent: 25px;
@@ -571,6 +571,10 @@ th:hover, tr:hover {
 
 .buttons .cargaArchivo {
     background-image: url(../images/skin/archivo.png);
+}
+
+.buttons .volver {
+    background-image: url(../images/skin/volver.png);
 }
 
 a.skip {

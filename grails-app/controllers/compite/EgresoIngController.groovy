@@ -108,6 +108,10 @@ class EgresoIngController {
         respond egreso, model:[items:itemsList, usuario:usuario, item:item, programa:programa]
     }
 
+    def cargarArchivo(Egreso egreso) {
+        respond egreso
+    }
+
     @Transactional
     def update() {
         println "Estoy en el update de Egreso Ing"
@@ -314,7 +318,7 @@ class EgresoIngController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'egreso.label', default: 'Egreso'), egreso.id])
-                redirect controller: "egresoIng", action: "index"
+                redirect controller: "egresoIng", action: "show", id: egreso.id
             }
             '*' { respond egreso, [status: CREATED] }
         }

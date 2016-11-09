@@ -86,8 +86,9 @@
                     </div>
                 </div>
             </g:each>
+            <div style="padding:7.5%"></div>
+            <h1>Archivos Cargados</h1>
             <div style="width:50%">
-                <p>Archivos</p>
                 <table>
                     <thead>
                         <tr>
@@ -122,7 +123,7 @@
             </div>
             <g:form resource="${this.egresoIng}" method="DELETE">
                 <fieldset class="buttons">
-                    <g:link class="list" action="index">Volver al Listado</g:link>
+                    <g:link class="volver" action="index">Volver al Listado</g:link>
                     <g:if test="${egreso.aprobacion == "NO"}">
                         <a class="edit" href="../edit/${egreso.id}"><g:message code="default.button.edit.label" default="Edit" /></a>
                         <a class="cargaArchivo" href="../cargarArchivo/${egreso.id}">Cargar Archivo</a>
