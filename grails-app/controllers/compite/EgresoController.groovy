@@ -2,12 +2,13 @@ package compite
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
-
+import groovy.sql.*
 @Transactional(readOnly = true)
 class EgresoController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    def dataSource
     def index(Integer max) {
         if (params.programa != null || params.aprobacion!=null) {
             if(params.programa != null) {
@@ -251,7 +252,64 @@ class EgresoController {
             flash.message = "Los egresos han sido actualizados correctamente"
         }
     }
+    @Transactional
+    def rechazar () {
+        println "Estoy rechazando el egreso"
+        params.aprobacion = "RECHAZADO"
+        def egreso = Egreso.get(params.id)
+        println "Esto es el egreso: "+egreso
+        egreso.properties = params
 
+        if (egreso == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        if (egreso.hasErrors()) {
+            transactionStatus.setRollbackOnly()
+            respond egreso.errors, view:'show', id: egreso.id
+            return
+        }
+
+        egreso.save flush:true, failOnError: true
+        println "copiando/Respaldando auditoria Estado= RECHAZADO"
+        Sql sql = new Sql(dataSource)
+        sql.execute("insert into auditoria (SELECT * from egreso e where e.id="+params.id+")")
+
+        if(!egreso.rendicion){
+            flash.message = "Rechazado Correctamente"
+            redirect (controller: "egreso", action: "show", id: egreso.id)
+        } else {
+            println "Egreso es de Auditoria"
+            def rendicion = Rendicion.get(egreso.rendicionId)
+            rendicion.properties = params
+            rendicion.estado = "RECHAZADO"
+            if (rendicion == null) {
+                transactionStatus.setRollbackOnly()
+                notFound()
+            }
+
+            if (rendicion.hasErrors()) {
+                transactionStatus.setRollbackOnly()
+                respond rendicion.errors, view:'edit'
+
+            }
+
+            rendicion.save flush:true, failOnError:true
+
+            request.withFormat {
+                form multipartForm {
+                    flash.message = message(code: 'default.updated.message', args: [message(code: 'rendicion.label', default: 'Rendicion'), rendicion.id])
+                    redirect controller: "egreso", action: "show", id: egreso.id
+                }
+            }
+            flash.message = "Los egresos han sido actualizados correctamente"
+        }
+    }
+    def crarAuditoria(){
+
+    }
     def crearRendicion () {
         println "Estoy en crearRendicion en Egreso"
         def egresos =  params.egresos
@@ -326,4 +384,5 @@ class EgresoController {
             IOUtils.closeQuietly(contentStream)
         }
     }
+
 }

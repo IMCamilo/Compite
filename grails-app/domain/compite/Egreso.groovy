@@ -2,7 +2,7 @@ package compite
 
 class Egreso {
 
-    String aprobacion, concepto, tipoDocumento, tipoMoneda, nDocumento, pagadoA, creadoPor, rutEmpresa
+    String aprobacion, concepto, tipoDocumento, tipoMoneda, nDocumento, pagadoA, creadoPor, rutEmpresa,observacion
     Date fechaCreacion
     Integer monto
 
@@ -13,6 +13,7 @@ class Egreso {
         rendicion nullable: true, blank: true
         monto nullable: true, blank:true
         nDocumento nullable: true, blank: true
+        observacion nullable: true, blank: true
     }
 
 }

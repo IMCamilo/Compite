@@ -269,10 +269,11 @@ class EgresoIngController {
             def buscaEgreso = Egreso.executeQuery("select max(id) from Egreso")
             def egre = buscaEgreso[0]
             println "adjuntando movilizaciones...." + egre
-            Integer i = 0
+            Integer i = 0, sum = 0
 
             while (i < params.in.size()) {
                 def movil = params.in[i]
+                sum = params.
                 println("Seleccion de parametro : " + params.in[i])
                 Integer e = egre
                 Integer m = Integer.parseInt(movil)

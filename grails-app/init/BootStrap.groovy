@@ -113,7 +113,7 @@ class BootStrap {
         }
 
         if (!Rendicion.list()) {
-            new Rendicion(fecha: "2016-08-19 11:49:00.0", tipoRendicion: "Reembolso de gastos", sedeEnvio: "Puerto Montt",estado: "NO_APROBADA", total:340000, totalAnticipado: 0, totalRendido: 340000, usuario: 1, programa: 3, creadoPor:"admin").save(failOnError: true)
+            new Rendicion(fecha: "2016-08-19 11:49:00.0", tipoRendicion: "Reembolso de gastos", sedeEnvio: "Puerto Montt",estado: "RECHAZADA", total:340000, totalAnticipado: 0, totalRendido: 340000, usuario: 1, programa: 3, creadoPor:"admin").save(failOnError: true)
             new Rendicion(fecha: "2016-08-19 11:49:00.0", tipoRendicion: "Reembolso de gastos", sedeEnvio: "Puerto Montt",estado: "FINALIZADA", total:310670, totalAnticipado: 0, totalRendido: 340000, usuario: 2, programa: 2, creadoPor:"admin").save(failOnError: true)
         }
 
@@ -141,7 +141,7 @@ class BootStrap {
 
         }
         if (!Egreso.list()) {
-            new Egreso(aprobacion: "SI", concepto: "Servicios Básicos", fechaCreacion: "2016-08-19 11:49:00.0", monto: 12000,  nDocumento: "234567", rutEmpresa: "98544511-7", pagadoA: "Pablo Santana", tipoDocumento:"BOLETA", tipoMoneda: "CLP", usuario: 1, programa: 1,item: 1, rendicion: 1, proyecto: 1, creadoPor:"admin").save(failOnError: true)
+            new Egreso(aprobacion: "RECHAZADO", concepto: "Servicios Básicos", fechaCreacion: "2016-08-19 11:49:00.0", monto: 12000,  nDocumento: "234567", rutEmpresa: "98544511-7", pagadoA: "Pablo Santana", tipoDocumento:"BOLETA", tipoMoneda: "CLP", usuario: 1, programa: 1,item: 1, rendicion: 1, proyecto: 1, creadoPor:"admin").save(failOnError: true)
             new Egreso(aprobacion: "SI", concepto: "Servicio de Automotora", fechaCreacion: "2016-08-19 11:49:00.0", monto: 13000,  nDocumento: "667", rutEmpresa: "65987234-1", pagadoA: "Rodrigo Cardenas", tipoDocumento:"FACTURA", tipoMoneda: "CLP", usuario: 1, programa: 1,item: 1, rendicion: 2, proyecto: 1, creadoPor:"admin").save(failOnError: true)
             new Egreso(aprobacion: "NO", concepto: "Servicios tecnicos", fechaCreacion: "2016-08-19 11:49:00.0", monto: 13000,  nDocumento: "4555", rutEmpresa: "65187214-4", pagadoA: "Pablo Zumelzu", tipoDocumento:"BOLETA", tipoMoneda: "CLP", usuario: 1, programa: 1,item: 1, rendicion: null, proyecto: 1, creadoPor:"admin").save(failOnError: true)
         }
@@ -152,8 +152,7 @@ class BootStrap {
             new Movilizacion(fechaCreacion: "2016-08-19 11:49:00.0", motivoEmpresa: "Viaje", direccion: "avenida", distancia: 0, tipo: "PEAJE", precio:2450, creadoPor:"admin", programa: 1, usuario: 2).save(failOnError: true)        }
 
         if (!Auditoria.list()) {
-            new Auditoria(fecha: "2016-08-19 11:49:00.0", nombre:"Auditoria numero 1", motivo:"Motivo Estandar", descripcion: "Auditoria 1 cargada automaticamente", estado: "APROBADA", usuario: 1, programa: 1, creadoPor:"admin").save(failOnError: true)
-            new Auditoria(fecha: "2016-08-19 11:49:00.0", nombre:"Auditoria numero 2", motivo:"Error en Concepto", descripcion: "Auditoria 2 cargada automaticamente", estado: "RECHAZADA", usuario: 2, programa: 1, creadoPor:"admin").save(failOnError: true)
+            new Auditoria(aprobacion: "RECHAZADO", concepto: "Servicios Básicos", fechaCreacion: "2016-08-19 11:49:00.0", monto: 12000,  nDocumento: "234567", rutEmpresa: "98544511-7", pagadoA: "Pablo Santana", tipoDocumento:"BOLETA", tipoMoneda: "CLP", usuario: 1, programa: 1,item: 1, rendicion: 1, proyecto: 1, creadoPor:"admin").save(failOnError: true)
         }
 
         if (!DetalleAudRen.list()) {

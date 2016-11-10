@@ -364,7 +364,8 @@ class RendicionController {
                 println "*****parametro de egreso n°" +params.in[i]
                 def egreso = Egreso.get(params.in[i])
                 egreso.properties = params
-                egreso.aprobacion = "NO"
+                egreso.aprobacion = "RECHAZADA"
+                egreso.observacion = params.observacion
                 if (egreso == null) {
                     transactionStatus.setRollbackOnly()
                     notFound()
@@ -385,7 +386,7 @@ class RendicionController {
 
             def rendicion = Rendicion.get(params.rendicion)
             rendicion.properties = params
-            rendicion.estado = "RECHAZADA"
+            rendicion.estado = "RECHAZADO"
             rendicion.observacion = obs
             if (rendicion == null) {
                 transactionStatus.setRollbackOnly()

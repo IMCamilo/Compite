@@ -86,11 +86,8 @@
                                 <g:sortableColumn property="monto" defaultOrder="desc" title="Monto"/>
                                 <g:sortableColumn property="nDocumento" defaultOrder="desc" title="N° Documento"/>
                                 <g:sortableColumn property="tipoDocumento" defaultOrder="desc" title="Tipo de Documento"/>
-                                <g:sortableColumn property="rutEmpresa" defaultOrder="desc" title="Rut Empresa"/>
-                                <g:sortableColumn property="pagadoA" defaultOrder="desc" title="Pagado A"/>
-                                <g:sortableColumn property="programa" defaultOrder="desc" title="Programa"/>
-                                <g:sortableColumn property="proyecto" defaultOrder="desc" title="Proyecto"/>
                                 <g:sortableColumn property="concepto" defaultOrder="desc" title="Concepto"/>
+                                <th>Observación</th>
                                 <th>Rechazar</th>
                             </tr>
                             </thead>
@@ -102,11 +99,9 @@
                                     <td>${egreso.monto}</td>
                                     <td>${egreso.nDocumento}</td>
                                     <td>${egreso.tipoDocumento}</td>
-                                    <td>${egreso.rutEmpresa}</td>
-                                    <td>${egreso.pagadoA}</td>
-                                    <td>${egreso.programa.nombre}</td>
-                                    <td>${egreso.proyecto.nombre}</td>
                                     <td>${egreso.concepto}</td>
+                                    <td><input type="text" name="observacion" placeholder="Digite la Observación" style="width: 100%"> </td>
+
                                     <td><g:checkBox name="in" value="${egreso.id}" /></td>
                                 </tr>
                             </g:each>
