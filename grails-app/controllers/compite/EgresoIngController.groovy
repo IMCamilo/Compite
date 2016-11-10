@@ -334,7 +334,7 @@ class EgresoIngController {
 
     // Auditorias de egresos
     def auditorias() {
-        def buscar = Egreso.executeQuery("from Egreso as e where e.usuario="+session.usuarioLogueado.id+" and e.aprobacion='NO' and e.rendicion != "+null)
+        def buscar = Egreso.executeQuery("from Egreso as e where e.usuario="+session.usuarioLogueado.id+" and e.aprobacion='RECHAZADO' and e.rendicion != "+null)
         def auditoriaList = []
         buscar.each { egreso ->
             def buscaObservacion = Rendicion.executeQuery("select observacion from Rendicion as r where r.id="+egreso.rendicion.id)

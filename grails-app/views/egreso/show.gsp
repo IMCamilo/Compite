@@ -126,6 +126,7 @@
                     <g:if test="${egreso.aprobacion == "NO"}">
                         <g:link class="aprobar" action="aprobar" resource="${this.egreso}"><g:message code="default.button.aprobar.label" default="Aprobar" /></g:link>
                         <g:link class="desaprobar" action="desaprobar" resource="${this.egreso}"><g:message code="default.button.desaprobar.label" default="Desaprobar" /></g:link>
+                        <g:link class="rechazar" action="rechazar" resource="${this.egreso}"><g:message code="default.button.rechazar.label" default="Rechazar" /></g:link>
                     </g:if>
                     <g:if test="${egreso.aprobacion == "SI" && egreso.rendicion == null}">
                         <g:link class="desaprobar" action="desaprobar" resource="${this.egreso}"><g:message code="default.button.desaprobar.label" default="Desaprobar" /></g:link>

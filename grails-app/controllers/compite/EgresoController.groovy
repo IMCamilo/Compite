@@ -274,8 +274,11 @@ class EgresoController {
 
         egreso.save flush:true, failOnError: true
         println "copiando/Respaldando auditoria Estado= RECHAZADO"
-        Sql sql = new Sql(dataSource)
-        sql.execute("insert into auditoria (SELECT * from egreso e where e.id="+params.id+")")
+        def aud =Auditoria.findById(params.id)
+        if(aud==null){
+            Sql sql = new Sql(dataSource)
+            sql.execute("insert into auditoria (SELECT * from egreso e where e.id=" + params.id + ")")
+        }
 
         if(!egreso.rendicion){
             flash.message = "Rechazado Correctamente"
@@ -304,8 +307,8 @@ class EgresoController {
                     redirect controller: "egreso", action: "show", id: egreso.id
                 }
             }
-            flash.message = "Los egresos han sido actualizados correctamente"
-        }
+            flash.message = "Los egresos han sido actualizados correctamentess"
+            }
     }
     def crarAuditoria(){
 

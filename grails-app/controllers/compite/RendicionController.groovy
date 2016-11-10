@@ -1,5 +1,7 @@
 package compite
 
+import groovy.sql.Sql
+
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
@@ -7,6 +9,7 @@ import grails.transaction.Transactional
 class RendicionController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    def dataSource
     def carga(Integer id){
 
     }
@@ -379,14 +382,21 @@ class RendicionController {
                 }
 
                 egreso.save flush:true, failOnError: true
+                def aud=  Auditoria.findById(params.in[i])
+                if(aud==null) {
+                    Sql sql = new Sql(dataSource)
+                    sql.execute("insert into auditoria (SELECT * from egreso e where e.id=" + params.in[i] + ")")
+                }
                 i++
+
+
             }
             String obs=params.observacionin
             println "parametro de observacion : " +obs
 
             def rendicion = Rendicion.get(params.rendicion)
             rendicion.properties = params
-            rendicion.estado = "RECHAZADO"
+            rendicion.estado = "RECHAZADA"
             rendicion.observacion = obs
             if (rendicion == null) {
                 transactionStatus.setRollbackOnly()
