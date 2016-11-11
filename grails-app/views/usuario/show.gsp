@@ -177,9 +177,7 @@
                             </div>
                         </g:each>
                         <g:form resource="${this.transporte}" method="DELETE">
-                            <fieldset class="">
-
-                            </fieldset>
+                            <fieldset class=""></fieldset>
                         </g:form>
                     </div>
                     <div class="modal-footer">

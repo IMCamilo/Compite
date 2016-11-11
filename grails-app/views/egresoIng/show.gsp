@@ -166,7 +166,7 @@
                     </tbody>
                 </table>
             </div>
-            <g:form resource="${this.egresoIng}" method="DELETE">
+            <g:form resource="${this.egreso}" method="DELETE">
                 <fieldset class="buttons">
                     <g:link class="volver" action="index">Volver al Listado</g:link>
                     <g:if test="${egreso.aprobacion == "NO"}">

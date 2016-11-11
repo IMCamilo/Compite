@@ -138,37 +138,61 @@ class EgresoController {
 
     @Transactional
     def update() {
-        String[] itemObtenido = ((String) params.nombreItem).split(" - ");
-        def i = Item.findById(itemObtenido[1])
-        params.item = i.id
+        if (params.aprobacion == "RECHAZADO") {
+            println "Estoy auditando un Egreso"
+            String[] itemObtenido = ((String) params.nombreItem).split(" - ");
+            def i = Item.findById(itemObtenido[1])
+            params.item = i.id
 
-        def egreso = Egreso.get(params.id)
-        egreso.properties = params
-
-        if(egreso.rendicion != null && egreso.aprobacion == "NO") {
+            def egreso = Egreso.get(params.id)
+            egreso.properties = params
             egreso.aprobacion = "AUDITADA"
-        }
 
-        if (egreso == null) {
-            transactionStatus.setRollbackOnly()
-            notFound()
-            return
-        }
+            if (egreso == null) {
+                transactionStatus.setRollbackOnly()
+                notFound()
+                return
+            }
 
-        if (egreso.hasErrors()) {
-            transactionStatus.setRollbackOnly()
-            respond egreso.errors, view:'edit'
-            return
-        }
+            if (egreso.hasErrors()) {
+                transactionStatus.setRollbackOnly()
+                respond egreso.errors, view:'edit'
+                return
+            }
 
-        egreso.save flush:true, failOnError: true
-        flash.message = "Egreso actualizado correctamente"
-        redirect (controller: "egresoIng", action: "show", id: egreso.id)
+            egreso.save flush:true, failOnError: true
+            flash.message = "Egreso auditado correctamente"
+            redirect (controller: "egresoIng", action: "show", id: egreso.id)
+        } else {
+            println "Estoy Actualizando un Egreso"
+            String[] itemObtenido = ((String) params.nombreItem).split(" - ");
+            def i = Item.findById(itemObtenido[1])
+            params.item = i.id
+
+            def egreso = Egreso.get(params.id)
+            egreso.properties = params
+
+            if (egreso == null) {
+                transactionStatus.setRollbackOnly()
+                notFound()
+                return
+            }
+
+            if (egreso.hasErrors()) {
+                transactionStatus.setRollbackOnly()
+                respond egreso.errors, view:'edit'
+                return
+            }
+
+            egreso.save flush:true, failOnError: true
+            flash.message = "Egreso actualizado correctamente"
+            redirect (controller: "egresoIng", action: "show", id: egreso.id)
+        }
     }
 
     @Transactional
     def delete(Egreso egreso) {
-
+        println "Estoy eliminado un Egreso"
         if (egreso == null) {
             transactionStatus.setRollbackOnly()
             notFound()
@@ -180,7 +204,7 @@ class EgresoController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'egreso.label', default: 'Egreso'), egreso.id])
-                redirect action:"index", method:"GET"
+                redirect controller: "egresoIng", action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }
         }

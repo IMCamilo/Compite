@@ -24,6 +24,7 @@ class EgresoIngController {
             result.tipoDocumento = egreso.tipoDocumento
             result.pagadoA = egreso.pagadoA
             result.movilizacion = egreso.movilizacion
+            result.rendicion = egreso.rendicion
             egresos.add(result)
         }
 

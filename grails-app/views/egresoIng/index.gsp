@@ -28,14 +28,15 @@
                 <tbody>
                     <g:each var="egreso" status="i" in="${egresos}">
                          <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
-                            <td><a href="show/${egreso.id}">Ver</a></td>
-                            <td>${egreso.programa.nombre}</td>
-                            <td>${egreso.concepto}</td>
-                            <td>${egreso.aprobacion}</td>
-                            <td>$ ${egreso.monto}</td>
-                            <td>${egreso.tipoDocumento}</td>
-                            <td>${egreso.pagadoA}</td>
-                            <td></td>
+                             <td><a href="show/${egreso.id}">Ver</a></td>
+                             <td>${egreso.programa.nombre}</td>
+                             <td>${egreso.concepto}</td>
+                             <td>${egreso.aprobacion}</td>
+                             <td>$ ${egreso.monto}</td>
+                             <td>${egreso.tipoDocumento}</td>
+                             <td>${egreso.pagadoA}</td>
+                             <g:if test="${egreso.rendicion == null}"><td>Sin rendición</td></g:if>
+                             <g:else><td>Nº ${egreso.rendicion.id}</td></g:else>
                         </tr>
                     </g:each>
                 </tbody>
