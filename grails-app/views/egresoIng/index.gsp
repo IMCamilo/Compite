@@ -19,7 +19,6 @@
                         <g:sortableColumn property="programa" defaultOrder="desc" title="Programa"/>
                         <g:sortableColumn property="concepto" defaultOrder="desc" title="Concepto"/>
                         <g:sortableColumn property="aprobacion" defaultOrder="desc" title="Aprobación"/>
-                        <g:sortableColumn property="tipoMoneda" defaultOrder="desc" title="Tipo Moneda"/>
                         <g:sortableColumn property="monto" defaultOrder="desc" title="Monto"/>
                         <g:sortableColumn property="tipoDocumento" defaultOrder="desc" title="Tipo Documento"/>
                         <g:sortableColumn property="pagadoA" defaultOrder="desc" title="Pagado a"/>
@@ -33,17 +32,6 @@
                             <td>${egreso.programa.nombre}</td>
                             <td>${egreso.concepto}</td>
                             <td>${egreso.aprobacion}</td>
-                            <td>
-                                <g:if test="${egreso.tipoMoneda == 'CLP'}">
-                                    Pesos Chilenos
-                                </g:if>
-                                <g:elseif test="${egreso.tipoMoneda == 'USD'}">
-                                    Dolar Américano
-                                </g:elseif>
-                                <g:else>
-                                    Euro
-                                </g:else>
-                            </td>
                             <td>$ ${egreso.monto}</td>
                             <td>${egreso.tipoDocumento}</td>
                             <td>${egreso.pagadoA}</td>

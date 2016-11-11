@@ -152,7 +152,7 @@ class BootStrap {
             new Movilizacion(fechaCreacion: "2016-08-19 11:49:00.0", motivoEmpresa: "Viaje", direccion: "avenida", distancia: 0, tipo: "PEAJE", precio:2450, creadoPor:"admin", programa: 1, usuario: 2).save(failOnError: true)        }
 
         if (!Auditoria.list()) {
-            new Auditoria(aprobacion: "RECHAZADO", concepto: "Servicios Básicos", fechaCreacion: "2016-08-19 11:49:00.0", monto: 12000,  nDocumento: "234567", rutEmpresa: "98544511-7", pagadoA: "Pablo Santana", tipoDocumento:"BOLETA", tipoMoneda: "CLP", usuario: 1, programa: 1,item: 1, rendicion: 1, proyecto: 1, creadoPor:"admin").save(failOnError: true)
+            new Auditoria(aprobacion: "RECHAZADO", concepto: "Servicios Básicos", fechaCreacion: "2016-08-19 11:49:00.0", monto: 12000,  nDocumento: "234567", rutEmpresa: "98544511-7", pagadoA: "Pablo Santana", tipoDocumento:"BOLETA", tipoMoneda: "CLP", usuario: 1, programa: 1,item: 1, rendicion: 1, proyecto: 1, egreso: 1, creadoPor:"admin").save(failOnError: true)
         }
 
         if (!DetalleAudRen.list()) {

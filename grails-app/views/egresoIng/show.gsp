@@ -174,6 +174,10 @@
                         <a class="cargaArchivo" href="../cargarArchivo/${egreso.id}">Cargar Archivo</a>
                         <input class="delete" type="submit" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
                     </g:if>
+                    <g:elseif test="${egreso.aprobacion == "RECHAZADO"}">
+                        <a class="edit" href="../edit/${egreso.id}"><g:message code="default.button.edit.label" default="Edit" /></a>
+                        <a class="cargaArchivo" href="../cargarArchivo/${egreso.id}">Cargar Archivo</a>
+                    </g:elseif>
                 </fieldset>
             </g:form>
         </div>

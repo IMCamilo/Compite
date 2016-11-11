@@ -8,11 +8,9 @@ class EgresoIngController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
     private BigInteger usuarioId = session.usuarioLogueado.id
-    Integer idprograma
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-
         def listaEgresos = Egreso.findAll("from Egreso as e where e.usuario="+session.usuarioLogueado.id)
         def egresos = []
         listaEgresos.each { egreso ->
@@ -41,7 +39,6 @@ class EgresoIngController {
     }
 
     def crear(Integer max) {
-        //def proyectoId = params.id
         def buscaPrograma = Asignacion.executeQuery("select a.programa from Asignacion as a where a.usuario="+session.usuarioLogueado.id)
         def programa = buscaPrograma[0]
 
@@ -123,13 +120,39 @@ class EgresoIngController {
     def update() {
         println "Estoy en el update de Egreso Ing"
         println "Esto es params: "+params.id
-        String[] itemObtenido = ((String) params.nombreItem).split(" - ");
-        def i = Item.findById(itemObtenido[1])
-        params.item = i.id
-        def egreso = Egreso.get(params.id)
-        egreso.properties = params
-        if(egreso.rendicion!=null){
-            egreso.aprobacion="AUDITADA"
+        aprobacion = params.aprobacion
+        if (aprobacion == "RECHAZADO") {
+            println "Estoy auditando un Egreso"
+        } else {
+            String[] itemObtenido = ((String) params.nombreItem).split(" - ");
+            def i = Item.findById(itemObtenido[1])
+            params.item = i.id
+            def egreso = Egreso.get(params.id)
+            egreso.properties = params
+            if(egreso.rendicion!=null){
+                egreso.aprobacion="AUDITADA"
+                if (egreso == null) {
+                    transactionStatus.setRollbackOnly()
+                    notFound()
+                    return
+                }
+
+                if (egreso.hasErrors()) {
+                    transactionStatus.setRollbackOnly()
+                    respond egreso.errors, view:'edit'
+                    return
+                }
+
+                egreso.save flush:true, failOnError: true
+
+                request.withFormat {
+                    form multipartForm {
+                        flash.message = message(code: 'default.updated.message', args: [message(code: 'egreso.label', default: 'Egreso'), egreso.id])
+                        redirect egreso
+                    }
+                    '*'{ respond egreso, [status: OK] }
+                }
+            }
             if (egreso == null) {
                 transactionStatus.setRollbackOnly()
                 notFound()
@@ -151,27 +174,6 @@ class EgresoIngController {
                 }
                 '*'{ respond egreso, [status: OK] }
             }
-        }
-        if (egreso == null) {
-            transactionStatus.setRollbackOnly()
-            notFound()
-            return
-        }
-
-        if (egreso.hasErrors()) {
-            transactionStatus.setRollbackOnly()
-            respond egreso.errors, view:'edit'
-            return
-        }
-
-        egreso.save flush:true, failOnError: true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'egreso.label', default: 'Egreso'), egreso.id])
-                redirect egreso
-            }
-            '*'{ respond egreso, [status: OK] }
         }
     }
 
@@ -334,8 +336,8 @@ class EgresoIngController {
 
     // Auditorias de egresos
     def auditorias() {
-        def buscar = Egreso.executeQuery("from Egreso as e where e.usuario="+session.usuarioLogueado.id+" and e.aprobacion='RECHAZADO' and e.rendicion != "+null)
-        def auditoriaList = []
+        def buscar = Egreso.executeQuery("from Egreso as e where e.usuario="+session.usuarioLogueado.id+" and e.aprobacion='RECHAZADO'")
+        def listaAuditorias = []
         buscar.each { egreso ->
             def buscaObservacion = Rendicion.executeQuery("select observacion from Rendicion as r where r.id="+egreso.rendicion.id)
             def observacion = buscaObservacion[0]
@@ -349,9 +351,9 @@ class EgresoIngController {
             result.tipoDocumento = egreso.tipoDocumento
             result.pagadoA = egreso.pagadoA
             result.observacion = observacion
-            auditoriaList.add(result)
+            listaAuditorias.add(result)
         }
-        [egresos: auditoriaList]
+        [listaAuditorias: listaAuditorias]
     }
 
     @Transactional
@@ -371,6 +373,7 @@ class EgresoIngController {
             IOUtils.closeQuietly(contentStream)
         }
     }
+
     def reporte(Egreso egreso) {
         def movs=Movilizacion.findAll("from Movilizacion where usuario="+session.usuarioLogueado.id+" and egreso="+egreso.id)
         if (movs == null) {
