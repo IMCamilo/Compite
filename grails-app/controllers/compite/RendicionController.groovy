@@ -9,17 +9,14 @@ import grails.transaction.Transactional
 class RendicionController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-    def dataSource
-    def carga(Integer id){
 
-    }
     def index(Integer max) {
         if(params.programa!=null){
             def programaList = Programa.findAll("from Programa where estado='ACTIVO'")
             def ren=Rendicion.executeQuery("from Rendicion where programa="+params.programa)
             params.max = Math.min(max ?: 10, 100)
             [rendicionCount: Rendicion.count(), rendicionList:ren, programas:programaList]
-        }else {
+        } else {
             def programaList = Programa.findAll("from Programa where estado='ACTIVO'")
             params.max = Math.min(max ?: 10, 100)
             respond Rendicion.list(params), model: [rendicionCount: Rendicion.count(), programas: programaList]

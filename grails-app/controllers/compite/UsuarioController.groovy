@@ -19,7 +19,7 @@ class UsuarioController {
         if(trans==null){
             trans=null
             respond usuario, model: [transporte:trans]
-        }else {
+        } else {
             respond usuario, model: [transporte: trans]
         }
     }

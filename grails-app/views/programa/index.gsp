@@ -88,7 +88,7 @@
                                             <label for="fechaFin">Fecha Fin
                                                 <span class="required-indicator">*</span>
                                             </label>
-                                            <g:datePicker id="fechaCreacion" name="fechaCreacion" precision="day" years="${2016..2018}"/>
+                                            <g:datePicker id="fechaFin" name="fechaFin" precision="day" years="${2016..2018}"/>
                                         </div>
                                     </div>
                                 </div>
@@ -215,7 +215,7 @@
         <table>
             <thead>
             <tr>
-                <th>ver</th>
+                <th>Ver</th>
                 <th>Ver rendiciones</th>
                 <g:sortableColumn property="codigo" defaultOrder="desc" title="Codigo"/>
                 <g:sortableColumn property="nombre" defaultOrder="desc" title="Nombre"/>
@@ -230,8 +230,8 @@
             <g:each var="programa" status="i" in="${programaList}">
                 <g:if test="${programa.rendicion.isEmpty()}">
                     <tr style="background-color: #DF6664">
-                        <td><a href="edit/${programa.id}">ver/editar</a></td>
-                        <td><g:link controller="rendicion" action="carga" params="${programa.id}">Rendiciones</g:link></td>
+                        <td><a href="edit/${programa.id}">Ver/Editar</a></td>
+                        <td>Sin rendiciones</td>
                         <td>${programa.codigo}</td>
                         <td>${programa.nombre}</td>
                         <td>${programa.estado}</td>
@@ -243,8 +243,8 @@
                 </g:if>
                 <g:else>
                     <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
-                        <td><a href="edit/${programa.id}">ver/editar</a></td>
-                        <td>Sin rendiciones</td>
+                        <td><a href="edit/${programa.id}">Ver/Editar</a></td>
+                        <td><g:link controller="programa" action="cargaRendiciones" id="${programa.id}">Rendiciones</g:link></td>
                         <td>${programa.codigo}</td>
                         <td>${programa.nombre}</td>
                         <td>${programa.estado}</td>

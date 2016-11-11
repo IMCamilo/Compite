@@ -34,11 +34,11 @@ class ProgramaController {
         } else {
             println "No vienen parametros"
             params.max = Math.min(max ?: 10, 100)
-            respond Programa.list(params), model:[programaCount: Programa.count(), regiones:listaRegiones, ]
+            respond Programa.list(params), model:[programaCount: Programa.count(), regiones:listaRegiones]
         }
     }
 
-    def show(Programa programa) {
+    def show() {
         redirect action:"index"
     }
 
@@ -141,5 +141,9 @@ class ProgramaController {
             }
             '*'{ render status: NOT_FOUND }
         }
+    }
+
+    def cargaRendiciones (Programa programa){
+        println "**********Este es el id del programa: "+programa.id
     }
 }

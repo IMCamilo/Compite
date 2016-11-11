@@ -141,7 +141,7 @@
             <table>
                 <thead>
                     <tr>
-                        <th>ver</th>
+                        <th>Ver</th>
                         <g:sortableColumn property="patente" defaultOrder="desc" title="Patente"/>
                         <g:sortableColumn property="tipo" defaultOrder="desc" title="Tipo"/>
                         <g:sortableColumn property="marca" defaultOrder="desc" title="Marca"/>
@@ -155,7 +155,7 @@
                 <tbody>
                     <g:each var="transporte" status="i" in="${transporteList}">
                          <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
-                            <td><a href="edit/${transporte.id}">ver</a></td>
+                            <td><a href="edit/${transporte.id}">Ver</a></td>
                             <td>${transporte.patente}</td>
                             <td>${transporte.tipo}</td>
                             <td>${transporte.marca}</td>

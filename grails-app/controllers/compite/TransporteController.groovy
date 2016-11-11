@@ -68,7 +68,6 @@ class TransporteController {
     @Transactional
     def update() {
         String[] rutObtenido = ((String) params.nombreUsuario).split(" ? ");
-        println "obtencion de rut: "+rutObtenido[3]
         def u = Usuario.findByRut(rutObtenido[3])
         if(!u){
             flash.message="No ha seleccionado un usuario valido"

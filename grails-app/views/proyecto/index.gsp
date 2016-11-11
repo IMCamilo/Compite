@@ -178,7 +178,7 @@
             <table>
                 <thead>
                     <tr>
-                        <th>ver</th>
+                        <th>Ver</th>
                         <g:sortableColumn property="codigo" defaultOrder="desc" title="Codigo"/>
                         <g:sortableColumn property="nombre" defaultOrder="desc" title="Nombre"/>
                         <g:sortableColumn property="estado" defaultOrder="desc" title="Estado"/>
@@ -188,26 +188,14 @@
                 </thead>
                 <tbody>
                     <g:each var="proyecto" status="i" in="${proyectoList}">
-                        <g:if test="${!proyecto}">
-                            <tr style="background-color: #DF6664">
-                                <td><a href="show/${proyecto.id}">ver</a></td>
-                                <td>${proyecto.codigo}</td>
-                                <td>${proyecto.nombre}</td>
-                                <td>${proyecto.estado}</td>
-                                <td>${formatDate(format:"dd/MM/yyyy", date: proyecto.fechaCreacion)}</td>
-                                <td>${proyecto.programa.nombre}</td>
-                            </tr>
-                        </g:if>
-                        <g:else>
-                            <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
-                                <td><a href="show/${proyecto.id}">ver</a></td>
-                                <td>${proyecto.codigo}</td>
-                                <td>${proyecto.nombre}</td>
-                                <td>${proyecto.estado}</td>
-                                <td>${formatDate(format:"dd/MM/yyyy", date: proyecto.fechaCreacion)}</td>
-                                <td>${proyecto.programa.nombre}</td>
-                            </tr>
-                        </g:else>
+                        <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
+                            <td><a href="show/${proyecto.id}">Ver</a></td>
+                            <td>${proyecto.codigo}</td>
+                            <td>${proyecto.nombre}</td>
+                            <td>${proyecto.estado}</td>
+                            <td>${formatDate(format:"dd/MM/yyyy", date: proyecto.fechaCreacion)}</td>
+                            <td>${proyecto.programa.nombre}</td>
+                        </tr>
                     </g:each>
                 </tbody>
             </table>
