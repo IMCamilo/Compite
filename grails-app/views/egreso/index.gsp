@@ -81,7 +81,9 @@
                                 <g:if test="${egreso.movilizacion.isEmpty()}">
                                     <td>No tiene movilizaciones</td>
                                 </g:if>
-                                <td><a href="../index/${egreso.id}">Ver movilizaciones</a></td>
+                                <g:else>
+                                    <td><a href="../index/${egreso.id}">Ver movilizaciones</a></td>
+                                </g:else>
                             </g:else>
                             <td>${egreso.programa.nombre}</td>
                             <td>${egreso.concepto}</td>
