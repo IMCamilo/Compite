@@ -100,9 +100,9 @@
                                     <td>${egreso.nDocumento}</td>
                                     <td>${egreso.tipoDocumento}</td>
                                     <td>${egreso.concepto}</td>
-                                    <td><input type="text" name="observacion" placeholder="Digite la Observación" style="width: 100%"> </td>
+                                    <td><input type="text" id="${egreso.id}" name="observacion" placeholder="Digite la Observación" style="width: 100%"> </td>
 
-                                    <td><g:checkBox name="in" value="${egreso.id}" /></td>
+                                    <td><g:checkBox name="in" value="${egreso.id}" onclick=""/></td>
                                 </tr>
                             </g:each>
                             </tbody>
