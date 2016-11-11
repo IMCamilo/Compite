@@ -100,9 +100,9 @@
                                     <td>${egreso.nDocumento}</td>
                                     <td>${egreso.tipoDocumento}</td>
                                     <td>${egreso.concepto}</td>
-                                    <td><input type="text" id="${egreso.id}" name="observacion" placeholder="Digite la Observación" style="width: 100%"> </td>
+                                    <td><input type="text" id="${egreso.id}" name="observacion" placeholder="Digite la Observación" style="width: 100%; color:black"> </td>
 
-                                    <td><g:checkBox name="in" value="${egreso.id}" onclick=""/></td>
+                                    <td><g:checkBox name="in" value="${egreso.id}" checked="false" onclick="requerido('${egreso.id}')"/></td>
                                 </tr>
                             </g:each>
                             </tbody>
@@ -235,5 +235,16 @@
                 </fieldset>
             </g:form>
         </div>
+    <asset:javascript src="compite/jquery-2.1.1.min.js"/>
+    <script type="application/javascript">
+        var campo;
+        function requerido(campo) {
+            if (document.getElementById(campo).required == true) {
+                document.getElementById(campo).required = false;
+            }else{
+                document.getElementById(campo).required = true;
+            }
+        }
+    </script>
     </body>
 </html>
