@@ -308,11 +308,9 @@ class EgresoController {
                 }
             }
             flash.message = "Los egresos han sido actualizados correctamentess"
-            }
+        }
     }
-    def crarAuditoria(){
 
-    }
     def crearRendicion () {
         println "Estoy en crearRendicion en Egreso"
         def egresos =  params.egresos
