@@ -8,7 +8,6 @@ import compite.Proyecto
 import compite.Rendicion
 import compite.Transporte
 import compite.Usuario
-import compite.DetalleAudRen
 import compite.Programa
 import compite.Region
 
@@ -153,10 +152,6 @@ class BootStrap {
 
         if (!Auditoria.list()) {
             new Auditoria(aprobacion: "RECHAZADO", concepto: "Servicios Básicos", fechaCreacion: "2016-08-19 11:49:00.0", monto: 12000,  nDocumento: "234567", rutEmpresa: "98544511-7", pagadoA: "Pablo Santana", tipoDocumento:"BOLETA", tipoMoneda: "CLP", usuario: 1, programa: 1,item: 1, rendicion: 1, proyecto: 1, egreso: 1, creadoPor:"admin").save(failOnError: true)
-        }
-
-        if (!DetalleAudRen.list()) {
-            new DetalleAudRen(fecha: "2016-08-19 11:49:00.0", detalle: "Informacion sobre auditoria 1 y rendicion 1.", auditoria: 1, rendicion: 1, creadoPor:"admin").save(failOnError: true)
         }
 
         if (!Transporte.list()) {
