@@ -56,7 +56,6 @@
                         </div>
                     </div>
                 </div>
-
                 <input type="hidden" name="creadoPor" value="${session.usuarioLogueado.rut}" id="creadoPor"/>
             </fieldset>
             <fieldset class="buttons">
