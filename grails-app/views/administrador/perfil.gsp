@@ -43,16 +43,16 @@
                 <h3>Telefono</h3>
                 <input type="text" name="telefono" value="${usuario.telefono}" maxlength="15" id="telefono"/>
                 <br>
-                    <div class='fieldcontain' style="width:50%">
+                <div class='fieldcontain' style="width:50%">
                     <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                         Modificar contraseña
                     </button>
                     <div style="padding:20px 0px 0px 0px" class="collapse" id="collapseExample">
                         <div class="well">
-                            <h3>Correo</h3>
+                            <h3>Clave Actual</h3>
                             <input type="password" name="clave" value="${usuario.clave}" required="" maxlength="15" id="clave"/>
-                            <h3>Telefono</h3>
-                            <input type="password" name="clave" value="" required="" maxlength="15" id="clave"/>
+                            <h3>Nueva Clave</h3>
+                            <input type="password" name="nuevaclave" value="" maxlength="15" id="clave"/>
                         </div>
                     </div>
                 </div>
