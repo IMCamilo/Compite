@@ -33,50 +33,27 @@
     <g:form action="update" resource="${this.usuario}" method="PUT" name="f1">
         <g:hiddenField name="version" value="${this.usuario?.version}" />
         <fieldset class="form">
-            <div class='fieldcontain required'>
-                <label for='rut'>Rut
-                    <span class='required-indicator'>*</span>
-                </label>
-                <input type="text" id="rut" value="${usuario.rut}" name="rut" required oninput="checkRut(this)" placeholder="Ingrese RUT">
-            </div>
-            <div class='fieldcontain required'>
-                <label for='nombres'>Nombres
-                    <span class='required-indicator'>*</span>
-                </label><input type="text" name="nombres" value="${usuario.nombres}" required="" maxlength="30" id="nombres"/>
-            </div>
-            <div class='fieldcontain required'>
-                <label for='paterno'>Paterno
-                    <span class='required-indicator'>*</span>
-                </label><input type="text" name="paterno" value="${usuario.paterno}" required="" maxlength="20" id="paterno"/>
-            </div>
-            <div class='fieldcontain required'>
-                <label for='materno'>Materno
-                    <span class='required-indicator'>*</span>
-                </label><input type="text" name="materno" value="${usuario.materno}" required="" maxlength="20" id="materno"/>
-            </div>
-            <div class='fieldcontain required'>
-                <label for='direccion'>Direccion
-                    <span class='required-indicator'>*</span>
-                </label><input type="text" name="direccion" value="${usuario.direccion}" required="" maxlength="70" id="direccion"/>
-            </div>
-            <div class='fieldcontain required'>
-                <label for='correo'>Correo
-                    <span class='required-indicator'>*</span>
-                </label><input type="email" name="correo" value="${usuario.correo}" required="" maxlength="30" id="correo"/>
-            </div>
-            <div class='fieldcontain'>
-                <label for='telefono'>Telefono</label><input type="text" name="telefono" value="${usuario.telefono}" maxlength="15" id="telefono"/>
-            </div>
-            <%--<div class='fieldcontain required'>
-                <label for='clave'>Clave
-                    <span class='required-indicator'>*</span>
-                </label><input type="password" name="clave" value="${usuario.clave}" required="" maxlength="15" id="clave"/>
-            </div>
-            <div class='fieldcontain required'>
-                <label for='clave'>Repita Contraseña
-                    <span class='required-indicator'>*</span>
-                </label><input type="password" name="clave2" value="${usuario.clave}" required="" maxlength="15" id="clave2"/>
-            </div>--%>
+            <h3>RUT</h3>
+            <input type="text" id="rut" value="${usuario.rut}" name="rut" required oninput="checkRut(this)" placeholder="Ingrese RUT">
+            <br>
+            <h3>Nombres</h3>
+            <input type="text" name="nombres" value="${usuario.nombres}" required="" maxlength="30" id="nombres"/>
+            <br>
+            <h3>Paterno</h3>
+            <input type="text" name="paterno" value="${usuario.paterno}" required="" maxlength="20" id="paterno"/>
+            <br>
+            <h3>Materno</h3>
+            <input type="text" name="materno" value="${usuario.materno}" required="" maxlength="20" id="materno"/>
+            <br>
+            <h3>Dirección</h3>
+            <input type="text" name="direccion" value="${usuario.direccion}" required="" maxlength="70" id="direccion"/>
+            <br>
+            <h3>Correo</h3>
+            <input type="email" name="correo" value="${usuario.correo}" required="" maxlength="30" id="correo"/>
+            <br>
+            <h3>Telefono</h3>
+            <input type="text" name="telefono" value="${usuario.telefono}" maxlength="15" id="telefono"/>
+            <br>
             <input type="hidden" name="creadoPor" value="${session.usuarioLogueado.rut}" id="creadoPor"/>
         </fieldset>
         <fieldset class="buttons">
