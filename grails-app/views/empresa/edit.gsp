@@ -21,7 +21,6 @@
             <g:form resource="${this.empresa}" method="PUT">
                 <g:hiddenField name="version" value="${this.empresa?.version}" />
                 <fieldset class="form">
-
                     <div class="col-md-12">
                         <div class="col-sm-6">
                             <div class="fieldcontain required">
@@ -117,7 +116,7 @@
                     </div>
                     <div class="col-md-10">
                         <div class="col-sm-3">
-                            <g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link>
+                            <g:link class="list" action="show" id="${empresa.id}">Volver</g:link>
                         </div>
                     </div>
                 </fieldset>

@@ -77,12 +77,19 @@ class EmpresaController {
 
     @Transactional
     def delete(Empresa empresa) {
-
+        println "empresa: "+empresa
         if (empresa == null) {
             transactionStatus.setRollbackOnly()
             notFound()
             return
         }
+
+        /*if (empresa.auditoria != null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            flash.error = "No se puede eliminar esta Empresa"
+            return
+        }*/
 
         empresa.delete flush:true
 

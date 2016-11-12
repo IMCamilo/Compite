@@ -149,14 +149,14 @@
             </div>
         </div>
         <div id="list-empresa" class="content scaffold-list" role="main">
-            <h1><g:message code="default.list.label" args="[entityName]" /></h1>
+            <h1>Listado de Empresas</h1>
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
             <table>
                 <thead>
                     <tr>
-                        <th>ver</th>
+                        <th>Ver</th>
                         <g:sortableColumn property="rut" defaultOrder="desc" title="Rut"/>
                         <g:sortableColumn property="nombre" defaultOrder="desc" title="Nombre"/>
                         <g:sortableColumn property="razonSocial" defaultOrder="desc" title="Razon Social"/>
@@ -167,7 +167,7 @@
                 <tbody>
                     <g:each var="empresa" status="i" in="${empresaList}">
                          <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
-                            <td><a href="show/${empresa.id}">ver</a></td>
+                            <td><a href="show/${empresa.id}">Ver</a></td>
                             <td>${empresa.rut}</td>
                             <td>${empresa.nombre}</td>
                             <td>${empresa.razonSocial}</td>
