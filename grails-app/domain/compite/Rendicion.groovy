@@ -7,7 +7,7 @@ class Rendicion {
     Integer total, totalRendido, totalAnticipado
 
     static belongsTo = [programa:Programa, usuario:Usuario]
-    static hasMany = [detalleAudRen:DetalleAudRen, egreso:Egreso]
+    static hasMany = [egreso:Egreso]
 
     static constraints = {
         totalAnticipado nullable: true, blank: true
