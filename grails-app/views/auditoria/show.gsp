@@ -15,8 +15,18 @@
             <g:each in="${auditoria}">
                 <div class="col-md-12">
                     <div class="col-sm-6">
-                        <label>Nombre :</label>
-                        <label style="color: dimgray">${it.nombre}</label>
+                        <label>Creado Por :</label>
+                        <label style="color: dimgray">${it.creadoPor}</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <label>Item :</label>
+                        <label style="color: dimgray">${it.item.nombre}</label>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-sm-6">
+                        <label>Rut Empresa :</label>
+                        <label style="color: dimgray">${it.rutEmpresa}</label>
                     </div>
                     <div class="col-sm-6">
                         <label>Programa :</label>
@@ -25,34 +35,66 @@
                 </div>
                 <div class="col-md-12">
                     <div class="col-sm-6">
+                        <label>Proyecto :</label>
+                        <label style="color: dimgray">${it.proyecto.nombre}</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <label>Aprobacion :</label>
+                        <label style="color: dimgray">${it.aprobacion}</label>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-sm-6">
+                        <label>Tipo de Cambio :</label>
+                        <label style="color: dimgray">${it.tipoMoneda}</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <label>Tipo de Documento :</label>
+                        <label style="color: dimgray">${it.tipoDocumento}</label>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-sm-6">
+                        <label>Pagado A :</label>
+                        <label style="color: dimgray">${it.pagadoA}</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <label>Monto :</label>
+                        <label style="color: dimgray">$ ${it.monto}</label>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-sm-6">
+                        <label>Concepto :</label>
+                        <label style="color: dimgray">${it.concepto}</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <label>Fecha Ingreso :</label>
+                        <label style="color: dimgray">${formatDate(format:"dd/MM/yyyy", date: it.fechaCreacion)}</label>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-sm-6">
                         <label>Usuario :</label>
-                        <label style="color: dimgray">${it.usuario}</label>
+                        <label style="color: dimgray">${it.usuario.nombres} ${it.usuario.paterno} ${it.usuario.materno}</label>
                     </div>
                     <div class="col-sm-6">
-                        <label>Creado Por :</label>
-                        <label style="color: dimgray">${it.creadoPor}</label>
+                        <label>Nº Documento :</label>
+                        <label style="color: dimgray">${it.nDocumento}</label>
                     </div>
                 </div>
-                <div class="col-md-12">
-                    <div class="col-sm-6">
-                        <label>Descripción :</label>
-                        <label style="color: dimgray">${it.descripcion}</label>
+                <g:if test="${it.rendicion != null}">
+                    <div class="col-md-12">
+                        <div class="col-sm-6">
+                            <label>Egreso :</label>
+                            <label style="color: dimgray">Nº ${it.egreso.id}</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <label>Rendición :</label>
+                            <label style="color: dimgray">Nº ${it.rendicion.id}</label>
+                        </div>
                     </div>
-                    <div class="col-sm-6">
-                        <label>Estado :</label>
-                        <label style="color: dimgray">${it.estado}</label>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="col-sm-6">
-                        <label>Motivo :</label>
-                        <label style="color: dimgray">${it.motivo}</label>
-                    </div>
-                    <div class="col-sm-6">
-                        <label>Fecha de Auditoria :</label>
-                        <label style="color: dimgray">${it.fechaCreacion}</label>
-                    </div>
-                </div>
+                </g:if>
             </g:each>
             <div style="width:50%">
                 <p>Archivos</p>
@@ -85,11 +127,7 @@
             </div>
             <g:form resource="${this.auditoria}" method="DELETE">
                 <fieldset class="buttons">
-                    <g:link class="list" action="index">Volver al Listado</g:link>
-                    <g:link class="edit" action="edit" resource="${this.auditoria}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-                    <g:if test="${auditoria.estado != "APROBADA"}">
-                        <input class="delete" type="submit" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-                    </g:if>
+                    <g:link class="volver" action="index">Volver al Listado</g:link>
                 </fieldset>
             </g:form>
         </div>

@@ -6,29 +6,43 @@
         <title><g:message code="default.list.label" args="[entityName]" /></title>
     </head>
     <body>
+        <div id="create-programa" class="content scaffold-create" role="main">
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Buscar Rendiciones</a>
+                        </h4>
+                    </div>
+                    <div id="collapse1" class="panel-collapse collapse on">
+                        <div class="panel-body">
+                            <g:form controller="rendicion" action="index">
+                                <div class="col-sm-6">
+                                    <div class="fieldcontain required">
+                                        <label for="programa">Programa
+                                            <span class="required-indicator">*</span>
+                                        </label>
+                                        <select name="programa" id="programa">
+                                            <option value="" disabled selected>Seleccione un programa</option>
+                                            <g:each var="program" in="${programas}">
+                                                <option value="${program.id}">${program.nombre}</option>
+                                            </g:each>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="fieldcontain required">
+                                        <g:submitButton name="create" class="btn btn-primary" value="Buscar"></g:submitButton>
+                                    </div>
+                                </div>
+                            </g:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div id="list-rendicion" class="content scaffold-list" role="main">
-            <g:form controller="rendicion" action="index">
-                <div class="col-sm-6">
-                    <div class="fieldcontain required">
-                        <label for="programa">Programa
-                            <span class="required-indicator">*</span>
-                        </label>
-                        <select name="programa" id="programa">
-                            <option value="" disabled selected>Seleccione un programa</option>
-                            <g:each var="program" in="${programas}">
-                                <option value="${program.id}">${program.nombre}</option>
-                            </g:each>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="fieldcontain required">
-                        <g:submitButton name="create" class="btn btn-primary" value="Buscar"></g:submitButton>
-                    </div>
-                </div>
-            </g:form>
-
-            <h1><g:message code="default.list.label" args="[entityName]" /></h1>
+            <h1>Listado de Rendiciones</h1>
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>

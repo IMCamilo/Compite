@@ -10,90 +10,8 @@
         <g:if test="${flash.message}">
             <div class="message" role="status">${flash.message}</div>
         </g:if>
-        <div id="create-auditoria" class="content scaffold-create" role="main">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Crear Auditoría</a>
-                    </h4>
-                </div>
-                <div id="collapse1" class="panel-collapse collapse on">
-                    <div class="panel-body">
-                        <g:hasErrors bean="${this.auditoria}">
-                            <ul class="errors" role="alert">
-                                <g:eachError bean="${this.auditoria}" var="error">
-                                    <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-                                </g:eachError>
-                            </ul>
-                        </g:hasErrors>
-                        <g:uploadForm action="save">
-                            <fieldset class="form">
-                                <input name="creadoPor" value="${session.usuarioLogueado.rut}" required="" type="hidden">
-                                <input name="estado" value="RECHAZADA" required="" type="hidden">
-                                <div class="col-md-12">
-                                    <div class="col-sm-6">
-                                        <div class="fieldcontain required">
-                                            <label for="nombre">Nombre
-                                                <span class="required-indicator">*</span>
-                                            </label>
-                                            <input id="nombre" name="nombre" value="" required="" type="text">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="fieldcontain required" id="programainputdiv">
-                                            <label for="nombrePrograma">Programa
-                                                <span class="required-indicator">*</span>
-                                            </label>
-                                            <input id="nombrePrograma" class="typeahead" name="nombrePrograma" type="text" required="" placeholder="Busca un programa">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <%--<div class="col-sm-6">
-                                        <div class="fieldcontain required" id="usuarioinputdiv">
-                                            <label for="nombreUsuario">Usuario
-                                                <span class="required-indicator">*</span>
-                                            </label>
-                                            <input id="nombreUsuario" class="typeahead" name="nombreUsuario" type="text" required="" placeholder="Busca un usuario">
-                                        </div>
-                                    </div>--%>
-                                    <div class="col-sm-6">
-                                        <div class="fieldcontain required">
-                                            <label for="motivo">Motivo
-                                                <span class="required-indicator">*</span>
-                                            </label>
-                                            <input id="motivo" name="motivo" type="text" required="" placeholder="Motivo de la auditoria">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="col-sm-6">
-                                        <div class="fieldcontain required">
-                                            <label for="descripcion">Descripción
-                                                <span class="required-indicator">*</span>
-                                            </label>
-                                            <textarea id="descripcion" name="descripcion" required="" rows="4" cols="50" placeholder="Ingrese el resumen de la auditoría realizada"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <br>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="col-sm-1">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <g:submitButton name="create" class="save btn btn-success" value="${message(code: 'default.button.create.label', default: 'Create')}" />
-                                    </div>
-                                </div>
-                            </fieldset>
-                        </g:uploadForm>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div id="list-auditoria" class="content scaffold-list" role="main">
-            <h1><g:message code="default.list.label" args="[entityName]" /></h1>
+            <h1>Listado de Egresos en Auditoría</h1>
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
@@ -101,22 +19,30 @@
                 <thead>
                     <tr>
                         <th>Detalles</th>
-                        <g:sortableColumn property="nombre" defaultOrder="desc" title="Nombre"/>
-                        <g:sortableColumn property="motivo" defaultOrder="desc" title="Motivo"/>
-                        <g:sortableColumn property="estado" defaultOrder="desc" title="Estado"/>
-                        <g:sortableColumn property="fechaCreacion" defaultOrder="desc" title="Fecha Creacion"/>
-                        <g:sortableColumn property="descripcion" defaultOrder="desc" title="Descripcion"/>
+                        <g:sortableColumn property="programa" defaultOrder="desc" title="Programa"/>
+                        <g:sortableColumn property="concepto" defaultOrder="desc" title="Concepto"/>
+                        <g:sortableColumn property="aprobacion" defaultOrder="desc" title="Aprobación"/>
+                        <g:sortableColumn property="monto" defaultOrder="desc" title="Monto"/>
+                        <g:sortableColumn property="tipoDocumento" defaultOrder="desc" title="Tipo Documento"/>
+                        <g:sortableColumn property="pagadoA" defaultOrder="desc" title="Pagado a"/>
+                        <g:sortableColumn property="usuario" defaultOrder="desc" title="Rendido Por"/>
+                        <g:sortableColumn property="egreso" defaultOrder="desc" title="Egreso"/>
                     </tr>
                 </thead>
                 <tbody>
                     <g:each var="auditoria" status="i" in="${auditoriaList}">
                          <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
-                            <td><a href="show/${auditoria.id}">Ver</a></td>
-                            <td>${auditoria.nombre}</td>
-                            <td>${auditoria.motivo}</td>
-                            <td>${auditoria.estado}</td>
-                            <td>${formatDate(format:"yyyy/MM/dd", date: auditoria.fechaCreacion)}</td>
-                            <td>${auditoria.descripcion}</td>
+                             <td>
+                                 <div align="center"><a href="show/${auditoria.id}">Ver</a></div>
+                             </td>
+                             <td>${auditoria.programa.nombre}</td>
+                             <td>${auditoria.concepto}</td>
+                             <td>${auditoria.aprobacion}</td>
+                             <td>$ ${auditoria.monto}</td>
+                             <td>${auditoria.tipoDocumento}</td>
+                             <td>${auditoria.pagadoA}</td>
+                             <td>${auditoria.usuario.nombres} ${auditoria.usuario.paterno} ${auditoria.usuario.materno}</td>
+                             <td><g:link controller="egreso" action="show" id="${auditoria.egreso.id}">N° ${auditoria.egreso.id}</g:link></td>
                         </tr>
                     </g:each>
                 </tbody>

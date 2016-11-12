@@ -64,10 +64,8 @@
                     </div>
                 </div>
             </div>
-
         </div>
-        <div style="margin-top: 10px">
-
+        <div>
             <form action="" id="formid">
                 <div id="dialog" style="display: none;">
                     <p><br>Debe Seleccionar al menos un Egreso</p>

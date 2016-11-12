@@ -101,7 +101,6 @@
                                     <td>${egreso.tipoDocumento}</td>
                                     <td>${egreso.concepto}</td>
                                     <td><input type="text" id="${egreso.id}" name="observacion" placeholder="Digite la Observación" style="width: 100%; color:black"> </td>
-
                                     <td><g:checkBox name="in" value="${egreso.id}" checked="false" onclick="requerido('${egreso.id}')"/></td>
                                 </tr>
                             </g:each>
@@ -129,22 +128,26 @@
                     <div class="col-sm-6">
                         <g:link controller="rendicion" action="reporte" id="${params.id}"> Generar Reporte</g:link>
                     </div>
-
                 </div>
                 <div class="col-md-12">
                     <div class="col-sm-6">
                         <label>Total Anticipado :</label>
-                        <label style="color: dimgray">${it.totalAnticipado}</label>
+                        <g:if test="${it.totalAnticipado == null}">
+                            <label style="color: dimgray">$ 0</label>
+                        </g:if>
+                        <g:else>
+                            <label style="color: dimgray">$ ${it.totalAnticipado}</label>
+                        </g:else>
                     </div>
                     <div class="col-sm-6">
                         <label>Total Rendido :</label>
-                        <label style="color: dimgray">${it.totalRendido}</label>
+                        <label style="color: dimgray">$ ${it.totalRendido}</label>
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="col-sm-6">
                         <label>Total :</label>
-                        <label style="color: dimgray">${it.total}</label>
+                        <label style="color: dimgray">$ ${it.total}</label>
                     </div>
                 </div>
                 <div class="col-md-12">
@@ -214,23 +217,23 @@
                 <fieldset class="buttons">
                     <g:link class="volver" action="index">Volver al Listado</g:link>
                     <g:if test="${rendicion.estado == "NO_APROBADA"}">
-                        <g:link action="aprobar" resource="${this.rendicion}"><g:message code="default.button.aprobar.label" default="Aprobar" /></g:link>
+                        <g:link class="aprobar" action="aprobar" resource="${this.rendicion}">Aprobar Rendición</g:link>
                     </g:if>
                     <g:elseif test="${rendicion.estado == "APROBADA"}">
-                        <g:link action="enviadaPorValija" resource="${this.rendicion}">Estado a: Enviada por Valija</g:link>
+                        <g:link class="enviadoValija" action="enviadaPorValija" resource="${this.rendicion}">Estado a: Enviada por Valija</g:link>
                     </g:elseif>
                     <g:elseif test="${rendicion.estado == "ENVIADA_POR_VALIJA"}">
-                        <g:link action="recepcionadaSantiago" resource="${this.rendicion}">Estado a: Recepcionada en Santiago</g:link>
+                        <g:link class="recepcionado" action="recepcionadaSantiago" resource="${this.rendicion}">Estado a: Recepcionada en Santiago</g:link>
                     </g:elseif>
                     <g:elseif test="${rendicion.estado == "RECEPCIONADA_SANTIAGO"}">
-                        <g:link action="aprobadaFirmada" resource="${this.rendicion}">Estado a: Aprobada y firmada en Santiago</g:link>
-                        <g:link action="rechazar" resource="${this.rendicion}" data-toggle="modal" data-target="#elIDdelModal2">Rechazar Rendición</g:link>
+                        <g:link class="aprobar" action="aprobadaFirmada" resource="${this.rendicion}">Estado a: Aprobada y firmada en Santiago</g:link>
+                        <g:link class="desaprobar" action="rechazar" resource="${this.rendicion}" data-toggle="modal" data-target="#elIDdelModal2">Rechazar Rendición</g:link>
                     </g:elseif>
                     <g:elseif test="${rendicion.estado == "APROBADA_FIRMADA_SANTIAGO"}">
-                        <g:link action="transferencia" resource="${this.rendicion}">Estado a: Transferencia de fondos Realizada</g:link>
+                        <g:link class="transferido" action="transferencia" resource="${this.rendicion}">Estado a: Transferencia de fondos Realizada</g:link>
                     </g:elseif>
                     <g:elseif test="${rendicion.estado == "TRANSFERENCIA_OK"}">
-                        <g:link action="finalizada" resource="${this.rendicion}">Estado a: Rendición finalizada</g:link>
+                        <g:link class="finalizado" action="finalizada" resource="${this.rendicion}">Estado a: Rendición finalizada</g:link>
                     </g:elseif>
                 </fieldset>
             </g:form>

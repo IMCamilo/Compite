@@ -551,7 +551,8 @@ th:hover, tr:hover {
     text-decoration: underline;
 }
 
-.buttons .delete, .buttons .edit, .buttons .save, .buttons .cargaArchivo, .buttons .volver, .buttons .aprobar, .buttons .desaprobar {
+.buttons .delete, .buttons .edit, .buttons .save, .buttons .cargaArchivo, .buttons .volver, .buttons .aprobar,
+.buttons .desaprobar, .buttons .enviadoValija, .buttons .recepcionado, .buttons .transferido, .buttons .finalizado {
     background-position: 0.7em center;
     background-repeat: no-repeat;
     text-indent: 25px;
@@ -583,6 +584,22 @@ th:hover, tr:hover {
 
 .buttons .desaprobar {
     background-image: url(../images/skin/cancel.png);
+}
+
+.buttons .enviadoValija {
+    background-image: url(../images/skin/enviado-valija.png);
+}
+
+.buttons .recepcionado {
+    background-image: url(../images/skin/recepcionado.png);
+}
+
+.buttons .transferido {
+    background-image: url(../images/skin/dinero_transferido.png);
+}
+
+.buttons .finalizado {
+    background-image: url(../images/skin/finalizado.png);
 }
 
 a.skip {
