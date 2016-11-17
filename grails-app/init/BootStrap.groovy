@@ -24,6 +24,16 @@ class BootStrap {
             new Usuario(rut: "13553677-1", nombres: "Pablo", paterno: "Zumelzu", materno: "-", direccion: "Avda. Siempre Viva", correo: "ingeniero1@gmail.com", telefono: "78787878", clave: "pantalla1", tipo: 2, creadoPor:"admin").save(failOnError: true)
             new Usuario(rut: "16511533-k", nombres: "Adolfo", paterno: "Gonzalez", materno: "-", direccion: "-", correo: "usuarioadmindos@grails.org", telefono: "-", clave: "qwerty", tipo: 1, creadoPor:"admin").save(failOnError: true)
             new Usuario(rut: "15524533-k", nombres: "Pablo", paterno: "Santana", materno: "-", direccion: "-", correo: "usuarioadminuno@grails.org", telefono: "74253696", clave: "qwerty", tipo: 1, creadoPor:"admin").save(failOnError: true)
+
+            //usuarios para pruebas de sistemas
+            new Usuario(rut: "11111111-1", nombres: "Ingeniero", paterno: "Test", materno: "1", direccion: "Ejercito #200", correo: "usuarioingenierouno@compite.cl", telefono: "78522266", clave: "qwerty", tipo: 2, creadoPor:"admin").save(failOnError: true)
+            new Usuario(rut: "11111111-1", nombres: "Ingeniero", paterno: "Test", materno: "2", direccion: "Ejercito #200", correo: "usuarioingenierodos@compite.cl", telefono: "78522266", clave: "qwerty", tipo: 2, creadoPor:"admin").save(failOnError: true)
+            new Usuario(rut: "11111111-1", nombres: "Ingeniero", paterno: "Test", materno: "3", direccion: "Ejercito #200", correo: "usuarioingenierotres@compite.cl", telefono: "78522266", clave: "qwerty", tipo: 2, creadoPor:"admin").save(failOnError: true)
+            new Usuario(rut: "11111111-1", nombres: "Ingeniero", paterno: "Test", materno: "4", direccion: "Ejercito #200", correo: "usuarioingenierocuatro@compite.cl", telefono: "78522266", clave: "qwerty", tipo: 2, creadoPor:"admin").save(failOnError: true)
+            new Usuario(rut: "11111111-1", nombres: "Administrador", paterno: "Test", materno: "1", direccion: "Ejercito #200", correo: "usuarioadminuno@compite.cl", telefono: "78522266", clave: "qwerty", tipo: 1, creadoPor:"admin").save(failOnError: true)
+            new Usuario(rut: "11111111-1", nombres: "Administrador", paterno: "Test", materno: "2", direccion: "Ejercito #200", correo: "usuarioadmindos@compite.cl", telefono: "78522266", clave: "qwerty", tipo: 1, creadoPor:"admin").save(failOnError: true)
+            new Usuario(rut: "11111111-1", nombres: "Administrador", paterno: "Test", materno: "3", direccion: "Ejercito #200", correo: "usuarioadmintres@compite.cl", telefono: "78522266", clave: "qwerty", tipo: 1, creadoPor:"admin").save(failOnError: true)
+            new Usuario(rut: "11111111-1", nombres: "Administrador", paterno: "Test", materno: "4", direccion: "Ejercito #200", correo: "usuarioadmincuatro@compite.cl", telefono: "78522266", clave: "qwerty", tipo: 1, creadoPor:"admin").save(failOnError: true)
         }
 
         if (!Empresa.list()) {
