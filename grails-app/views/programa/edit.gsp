@@ -8,7 +8,7 @@
 </head>
 <body>
 <div id="create-programa" class="content scaffold-create" role="main">
-    <h1><g:message code="default.create.label" args="[entityName]" /></h1>
+    <h1>Editar Programa</h1>
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
@@ -146,7 +146,7 @@
                 <div class="col-sm-1">
                 </div>
                 <div class="col-sm-6">
-                    <g:submitButton name="create" class="save btn btn-info" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+                    <g:submitButton name="edit" class="save btn btn-info" value="${message(code: 'default.button.edit.label', default: 'Edit')}" />
                 </div>
             </div>
 
