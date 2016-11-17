@@ -81,13 +81,14 @@ class UsuarioController {
         usuario.save flush:true
         /*Si el tipo de usuario es Ingeniero, que me redireccione al perfil del Ingeniero*/
         if (tipo == 2) {
+            println "Es Ingeniero"
             redirect(controller: "ingeniero", action: "perfil", params: [id: usuario.id])
             flash.message = "Perfil Actualizado Correctamente"
         } else {
             request.withFormat {
                 form multipartForm {
                     flash.message = message(code: 'default.updated.message', args: [message(code: 'usuario.label', default: 'Usuario'), usuario.id])
-                    redirect usuario
+                    redirect(controller: "administrador", action: "perfil", params: [id: usuario.id])
                 }
                 '*'{ respond usuario, [status: OK] }
             }

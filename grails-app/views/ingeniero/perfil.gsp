@@ -34,7 +34,7 @@
         <g:hiddenField name="version" value="${this.usuario?.version}" />
         <fieldset class="form">
             <h3>RUT</h3>
-            <input type="text" id="rut" value="${usuario.rut}" name="rut" required oninput="checkRut(this)" placeholder="Ingrese RUT">
+            <label>${usuario.rut}</label>
             <br>
             <h3>Nombres</h3>
             <input type="text" name="nombres" value="${usuario.nombres}" required="" maxlength="30" id="nombres"/>
