@@ -47,12 +47,12 @@
                                 </g:if>
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix">account_circle</i>
-                                    <input id="icon_prefix" name="username" type="text" class="validate">
+                                    <input id="icon_prefix" name="username" type="text" class="validate tooltipped" data-position="right" data-tooltip="Existe una nota de escritorio con los diferentes usuarios">
                                     <label for="icon_prefix">Correo electrónico</label>
                                 </div>
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix">vpn_key</i>
-                                    <input id="icon_telephone" name="password" type="password" class="validate">
+                                    <input id="icon_telephone" name="password" type="password" class="validate tooltipped" data-position="right" data-tooltip="Ingeniero: qwerty | Administrador: qwerty">
                                     <label for="icon_telephone">Contraseña</label>
                                 </div>
                                 <div class="input-field col s12">

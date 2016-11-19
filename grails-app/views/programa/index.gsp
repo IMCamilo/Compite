@@ -244,7 +244,7 @@
                 <g:else>
                     <tr class="${((i % 2 == 0) ? 'odd' : 'even')}">
                         <td><a href="edit/${programa.id}">Ver/Editar</a></td>
-                        <td><g:link controller="programa" action="cargaRendiciones" id="${programa.id}">Rendiciones</g:link></td>
+                        <td>Si Contiene Rendiciones</td>
                         <td>${programa.codigo}</td>
                         <td>${programa.nombre}</td>
                         <td>${programa.estado}</td>

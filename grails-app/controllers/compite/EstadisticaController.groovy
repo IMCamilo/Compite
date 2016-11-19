@@ -20,8 +20,8 @@ class EstadisticaController {
             ret.totalPublicos = (((proyectCompiteInnova[0]/totalProyectos)*100) as double).round(2)
             ret.totalPrivados = ((((proyectCompite1000[0]+ret.percentConsultoria)/totalProyectos)*100) as double).round(2)
         }
-        def audAprobada = Auditoria.countByEstado('APROBADA')
-        def audRechazada = Auditoria.countByEstado('RECHAZADA')
+        def audAprobada = 1//Auditoria.countByEstado('APROBADA')
+        def audRechazada = 2//Auditoria.countByEstado('RECHAZADA')
         def qtyAuditorias = audRechazada + audAprobada
         ret.auditoriasAprobadas = (audAprobada/qtyAuditorias)*100
         ret.auditoriasRechazadas = (audRechazada/qtyAuditorias)*100

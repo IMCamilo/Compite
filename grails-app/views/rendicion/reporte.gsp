@@ -13,7 +13,7 @@
 <body>
 
 <div id="show-rendicion" class="content scaffold-show" role="main">
-|   <h1>Rendición</h1>
+    <h1>Rendición</h1>
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
@@ -127,10 +127,25 @@
                 <label>Total:</label>
                 <label style="color: dimgray">${it.total}</label>
             </div>
-            <div class="col-sm-8">
-            </div>
-            <div class="col-sm-4">
-                <input type="button" value="Imprimir" onclick="javascript:window.print()" />
+            .
+            </br>
+            </br>
+            <div class="col-sm-12">
+                <div class="col-sm-2">
+
+                </div>
+                <div class="col-sm-3 printle">
+                    ${session.usuarioLogueado.nombres} ${session.usuarioLogueado.paterno}</br>Firma Administrador
+                </div>
+                <div class="col-sm-2">
+
+                </div>
+                <div class="col-sm-3">
+                    ${rendicion.usuario.nombres} ${rendicion.usuario.paterno} ${rendicion.usuario.materno}</br>Firma Responsable
+                </div>
+                <div class="col-sm-2 noprint">
+                    <input type="button" value="Imprimir" onclick="javascript:window.print()" />
+                </div>
             </div>
         </div>
     </g:each>
