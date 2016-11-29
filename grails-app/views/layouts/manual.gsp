@@ -16,6 +16,9 @@
 
 <body>
 <g:layoutBody/>
-
+<asset:javascript src="jquery-2.2.0.min.js"/>
+<asset:javascript src="highlight.js"/>
+<asset:javascript src="application.js"/>
+<asset:javascript src="my.js"/>
 </body>
 </html>

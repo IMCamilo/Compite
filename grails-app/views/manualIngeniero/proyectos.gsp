@@ -148,9 +148,5 @@ Concepto:
         </div>
       </div>
     </div>
-  <asset:javascript src="jquery-2.1.1.min.js"/>
-  <asset:javascript src="highlight.js"/>
-  <asset:javascript src="application.js"/>
-  <asset:javascript src="my.js"/>
   </body>
 </html>
