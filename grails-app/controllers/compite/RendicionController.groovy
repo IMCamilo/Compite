@@ -1,9 +1,10 @@
 package compite
-
 import groovy.sql.Sql
-
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+import pl.touk.excel.export.WebXlsxExporter
+import pl.touk.excel.export.XlsxExporter
+import pl.touk.excel.export.getters.LongToDatePropertyGetter
 
 @Transactional(readOnly = true)
 class RendicionController {
@@ -423,5 +424,51 @@ class RendicionController {
     def reporte(Rendicion rendicion){
         def buscaEgresos = Egreso.executeQuery("from Egreso as e where e.rendicion="+rendicion.id)
         respond rendicion, model: [listaEgresos: buscaEgresos]
+    }
+
+    def descargarExcel() {
+
+        def resEgreso = Egreso.executeQuery("from Egreso as e where e.rendicion="+params.rendicion)
+
+        def datamap = [:]
+
+        resEgreso.each {
+            datamap.numEgreso = it.id
+            datamap.programaId = it.programaId
+            datamap.fechaCreacion = it.fechaCreacion
+            datamap.pagadoA = it.pagadoA
+            datamap.creadoPor = it.creadoPor
+            datamap.concepto = it.concepto
+            datamap.proyecto = it.proyectoId
+            datamap.rutEmpresa = it.rutEmpresa
+            datamap.itemId = it.itemId
+            datamap.nDocumento = it.nDocumento
+            datamap.tipoDocumento = it.tipoDocumento
+            datamap.monto = it.monto
+            datamap.concepto = it.concepto
+        }
+
+        //sedeEnvio from rendicion
+        //tipoRendicion from rendicion
+
+        def withProperties = ['numEgreso', 'fechaCreacion', 'itemId', 'monto',
+        'nDocumento','tipoDocumento','rutEmpresa','pagadoA','proyecto','concepto']
+
+        WebXlsxExporter webXlsxExporter = new WebXlsxExporter()
+        webXlsxExporter.setWorksheetName("Rendicion Egreso ${datamap.id}")
+
+        webXlsxExporter.with {
+            setResponseHeaders(response)
+            fillRow(["Numero Rendicion", "${datamap.numEgreso}", "Pagado a", "${datamap.programaId}"], 1)
+            fillRow(["Programa", "${datamap.fechaCreacion}", "Creado por", "${datamap.pagadoA}"], 2)
+            fillRow(["Fecha Ingreso", "${datamap.creadoPor}", "Sede Envío", ""], 3)
+            fillRow(["Tipo Rendición", "", "", ""], 4)
+
+            fillRow(["egreso", "fecha creacion", "item", "monto","N° Documento","Tipo Documento",
+            "Empresa","Pagado a","Centro costo","Proyecto","Concepto"], 6)
+            add(datamap, withProperties, 7)
+            save(response.outputStream)
+        }
+
     }
 }

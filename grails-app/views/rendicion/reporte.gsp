@@ -146,6 +146,13 @@
                 <div class="col-sm-2 noprint">
                     <input type="button" value="Imprimir" onclick="javascript:window.print()" />
                 </div>
+
+                <div class="col-sm-2 noprint">
+                    <g:form name="name" action="descargarExcel">
+                        <input type="hidden" name="rendicion" value="${rendicion.id}">
+                        <input class="btn btn-primary" type="submit" name="Exportar Excel" value="Exportar Excel">
+                    </g:form>
+                </div>
             </div>
         </div>
     </g:each>
