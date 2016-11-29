@@ -65,6 +65,7 @@
                           <ul class="dropdown-menu">
                             <li><a class="navbar-brand" href="${createLink(controller:'administrador', action:'reportes')}">Reportes</a></li>
                             <li><a class="navbar-brand" href="${createLink(controller:'estadistica')}">Estadísticas</a></li>
+                              <li><a class="navbar-brand" target="_blank" href="${createLink(controller:'manualAdministrador', action:'index')}">Manual del Usuario</a></li>
                         </ul>
                     </li>
                     <li role="presentation" class="dropdown">
@@ -72,7 +73,6 @@
                             ${session.usuarioLogueado.nombres} ${session.usuarioLogueado.paterno} <span class="caret"></span>
                             <ul class="dropdown-menu">
                             <li><a class="navbar-brand" href="${createLink(controller:'administrador', action:'cargarperfil',)}">Perfil</a></li>
-                            <li><a class="navbar-brand" target="_blank" href="${createLink(controller:'manualAdministrador', action:'index')}">Manual del Usuario</a></li>
                             <li>
                                 <a class="navbar-brand" href="${createLink(controller:'login', action:'logout')}">
                                     Cerrar sesión
