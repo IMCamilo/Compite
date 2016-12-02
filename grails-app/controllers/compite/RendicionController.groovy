@@ -462,7 +462,7 @@ class RendicionController {
         'nDocumento','tipoDocumento','rutEmpresa','pagadoA','proyecto','concepto','monto']
 
         WebXlsxExporter webXlsxExporter = new WebXlsxExporter()
-        webXlsxExporter.setWorksheetName("Rendicion Egreso ${datamap.id}")
+        webXlsxExporter.setWorksheetName("Rendicion Egreso ${datamap.numEgreso}")
 
         webXlsxExporter.with {
             //rut nombre empresa
@@ -471,12 +471,12 @@ class RendicionController {
             fillRow(["Programa", "${datamap.programa}", "Creado Por", "${datamap.creadoPor}"], 2)
             fillRow(["Fecha Ingreso", "${datamap.fechaCreacion}", "Sede Envio", "${datamap.sedeEnvio}"], 3)
             fillRow(["Tipo Rendicion", "${datamap.tipoRendicion}", "", ""], 4)
-
             fillRow(["Num. Egreso", "Fecha Creacion", "Item","Num. Documento","Tipo Documento",
             "Empresa","Pagado a","Proyecto","Concepto", "Monto"], 6)
-            //centro costo : codigoprograma-region-version
-
             add(datamap, withProperties, 7)
+            fillRow(["","","${session.usuarioLogueado.nombres.toUpperCase()} ${session.usuarioLogueado.paterno.toUpperCase()}","","","", "${datamap.pagadoA.toUpperCase()}","","","","","","",""],10)
+            fillRow(["","","${session.usuarioLogueado.rut}","","","","","","","","","","",""],11)
+            fillRow(["","","FIRMA ADMINISTRADOR","","","","FIRMA RESPONSABLE","","","","","","",""],12)
             save(response.outputStream)
         }
 
