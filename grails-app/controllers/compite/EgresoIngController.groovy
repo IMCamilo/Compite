@@ -2,6 +2,9 @@ package compite
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+import pl.touk.excel.export.WebXlsxExporter
+import pl.touk.excel.export.XlsxExporter
+import pl.touk.excel.export.getters.LongToDatePropertyGetter
 
 @Transactional(readOnly = true)
 class EgresoIngController {
@@ -383,4 +386,49 @@ class EgresoIngController {
         def listaArchivos = Archivo.findAllByEntidadAndEntidadId("egreso", egreso.id)
         respond egreso, model:[archivos:listaArchivos, movilizacion:movs]
     }
+
+
+    def exportExcel() {
+
+        def resEgreso = Egreso.executeQuery("from Egreso where id = "+params.egreso)
+
+        def datamap = [:]
+
+        resEgreso.each { egreso ->
+            
+            datamap.item = egreso.item
+            datamap.programa = egreso.programaId
+            datamap.pagadoA = egreso.pagadoA
+            datamap.empresa = egreso.rutEmpresa
+            datamap.proyecto = egreso.proyectoId
+            datamap.aprobacion = egreso.aprobacion
+            datamap.tipoMoneda = egreso.tipoMoneda
+            datamap.tipoDocumento = egreso.tipoDocumento
+            datamap.monto = egreso.monto
+            datamap.concepto = egreso.concepto
+            datamap.fechaIngreso = egreso.fechaCreacion
+            datamap.nDocumento = egreso.nDocumento
+        }
+
+        //def withProperties = ['numEgreso', 'fechaCreacion', 'itemId',
+        //'nDocumento','tipoDocumento','rutEmpresa','pagadoA','proyecto','concepto','monto']
+
+        WebXlsxExporter webXlsxExporter = new WebXlsxExporter()
+        webXlsxExporter.setWorksheetName("Rendicion Egreso ${datamap.numEgreso}")
+
+        webXlsxExporter.with {
+            //rut nombre empresa
+            setResponseHeaders(response)
+            fillRow(["", "","DETALLE EGRESO",""], 1)
+            fillRow(["ITEM", "","PROGRAMA",""], 3)
+            fillRow(["PAGADO A", "","EMPRESA",""], 4)
+            fillRow(["PROYECTO", "","APROBACION",""], 5)
+            fillRow(["TIPO MONEDA", "","TIPO DOCUMENTO",""], 6)
+            fillRow(["MONTO", "","NUMERO DOCUMENTO",""], 7)
+            fillRow(["CONCEPTO", "","FECHA CRACION",""], 8)
+            save(response.outputStream)
+        }
+
+    }
+
 }

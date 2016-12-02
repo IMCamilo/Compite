@@ -127,7 +127,10 @@
                 </div>
                 <div class="col-md-12">
                     <div class="col-sm-6">
-                        <g:link action="reporte" id="${it.id}">Generar Reporte</g:link>
+                        <g:form name="name" action="exportExcel">
+                            <input type="hidden" name="egreso" value="${it.id}">
+                            <input class="btn btn-primary" type="submit" name="Exportar Excel" value="Exportar Excel">
+                        </g:form>
                     </div>
                 </div>
             </g:each>
