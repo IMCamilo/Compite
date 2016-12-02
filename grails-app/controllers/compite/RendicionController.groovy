@@ -458,27 +458,38 @@ class RendicionController {
             datamap.concepto = it.concepto
         }
 
-        def withProperties = ['numEgreso', 'fechaCreacion', 'itemId',
-        'nDocumento','tipoDocumento','rutEmpresa','pagadoA','proyecto','concepto','monto']
+        String path = System.getProperty("user.dir")+"/archivos/PLANTILLARENDICION-NOBORRAR.xlsx"
 
-        WebXlsxExporter webXlsxExporter = new WebXlsxExporter()
-        webXlsxExporter.setWorksheetName("Rendicion Egreso ${datamap.numEgreso}")
-
-        webXlsxExporter.with {
-            //rut nombre empresa
+        new WebXlsxExporter(path).with {
             setResponseHeaders(response)
-            fillRow(["Numero Rendicion", "${datamap.numEgreso}", "Pagado A", "${datamap.pagadoA}"], 1)
-            fillRow(["Programa", "${datamap.programa}", "Creado Por", "${datamap.creadoPor}"], 2)
-            fillRow(["Fecha Ingreso", "${datamap.fechaCreacion}", "Sede Envio", "${datamap.sedeEnvio}"], 3)
-            fillRow(["Tipo Rendicion", "${datamap.tipoRendicion}", "", ""], 4)
-            fillRow(["Num. Egreso", "Fecha Creacion", "Item","Num. Documento","Tipo Documento",
-            "Empresa","Pagado a","Proyecto","Concepto", "Monto"], 6)
-            add(datamap, withProperties, 7)
-            fillRow(["","","${session.usuarioLogueado.nombres.toUpperCase()} ${session.usuarioLogueado.paterno.toUpperCase()}","","","", "${datamap.pagadoA.toUpperCase()}","","","","","","",""],10)
-            fillRow(["","","${session.usuarioLogueado.rut}","","","","","","","","","","",""],11)
-            fillRow(["","","FIRMA ADMINISTRADOR","","","","FIRMA RESPONSABLE","","","","","","",""],12)
+            //putCellValue(//fila,//columna,//texto)
+            putCellValue(6, 1, datamap.numEgreso)
+            putCellValue(6, 4, datamap.pagadoA)
+            putCellValue(7, 1, datamap.programa)
+            putCellValue(7, 4, datamap.creadoPor)
+            putCellValue(8, 1, datamap.fechaCreacion)
+            putCellValue(8, 4, datamap.sedeEnvio)
+            putCellValue(9, 1, datamap.tipoRendicion)
+
+            putCellValue(13, 0, datamap.tipoRendicion)
+            putCellValue(13, 1, datamap.fechaCreacion)
+            putCellValue(13, 2, datamap.itemId)
+            putCellValue(13, 3, datamap.nDocumento)
+            putCellValue(13, 4, datamap.tipoDocumento)
+            putCellValue(13, 5, datamap.rutEmpresa)
+            putCellValue(13, 6, datamap.pagadoA)
+            putCellValue(13, 7, datamap.proyecto)
+            putCellValue(13, 8, datamap.concepto)
+            putCellValue(13, 9, datamap.monto)
+
+
+            putCellValue(18, 2, session.usuarioLogueado.nombres+" "+session.usuarioLogueado.paterno)
+            putCellValue(20, 2, "FIRMA ADMINISTRADOR")
+
+            putCellValue(18, 6, datamap.pagadoA)
+            putCellValue(20, 6, "FIRMA RESPONSABLE")
+
             save(response.outputStream)
         }
-
     }
 }
