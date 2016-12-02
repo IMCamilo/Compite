@@ -25,8 +25,8 @@ class TransporteController {
     @Transactional
     def save() {
         String[] rutObtenido = ((String) params.nombreUsuario).split(" ? ");
-        println "busqueda de usuario : " +rutObtenido[3]
-        def u = Usuario.findByRut(rutObtenido[3])
+        println "busqueda de usuario : " +rutObtenido[4]
+        def u = Usuario.findByRut(rutObtenido[4])
         params.usuario = u.id
         def trans=Transporte.findByUsuario(u)
         if(!trans) {

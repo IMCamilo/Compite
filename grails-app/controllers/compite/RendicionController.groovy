@@ -157,7 +157,10 @@ class RendicionController {
 
         //Traemos el usuario de los Egresos
         def queryUsuario = Egreso.executeQuery("select e.usuario from Egreso as e where e.id="+arrayEgresos[0])
+
         def usuario = queryUsuario[0]
+        def queryPrograma = Asignacion.executeQuery("select e.programa from Asignacion as e where e.usuario="+usuario.id)
+        def programa = queryPrograma[0]
 
         params.sedeEnvio = "Puerto Montt"
         params.tipoRendicion = "Reembolso de gastos"
@@ -166,7 +169,7 @@ class RendicionController {
         params.totalRendido = total
         params.total = total
         params.usuario = usuario.id
-        params.programa = 1
+        params.programa = programa.id
         def rendicion = new Rendicion(params)
 
         if (rendicion == null) {

@@ -204,7 +204,7 @@ class EgresoIngController {
                 flash.message = message(code: 'default.not.found.message', args: [message(code: 'egreso.label', default: 'Egreso'), params.id])
                 redirect action: "index", method: "GET"
             }
-            '*'{ render status: NOT_FOUND }
+            '*'{ render status: NOT_adFOUND }
         }
     }
     //egreso de movilizacion crear
