@@ -395,37 +395,35 @@ class EgresoIngController {
         def datamap = [:]
 
         resEgreso.each { egreso ->
-            
-            datamap.item = egreso.item
-            datamap.programa = egreso.programaId
+            def detalleItem = Item.findById(egreso.itemId) 
+            def detallePrograma = Programa.findById(egreso.programaId) 
+            def detalleProyecto = Proyecto.findById(egreso.proyectoId) 
+            datamap.item = detalleItem.nombre
+            datamap.programa = detallePrograma.nombre
             datamap.pagadoA = egreso.pagadoA
             datamap.empresa = egreso.rutEmpresa
-            datamap.proyecto = egreso.proyectoId
+            datamap.proyecto = detalleProyecto.nombre
             datamap.aprobacion = egreso.aprobacion
             datamap.tipoMoneda = egreso.tipoMoneda
             datamap.tipoDocumento = egreso.tipoDocumento
             datamap.monto = egreso.monto
             datamap.concepto = egreso.concepto
-            datamap.fechaIngreso = egreso.fechaCreacion
+            datamap.fechaCreacion = egreso.fechaCreacion
             datamap.nDocumento = egreso.nDocumento
         }
-
-        //def withProperties = ['numEgreso', 'fechaCreacion', 'itemId',
-        //'nDocumento','tipoDocumento','rutEmpresa','pagadoA','proyecto','concepto','monto']
 
         WebXlsxExporter webXlsxExporter = new WebXlsxExporter()
         webXlsxExporter.setWorksheetName("Rendicion Egreso ${datamap.numEgreso}")
 
         webXlsxExporter.with {
-            //rut nombre empresa
             setResponseHeaders(response)
             fillRow(["", "","DETALLE EGRESO",""], 1)
-            fillRow(["ITEM", "","PROGRAMA",""], 3)
-            fillRow(["PAGADO A", "","EMPRESA",""], 4)
-            fillRow(["PROYECTO", "","APROBACION",""], 5)
-            fillRow(["TIPO MONEDA", "","TIPO DOCUMENTO",""], 6)
-            fillRow(["MONTO", "","NUMERO DOCUMENTO",""], 7)
-            fillRow(["CONCEPTO", "","FECHA CRACION",""], 8)
+            fillRow(["ITEM", "${datamap.item.toUpperCase()}", "PROGRAMA", "${datamap.programa.toUpperCase()}"], 3)
+            fillRow(["PAGADO A", "${datamap.pagadoA.toUpperCase()}", "EMPRESA", "${datamap.empresa}"], 4)
+            fillRow(["PROYECTO", "${datamap.proyecto.toUpperCase()}", "APROBACION", "${datamap.aprobacion}"], 5)
+            fillRow(["TIPO MONEDA", "${datamap.tipoMoneda}","TIPO DOCUMENTO", "${datamap.tipoDocumento}"], 6)
+            fillRow(["MONTO", "${datamap.monto}", "NUMERO DOCUMENTO", "${datamap.nDocumento}"], 7)
+            fillRow(["CONCEPTO", "${datamap.concepto.toUpperCase()}", "FECHA CRACION", "${datamap.fechaCreacion}"], 8)
             save(response.outputStream)
         }
 
