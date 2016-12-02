@@ -412,21 +412,25 @@ class EgresoIngController {
             datamap.nDocumento = egreso.nDocumento
         }
 
-        WebXlsxExporter webXlsxExporter = new WebXlsxExporter()
-        webXlsxExporter.setWorksheetName("Rendicion Egreso ${datamap.numEgreso}")
+        String path = System.getProperty("user.dir")+"/archivos/PLANTILLAEGRESO-NOBORRAR.xlsx"
 
-        webXlsxExporter.with {
+        new WebXlsxExporter(path).with {
             setResponseHeaders(response)
-            fillRow(["", "","DETALLE EGRESO",""], 1)
-            fillRow(["ITEM", "${datamap.item.toUpperCase()}", "PROGRAMA", "${datamap.programa.toUpperCase()}"], 3)
-            fillRow(["PAGADO A", "${datamap.pagadoA.toUpperCase()}", "EMPRESA", "${datamap.empresa}"], 4)
-            fillRow(["PROYECTO", "${datamap.proyecto.toUpperCase()}", "APROBACION", "${datamap.aprobacion}"], 5)
-            fillRow(["TIPO MONEDA", "${datamap.tipoMoneda}","TIPO DOCUMENTO", "${datamap.tipoDocumento}"], 6)
-            fillRow(["MONTO", "${datamap.monto}", "NUMERO DOCUMENTO", "${datamap.nDocumento}"], 7)
-            fillRow(["CONCEPTO", "${datamap.concepto.toUpperCase()}", "FECHA CRACION", "${datamap.fechaCreacion}"], 8)
+            //putCellValue(//fila,//columna,//texto)
+            putCellValue(4, 1, datamap.item)
+            putCellValue(4, 4, datamap.programa)
+            putCellValue(5, 1, datamap.pagadoA)
+            putCellValue(5, 4, datamap.empresa)
+            putCellValue(6, 1, datamap.proyecto)
+            putCellValue(6, 4, datamap.aprobacion)
+            putCellValue(7, 1, datamap.tipoMoneda)
+            putCellValue(7, 4, datamap.tipoDocumento)
+            putCellValue(8, 1, datamap.monto)
+            putCellValue(8, 4, datamap.nDocumento)
+            putCellValue(9, 1, datamap.concepto)
+            putCellValue(9, 4, datamap.fechaCreacion)
             save(response.outputStream)
         }
-
     }
 
 }
