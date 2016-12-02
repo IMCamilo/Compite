@@ -433,39 +433,46 @@ class RendicionController {
         def datamap = [:]
 
         resEgreso.each {
+            
             datamap.numEgreso = it.id
-            datamap.programaId = it.programaId
+            def programaDetail = Programa.findById(it.programaId)
+            datamap.programa = programaDetail.nombre
             datamap.fechaCreacion = it.fechaCreacion
             datamap.pagadoA = it.pagadoA
             datamap.creadoPor = it.creadoPor
             datamap.concepto = it.concepto
-            datamap.proyecto = it.proyectoId
             datamap.rutEmpresa = it.rutEmpresa
-            datamap.itemId = it.itemId
+            def itemDetail = Item.findById(it.itemId)
+            def rendicionDetail = Rendicion.findById(it.rendicionId)
+            def proyectoDetail = Proyecto.findById(it.proyectoId)
+            datamap.proyecto = proyectoDetail.nombre
+            datamap.sedeEnvio = rendicionDetail.sedeEnvio
+            datamap.tipoRendicion = rendicionDetail.tipoRendicion
+            datamap.itemId = itemDetail.nombre
             datamap.nDocumento = it.nDocumento
             datamap.tipoDocumento = it.tipoDocumento
             datamap.monto = it.monto
             datamap.concepto = it.concepto
         }
 
-        //sedeEnvio from rendicion
-        //tipoRendicion from rendicion
-
-        def withProperties = ['numEgreso', 'fechaCreacion', 'itemId', 'monto',
-        'nDocumento','tipoDocumento','rutEmpresa','pagadoA','proyecto','concepto']
+        def withProperties = ['numEgreso', 'fechaCreacion', 'itemId',
+        'nDocumento','tipoDocumento','rutEmpresa','pagadoA','proyecto','concepto','monto']
 
         WebXlsxExporter webXlsxExporter = new WebXlsxExporter()
         webXlsxExporter.setWorksheetName("Rendicion Egreso ${datamap.id}")
 
         webXlsxExporter.with {
+            //rut nombre empresa
             setResponseHeaders(response)
-            fillRow(["Numero Rendicion", "${datamap.numEgreso}", "Pagado a", "${datamap.programaId}"], 1)
-            fillRow(["Programa", "${datamap.fechaCreacion}", "Creado por", "${datamap.pagadoA}"], 2)
-            fillRow(["Fecha Ingreso", "${datamap.creadoPor}", "Sede Envío", ""], 3)
-            fillRow(["Tipo Rendición", "", "", ""], 4)
+            fillRow(["Numero Rendicion", "${datamap.numEgreso}", "Pagado A", "${datamap.pagadoA}"], 1)
+            fillRow(["Programa", "${datamap.programa}", "Creado Por", "${datamap.creadoPor}"], 2)
+            fillRow(["Fecha Ingreso", "${datamap.fechaCreacion}", "Sede Envio", "${datamap.sedeEnvio}"], 3)
+            fillRow(["Tipo Rendicion", "${datamap.tipoRendicion}", "", ""], 4)
 
-            fillRow(["egreso", "fecha creacion", "item", "monto","N° Documento","Tipo Documento",
-            "Empresa","Pagado a","Centro costo","Proyecto","Concepto"], 6)
+            fillRow(["Num. Egreso", "Fecha Creacion", "Item","Num. Documento","Tipo Documento",
+            "Empresa","Pagado a","Proyecto","Concepto", "Monto"], 6)
+            //centro costo : codigoprograma-region-version
+
             add(datamap, withProperties, 7)
             save(response.outputStream)
         }
