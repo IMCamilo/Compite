@@ -6,7 +6,7 @@ class Auditoria {
     Date fechaCreacion = new Date()
     Integer monto
 
-    static belongsTo = [programa:Programa, usuario:Usuario, item:Item, rendicion:Rendicion, proyecto: Proyecto, egreso: Egreso]
+    static belongsTo = [programa:Programa, usuario:Usuario, item:Item, rendicion:Rendicion, proyecto: Proyecto]
     static hasMany = [movilizacion:Movilizacion]
 
     static constraints = {

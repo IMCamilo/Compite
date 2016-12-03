@@ -42,7 +42,7 @@
                              <td>${auditoria.tipoDocumento}</td>
                              <td>${auditoria.pagadoA}</td>
                              <td>${auditoria.usuario.nombres} ${auditoria.usuario.paterno} ${auditoria.usuario.materno}</td>
-                             <td><g:link controller="egreso" action="show" id="${auditoria.egreso.id}">N° ${auditoria.egreso.id}</g:link></td>
+                             <td><g:link controller="egreso" action="show" id="${auditoria.id}">N° ${auditoria.id}</g:link></td>
                         </tr>
                     </g:each>
                 </tbody>

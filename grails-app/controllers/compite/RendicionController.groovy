@@ -10,7 +10,7 @@ import pl.touk.excel.export.getters.LongToDatePropertyGetter
 class RendicionController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-
+    def dataSource
     def index(Integer max) {
         if(params.programa!=null){
             def programaList = Programa.findAll("from Programa where estado='ACTIVO'")
